@@ -22,10 +22,10 @@
 </head>
 
 
-<body class="font-sans leading-normal tracking-normal mt-12">
+<body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
   <!--Nav-->
   <!-- pt-2 md:pt-1 pb-1 px-1 mt-0 h-auto fixed w-full z-0 top-4 -->
-  <nav class=" z-0">
+  <nav class="bg-gray-800 z-0">
     <ul class="flex flex-col justify-left md:flex-row md:justify-evenly text-white">
       <!-- <li class="text-left text-3xl">☰</li> -->
       <li><a href="index.html">Logo</a></li>
@@ -44,10 +44,10 @@
 
   <div class="flex flex-col md:flex-row">
 
-    <div class=" shadow-xl h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48">
+    <div class="bg-gray-800 shadow-xl h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48">
 
       <div
-        class="md:mt-0 md:w-48 md:left-0 md:top-0 content-center md:content-start text-left justify-between ">
+        class=" md:w-48  md:left-0 md:top-0 content-center md:content-start text-left justify-between ">
         <ul class="list-reset flex flex-row md:flex-col py-0 md:py-3 px-1 md:px-2 text-center md:text-left">
           <li class="mr-3 flex-1">
             <a href="#"
@@ -85,119 +85,63 @@
 
     <div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
 
-      
-        <div class=" fondo p-4 shadow text-2xl text-white">
-          <h3 class="font-bold pl-2">Cliente</h3>
+      <div class="bg-gray-800 pt-3">
+        <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+          <h3 class="font-bold pl-2">Registo Cliente</h3>
         </div>
-      
-
-      
-
-      <div class="slider">
-        <ul>
-          <li>
-            <div id="slide1">
-              <img src="img/auto1.jpg">
-            </div>
-          </li>
-          <li>
-            <div id="slide2">
-              <img src="img/auto2.jpg">
-            </div>
-          </li>
-          <li>
-            <div id="slide3">
-              <img src="img/auto3.jpg">
-            </div>
-          </li>
-          <li>
-            <div id="slide4">
-              <img src="img/auto2.jpg">
-            </div>
-          </li>
-        </ul>
       </div>
-
-      <div class="circulos">
-        <ul>
-          <li><a href="#slide1"></a></li>
-          <li><a href="#slide2"></a></li>
-          <li><a href="#slide3"></a></li>
-          <li><a href="#slide4"></a></li>
-        </ul>
-      </div>
-
-
-      <br>
-      <br>
-
-  
-   <div class="container">
-        <section id="content">
-          <div  id="posts-1">
-              <div class="post">
-                <h1 class="h1">Mantencion</h1>
-                </div>
-                <img src="img/mantencion.jpg">        
-               </div>
-                <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.
-                </p>
-              
-        </section>
-        <section id="content">
-          <div id="posts-1">
-              <div class="post">
-                <h1 class="h1">Neumaticos</h1>
-              </div>
-                <img src="img/neumatico2.jpg">        
-          </div>
-                <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.
-                </p>
-              
-        </section>
-
-        
-
-    </div>
-
-  
-    <section id="extras">
-      <ul>
-        <li><img src="img/motor.jpg"></li>
-        <li><img src="img/homero.jpg"></li>
-        <li><img src="img/bujias.jpg"></li>
-        <li><img src="img/neumatico.jpg"></li>
-        <li><img src="img/volante.jpg"></li>
-        
-      </ul>
-        
-    </section>
-
-     <section id="logos">
-      <ul>
-        <li><img src="img/logo-bmw.png"></li>
-        <li><img src="img/logo-che.png"></li>
-        <li><img src="img/logo-ford.png"></li>
-        <li><img src="img/logo-volsk.png"></li>
-        <li><img src="img/logo-nissan.png"></li>
-        
-      </ul>
-        
-    </section>
-  
+    <section class="formulario">
+      <form class="flex flex-col">
       
-
-
-    </div>
-   </div>
-
-
-   <footer>
+      	<label >Rut: </label>
+      	<input type="text" id="rut" required>
+      	
+      
+      	<label >Nombre: </label>
+      	<input type="text" id="nombre">
+      	
+      	<label >Apellido: </label>
+      	<input type="text" id="apellido">
+	  
+      	<label >Direccion: </label>
+      	<input type="text" id="direccion">
+      
+      	<label >Telefono: </label>
+      	<input type="text" id="telefono">
+      
+      	<label >Celular: </label>
+      	<input type="text" id="celular">
+      
+      	<label >Email: </label>
+      	<input type="text" id="email">
+      
+      	<label >Contraseña: </label>
+      	<input type="text" id="password">
+      	<br>
+      	<input type="submit" value="Enviar" >
+      </form>
+    </section> 
      
-   </footer>
-  
+      
+
+
+
+      <div class="bg-gray-800 pt-3">
+        <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+          <h3 class="font-bold pl-2">Registo Vehiculo</h3>
+        </div>
+      </div>
+      <br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br><br>
+
+      
+
+      
+
+
+
+
+ 
 
 </body>
 
