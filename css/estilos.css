@@ -93,7 +93,7 @@ input{
 	padding: 0;
 	display: flex;
 	width: 400%;
-	height: 500px;
+	
 	animation: mover 20s infinite alternate;
 	animation-timing-function: ease-out;
 }
@@ -134,7 +134,7 @@ input{
 	display: flex;
 }
 #extras li{
-	padding: 35px;
+	/*padding: 35px;*/
 }
 
 #extras img{
@@ -169,3 +169,4 @@ background-image: url("https://www.transparenttextures.com/patterns/starring.png
 background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
+
