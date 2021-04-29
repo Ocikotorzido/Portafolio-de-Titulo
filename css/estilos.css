@@ -8,12 +8,9 @@ h1{
 	font-size: 30px;
 	font-weight: bold;
 }
-.container h1{
-	text-align: center;
-}
 
 #posts-1{
-	width: 580px;
+	max-width: 580px;
 	text-align: center;
 	
 	font-family: Helvetica;
@@ -78,9 +75,6 @@ input{
 }
 
 
-.container{
-	display: flex;
-}
 .h1 {
 	padding: 20px;
 }
@@ -152,8 +146,13 @@ input{
 #logos ul{
 	display: flex;
 }
-#logos li{
+
+/*#logos li{
 	padding: 45px;
+}*/
+
+.setenta-vw {
+	width: 70vw;
 }
 
 footer{
@@ -161,12 +160,10 @@ footer{
 	color: white;
 background-color: #1a0001;
 background-image: url("https://www.transparenttextures.com/patterns/starring.png");
-/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
 .fondo{
 	background-color: #1a0300;
 background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
-/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
