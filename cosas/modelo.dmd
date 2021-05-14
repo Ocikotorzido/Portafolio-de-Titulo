@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="modelo" id="1E5BF615-5943-08E7-D28E-A77EEEA77F5A" version="3.5">
+<createdBy>nanel</createdBy>
+<createdTime>2021-04-15 19:09:45 UTC</createdTime>
+<ownerDesignName>modelo</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>1E5BF615-5943-08E7-D28E-A77EEEA77F5A</designId>
+</OSDM_Design>
