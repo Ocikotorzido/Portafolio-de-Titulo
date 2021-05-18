@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.fields import BLANK_CHOICE_DASH
 
 # Create your models here.
 
@@ -13,6 +14,7 @@ class Cargo(models.Model):
 
 class Cliente(models.Model):
     id_cliente = models.FloatField(primary_key=True)
+    rut = models.FloatField(blank=True, null=True)
     nombre = models.CharField(max_length=20)
     apellido = models.CharField(max_length=20)
     direccion = models.CharField(max_length=50, blank=True, null=True)

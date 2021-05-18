@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MCS</title>
+  <meta name="author" content="name">
+  <meta name="description" content="Sistema de gestión MCS">
+  <meta name="keywords" content="MCS">
+
+  <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <!-- <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet"> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script> -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+
+</head>
+
+
+<body class="font-sans leading-normal tracking-normal mt-3">
+
+  <!--Nav desde tablets hasta computadores -->
+  <nav class="hidden md:flex md:flex-row md:justify-center ">
+    <ul class="flex flex-col justify-left md:flex-row md:justify-evenly md:w-full text-white">
+      <li class="text-left text-3xl md:hidden">☰</li>
+      <li class="-m-9 hidden md:block"><a href="index.html"><img src="{% static 'img/logo-1.png' %}" alt="Logo"></a></li>
+      <li><a href="cliente">Cliente</a></li>
+      <li><a href="reserva.html">Reserva</a></li>
+      <li>Factura</li>
+      <li>Servicios</li>
+      <li>Órden de reparación</li>
+      <li>Exportar</li>
+      <li>Configuración</li>
+        <li><a href="login.html">Mi Cuenta</a></li>
+    </ul>
+  </nav>
+
+  <!-- Botón hamburgesa SOLO CELULAR -->
+  <details class="text-white md:hidden ">
+    <summary class="flex justify-center text-left text-3xl md:hidden">☰</summary>
+    <ul class="flex flex-col justify-center text-center text-white">
+      <li><a href="cliente.html">Cliente</a></li>
+      <li><a href="cliente.html">Reserva</a></li>
+      <li>Factura</li>
+      <li>Servicios</li>
+      <li>Órden de reparación</li>
+      <li>Exportar</li>
+      <li>Configuración</li>
+      <li><a href="login.html">Mi cuenta</a></li>
+    </ul>
+  </details>
+
+  <div class="flex flex-col md:flex-row">
+    
+    <!-- Barra inferior, SÓLO CELULARES -->
+    <div class="bg-black md:bg-transparent h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48">
+      <div
+        class="md:mt-0 md:w-48 md:left-0 md:top-0 content-center md:content-start text-left justify-between ">
+        <ul class="list-reset flex flex-row md:flex-col py-0 md:py-3 px-1 md:px-2 text-center md:text-left">
+          <li class="mr-3 flex-1">
+            <a href="#"
+              class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+              <i class="fas fa-tasks pr-0 md:pr-3"></i><span
+                class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Nuevo Cliente</span>
+            </a>
+          </li>
+          <li class="mr-3 flex-1">
+            <a href="#"
+              class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-purple-500">
+              <i class="fa fa-envelope pr-0 md:pr-3"></i><span
+                class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Nueva Reserva</span>
+            </a>
+          </li>
+          <li class="mr-3 flex-1">
+            <a href="#"
+              class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-blue-600">
+              <i class="fas fa-chart-area pr-0 md:pr-3 text-white"></i><span
+                class="pb-1 md:pb-0 text-xs md:text-base text-white md:text-white block md:inline-block">Órden de Trabajo</span>
+            </a>
+          </li>
+          <li class="mr-3 flex-1">
+            <a href="#"
+              class="block py-1 md:py-3 pl-0 md:pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-red-500">
+              <i class="fa fa-wallet pr-0 md:pr-3"></i><span
+                class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Factura</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+
+    </div>
+
+    <div class="main-content flex-1 bg-gray-100 mt-3 md:mt-2 pb-3 md:pb-5">
+
+      
+        <div class=" fondo p-4 shadow text-2xl text-white">
+          <h3 class="font-bold pl-2 text-center md:text-left">Bienvenido</h3>
+        </div>
+      
+
+    
+
+      <div class="slider">
+        <ul class="">
+          <li>
+            <div id="slide1">
+              <img src="{% static 'img/auto5.jpg' %}">
+            </div>
+          </li>'
+          <li>
+            <div id="slide2">
+              <img src="{% static 'img/auto6.jpg' %}">
+            </div>
+          </li>
+          <li>
+            <div id="slide3">
+              <img src="{% static 'img/auto7.jpg' %}">
+            </div>
+          </li>
+          <li>
+            <div id="slide4">
+              <img src="{% static 'img/auto2.jpg' %}">
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="circulos">
+        <ul>
+          <li><a href="#slide1"></a></li>
+          <li><a href="#slide2"></a></li>
+          <li><a href="#slide3"></a></li>
+          <li><a href="#slide4"></a></li>
+        </ul>
+      </div>
+
+
+      <br class="hidden md:block">
+      <br class="hidden md:block">
+
+  
+      <section class="flex flex-col xl:flex-row text-center">
+        <article id="content">
+          <div id="posts-1">
+            <div class="post">
+              <h1 class="h1">Mantencion</h1>
+            </div>
+            <img class="setenta-vw" src="img/mantencion.jpg" alt="Foto Vehículo"/>
+          </div>
+          <p class="text-justify">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the
+            1500s, when an unknown printer took a galley of type and scrambled it to
+            make a type specimen book. It has survived not only five centuries.
+          </p>
+        </article>
+        <article id="content">
+          <div id="posts-1">
+            <div class="post">
+              <h1 class="h1">Neumaticos</h1>
+            </div>
+            <img class="setenta-vw" src="img/neumatico2.jpg" alt="Foto Neumático"/>
+          </div>
+          <p class="text-justify">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the
+            1500s, when an unknown printer took a galley of type and scrambled it to
+            make a type specimen book. It has survived not only five centuries.
+          </p>
+        </article>
+      </section>
+      
+
+  
+    <section id="extras">
+      <ul class="flex justify-around md:block">
+        <li class="hidden p-9 md:block md:p-5 lg:p-9"><img src="img/motor.jpg"></li>
+        <li class="p-9 md:p-5 lg:p-9"><img src="img/homero.jpg"></li>
+        <li class="hidden lg:block md:p-5 lg:p-9"><img src="img/bujias.jpg"></li>
+        <li class="p-9 md:p-5 lg:p-9"><img src="img/neumatico.jpg"></li>
+        <li class="hidden md:block md:p-5 lg:p-9"><img src="img/volante.jpg"></li>
+        
+      </ul>
+        
+    </section>
+
+     <section id="logos" class="pt-12 pb-6">
+      <ul>
+        <li class="p-0 md:p-5 lg:p-12"><img src="img/logo-bmw.png"></li>
+        <li class="p-0 md:p-5 lg:p-12"><img src="img/logo-che.png"></li>
+        <li class="p-0 md:p-5 lg:p-12"><img src="img/logo-ford.png"></li>
+        <li class="p-0 md:p-5 lg:p-12"><img src="img/logo-volsk.png"></li>
+        <li class="p-0 md:p-5 lg:p-12"><img src="img/logo-nissan.png"></li>
+      </ul>
+    </section>
+  
+      
+
+
+    </div>
+   </div>
+
+
+   <footer>
+     
+   </footer>
+  
+
+</body>
+
+</html>
