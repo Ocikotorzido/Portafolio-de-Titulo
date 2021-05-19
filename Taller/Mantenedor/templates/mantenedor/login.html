@@ -2,7 +2,6 @@
 <html lang="es">
 
 <head>
-    {% load static %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -18,7 +17,7 @@
   <!--Totally optional :) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"
     integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
-  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+  <link rel="stylesheet" type="text/css" href="css/estilos.css">
 
 </head>
 
@@ -29,13 +28,14 @@
   <nav class="bg-gray-800 z-0">
     <ul class="flex flex-col justify-left md:flex-row md:justify-evenly text-white">
       <!-- <li class="text-left text-3xl">☰</li> -->
-      <li><a href="index">Logo</a></li>
-      <li><a href="cliente">Cliente</a></li>
-      <li><a href="reservas">Reserva</a></li>
-      <li><a href="servicios">Servicios</a></li>
-      <li><a href="orden_reparacion">Orden de trabajo</a></li>
-      <li><a href="orden_pedido">Orden de pedido</a></li>
-      <li><a href="">Exportar</a></li>
+      <li><a href="index.html">Logo</a></li>
+      <li><a href="cliente.html">Cliente</a></li>
+      <li><a href="reserva.html">Reserva</a></li>
+      <li>Factura</li>
+      <li>Servicios</li>
+      <li>Órden de reparación</li>
+      <li>Exportar</li>
+      <li>Configuración</li>
       <li><a href="login.html">Mi Cuenta</a></li>
     </ul>
   </nav>
@@ -60,7 +60,7 @@
             <a href="#"
               class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-purple-500">
               <i class="fa fa-envelope pr-0 md:pr-3"></i><span
-                class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Nueva Reserva</span>
+                class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Nueva Reversa</span>
             </a>
           </li>
           <li class="mr-3 flex-1">
@@ -87,35 +87,19 @@
 
       <div class="bg-gray-800 pt-3">
         <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
-          <h3 class="font-bold pl-2">Reservas</h3>
+          <h3 class="font-bold pl-2">Login</h3>
         </div>
       </div>
     <section class="formulario">
-      <form action="crear_reserva" method="POST" enctype="multipart/form-data" class="flex flex-col">
-        {% csrf_token %}
-      	
+      <form class="flex flex-col">
+      
+      	<label >Usuario: </label>
+      	<input type="text" id="usuario" required>
       	
       
-      	
-	  
-      	<label >Fecha: </label>
-      	<input type="date" id="fecha"  name="fecha">
       
-      	<label >Hora: </label>
-      	<input type="time" id="hora" name="hora">
-
-
-        <label >Servicio: </label>
-        <select id="servicio" name="servicio"> 
-            {% for servicio in servicios %}
-                <option>{{servicio}}</option>
-            {% endfor %}
-            
-      
-        </select>
-        <label >Descripcion: </label>
-        <input type="text" id="descripcion" name="descripcion">
-         
+      	<label >Contraseña: </label>
+      	<input type="text" id="password">
       	<br>
       	<input type="submit" value="Enviar" >
       </form>
@@ -125,12 +109,8 @@
 
 
 
-      
 
       
-
-      
-
 
 
 

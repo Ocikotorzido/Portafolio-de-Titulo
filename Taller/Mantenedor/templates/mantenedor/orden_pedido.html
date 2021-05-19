@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    {% load static %}
+  {% load static %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -87,54 +87,15 @@
 
       <div class="bg-gray-800 pt-3">
         <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
-          <h3 class="font-bold pl-2">Reservas</h3>
+          <h3 class="font-bold pl-2">Orden de Pedido</h3>
         </div>
       </div>
-    <section class="formulario">
-      <form action="crear_reserva" method="POST" enctype="multipart/form-data" class="flex flex-col">
-        {% csrf_token %}
-      	
-      	
-      
-      	
-	  
-      	<label >Fecha: </label>
-      	<input type="date" id="fecha"  name="fecha">
-      
-      	<label >Hora: </label>
-      	<input type="time" id="hora" name="hora">
-
-
-        <label >Servicio: </label>
-        <select id="servicio" name="servicio"> 
-            {% for servicio in servicios %}
-                <option>{{servicio}}</option>
-            {% endfor %}
-            
-      
-        </select>
-        <label >Descripcion: </label>
-        <input type="text" id="descripcion" name="descripcion">
-         
-      	<br>
-      	<input type="submit" value="Enviar" >
-      </form>
-    </section> 
-     
-      
-
-
+    
+   
 
       
 
       
-
-      
-
-
-
-
- 
 
 </body>
 

@@ -271,6 +271,23 @@ class Regions(models.Model):
         db_table = 'regions'
 
 
+
+class TipoServicio(models.Model):
+    id_servicio = models.FloatField(primary_key=True)
+    nombre = models.CharField(max_length=50)
+    monto = models.FloatField()
+    # reservas_id_reserva = models.ForeignKey(Reservas, models.DO_NOTHING, db_column='reservas_id_reserva')
+    tiempo_serv = models.CharField(max_length=10)
+    
+    def __str__(self) -> str:
+        return self.nombre
+
+
+    class Meta:
+        managed = False
+        db_table = 'tipo_servicio'
+
+
 class Reservas(models.Model):
     id_reserva = models.FloatField(primary_key=True)
     servicio = models.CharField(max_length=50, blank=True, null=True)
@@ -278,24 +295,12 @@ class Reservas(models.Model):
     hora = models.CharField(max_length=10)
     cliente_id_cliente = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='cliente_id_cliente')
     descripcion = models.CharField(max_length=200, blank=True, null=True)
+    Tipo_Servicio_id_servicio = models.ForeignKey(TipoServicio, models.DO_NOTHING, db_column='tipo_servicio_id_servicio')
+
 
     class Meta:
         managed = False
         db_table = 'reservas'
-
-
-class TipoServicio(models.Model):
-    id_servicio = models.FloatField(primary_key=True)
-    nombre = models.CharField(max_length=50)
-    monto = models.FloatField()
-    reservas_id_reserva = models.ForeignKey(Reservas, models.DO_NOTHING, db_column='reservas_id_reserva')
-    tiempo_serv = models.CharField(max_length=10)
-
-    class Meta:
-        managed = False
-        db_table = 'tipo_servicio'
-
-
 class Vehiculo(models.Model):
     id_vehiculo = models.FloatField(primary_key=True)
     matricula = models.CharField(max_length=10)

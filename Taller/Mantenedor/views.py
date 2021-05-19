@@ -60,8 +60,47 @@ def agregar_cliente(request):
 def servicios (request):
     return render (request, 'mantenedor/servicios.html')
 
+
+
 def reservas (request):
-    return render (request, 'mantenedor/reservas.html')
+    servicios = TipoServicio.objects.all()
+    context = {'servicios': servicios }
+    return render (request, 'mantenedor/reservas.html', context)
+
+
 
 def orden_reparacion (request):
     return render (request, 'mantenedor/orden_reparacion.html')
+
+def orden_pedido (request):
+    return render (request, 'mantenedor/orden_pedido.html')
+
+
+def crear_reserva(request):
+    if request.method == 'POST':
+
+        mi_fecha = request.POST['fecha']
+        mi_hora = request.POST['hora']
+        mi_servicio = request.POST['servicio']
+        mi_descripcion = request.POST['descripcion']
+
+     
+        if mi_fecha != "":
+            try:
+              
+                reserva = Reservas()
+
+                id_reserva = Reservas.objects.count()+1
+                reserva.fecha = mi_fecha
+                reserva.hora = mi_hora
+                print("\n"+mi_servicio)
+                reserva.servicio = mi_servicio
+                reserva.descripcion = mi_descripcion
+    
+                reserva = Reservas(id_reserva,mi_servicio,mi_fecha,mi_hora,1,mi_descripcion,5)
+
+                reserva.save()    
+                return render(request, 'mantenedor/mensaje_datos.html', {})
+
+            except reserva.DoesNotExist:
+                return render(request, 'mantenedor/mensaje_datos.html', {})
