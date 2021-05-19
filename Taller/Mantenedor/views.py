@@ -57,3 +57,11 @@ def agregar_cliente(request):
             except cliente.DoesNotExist:
                 return render(request, 'mantenedor/mensaje_datos.html', {})
 
+def servicios (request):
+    return render (request, 'mantenedor/servicios.html')
+
+def reservas (request):
+    return render (request, 'mantenedor/reservas.html')
+
+def orden_reparacion (request):
+    return render (request, 'mantenedor/orden_reparacion.html')

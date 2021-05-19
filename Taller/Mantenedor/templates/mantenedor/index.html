@@ -26,15 +26,15 @@
   <nav class="hidden md:flex md:flex-row md:justify-center ">
     <ul class="flex flex-col justify-left md:flex-row md:justify-evenly md:w-full text-white">
       <li class="text-left text-3xl md:hidden">☰</li>
-      <li class="-m-9 hidden md:block"><a href="index.html"><img src="{% static 'img/logo-1.png' %}" alt="Logo"></a></li>
+      <li class="-m-9 hidden md:block"><a href="index"><img src="{% static 'img/logo-1.png' %}" alt="Logo"></a></li>
       <li><a href="cliente">Cliente</a></li>
-      <li><a href="reserva.html">Reserva</a></li>
-      <li>Factura</li>
-      <li>Servicios</li>
-      <li>Órden de reparación</li>
-      <li>Exportar</li>
-      <li>Configuración</li>
-        <li><a href="login.html">Mi Cuenta</a></li>
+      <li><a href="reservas">Reserva</a></li>
+      <li><a href="">Factura</a></li>
+      <li><a href="servicios">Servicios</a></li>
+      <li><a href="orden_reparacion">Orden de trabajo</a></li>
+      <li><a href="">Exportar</a></li>
+      <li><a href="">Configuracion</a></li>
+      <li><a href="login.html">Mi Cuenta</a></li>
     </ul>
   </nav>
 
@@ -42,14 +42,14 @@
   <details class="text-white md:hidden ">
     <summary class="flex justify-center text-left text-3xl md:hidden">☰</summary>
     <ul class="flex flex-col justify-center text-center text-white">
-      <li><a href="cliente.html">Cliente</a></li>
-      <li><a href="cliente.html">Reserva</a></li>
-      <li>Factura</li>
-      <li>Servicios</li>
-      <li>Órden de reparación</li>
-      <li>Exportar</li>
-      <li>Configuración</li>
-      <li><a href="login.html">Mi cuenta</a></li>
+      <li><a href="cliente">Cliente</a></li>
+      <li><a href="reserva.html">Reserva</a></li>
+      <li><a href="">Factura</a></li>
+      <li><a href="servicios">Servicios</a></li>
+      <li><a href="">Orden de reparacion</a></li>
+      <li><a href="">Exportar</a></li>
+      <li><a href=""></a>Configuracion</li>
+      <li><a href="login.html">Mi Cuenta</a></li>
     </ul>
   </details>
 
@@ -149,7 +149,7 @@
             <div class="post">
               <h1 class="h1">Mantencion</h1>
             </div>
-            <img class="setenta-vw" src="img/mantencion.jpg" alt="Foto Vehículo"/>
+            <img class="setenta-vw" src="{%static 'img/mantencion.jpg' %}" alt="Foto Vehículo"/>
           </div>
           <p class="text-justify">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -163,7 +163,7 @@
             <div class="post">
               <h1 class="h1">Neumaticos</h1>
             </div>
-            <img class="setenta-vw" src="img/neumatico2.jpg" alt="Foto Neumático"/>
+            <img class="setenta-vw" src="{% static 'img/neumatico2.jpg' %}" alt="Foto Neumático"/>
           </div>
           <p class="text-justify">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -178,11 +178,11 @@
   
     <section id="extras">
       <ul class="flex justify-around md:block">
-        <li class="hidden p-9 md:block md:p-5 lg:p-9"><img src="img/motor.jpg"></li>
-        <li class="p-9 md:p-5 lg:p-9"><img src="img/homero.jpg"></li>
-        <li class="hidden lg:block md:p-5 lg:p-9"><img src="img/bujias.jpg"></li>
-        <li class="p-9 md:p-5 lg:p-9"><img src="img/neumatico.jpg"></li>
-        <li class="hidden md:block md:p-5 lg:p-9"><img src="img/volante.jpg"></li>
+        <li class="hidden p-9 md:block md:p-5 lg:p-9"><img src="{% static 'img/motor.jpg' %}"></li>
+        <li class="p-9 md:p-5 lg:p-9"><img src="{% static 'img/homero.jpg' %}"></li>
+        <li class="hidden lg:block md:p-5 lg:p-9"><img src="{% static 'img/bujias.jpg' %}"></li>
+        <li class="p-9 md:p-5 lg:p-9"><img src="{% static 'img/neumatico.jpg' %}"></li>
+        <li class="hidden md:block md:p-5 lg:p-9"><img src="{% static 'img/volante.jpg' %}"></li>
         
       </ul>
         
@@ -190,11 +190,11 @@
 
      <section id="logos" class="pt-12 pb-6">
       <ul>
-        <li class="p-0 md:p-5 lg:p-12"><img src="img/logo-bmw.png"></li>
-        <li class="p-0 md:p-5 lg:p-12"><img src="img/logo-che.png"></li>
-        <li class="p-0 md:p-5 lg:p-12"><img src="img/logo-ford.png"></li>
-        <li class="p-0 md:p-5 lg:p-12"><img src="img/logo-volsk.png"></li>
-        <li class="p-0 md:p-5 lg:p-12"><img src="img/logo-nissan.png"></li>
+        <li class="p-0 md:p-5 lg:p-12"><img src="{% static 'img/logo-bmw.png' %}"></li>
+        <li class="p-0 md:p-5 lg:p-12"><img src="{% static 'img/logo-che.png' %}"></li>
+        <li class="p-0 md:p-5 lg:p-12"><img src="{% static 'img/logo-ford.png' %}"></li>
+        <li class="p-0 md:p-5 lg:p-12"><img src="{% static 'img/logo-volsk.png' %}"></li>
+        <li class="p-0 md:p-5 lg:p-12"><img src="{% static 'img/logo-nissan.png' %}"></li>
       </ul>
     </section>
   
