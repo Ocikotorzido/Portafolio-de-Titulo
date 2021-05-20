@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+    {% load static %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -17,7 +18,7 @@
   <!--Totally optional :) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"
     integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
-  <link rel="stylesheet" type="text/css" href="css/estilos.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
 
 </head>
 
@@ -91,15 +92,16 @@
         </div>
       </div>
     <section class="formulario">
-      <form class="flex flex-col">
+      <form method="POST" action="" class="flex flex-col">
+        {% csrf_token %}
       
       	<label >Usuario: </label>
-      	<input type="text" id="usuario" required>
+      	<input type="text" id="usuario" name="nombre" required>
       	
       
       
       	<label >Contraseña: </label>
-      	<input type="text" id="password">
+      	<input type="password" id="password" name="password">
       	<br>
       	<input type="submit" value="Enviar" >
       </form>

@@ -16,9 +16,35 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-
+# from django.conf.urls import url
+# from django.contrib.auth import login
+# from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('Mantenedor/', include('Mantenedor.urls'))
+    path('Mantenedor/', include('Mantenedor.urls'), name='Mantenedor'),
+    
+    # url(r'^$', login, {'template_name': 'login.html'}, name='login'),
+    # path('accounts/', include('django.contrib.auth.urls')),
 ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
