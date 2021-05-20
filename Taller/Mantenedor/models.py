@@ -215,6 +215,7 @@ class DjangoSession(models.Model):
 class Empleado(models.Model):
     id_empleado = models.FloatField(primary_key=True)
     id_cargo = models.FloatField()
+    rut = models.FloatField()
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
     contacto = models.CharField(max_length=50)

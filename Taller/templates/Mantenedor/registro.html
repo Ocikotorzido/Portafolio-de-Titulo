@@ -1,6 +1,8 @@
 <form action="" method="POST">
 
-    {{ formulario.as_p}}
+    {{ formulario.username}}
+    {{ formulario.password1}}
+    {{ formulario.password2}}
     {% csrf_token %}
     <input type="submit" value="Registrar">
 </form>

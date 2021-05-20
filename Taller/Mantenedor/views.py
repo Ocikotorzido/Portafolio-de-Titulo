@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import *
 from django.http import HttpResponse
 
+from django.contrib.auth.models import User
 
 from pathlib import Path
 
@@ -104,6 +105,7 @@ def agregar_cliente(request):
                 print("Entrando al try")
                 cliente = Cliente()
 
+
                 id_cliente = Cliente.objects.count()+1
                 cliente.rut = mi_rut
                 cliente.nombre = mi_nombre
@@ -113,11 +115,17 @@ def agregar_cliente(request):
                 cliente.celular = mi_celular
                 cliente.email = mi_email
                 cliente.password = mi_password
-               
                 
-               
-                cliente = Cliente(id_cliente,mi_rut,mi_nombre,mi_apellido,mi_direccion,
-                                    mi_telefono,mi_celular,mi_email,mi_password)
+                User.objects.create_user(mi_nombre,mi_email,mi_password) 
+
+                n_perfil = Perfil.objects.all().count()+1
+                perfil = Perfil(n_perfil,1)
+                perfil.save()
+                id_usuario = UserPerfil.objects.count()+1
+                UserPerfil(id_usuario).save()
+                
+                cliente = Cliente(id_cliente,mi_nombre,mi_apellido,mi_direccion,
+                                    mi_telefono,mi_celular,mi_email,mi_password,mi_rut)
 
                 cliente.save()
                 
