@@ -210,11 +210,10 @@ def agregar_empleado(request):
                 empleado.rut = mi_rut
                 empleado.nombre = mi_nombre
                 empleado.apellido = mi_apellido
-                empleado.id_cargo = mi_cargo
                 empleado.contacto = mi_contacto
                 empleado.password = mi_password
-                print(f'\n{mi_cargo}')
-                User.objects.create_user(mi_nombre,mi_contacto,mi_password) 
+                
+                User.objects.create_user(mi_rut,mi_contacto,mi_password) 
 
                 # n_perfil = Perfil.objects.all().count()+1
                 # perfil = Perfil(n_perfil,1)
@@ -222,7 +221,7 @@ def agregar_empleado(request):
                 # id_usuario = UserPerfil.objects.count()+1
                 # UserPerfil(id_usuario).save()
                 
-                empleado = Empleado(id_empleado,mi_cargo,mi_nombre,mi_apellido,mi_contacto,
+                empleado = Empleado(id_empleado,mi_nombre,mi_apellido,mi_contacto,mi_cargo,
                                     mi_rut,mi_password)
 
                 empleado.save()
