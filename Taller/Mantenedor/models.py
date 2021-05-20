@@ -235,7 +235,7 @@ class EstadoVehiculo(models.Model):
     hora = models.CharField(max_length=10)
     descripcion = models.CharField(max_length=200)
     empleado_id_empleado = models.ForeignKey(Empleado, models.DO_NOTHING, db_column='empleado_id_empleado')
-   
+    
     class Meta:
         managed = False
         db_table = 'estado_vehiculo'

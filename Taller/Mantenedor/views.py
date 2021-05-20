@@ -213,7 +213,7 @@ def agregar_empleado(request):
                 empleado.id_cargo = mi_cargo
                 empleado.contacto = mi_contacto
                 empleado.password = mi_password
-                
+                print(f'\n{mi_cargo}')
                 User.objects.create_user(mi_nombre,mi_contacto,mi_password) 
 
                 # n_perfil = Perfil.objects.all().count()+1
