@@ -184,8 +184,51 @@ def crear_reserva(request):
 
 
 
+def empleado (request):
+    cargos = Cargo.objects.all()
+    context = {'cargos': cargos }
+    return render(request,'Mantenedor/registro_empleado.html',context)
 
 
+def agregar_empleado(request):
+    if request.method == 'POST':
+
+        mi_rut = request.POST['rut']
+        mi_nombre = request.POST['nombre']
+        mi_apellido = request.POST['apellido']
+        mi_cargo = request.POST['cargo']
+        mi_contacto = request.POST['contacto']
+        mi_password = request.POST['password']
+     
+        if mi_rut != "":
+            try:
+                
+                empleado = Empleado()
 
 
+                id_empleado = Empleado.objects.count()+1
+                empleado.rut = mi_rut
+                empleado.nombre = mi_nombre
+                empleado.apellido = mi_apellido
+                empleado.id_cargo = mi_cargo
+                empleado.contacto = mi_contacto
+                empleado.password = mi_password
+                
+                User.objects.create_user(mi_nombre,mi_contacto,mi_password) 
+
+                # n_perfil = Perfil.objects.all().count()+1
+                # perfil = Perfil(n_perfil,1)
+                # perfil.save()
+                # id_usuario = UserPerfil.objects.count()+1
+                # UserPerfil(id_usuario).save()
+                
+                empleado = Empleado(id_empleado,mi_cargo,mi_nombre,mi_apellido,mi_contacto,
+                                    mi_rut,mi_password)
+
+                empleado.save()
+                
+                return render(request, 'mantenedor/mensaje_datos.html', {})
+
+            except empleado.DoesNotExist:
+                return render(request, 'mantenedor/mensaje_datos.html', {})
 

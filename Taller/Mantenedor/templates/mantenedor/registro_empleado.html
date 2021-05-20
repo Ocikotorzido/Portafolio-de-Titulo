@@ -30,7 +30,7 @@
     <ul class="flex flex-col justify-left md:flex-row md:justify-evenly text-white">
       <!-- <li class="text-left text-3xl">☰</li> -->
       <li><a href="index">Logo</a></li>
-      <li><a href="cliente">Cliente</a></li>
+      <li><a href="registro_empleado">Registro Empleado</a></li>
       <li><a href="reservas">Reserva</a></li>
       <li><a href="servicios">Servicios</a></li>
       <li><a href="orden_reparacion">Orden de trabajo</a></li>
@@ -87,16 +87,22 @@
 
       <div class="bg-gray-800 pt-3">
         <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
-          <h3 class="font-bold pl-2">Registro Cliente</h3>
+          <h3 class="font-bold pl-2">Registro Empleado</h3>
         </div>
       </div>
     <section class="formulario">
-      <form action="agregar_cliente" method="POST" enctype="multipart/form-data" class="flex flex-col">
+      <form action="agregar_empleado" method="POST" enctype="multipart/form-data" class="flex flex-col">
         {% csrf_token %}
         
-      	<label >Rut: </label>
-      	<input type="text" id="rut" name="rut" required>
+      	<label >Cargo: </label>
+      	<select id="cargo" name="cargo"> 
+            {% for cargo in cargos %}
+                <option value="{{cargo.id_tipo_cargo}}">{{cargo.nombre}}</option>
+            {% endfor %}
+        </select>
       	
+        <label >Rut: </label>
+      	<input type="text" id="rut" name="rut">
       
       	<label >Nombre: </label>
       	<input type="text" id="nombre"  name="nombre">
@@ -104,20 +110,14 @@
       	<label >Apellido: </label>
       	<input type="text" id="apellido" name="apellido">
 	  
-      	<label >Direccion: </label>
-      	<input type="text" id="direccion" name="direccion">
+      	<label >Contacto: </label>
+      	<input type="text" id="contacto" name="contacto">
       
-      	<label >Telefono: </label>
-      	<input type="text" id="telefono" name="telefono">
-      
-      	<label >Celular: </label>
-      	<input type="text" id="celular" name="celular">
-      
-      	<label >Email: </label>
-      	<input type="text" id="email" name="email">
-      
-      	<label >Contraseña: </label>
+        <label >Password: </label>
       	<input type="text" id="password" name="password">
+      	
+      
+      	
       	<br>
       	<input type="submit" value="Enviar" >
       </form>

@@ -215,13 +215,12 @@ class DjangoSession(models.Model):
 class Empleado(models.Model):
     id_empleado = models.FloatField(primary_key=True)
     id_cargo = models.FloatField()
-    rut = models.FloatField()
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
     contacto = models.CharField(max_length=50)
     cargo_id_tipo_cargo = models.ForeignKey(Cargo, models.DO_NOTHING, db_column='cargo_id_tipo_cargo')
-    estado_vehiculo_id_estado = models.ForeignKey('EstadoVehiculo', models.DO_NOTHING, db_column='estado_vehiculo_id_estado')
-    info_auto_id_informe = models.ForeignKey('InfoAuto', models.DO_NOTHING, db_column='info_auto_id_informe')
+    rut = models.FloatField()
+    password = models.CharField(max_length=50)
 
     class Meta:
         managed = False
@@ -235,7 +234,8 @@ class EstadoVehiculo(models.Model):
     fecha = models.DateField()
     hora = models.CharField(max_length=10)
     descripcion = models.CharField(max_length=200)
-
+    empleado_id_empleado = models.ForeignKey(Empleado, models.DO_NOTHING, db_column='empleado_id_empleado')
+   
     class Meta:
         managed = False
         db_table = 'estado_vehiculo'
@@ -312,6 +312,7 @@ class Producto(models.Model):
     nombre = models.CharField(max_length=50)
     pro_cod_producto = models.FloatField()
     proveedor_id_proveedor = models.ForeignKey('Proveedor', models.DO_NOTHING, db_column='proveedor_id_proveedor')
+    password = models.CharField(max_length=50)
 
     class Meta:
         managed = False

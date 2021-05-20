@@ -15,6 +15,8 @@ urlpatterns = [
     path('reservas', views.reservas, name='reservas'),
     path('orden_reparacion', views.orden_reparacion, name='orden_reparacion'),
     path('orden_pedido', views.orden_pedido, name='orden_pedido'),
+
+    path('empleado',views.empleado, name='empleado'),
     # path('login', views.login, name='login'),
 
     path('login/', login, name='login'),
