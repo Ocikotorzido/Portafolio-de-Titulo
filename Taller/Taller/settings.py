@@ -82,9 +82,9 @@ WSGI_APPLICATION = 'Taller.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
-        'NAME': '127.0.0.1:1521/xepdb1',
-        'USER': 'HR',
-        'PASSWORD': 'hr',
+        'NAME': 'www.cittsb.cl:1521/xe',
+        'USER': 'bot1',
+        'PASSWORD': 'bot',
         'TEST': {
             'USER': 'default_test',
             'TBLSPACE': 'default_test_tbls',
@@ -93,6 +93,17 @@ DATABASES = {
     },
 }
 
+# 'default': {
+#         'ENGINE': 'django.db.backends.oracle',
+#         'NAME': '127.0.0.1:1521/xepdb1',
+#         'USER': 'HR',
+#         'PASSWORD': 'hr',
+#         'TEST': {
+#             'USER': 'default_test',
+#             'TBLSPACE': 'default_test_tbls',
+#             'TBLSPACE_TMP': 'default_test_tbls_tmp',
+#         },
+#     },
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
