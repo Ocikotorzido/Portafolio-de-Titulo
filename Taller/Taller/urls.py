@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from Mantenedor.views import to_index
 
 # from django.conf.urls import url
 # from django.contrib.auth import login
@@ -23,7 +24,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('Mantenedor/', include('Mantenedor.urls'), name='Mantenedor'),
-    
+    path('', to_index, name='to_index'),
     # url(r'^$', login, {'template_name': 'login.html'}, name='login'),
     # path('accounts/', include('django.contrib.auth.urls')),
 ]

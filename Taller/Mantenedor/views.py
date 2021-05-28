@@ -8,8 +8,9 @@ from pathlib import Path
 
 from django.contrib.auth import login as iniciarSesion, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-# Create your views here.
 
+def to_index(request):
+    return redirect('index')
 
 def login (request):
     formulario = None
