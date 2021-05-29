@@ -24,7 +24,8 @@ from Mantenedor.views import to_index
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('Mantenedor/', include('Mantenedor.urls'), name='Mantenedor'),
-    path('', to_index, name='to_index'),
+    path('', to_index, name='to_index'), # Redirecciona hacia "/Mantenedor/index".
+
     # url(r'^$', login, {'template_name': 'login.html'}, name='login'),
     # path('accounts/', include('django.contrib.auth.urls')),
 ]
