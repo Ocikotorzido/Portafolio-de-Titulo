@@ -1,5 +1,6 @@
 <form action="" method="POST">
     {% csrf_token %}
+    {{ formulario.errors }}<br>
     <label for="username">Nombre usuario</label>
     {{ formulario.username}}<br>
     
