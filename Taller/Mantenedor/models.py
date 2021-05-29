@@ -1,8 +1,6 @@
 from django.db import models
 from django.db.models.fields import BLANK_CHOICE_DASH
 
-# Create your models here.
-
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150, blank=True, null=True)
 
