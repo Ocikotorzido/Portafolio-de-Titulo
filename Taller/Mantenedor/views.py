@@ -10,6 +10,7 @@ from django.contrib.auth import login as iniciarSesion, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 def to_index(request):
+    """Redirección hacia index"""
     return redirect('index')
 
 def login (request):
@@ -25,8 +26,6 @@ def login (request):
             if usuarioLogueado is not None:
                 iniciarSesion(request,usuarioLogueado)
                 return render(request,'Mantenedor/perfil.html')
-              
-
     else:
         formulario = AuthenticationForm()
     context = {
@@ -41,22 +40,16 @@ def login (request):
 def registro (request):
     formulario = None
     if request.method == 'POST':
-        formulario = UserCreationForm( data = request.POST)
+        formulario = FormularioRegistro(data = request.POST)
         if formulario.is_valid():
-            usuarioGuardado = formulario.save()
-            if usuarioGuardado is not None:
-                iniciarSesion(request,usuarioGuardado)
+            usuario_guardado = formulario.save()
+            if usuario_guardado is not None:
+                iniciarSesion(request,usuario_guardado)
                 return redirect('Mantenedor/perfil')
     else:
-        formulario = UserCreationForm()
-    context = {
-        'formulario':formulario
-    }
-    return render(
-        request,
-        'Mantenedor/registro.html',
-        context
-    )
+        formulario = FormularioRegistro()
+    context = {'formulario': formulario}
+    return render(request, 'Mantenedor/registro.html', context)
 
 
     return HttpResponse('registro')

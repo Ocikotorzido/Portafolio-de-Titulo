@@ -1,7 +1,24 @@
 <form action="" method="POST">
-    {{ formulario.username}}
-    {{ formulario.password1}}
-    {{ formulario.password2}}
     {% csrf_token %}
+    {{ formulario.as_p }}
+    
+    <label for="username">Nombre usuario</label>
+    {{ formulario.username}}<br>
+
+    <label for="">Contraseña</label>
+    {{ formulario.password1}}<br>
+
+    <label for="">Repetir contraseña</label>
+    {{ formulario.password2}}<br>
+
+    <label for="">E-mail</label>
+    {{ formulario.email}}<br>
+
+    <label for="">Nombre</label>
+    {{ formulario.first_name}}<br>
+
+    <label for="">Apellido</label>
+    {{ formulario.last_name}}<br>
+
     <input type="submit" value="Registrar">
 </form>
