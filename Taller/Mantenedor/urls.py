@@ -1,12 +1,9 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from . import views
 from .views import login, registro, perfil, salir
 
-
-
 urlpatterns = [
-
+    # [MCS.cl]/Mantenedor/...
     path('index', views.index, name='index'),
     path('cliente', views.cliente, name='cliente'),
     path('agregar_cliente', views.agregar_cliente, name='agregar_cliente'),
