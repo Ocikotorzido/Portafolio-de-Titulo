@@ -4,6 +4,7 @@ from .views import login, registro, perfil, salir
 
 urlpatterns = [
     # [MCS.cl]/Mantenedor/...
+    path('', views.to_index),
     path('index', views.index, name='index'),
     path('cliente', views.cliente, name='cliente'),
     path('agregar_cliente', views.agregar_cliente, name='agregar_cliente'),
