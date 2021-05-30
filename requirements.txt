@@ -1,2 +1,1 @@
 Django==3.2.3
-rut-chile==1.2.0
