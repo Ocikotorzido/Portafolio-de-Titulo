@@ -106,7 +106,6 @@ class Cliente(models.Model):
     telefono = models.FloatField(blank=True, null=True)
     celular = models.FloatField(blank=True, null=True)
     email = models.CharField(max_length=50, blank=True, null=True)
-    password = models.CharField(max_length=20)
     rut = models.FloatField(blank=True, null=True)
 
     class Meta:
@@ -236,7 +235,6 @@ class Empleado(models.Model):
     contacto = models.CharField(max_length=50)
     cargo_id_tipo_cargo = models.ForeignKey(Cargo, models.DO_NOTHING, db_column='cargo_id_tipo_cargo')
     rut = models.FloatField()
-    password = models.CharField(max_length=50)
 
     class Meta:
         managed = False
@@ -328,7 +326,7 @@ class Producto(models.Model):
     nombre = models.CharField(max_length=50)
     pro_cod_producto = models.FloatField()
     proveedor_id_proveedor = models.ForeignKey('Proveedor', models.DO_NOTHING, db_column='proveedor_id_proveedor')
-    password = models.CharField(max_length=50)
+    
 
     class Meta:
         managed = False
