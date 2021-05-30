@@ -111,7 +111,7 @@
 
       
         <div class=" fondo p-4 shadow text-2xl text-white">
-          <h3 class="font-bold pl-2 text-center md:text-left">Bienvenido {% if user.is_authenticated %}{{ user.username }}{% endif %}</h3>
+          <h3 class="font-bold pl-2 text-center md:text-left">Bienvenido {% if user.is_authenticated %}{{ user.first_name }}{% endif %}</h3>
         </div>
       
 
