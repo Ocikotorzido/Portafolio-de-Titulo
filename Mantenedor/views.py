@@ -21,12 +21,16 @@ def login (request):
         if formulario.is_valid():
             usuario = formulario.cleaned_data['username']
             contra = formulario.cleaned_data['password']
-
             usuarioLogueado = authenticate(username = usuario, password = contra)
 
             if usuarioLogueado is not None:
-                iniciarSesion(request,usuarioLogueado)
-                return render(request,'Mantenedor/perfil.html')
+                iniciarSesion(request, usuarioLogueado)
+                context = {'perfil':
+                            {'nivel':'admin'},
+                            'level':'admin'
+                            }
+                return render(request, 'Mantenedor/perfil.html', context)
+                #return render(request,'Mantenedor/perfil.html')
     else:
         formulario = AuthenticationForm()
     context = {
@@ -51,15 +55,17 @@ def registro (request):
             usuario_guardado = formulario.save()
             if usuario_guardado is not None:
                 iniciarSesion(request,usuario_guardado)
-                return redirect('/Mantenedor/perfil')
+                context = {'perfil':
+                            {'nivel':'admin'},
+                            'level':'admin'
+                            }
+                return render(request, 'Mantenedor/perfil.html', context)
+                #return redirect('/Mantenedor/perfil')
     else:
         formulario = FormularioRegistro()
 
     context = {'formulario': formulario}
     return render(request, 'Mantenedor/registro.html', context)
-
-
-    return HttpResponse('registro')
 
 def perfil(request):
     return render(

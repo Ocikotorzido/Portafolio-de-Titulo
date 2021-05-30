@@ -27,13 +27,27 @@
     <ul class="flex flex-col justify-left md:flex-row md:justify-evenly md:w-full text-white">
       <li class="text-left text-3xl md:hidden">☰</li>
       <li class="-m-9 hidden md:block"><a href="index"><img src="{% static 'img/logo-1.png' %}" alt="Logo"></a></li>
+
+      {% if user.is_authenticated %}
       <li><a href="cliente">Cliente</a></li>
       <li><a href="reservas">Reserva</a></li>
       <li><a href="servicios">Servicios</a></li>
       <li><a href="orden_reparacion">Orden de trabajo</a></li>
       <li><a href="orden_pedido">Orden de pedido</a></li>
       <li><a href="">Exportar</a></li>
-      <li><a href="login">Mi Cuenta</a></li>
+      {% endif %}
+
+      {% if not user.is_authenticated %}
+      <li><a href="cliente">Cliente</a></li>
+      <li><a href="reservas">Reserva</a></li>
+      <li><a href="servicios">Servicios</a></li>
+      <li><a href="orden_reparacion">Orden de trabajo</a></li>
+      <li><a href="orden_pedido">Orden de pedido</a></li>
+      <li><a href="">Exportar</a></li>
+      {% endif %}
+      {% if not user.is_authenticated %}<li><a href="login">Mi Cuenta</a></li>{% endif %}
+      {% if user.is_authenticated %}<li><a href="salir">Salir</a></li>{% endif %}
+      
     </ul>
   </nav>
 
@@ -97,7 +111,7 @@
 
       
         <div class=" fondo p-4 shadow text-2xl text-white">
-          <h3 class="font-bold pl-2 text-center md:text-left">Bienvenido</h3>
+          <h3 class="font-bold pl-2 text-center md:text-left">Bienvenido {% if user.is_authenticated %}{{ user.username }}{% endif %}</h3>
         </div>
       
 
