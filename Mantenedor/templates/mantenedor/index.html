@@ -108,14 +108,14 @@
     </div>
 
     <div class="main-content flex-1 bg-gray-100 mt-3 md:mt-2 pb-3 md:pb-5">
-
       
-        <div class=" fondo p-4 shadow text-2xl text-white">
-          <h3 class="font-bold pl-2 text-center md:text-left">Bienvenido {% if user.is_authenticated %}{{ user.first_name }}{% endif %}</h3>
-        </div>
-      
-
-    
+      <div class=" fondo p-4 shadow text-2xl text-white">
+        <h3 class="font-bold pl-2 text-center md:text-left">Bienvenido 
+          {% if user.is_authenticated %}
+            {{ user.first_name }}
+          {% endif %}
+        </h3>
+      </div>
 
       <div class="slider">
         <ul class="">

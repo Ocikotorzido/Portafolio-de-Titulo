@@ -87,19 +87,25 @@
           <h3 class="font-bold pl-2">Registro Cliente</h3>
         </div>
       </div>
+      {% if formulario.errors %}
+      <h2 style='color:red; text-align:center;'>
+        {{ formulario.errors }}<br>
+      </h2>{% endif %}
     <section class="formulario">
-      <form action="agregar_cliente" method="POST" enctype="multipart/form-data" class="flex flex-col">
+      <form action="" method="POST" enctype="multipart/form-data" class="flex flex-col">
         {% csrf_token %}
         
       	<label >Rut: </label>
-      	<input type="text" id="rut" name="rut" required>
-      	
+      	<!-- <input type="text" id="rut" name="rut" required> -->
+        {{ formulario.username }}
       
       	<label >Nombre: </label>
-      	<input type="text" id="nombre"  name="nombre">
+      	<!-- <input type="text" id="nombre"  name="nombre"> -->
+        {{ formulario.first_name }}
       	
       	<label >Apellido: </label>
-      	<input type="text" id="apellido" name="apellido">
+      	<!-- <input type="text" id="apellido" name="apellido"> -->
+        {{ formulario.last_name }}
 	  
       	<label >Direccion: </label>
       	<input type="text" id="direccion" name="direccion">
@@ -111,10 +117,16 @@
       	<input type="text" id="celular" name="celular">
       
       	<label >Email: </label>
-      	<input type="text" id="email" name="email">
+      	<!-- <input type="text" id="email" name="email"> -->
+        {{ formulario.email }}
       
-      	<label >Contraseña: </label>
-      	<input type="text" id="password" name="password">
+        <label >Contraseña: </label>
+      	<!-- <input type="text" id="password" name="password"> -->
+        {{ formulario.password1 }}
+
+        <label >Repetir contraseña: </label>
+        {{ formulario.password2 }}
+
       	<br>
       	<input type="submit" value="Enviar" >
       </form>

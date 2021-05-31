@@ -302,7 +302,9 @@ class Pago(models.Model):
 
 class Perfil(models.Model):
     id_perfil = models.FloatField(primary_key=True)
-    privilegio = models.FloatField()
+    id_auth_user = models.FloatField()
+    id_usuario = models.FloatField()
+    nivel = models.CharField(max_length=50)
 
     class Meta:
         managed = False
@@ -376,17 +378,6 @@ class TipoServicio(models.Model):
     class Meta:
         managed = False
         db_table = 'tipo_servicio'
-
-class UserPerfil(models.Model):
-    id_usuario = models.FloatField(primary_key=True)
-    cliente_id_cliente = models.FloatField()
-    proveedor_id_proveedor = models.FloatField()
-    empleado_id_empleado = models.FloatField()
-    perfil_id_perfil = models.FloatField()
-
-    class Meta:
-        managed = False
-        db_table = 'user_perfil'
 
 
 class Vehiculo(models.Model):

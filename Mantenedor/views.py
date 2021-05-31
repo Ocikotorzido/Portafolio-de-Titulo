@@ -15,6 +15,14 @@ def to_index(request):
     return redirect('index')
 
 def login (request):
+    """Inicio de sesión
+    Argumentos:
+        request: petición hecha por el cliente hacia el servidor.
+    Retorna:
+        render(): Si los datos ingresados son válidos, 
+        retornará a la sesión del usuario, de lo contrario,
+        retornará la misma página indicando los errores.
+    """
     formulario = None
     if request.method =='POST':
         formulario = AuthenticationForm(data = request.POST)
@@ -30,7 +38,6 @@ def login (request):
                             'level':'admin'
                             }
                 return render(request, 'Mantenedor/perfil.html', context)
-                #return render(request,'Mantenedor/perfil.html')
     else:
         formulario = AuthenticationForm()
     context = {
@@ -43,7 +50,7 @@ def login (request):
     )
 
 def registro (request):
-    formulario = FormularioRegistro()
+    formulario = None
     if request.method == 'POST':
         formulario = FormularioRegistro(data = request.POST)
         # try:
@@ -59,8 +66,7 @@ def registro (request):
                             {'nivel':'admin'},
                             'level':'admin'
                             }
-                return render(request, 'Mantenedor/perfil.html', context)
-                #return redirect('/Mantenedor/perfil')
+                return render(request, 'Mantenedor/perfil.html', context)                
     else:
         formulario = FormularioRegistro()
 
@@ -83,54 +89,42 @@ def index (request):
 
 
 def cliente (request):
-    context={}
-    return render (request, 'mantenedor/cliente.html',context)
-
-def agregar_cliente(request):
+    formulario = FormularioRegistro()
+    context = dict()
+    permitir_sesion = False
     if request.method == 'POST':
+        formulario = FormularioRegistro(data = request.POST)
+        if formulario.is_valid():
+            usuario_guardado = formulario.save()
+            if usuario_guardado is not None:
+                permitir_sesion = True
+        else:
+            context['formulario'] = formulario
+            return render (request, 'mantenedor/cliente.html',context)
 
-        mi_rut = request.POST['rut']
-        mi_nombre = request.POST['nombre']
-        mi_apellido = request.POST['apellido']
+        mi_rut = formulario.cleaned_data['username']
+        mi_nombre = request.POST['first_name']
+        mi_apellido = request.POST['last_name']
         mi_direccion = request.POST['direccion']
         mi_telefono = request.POST['telefono']
         mi_celular = request.POST['celular']
         mi_email = request.POST['email']
-        mi_password = request.POST['password']
-     
-        if mi_rut != "":
-            try:
-                print("Entrando al try")
-                cliente = Cliente()
 
+        id_user_auth = User.objects.get(username=mi_rut).id
+        id_cliente = Cliente.objects.count()+1
+        cliente = Cliente(id_cliente,mi_nombre,mi_apellido,mi_direccion,
+                            mi_telefono,mi_celular,mi_email,mi_rut)
 
-                id_cliente = Cliente.objects.count()+1
-                cliente.rut = mi_rut
-                cliente.nombre = mi_nombre
-                cliente.apellido = mi_apellido
-                cliente.direccion = mi_direccion
-                cliente.telefono = mi_telefono
-                cliente.celular = mi_celular
-                cliente.email = mi_email
-                cliente.password = mi_password
-                
-                User.objects.create_user(mi_nombre,mi_email,mi_password) 
+        n_perfil = Perfil.objects.all().count()+1
+        perfil = Perfil(n_perfil,id_user_auth, id_cliente,'CLIENTE')
+        perfil.save()
 
-                n_perfil = Perfil.objects.all().count()+1
-                perfil = Perfil(n_perfil,1)
-                perfil.save()
-                id_usuario = UserPerfil.objects.count()+1
-                UserPerfil(id_usuario).save()
-                
-                cliente = Cliente(id_cliente,mi_nombre,mi_apellido,mi_direccion,
-                                    mi_telefono,mi_celular,mi_email,mi_password,mi_rut)
-
-                cliente.save()
-                
-                return render(request, 'mantenedor/mensaje_datos.html', {})
-
-            except cliente.DoesNotExist:
-                return render(request, 'mantenedor/mensaje_datos.html', {})
+        cliente.save()
+        if permitir_sesion:
+            iniciarSesion(request,usuario_guardado)
+        return render(request, 'Mantenedor/index.html', {})
+    context['formulario'] = formulario
+    return render (request, 'mantenedor/cliente.html',context)
 
 def servicios (request):
     return render (request, 'mantenedor/servicios.html')
@@ -180,8 +174,6 @@ def crear_reserva(request):
             except reserva.DoesNotExist:
                 return render(request, 'mantenedor/mensaje_datos.html', {})
 
-
-
 def empleado (request):
     cargos = Cargo.objects.all()
     context = {'cargos': cargos }
@@ -196,22 +188,18 @@ def agregar_empleado(request):
         mi_apellido = request.POST['apellido']
         mi_cargo = request.POST['cargo']
         mi_contacto = request.POST['contacto']
-        mi_password = request.POST['password']
      
         if mi_rut != "":
             try:
-                
                 empleado = Empleado()
-
 
                 id_empleado = Empleado.objects.count()+1
                 empleado.rut = mi_rut
                 empleado.nombre = mi_nombre
                 empleado.apellido = mi_apellido
                 empleado.contacto = mi_contacto
-                empleado.password = mi_password
                 
-                User.objects.create_user(mi_rut,mi_contacto,mi_password) 
+                #User.objects.create_user(mi_rut,mi_contacto,mi_password) 
 
                 # n_perfil = Perfil.objects.all().count()+1
                 # perfil = Perfil(n_perfil,1)
@@ -228,4 +216,3 @@ def agregar_empleado(request):
 
             except empleado.DoesNotExist:
                 return render(request, 'mantenedor/mensaje_datos.html', {})
-
