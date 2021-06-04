@@ -29,7 +29,7 @@
       <li class="-m-9 hidden md:block"><a href="index"><img src="{% static 'img/logo-1.png' %}" alt="Logo"></a></li>
 
       {% if user.is_authenticated %}
-      <li><a href="cliente">Cliente</a></li>
+      <li><a href="registro_cliente">Cliente</a></li>
       <li><a href="reservas">Reserva</a></li>
       <li><a href="servicios">Servicios</a></li>
       <li><a href="orden_reparacion">Orden de trabajo</a></li>
@@ -38,7 +38,7 @@
       {% endif %}
 
       {% if not user.is_authenticated %}
-      <li><a href="cliente">Cliente</a></li>
+      <li><a href="registro_cliente">Cliente</a></li>
       <li><a href="reservas">Reserva</a></li>
       <li><a href="servicios">Servicios</a></li>
       <li><a href="orden_reparacion">Orden de trabajo</a></li>
@@ -55,7 +55,7 @@
   <details class="text-white md:hidden ">
     <summary class="flex justify-center text-left text-3xl md:hidden">☰</summary>
     <ul class="flex flex-col justify-center text-center text-white">
-      <li><a href="cliente">Cliente</a></li>
+      <li><a href="registro_cliente">Cliente</a></li>
       <li><a href="reserva.html">Reserva</a></li>
       <li><a href="">Factura</a></li>
       <li><a href="servicios">Servicios</a></li>

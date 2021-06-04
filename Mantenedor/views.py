@@ -1,6 +1,3 @@
-
-from pathlib import Path
-
 from .models import *
 from django.http import HttpResponse
 from django.contrib.auth.models import User
@@ -88,7 +85,7 @@ def index (request):
     return render (request, 'mantenedor/index.html',context)
 
 
-def cliente (request):
+def registro_cliente (request):
     formulario = FormularioRegistro()
     context = dict()
     permitir_sesion = False
@@ -100,7 +97,7 @@ def cliente (request):
                 permitir_sesion = True
         else:
             context['formulario'] = formulario
-            return render (request, 'mantenedor/cliente.html',context)
+            return render (request, 'mantenedor/registro_cliente.html',context)
 
         mi_rut = formulario.cleaned_data['username']
         mi_nombre = request.POST['first_name']
@@ -124,7 +121,7 @@ def cliente (request):
             iniciarSesion(request,usuario_guardado)
         return render(request, 'Mantenedor/index.html', {})
     context['formulario'] = formulario
-    return render (request, 'mantenedor/cliente.html',context)
+    return render (request, 'mantenedor/registro_cliente.html',context)
 
 def servicios (request):
     return render (request, 'mantenedor/servicios.html')
