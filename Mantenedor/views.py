@@ -1,5 +1,4 @@
 from .models import *
-from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
@@ -30,11 +29,11 @@ def login (request):
 
             if usuarioLogueado is not None:
                 iniciarSesion(request, usuarioLogueado)
-                context = {'perfil':
-                            {'nivel':'admin'},
-                            'level':'admin'
-                            }
-                return render(request, 'Mantenedor/perfil.html', context)
+                nivel = None
+                if request.user.is_authenticated:
+                    nivel = Perfil.objects.filter(id_auth_user = request.user.id)[0].nivel
+                context={'perfil':{'nivel':nivel}, 'nivel':nivel}
+                return render(request, 'TEMPORAL/perfil.html', context)
     else:
         formulario = AuthenticationForm()
     context = {
@@ -42,7 +41,7 @@ def login (request):
     }
     return render(
         request,
-        'Mantenedor/login.html',
+        'TEMPORAL/login.html',
         context
     )
 
@@ -63,25 +62,28 @@ def registro (request):
                             {'nivel':'admin'},
                             'level':'admin'
                             }
-                return render(request, 'Mantenedor/perfil.html', context)                
+                return render(request, 'TEMPORAL/perfil.html', context)                
     else:
         formulario = FormularioRegistro()
 
     context = {'formulario': formulario}
-    return render(request, 'Mantenedor/registro.html', context)
+    return render(request, 'TEMPORAL/registro.html', context)
 
 def perfil(request):
     return render(
         request,
-        'Mantenedor/perfil.html'
+        'TEMPORAL/perfil.html'
     )
 
 def salir(request):
     logout(request)
-    return redirect('/Mantenedor/login')
+    return redirect('/TEMPORAL/login')
 
 def index (request):
-    context={}
+    nivel = None
+    if request.user.is_authenticated:
+        nivel = Perfil.objects.filter(id_auth_user = request.user.id)[0].nivel
+    context={'perfil':{'nivel':nivel}}
     return render (request, 'mantenedor/index.html',context)
 
 
@@ -119,7 +121,8 @@ def registro_cliente (request):
         cliente.save()
         if permitir_sesion:
             iniciarSesion(request,usuario_guardado)
-        return render(request, 'Mantenedor/index.html', {})
+            nivel = Perfil.objects.filter(id_auth_user = request.user.id)[0].nivel
+        return render(request, 'TEMPORAL/index.html', {'perfil':{'nivel':nivel}})
     context['formulario'] = formulario
     return render (request, 'mantenedor/registro_cliente.html',context)
 
@@ -174,7 +177,7 @@ def crear_reserva(request):
 def empleado (request):
     cargos = Cargo.objects.all()
     context = {'cargos': cargos }
-    return render(request,'Mantenedor/registro_empleado.html',context)
+    return render(request,'mantenedor/registro_empleado.html',context)
 
 
 def agregar_empleado(request):

@@ -29,12 +29,25 @@
       <li class="-m-9 hidden md:block"><a href="index"><img src="{% static 'img/logo-1.png' %}" alt="Logo"></a></li>
 
       {% if user.is_authenticated %}
-      <li><a href="registro_cliente">Cliente</a></li>
-      <li><a href="reservas">Reserva</a></li>
-      <li><a href="servicios">Servicios</a></li>
-      <li><a href="orden_reparacion">Orden de trabajo</a></li>
-      <li><a href="orden_pedido">Orden de pedido</a></li>
-      <li><a href="">Exportar</a></li>
+        {% if perfil.nivel == 'CLIENTE' %}
+          <li><a href="registro_cliente">Cliente</a></li>
+          <li><a href="reservas">Reserva</a></li>
+          <li><a href="servicios">Servicios</a></li>
+          <li><a href="orden_reparacion">Orden de trabajo</a></li>
+          <li><a href="orden_pedido">Orden de pedido</a></li>
+          <li><a href="">Exportar</a></li>
+        {% elif perfil.nivel == 'ADMIN' or perfil.nivel == 'admin' %}
+          <li><a href="">Exportar</a></li>
+        {% elif perfil.nivel == 'EMPLEADO' %}
+          <li><a href="reservas">Reserva</a></li>
+          <li><a href="servicios">Servicios</a></li>
+          <li><a href="orden_reparacion">Orden de trabajo</a></li>
+          <li><a href="orden_pedido">Orden de pedido</a></li>
+        {% elif perfil.nivel == 'PROVEEDOR' %}
+          <li><a href="reservas">Reserva</a></li>
+        {% else %}
+          <li><a href="">NIVEL DESCONOCIDO ({{perfil.nivel}})</a></li>
+        {% endif %}
       {% endif %}
 
       {% if not user.is_authenticated %}
@@ -113,6 +126,7 @@
         <h3 class="font-bold pl-2 text-center md:text-left">Bienvenido 
           {% if user.is_authenticated %}
             {{ user.first_name }}
+            ({{ perfil.nivel|lower }})
           {% endif %}
         </h3>
       </div>
