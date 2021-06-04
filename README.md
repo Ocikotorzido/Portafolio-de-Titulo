@@ -1,8 +1,8 @@
-# Funiculador Congenial (Congenial Funicular)
-Sistema de administración de un taller mecánico.
+# Funicular Congénito (Congenial Funicular)
+Sistema de gestión y administración del taller mecánico "ServiExpress".
 
 ## ¿Qué es esto?
-Sitio web dedicado a la gestión del taller mecánico SERVIEXPRESS de don Juan Pedro.
+Sitio web dedicado a la gestión del taller mecánico "SERVIEXPRESS" de Juan Pedro.
 
 ## ¿Qué necesito instalar?
 - Python 3
