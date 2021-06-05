@@ -20,7 +20,8 @@ def login(request):
 
     if request.method == 'POST':
         # Se rescatan los campos de usuario y contraseña.
-        usuario = request.POST['username']
+        only_numbers = lambda texto: ''.join([numero if numero in ['0','1','2','3','4','5','6','7','8','9'] else '' for numero in texto])
+        usuario = only_numbers(request.POST['username'])
         contra = request.POST['password']
 
         # Se verifica que las crenciales sean válidas.
@@ -119,7 +120,7 @@ def registro_cliente (request):
         mi_celular = dato_or_zero(request.POST['celular'])
         mi_email = request.POST['email']
 
-        id_user_auth = User.objects.get(username=mi_rut).id
+        id_user_auth = User.objects.get(username=formulario.cleaned_data['username']).id
         id_cliente = Cliente.objects.count()+1
         cliente = Cliente(id_cliente,mi_nombre,mi_apellido,mi_direccion,
                             mi_telefono,mi_celular,mi_email,mi_rut)
@@ -188,37 +189,35 @@ def empleado (request):
 
 def agregar_empleado(request):
     if request.method == 'POST':
-
+        mi_cargo = request.POST['cargo']
         mi_rut = request.POST['rut']
         mi_nombre = request.POST['nombre']
         mi_apellido = request.POST['apellido']
-        mi_cargo = request.POST['cargo']
         mi_contacto = request.POST['contacto']
-     
-        if mi_rut != "":
-            try:
-                empleado = Empleado()
+        mi_password = request.POST['password']
 
-                id_empleado = Empleado.objects.count()+1
-                empleado.rut = mi_rut
-                empleado.nombre = mi_nombre
-                empleado.apellido = mi_apellido
-                empleado.contacto = mi_contacto
-                
-                #User.objects.create_user(mi_rut,mi_contacto,mi_password) 
+        empleado = Empleado()
+        id_empleado = Empleado.objects.count()+1
+        empleado.rut = mi_rut
+        empleado.nombre = mi_nombre
+        empleado.apellido = mi_apellido
+        empleado.contacto = mi_contacto
+        
+        # Creación del empleado en la tabla 'auth_user'.
+        nuevo_empleado = User.objects.create_user(mi_rut,mi_contacto,mi_password) 
+        nuevo_empleado.save()
 
-                # n_perfil = Perfil.objects.all().count()+1
-                # perfil = Perfil(n_perfil,1)
-                # perfil.save()
-                # id_usuario = UserPerfil.objects.count()+1
-                # UserPerfil(id_usuario).save()
-                
-                empleado = Empleado(id_empleado,mi_nombre,mi_apellido,mi_contacto,mi_cargo,
-                                    mi_rut,mi_password)
+        # Búsqueda del número de identidad.
+        id_user_auth = User.objects.get(username=mi_rut).id
 
-                empleado.save()
-                
-                return render(request, 'mantenedor/mensaje_datos.html', {})
-
-            except empleado.DoesNotExist:
-                return render(request, 'mantenedor/mensaje_datos.html', {})
+        # Creación de empleado en la tabla 'perfil'.
+        n_perfil = Perfil.objects.all().count()+1
+        perfil = Perfil(n_perfil,1)
+        perfil.save()
+        id_usuario = Perfil.objects.count()+1
+        Perfil(id_usuario).save()
+        
+        empleado = Empleado(id_empleado,mi_nombre,mi_apellido,mi_contacto,mi_cargo,
+                            mi_rut,mi_password)
+        empleado.save()
+        return render(request, 'mantenedor/mensaje_datos.html', {})
