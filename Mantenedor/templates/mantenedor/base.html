@@ -19,49 +19,55 @@
 <body class="font-sans leading-normal tracking-normal mt-3">
   <!--Nav desde tablets hasta computadores -->
   <nav class="hidden md:flex md:flex-row md:justify-center ">
-    <a href="index"><img src="{% static 'img/logo-1.png' %}" alt="Logo"></a>
+    <a  class="pl-3" href="index"><img src="{% static 'img/logo-1.png' %}" alt="Logo"></a>
     <ul class="flex flex-col justify-left md:flex-row md:justify-evenly md:w-full text-white">
       <li class="text-left text-3xl md:hidden">☰</li>
       <!-- <li class="-m-9 hidden md:block"><a href="index"><img src="{% static 'img/logo-1.png' %}" alt="Logo"></a></li> -->
 
       {% if user.is_authenticated %}
       {% if perfil.nivel == 'CLIENTE' %}
-      <li><a href="registro_cliente">Cliente</a></li>
-      <li><a href="reservas">Reserva</a></li>
-      <li><a href="servicios">Servicios</a></li>
-      <li><a href="orden_reparacion">Orden de trabajo</a></li>
-      <li><a href="orden_pedido">Orden de pedido</a></li>
-      <li><a href="">Exportar</a></li>
+      <li class="flex items-center"><a class="flex align-center"href="registro_cliente">Cliente</a></li>
+      <li class="flex items-center"><a href="reservas">Reserva</a></li>
+      <li class="flex items-center"><a href="servicios">Servicios</a></li>
+      <li class="flex items-center"><a href="orden_reparacion">Orden de trabajo</a></li>
+      <li class="flex items-center"><a href="orden_pedido">Orden de pedido</a></li>
+      <li class="flex items-center"><a href="">Exportar</a></li>
 
       {% elif perfil.nivel == 'ADMIN' or perfil.nivel == 'admin' %}
-      <li><a href="empleado">Agregar empleado</a></li>
-      <li><a href="registrar_proveedor">Registrar proveedor</a></li>
-      <li><a href="">Exportar</a></li>
+      <li class="flex items-center"><a href="empleado">Agregar empleado</a></li>
+      <li class="flex items-center"><a href="registrar_proveedor">Registrar proveedor</a></li>
+      <li class="flex items-center"><a href="">Exportar</a></li>
 
       {% elif perfil.nivel == 'EMPLEADO' %}
-      <li><a href="reservas">Reserva</a></li>
-      <li><a href="servicios">Servicios</a></li>
-      <li><a href="orden_reparacion">Orden de trabajo</a></li>
-      <li><a href="orden_pedido">Orden de pedido</a></li>
+      <li class="flex items-center"><a href="reservas">Reserva</a></li>
+      <li class="flex items-center"><a href="servicios">Servicios</a></li>
+      <li class="flex items-center"><a href="orden_reparacion">Orden de trabajo</a></li>
+      <li class="flex items-center"><a href="orden_pedido">Orden de pedido</a></li>
 
       {% elif perfil.nivel == 'PROVEEDOR' %}
-      <li><a href="reservas">Reserva</a></li>
+      <li class="flex items-center"><a href="reservas">Reserva</a></li>
 
       {% else %}
-      <li><a href="">NIVEL DESCONOCIDO ({{perfil.nivel}})</a></li>
+      <li class="flex items-center"><a href="">NIVEL DESCONOCIDO ({{perfil.nivel}})</a></li>
       {% endif %}
       {% endif %}
 
       {% if not user.is_authenticated %}
-      <li><a href="registro_cliente">Cliente</a></li>
-      <li><a href="reservas">Reserva</a></li>
-      <li><a href="servicios">Servicios</a></li>
-      <li><a href="orden_reparacion">Orden de trabajo</a></li>
-      <li><a href="orden_pedido">Orden de pedido</a></li>
-      <li><a href="">Exportar</a></li>
+      <li class="flex items-center"><a href="registro_cliente">Cliente</a></li>
+      <li class="flex items-center"><a href="reservas">Reserva</a></li>
+      <li class="flex items-center"><a href="servicios">Servicios</a></li>
+      <li class="flex items-center"><a href="orden_reparacion">Orden de trabajo</a></li>
+      <li class="flex items-center"><a href="orden_pedido">Orden de pedido</a></li>
+      <li class="flex items-center"><a href="">Exportar</a></li>
       {% endif %}
-      {% if not user.is_authenticated %}<li><a href="login">Mi Cuenta</a></li>{% endif %}
-      {% if user.is_authenticated %}<li><a href="salir">Salir</a></li>{% endif %}
+
+      {% if not user.is_authenticated %}
+      <li class="flex items-center"><a href="login">Mi Cuenta</a></li>
+      {% endif %}
+
+      {% if user.is_authenticated %}
+      <li class="flex items-center"><a href="salir">Salir</a></li>
+      {% endif %}
     </ul>
   </nav>
 
