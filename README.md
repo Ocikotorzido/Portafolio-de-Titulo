@@ -1,7 +1,7 @@
-# Mechanical Car Services (M.C.S.)
+# Mechanic Car Services (M.C.S.)
 [![Python](https://img.shields.io/badge/Python-3.7.7-blue.svg)](https://www.python.org/)
 [![Django](https://img.shields.io/badge/Django-3.2.3-green.svg)](https://www.djangoproject.com/)
-[![Oracle](https://img.shields.io/badge/Oracle-18c-orange.svg)](https://www.djangoproject.com/)
+[![Oracle](https://img.shields.io/badge/Oracle-18c-red.svg)](https://www.djangoproject.com/)
 [![Tailwind CSS](https://img.shields.io/badge/TailWind-2.1.4-yellow.svg)](https://www.tailwindcss.com/)
 
 [![screenshot](./pantallazos/pantallazo_00.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
@@ -20,7 +20,7 @@ Sistema de gestión y administración web del taller mecánico "ServiExpress".
 
 ## ¿Cómo lo echo a andar?
 **Usuarios de Windows**
-- Ejecuta el archivo `up` (en algunos casos es `up.bat`).
+- **Doble click en** `up`.
 - Saltará el navegador.
 - Ya puedes ver el proyecto.
 - Yera.
@@ -31,9 +31,8 @@ Sistema de gestión y administración web del taller mecánico "ServiExpress".
 
 Por línea de comandos: 
 
-`python3 manage.py runserver`
-
-- Abrir el navegador en [localhost:8000](http://localhost:8000/) o [127.0.0.1:8000](http://127.0.0.1:8000/)
+- Escribir en la terminal `python3 manage.py runserver`
+- Abrir el navegador en [localhost:8000](http://localhost:8000/) o [127.0.0.1:8000](http://127.0.0.1:8000/).
 
 ## ¿Qué lenguajes/bases de datos/control de versiones se utilizaron?
 - **FrontEnd**: Html5, JavaScript, CSS, Tailwind
