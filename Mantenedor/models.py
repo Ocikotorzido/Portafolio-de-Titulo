@@ -108,6 +108,9 @@ class Cliente(models.Model):
     email = models.CharField(max_length=50, blank=True, null=True)
     rut = models.FloatField(blank=True, null=True)
 
+    def __str__(self):
+        return self.nombre + ' ' + self.apellido + ', ' + str(self.rut)
+
     class Meta:
         managed = False
         db_table = 'cliente'
@@ -236,6 +239,9 @@ class Empleado(models.Model):
     cargo_id_tipo_cargo = models.ForeignKey(Cargo, models.DO_NOTHING, db_column='cargo_id_tipo_cargo')
     rut = models.FloatField()
 
+    def __str__(self):
+        return self.nombre + ' ' + self.apellido
+
     class Meta:
         managed = False
         db_table = 'empleado'
@@ -306,9 +312,14 @@ class Perfil(models.Model):
     id_usuario = models.FloatField()
     nivel = models.CharField(max_length=50)
 
+    def __str__(self):
+        return f'id_perfil -> {self.id_perfil} - id_auth_user -> {self.id_auth_user} - id_usuario -> {self.id_usuario} - nivel -> {self.nivel}'
+
     class Meta:
         managed = False
         db_table = 'perfil'
+        verbose_name_plural = "Perfiles"
+
        
 
 
