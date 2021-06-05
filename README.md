@@ -15,5 +15,10 @@ Sitio web dedicado a la gestión del taller mecánico "SERVIEXPRESS" de Juan Ped
 - BackEnd: Python (Django) 
 - Motor de base de datos: Oracle 18c
 
-## Agradecimientos
+## Librerías de terceros.
 - Validador de rut [github.com/gevalenz/rut-chile](https://github.com/gevalenz/rut-chile)
+## Agradecimientos
+Se agradece infinitamente a los desarrolladores que hicieron esto posible:
+- Francisco Marfull [@Marfullsen](https://github.com/Marfullsen)
+- Fabian Astorga [@Ocikotorcizo](https://github.com/Ocikotorzido)
+- José Lorca [@JoseLorca](https://github.com/JoseLorca)
