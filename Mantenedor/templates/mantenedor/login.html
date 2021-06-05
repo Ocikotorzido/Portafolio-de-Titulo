@@ -2,91 +2,42 @@
 <html lang="es">
 
 <head>
-    {% load static %}
+  {% load static %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>MCS</title>
-  <meta name="author" content="name">
-  <meta name="description" content="description here">
-  <meta name="keywords" content="keywords,here">
+  <meta name="author" content="Team Digital">
+  <meta name="description" content="Gestión del taller mecánico serviexpress">
+  <meta name="keywords" content="taller, reparación, autos, vehiculos">
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
   <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
-  <!--Replace with your tailwind.css once created-->
-  <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-  <!--Totally optional :) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"
-    integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
   <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
-
 </head>
 
-
-<body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
+<body style="background-color: #101f38; background-image: url('{% static 'img/starring.png' %}');" class="font-sans leading-normal tracking-normal">
   <!--Nav-->
-  <!-- pt-2 md:pt-1 pb-1 px-1 mt-0 h-auto fixed w-full z-0 top-4 -->
-  <nav class="bg-gray-800 z-0">
-    <ul class="flex flex-col justify-left md:flex-row md:justify-evenly text-white">
-      <!-- <li class="text-left text-3xl">☰</li> -->
-      <li><a href="index.html">Logo</a></li>
-      <li><a href="cliente.html">Cliente</a></li>
-      <li><a href="reserva.html">Reserva</a></li>
-      <li>Factura</li>
-      <li>Servicios</li>
-      <li>Órden de reparación</li>
-      <li>Exportar</li>
-      <li>Configuración</li>
-      <li><a href="login.html">Mi Cuenta</a></li>
+  <nav>
+    <ul class="flex flex-col justify-center md:flex-row md:justify-evenly text-white">
+      <li><a href="index"><img src="{% static 'img/logo-1.png' %}" alt="Logo"></a></li>
     </ul>
   </nav>
-  
-
 
   <div class="flex flex-col md:flex-row">
-
-    <div class="bg-gray-800 shadow-xl h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48">
-
-      <div
-        class=" md:w-48  md:left-0 md:top-0 content-center md:content-start text-left justify-between ">
-        <ul class="list-reset flex flex-row md:flex-col py-0 md:py-3 px-1 md:px-2 text-center md:text-left">
-          <li class="mr-3 flex-1">
-            <a href="#"
-              class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-              <i class="fas fa-tasks pr-0 md:pr-3"></i><span
-                class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Nuevo Cliente</span>
-            </a>
-          </li>
-          <li class="mr-3 flex-1">
-            <a href="#"
-              class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-purple-500">
-              <i class="fa fa-envelope pr-0 md:pr-3"></i><span
-                class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Nueva Reversa</span>
-            </a>
-          </li>
-          <li class="mr-3 flex-1">
-            <a href="#"
-              class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-blue-600">
-              <i class="fas fa-chart-area pr-0 md:pr-3 text-blue-600"></i><span
-                class="pb-1 md:pb-0 text-xs md:text-base text-white md:text-white block md:inline-block">Órden de Trabajo</span>
-            </a>
-          </li>
-          <li class="mr-3 flex-1">
-            <a href="#"
-              class="block py-1 md:py-3 pl-0 md:pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-red-500">
-              <i class="fa fa-wallet pr-0 md:pr-3"></i><span
-                class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Factura</span>
-            </a>
-          </li>
-        </ul>
+    <div class="shadow-xl h-16 fixed bottom-0 md:relative md:h-screen z-10 w-full md:w-48">
+      <div class="bg-gray-900 md:w-48  md:left-0 md:top-0 content-center md:content-start text-left justify-between ">
+        <p class="block py-1 md:py-3 pl-1 align-middle text-gray-500">
+          • Inicio de sesión.
+        </p>
+        <p class="block py-1 md:py-3 pl-1 align-middle text-gray-500">
+          En caso de pérdida de la contraseña, por favor dirigirse a atención al cliente.
+        </p>
       </div>
-
-
     </div>
 
-    <div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
-
-      <div class="bg-gray-800 pt-3">
+    <div class="main-content flex-1 bg-gray-100">
+      <div class="bg-gray-900">
         <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
           <h3 class="font-bold pl-2">Login</h3>
         </div>
@@ -94,30 +45,16 @@
     <section class="formulario">
       <form method="POST" action="" class="flex flex-col">
         {% csrf_token %}
-      
+        {% if errores %}<h2 style="color: red;">{{ errores }}</h2>{% endif %}
       	<label >Usuario: </label>
-      	<input type="text" id="usuario" name="nombre" required>
-      	
-      
-      
+      	<input type="text" id="usuario" name="username" required>
       	<label >Contraseña: </label>
       	<input type="password" id="password" name="password">
       	<br>
-      	<input type="submit" value="Enviar" >
+      	<input type="submit" value="Ingresar" >
+        <hr>
+        <a class="flex justify-center text-blue-800" href="/Mantenedor/registro_cliente">¡Necesito registrarme!</a>
       </form>
     </section> 
-     
-      
-
-
-
-
-      
-
-
-
- 
-
 </body>
-
 </html>

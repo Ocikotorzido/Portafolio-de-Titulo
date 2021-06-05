@@ -16,9 +16,11 @@ urlpatterns = [
 
     path('empleado',views.empleado, name='empleado'),
     path('agregar_empleado', views.agregar_empleado, name='agregar_empleado'),
-    # path('login', views.login, name='login'),
-
     path('login/', login, name='login'),
+
+    path('registrar_proveedor',views.registrar_proveedor, name='registrar_proveedor'),
+
+    #path('login/', login, name='login'),
     path('registro/', registro, name='registro'),
     path('perfil/',perfil, name='perfil'),
     path('salir/',salir, name='salir')

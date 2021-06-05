@@ -34,15 +34,21 @@
           <li><a href="orden_reparacion">Orden de trabajo</a></li>
           <li><a href="orden_pedido">Orden de pedido</a></li>
           <li><a href="">Exportar</a></li>
+
         {% elif perfil.nivel == 'ADMIN' or perfil.nivel == 'admin' %}
+          <li><a href="empleado">Agregar empleado</a></li>
+          <li><a href="registrar_proveedor">Registrar proveedor</a></li>
           <li><a href="">Exportar</a></li>
+
         {% elif perfil.nivel == 'EMPLEADO' %}
           <li><a href="reservas">Reserva</a></li>
           <li><a href="servicios">Servicios</a></li>
           <li><a href="orden_reparacion">Orden de trabajo</a></li>
           <li><a href="orden_pedido">Orden de pedido</a></li>
+
         {% elif perfil.nivel == 'PROVEEDOR' %}
           <li><a href="reservas">Reserva</a></li>
+
         {% else %}
           <li><a href="">NIVEL DESCONOCIDO ({{perfil.nivel}})</a></li>
         {% endif %}
