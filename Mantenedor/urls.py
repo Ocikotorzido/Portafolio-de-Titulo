@@ -24,5 +24,4 @@ urlpatterns = [
     path('registro/', registro, name='registro'),
     path('perfil/',perfil, name='perfil'),
     path('salir/',salir, name='salir')
-
 ]
