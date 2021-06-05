@@ -93,6 +93,9 @@ class Cargo(models.Model):
     id_tipo_cargo = models.FloatField(primary_key=True)
     nombre = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.nombre
+
     class Meta:
         managed = False
         db_table = 'cargo'
@@ -313,7 +316,7 @@ class Perfil(models.Model):
     nivel = models.CharField(max_length=50)
 
     def __str__(self):
-        return f'id_perfil -> {self.id_perfil} - id_auth_user -> {self.id_auth_user} - id_usuario -> {self.id_usuario} - nivel -> {self.nivel}'
+        return f'{self.id_perfil}) FK_AUTH_username: {AuthUser.objects.get(id=self.id_auth_user).username}, nivel: {self.nivel}, id_auth_user: {self.id_auth_user}, id_usuario: {self.id_usuario}'
 
     class Meta:
         managed = False
@@ -352,9 +355,13 @@ class Proveedor(models.Model):
     nombre = models.CharField(max_length=50)
     rubro = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.nombre + ', ' + self.rubro + ', ' + self.contacto
+
     class Meta:
         managed = False
         db_table = 'proveedor'
+        verbose_name_plural = "Proveedores"
 
 
 class Regions(models.Model):
