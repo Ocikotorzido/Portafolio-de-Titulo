@@ -8,6 +8,10 @@ h1{
 	font-weight: bold;
 }
 
+.max-400 > article {
+	max-width: 400px;
+}
+
 #posts-1{
 	max-width: 580px;
 	text-align: center;

@@ -6,29 +6,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>MCS</title>
-  <meta name="author" content="name">
-  <meta name="description" content="description here">
-  <meta name="keywords" content="keywords,here">
-
+  <title>Servicios</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
   <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
-  <!--Replace with your tailwind.css once created-->
-  <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-  <!--Totally optional :) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"
-    integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
   <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
-
 </head>
-
 
 <body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
   <!--Nav-->
-  <!-- pt-2 md:pt-1 pb-1 px-1 mt-0 h-auto fixed w-full z-0 top-4 -->
   <nav class="bg-gray-800 z-0">
     <ul class="flex flex-col justify-left md:flex-row md:justify-evenly text-white">
-      <!-- <li class="text-left text-3xl">☰</li> -->
       <li><a href="index">Logo</a></li>
       <li><a href="cliente">Cliente</a></li>
       <li><a href="reservas">Reserva</a></li>
@@ -39,35 +26,33 @@
       <li><a href="login.html">Mi Cuenta</a></li>
     </ul>
   </nav>
-  
-
 
   <div class="flex flex-col md:flex-row">
-
     <div class="bg-gray-800 shadow-xl h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48">
-
-      <div
-        class=" md:w-48  md:left-0 md:top-0 content-center md:content-start text-left justify-between ">
+      <div class=" md:w-48  md:left-0 md:top-0 content-center md:content-start text-left justify-between">
         <ul class="list-reset flex flex-row md:flex-col py-0 md:py-3 px-1 md:px-2 text-center md:text-left">
           <li class="mr-3 flex-1">
             <a href="#"
               class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-              <i class="fas fa-tasks pr-0 md:pr-3"></i><span
-                class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Nuevo Cliente</span>
+              <i class="fas fa-tasks pr-0 md:pr-3"></i>
+              <span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">
+                Nuevo Cliente</span>
             </a>
           </li>
           <li class="mr-3 flex-1">
             <a href="#"
               class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-purple-500">
               <i class="fa fa-envelope pr-0 md:pr-3"></i><span
-                class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Nueva Reserva</span>
+                class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Nueva
+                Reserva</span>
             </a>
           </li>
           <li class="mr-3 flex-1">
             <a href="#"
               class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-blue-600">
               <i class="fas fa-chart-area pr-0 md:pr-3 text-blue-600"></i><span
-                class="pb-1 md:pb-0 text-xs md:text-base text-white md:text-white block md:inline-block">Órden de Trabajo</span>
+                class="pb-1 md:pb-0 text-xs md:text-base text-white md:text-white block md:inline-block">Órden de
+                Trabajo</span>
             </a>
           </li>
           <li class="mr-3 flex-1">
@@ -79,56 +64,54 @@
           </li>
         </ul>
       </div>
-
-
     </div>
 
     <div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
-
       <div class="bg-gray-800 pt-3">
         <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
           <h3 class="font-bold pl-2">Servicios</h3>
         </div>
       </div>
-      <article>
-        <h1>Revision Periodicas</h1>
-      <img src="{% static 'img/56rJZC3UKx26EbREQNDIgl-d9068939a6c980f8895937a474a3381c-revision_coche_02-1100.jpg' %}" alt="" width="400">
-      <p>No se trata de dedicarte a revisar tu auto cada fin de semana o de aprovechar de revisar el aceite
-        mientras cargas bencina, la revision de tu auto es mucho mas que esto, es revisar diversos detalles.</p>
-
-      <h1>Neumaticos</h1>
-      <img src="{% static 'img/Llanta-y-neumatico-de-un-vehiculo-iStock.jpg' %}" alt="" width="400">
-      <p>Revisar los neumaticos se trata de una necesidad, ya que identificar algun defecto a tiempo puede hacer la diferencia entre una conduccion segura y un posible accidente.</p>
-
-      <h1>Sanitizacion</h1>
-      <img src="{% static 'img/Carroceria-59.jpg' %}" alt="" width="400">
-      <p>En estos tiempos de contingencia sanitario, los automoviles pueden ser una fuente importante de contagio debido al bajon nivel de ventilacion.</p>
-
-      <h1>Cambio de aceite</h1>
-      <img src="{% static 'img/cambio-aceite-portada.jpg' %}" alt="" width="400">
-      <p>3 Indicadores de que debes de cambiar el aceite de tu vehiculo, (1) La luz del aceite esta encendida (2) Ruido fuerte en el motor (3) Aceite oscuro y sucio.</p>
-
-      <h1>Mantencion</h1>
-      <img src="{% static 'img/mantencion-vehiculo.jpg' %}" alt="" width="400">
-      <p>Es muy importante el hacer una mantencion de nuestros vehiculos cuando algo esta fallando o nos dificulta al conducir, ya que, con esto podriamos efectuar un posible accidente.</p>
-
-      <h1>Frenos</h1>
-      <img src="{% static 'img/frenos.jpg' %}" alt="" width="400">
-      <p>Una parte muy importante de los vehiculos es su sistema de frenado y es por ello que siempre debemos estar atentos a que se encuentre en optimas condiciones.</p>
-      
-
-      </article>
-      
+      <section class="flex flex-wrap max-400">
+        <article>
+          <h1>Revision Periodicas</h1>
+          <img src="{% static 'img/56rJZC3UKx26EbREQNDIgl-d9068939a6c980f8895937a474a3381c-revision_coche_02-1100.jpg' %}"
+            alt="" width="400">
+          <p>No se trata de dedicarte a revisar tu auto cada fin de semana o de aprovechar de revisar el aceite
+            mientras cargas bencina, la revision de tu auto es mucho mas que esto, es revisar diversos detalles.</p>
+        </article>
+        <article>
+          <h1>Neumaticos</h1>
+          <img src="{% static 'img/Llanta-y-neumatico-de-un-vehiculo-iStock.jpg' %}" alt="" width="400">
+          <p>Revisar los neumaticos se trata de una necesidad, ya que identificar algun defecto a tiempo puede hacer la
+            diferencia entre una conduccion segura y un posible accidente.</p>
+        </article>
+        <article>
+          <h1>Sanitizacion</h1>
+          <img src="{% static 'img/Carroceria-59.jpg' %}" alt="" width="400">
+          <p>En estos tiempos de contingencia sanitario, los automoviles pueden ser una fuente importante de contagio
+            debido al bajon nivel de ventilacion.</p>
+        </article>
+        <article>
+          <h1>Cambio de aceite</h1>
+          <img src="{% static 'img/cambio-aceite-portada.jpg' %}" alt="" width="400">
+          <p>3 Indicadores de que debes de cambiar el aceite de tu vehiculo, (1) La luz del aceite esta encendida (2)
+            Ruido fuerte en el motor (3) Aceite oscuro y sucio.</p>
+        </article>
+        <article>
+          <h1>Mantencion</h1>
+          <img src="{% static 'img/mantencion-vehiculo.jpg' %}" alt="" width="400">
+          <p>Es muy importante el hacer una mantencion de nuestros vehiculos cuando algo esta fallando o nos dificulta al
+            conducir, ya que, con esto podriamos efectuar un posible accidente.</p>
+        </article>
+        <article>
+          <h1>Frenos</h1>
+          <img src="{% static 'img/frenos.jpg' %}" alt="" width="400">
+          <p>Una parte muy importante de los vehiculos es su sistema de frenado y es por ello que siempre debemos estar
+            atentos a que se encuentre en optimas condiciones.</p>
+        </article>
+      </section>
     </div>
-     
-      	
-      
-
-      
-
-
- 
-
 </body>
 
 </html>
