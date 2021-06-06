@@ -44,6 +44,6 @@ Por línea de comandos:
 - Validador de rut [github.com/gevalenz/rut-chile](https://github.com/gevalenz/rut-chile)
 ## Agradecimientos
 Se agradece infinitamente a los desarrolladores que hicieron esto posible:
-- Fabian Astorga [@Ocikotorcizo](https://github.com/Ocikotorzido)
+- Fabian Astorga [@Ocikotorzido](https://github.com/Ocikotorzido)
 - Francisco Marfull [@Marfullsen](https://github.com/Marfullsen)
 - José Lorca [@JoseLorca](https://github.com/JoseLorca)
