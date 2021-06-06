@@ -40,10 +40,13 @@ Por línea de comandos:
 - **Motor de base de datos**: Oracle 18c
 - **Control de versiones**: Git & GitHub.
 
-## Librerías de terceros.
+## Librerías extras de terceros.
 - Validador de rut [github.com/gevalenz/rut-chile](https://github.com/gevalenz/rut-chile)
 ## Agradecimientos
 Se agradece infinitamente a los desarrolladores que hicieron esto posible:
+
+[![Grupo_en_Discord](./pantallazos/grupo_portafolio_discord.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
+
 - Fabian Astorga [@Ocikotorzido](https://github.com/Ocikotorzido)
 - Francisco Marfull [@Marfullsen](https://github.com/Marfullsen)
 - José Lorca [@JoseLorca](https://github.com/JoseLorca)
