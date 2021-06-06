@@ -243,7 +243,7 @@ class Empleado(models.Model):
     rut = models.FloatField()
 
     def __str__(self):
-        return self.nombre + ' ' + self.apellido
+        return f'{self.nombre} + ' ' + self.apellido + self.contacto'
 
     class Meta:
         managed = False
