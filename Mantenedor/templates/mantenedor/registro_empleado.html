@@ -79,7 +79,7 @@
     <section class="formulario">
       <form action="agregar_empleado" method="POST" enctype="multipart/form-data" class="flex flex-col">
         {% csrf_token %}
-        
+        {% if mensaje %}<h2>{{ mensaje }}</h2>{% endif %}
       	<label >Cargo: </label>
       	<select id="cargo" name="cargo"> 
             {% for cargo in cargos %}

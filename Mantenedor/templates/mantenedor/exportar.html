@@ -1,0 +1,49 @@
+{% extends 'mantenedor/base.html' %}
+{% load static %}
+{% block content %}
+<section class="bg-white flex-1 flex flex-wrap">
+  <div class="bg-red-900 p-4 shadow text-2xl text-white w-full h-16">
+    <h3 class="font-bold pl-2 text-center md:text-left">Reportes</h3>
+  </div>
+  <article class="border-2 border-red-900 rounded w-60">
+    <h4>Reporte de empleados</h4>
+    <ul>
+      <i class="far fa-address-card fa-7x"></i>
+      <li><a href="#">Generar reporte con datos de cada empleado.</a></li>
+    </ul>
+  </article>
+  <hr>
+  <article class="border-2 border-red-900 rounded w-60">
+    <h4>Reporte de clientes</h4>
+    <ul>
+      <i class="fas fa-users fa-7x"></i>
+      <li><a href="">Generar reporte con datos de cada cliente.</a></li>
+    </ul>
+  </article>
+  <hr>
+  <article class="border-2 border-red-900 rounded w-60">
+    <h4>Reporte de proveedor</h4>
+    <ul>
+      <i class="fas fa-people-carry fa-7x"></i>
+      <li><a href="">Generar reporte con datos de cada proveedor.</a></li>
+    </ul>
+  </article>
+  <hr>
+  <article class="border-2 border-red-900 rounded w-60">
+    <h4>Reporte de administradores</h4>
+    <ul>
+      <i class="fas fa-user-tie fa-7x"></i>
+      <li><a href="">Generar reporte con datos de cada administrador.</a></li>
+    </ul>
+  </article>
+  <hr>
+  <article class="border-2 border-red-900 rounded w-60">
+    <h4>Reporte de vehículos</h4>
+    <ul>
+      <i class="fas fa-car fa-7x"></i>
+      <li><a href="">Generar reporte con datos de cada vehículo.</a></li>
+    </ul>
+  </article>
+  <hr>
+</section>
+{% endblock content %}

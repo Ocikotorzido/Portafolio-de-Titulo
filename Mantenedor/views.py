@@ -186,6 +186,9 @@ def empleado (request):
     context = {'cargos': cargos }
     return render(request,'mantenedor/registro_empleado.html',context)
 
+def exportar(request):
+    context = {'a':'a'}
+    return render(request,'mantenedor/exportar.html',context)
 
 def agregar_empleado(request):
     if request.method == 'POST':
@@ -212,12 +215,11 @@ def agregar_empleado(request):
 
         # Creación de empleado en la tabla 'perfil'.
         n_perfil = Perfil.objects.all().count()+1
-        perfil = Perfil(n_perfil,1)
+        perfil = Perfil(n_perfil,id_user_auth, id_empleado, 'EMPLEADO')
         perfil.save()
-        id_usuario = Perfil.objects.count()+1
-        Perfil(id_usuario).save()
         
+        # Creación de un nuevo empleado.
         empleado = Empleado(id_empleado,mi_nombre,mi_apellido,mi_contacto,mi_cargo,
-                            mi_rut,mi_password)
+                            mi_rut)
         empleado.save()
-        return render(request, 'mantenedor/mensaje_datos.html', {})
+        return render(request, 'mantenedor/registro_empleado.html', {'mensaje':'Empleado_registrado'})
