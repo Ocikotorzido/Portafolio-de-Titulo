@@ -146,6 +146,7 @@ def reservas (request):
     return render (request, 'mantenedor/reservas.html', context)
 
 def orden_reparacion (request):
+
     return render (request, 'mantenedor/orden_reparacion.html')
 
 def orden_pedido (request):
