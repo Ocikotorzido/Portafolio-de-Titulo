@@ -24,7 +24,7 @@
       <li class="text-left text-3xl md:hidden">☰</li>
 
       {% if user.is_authenticated %}
-      {% if perfil.nivel == 'CLIENTE' %}
+      {% if perfil.nivel|upper == 'CLIENTE' %}
       <li class="flex items-center"><a class="flex align-center"href="registro_cliente">Cliente</a></li>
       <li class="flex items-center"><a href="reservas">Reserva</a></li>
       <li class="flex items-center"><a href="servicios">Servicios</a></li>
@@ -32,18 +32,18 @@
       <li class="flex items-center"><a href="orden_pedido">Orden de pedido</a></li>
       <li class="flex items-center"><a href="">Exportar</a></li>
 
-      {% elif perfil.nivel == 'ADMIN' or perfil.nivel == 'admin' %}
+      {% elif perfil.nivel|upper == 'ADMIN' or perfil.nivel == 'admin' %}
       <li class="flex items-center"><a href="empleado">Agregar empleado</a></li>
       <li class="flex items-center"><a href="registrar_proveedor">Registrar proveedor</a></li>
       <li class="flex items-center"><a href="">Exportar</a></li>
 
-      {% elif perfil.nivel == 'EMPLEADO' %}
+      {% elif perfil.nivel|upper == 'EMPLEADO' %}
       <li class="flex items-center"><a href="reservas">Reserva</a></li>
       <li class="flex items-center"><a href="servicios">Servicios</a></li>
       <li class="flex items-center"><a href="orden_reparacion">Orden de trabajo</a></li>
       <li class="flex items-center"><a href="orden_pedido">Orden de pedido</a></li>
 
-      {% elif perfil.nivel == 'PROVEEDOR' %}
+      {% elif perfil.nivel|upper == 'PROVEEDOR' %}
       <li class="flex items-center"><a href="reservas">Reserva</a></li>
 
       {% else %}
