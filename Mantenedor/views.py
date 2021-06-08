@@ -146,8 +146,10 @@ def reservas (request):
     return render (request, 'mantenedor/reservas.html', context)
 
 def orden_reparacion (request):
+    reservas = Reservas.objects.all()
+    context = {'reservas': reservas}
 
-    return render (request, 'mantenedor/orden_reparacion.html')
+    return render (request, 'mantenedor/orden_reparacion.html', context)
 
 def orden_pedido (request):
     return render (request, 'mantenedor/orden_pedido.html')

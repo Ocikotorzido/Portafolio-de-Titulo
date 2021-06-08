@@ -95,14 +95,23 @@
    
     <table>
       <tr>
-        <th>Rut Cliente</th>
+        <th>ID Reserva</th>
         <th>Fecha</th>
         <th>Hora</th>
         <th>Servicio</th>
         <th>Descripcion</th>
       </tr>
+      {% for reserva in reservas %}
+      <tr>
+        <td>{{reserva.id_reserva}}</td>
+        <td>{{reserva.fecha}}</td>
+        <td>{{reserva.hora}}</td>
+        <td>{{reserva.servicio}}</td>
+        <td>{{reserva.descripcion}}</td>
+      </tr>
+    
       
-      
+      {% endfor %}
     </table>  
       
 
