@@ -91,7 +91,31 @@
         </div>
       </div>
     
-   
+      <section class="formulario">
+        <form action="" method="POST" enctype="multipart/form-data" class="flex flex-col">
+          {% csrf_token %}
+          
+          <label >Producto: </label>
+          <input type="text" id="producto" name="producto">
+        
+
+          <label >Proveedor: </label>
+          <select id="proveedor" name="proveedor"> 
+            {% for proveedor in proveedores %}
+                <option value="""></option>
+            {% endfor %}
+        </select>
+        
+          <label >Cantidad: </label>
+          <input type="text" id="cantidad" name="cantidad">
+        
+          
+
+      
+          <br>
+          <input type="submit" value="Enviar" >
+        </form>
+      </section>
 
       
 

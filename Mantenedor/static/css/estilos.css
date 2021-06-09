@@ -156,3 +156,11 @@ background-image: url("https://www.transparenttextures.com/patterns/starring.png
 background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
 }
 
+table,th,td{
+	border: 1px solid black;
+
+}
+
+th,td{
+	padding: 2rem;
+}
