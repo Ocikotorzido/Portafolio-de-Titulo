@@ -157,6 +157,13 @@ def orden_pedido (request):
 def registrar_proveedor(request):
     return render (request, 'mantenedor/registro_proveedor.html')
 
+def registro_vehiculo(request):
+    return render (request, 'mantenedor/registro_vehiculo.html')
+
+def presupuesto(request):
+    return render (request, 'mantenedor/presupuesto.html')
+
+
 def crear_reserva(request):
     if request.method == 'POST':
 
