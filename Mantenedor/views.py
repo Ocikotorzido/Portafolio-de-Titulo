@@ -229,7 +229,8 @@ def agregar_empleado(request):
         perfil.save()
         
         # Creación de un nuevo empleado.
-        empleado = Empleado(id_empleado,mi_nombre,mi_apellido,mi_contacto,mi_cargo,
-                            mi_rut)
+        empleado = Empleado(id_empleado,
+        mi_nombre,
+        mi_apellido,mi_contacto,mi_cargo,mi_rut)
         empleado.save()
         return render(request, 'mantenedor/registro_empleado.html', {'mensaje':'Empleado_registrado'})
