@@ -28,8 +28,6 @@
       <li class="flex items-center"><a class="flex align-center"href="registro_cliente">Cliente</a></li>
       <li class="flex items-center"><a href="reservas">Reserva</a></li>
       <li class="flex items-center"><a href="servicios">Servicios</a></li>
-      <li class="flex items-center"><a href="orden_reparacion">Orden de trabajo</a></li>
-      <li class="flex items-center"><a href="orden_pedido">Orden de pedido</a></li>
       <li class="flex items-center"><a href="">Exportar</a></li>
 
       {% elif perfil.nivel|upper == 'ADMIN' or perfil.nivel == 'admin' %}
@@ -41,7 +39,9 @@
       <li class="flex items-center"><a href="reservas">Reserva</a></li>
       <li class="flex items-center"><a href="servicios">Servicios</a></li>
       <li class="flex items-center"><a href="orden_reparacion">Orden de trabajo</a></li>
+      <li class="flex items-center"><a href="registro_vehiculo">Registro Vehiculo</a></li>
       <li class="flex items-center"><a href="orden_pedido">Orden de pedido</a></li>
+      <li class="flex items-center"><a href="presupuesto">Presupuesto</a></li>
 
       {% elif perfil.nivel|upper == 'PROVEEDOR' %}
       <li class="flex items-center"><a href="reservas">Reserva</a></li>
@@ -53,11 +53,9 @@
 
       {% if not user.is_authenticated %}
       <li class="flex items-center"><a href="registro_cliente">Cliente</a></li>
-      <li class="flex items-center"><a href="reservas">Reserva</a></li>
       <li class="flex items-center"><a href="servicios">Servicios</a></li>
-      <li class="flex items-center"><a href="orden_reparacion">Orden de trabajo</a></li>
-      <li class="flex items-center"><a href="orden_pedido">Orden de pedido</a></li>
-      <li class="flex items-center"><a href="">Exportar</a></li>
+
+      
       {% endif %}
 
       {% if not user.is_authenticated %}

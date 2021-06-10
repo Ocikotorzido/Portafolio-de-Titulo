@@ -80,10 +80,13 @@ WSGI_APPLICATION = 'Taller.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 # CITT SB
-DATABASES = {'default': {'ENGINE': 'django.db.backends.oracle','NAME': 'www.cittsb.cl:1521/xe','USER': 'bot1','PASSWORD': 'bot',},}
+# DATABASES = {'default': {'ENGINE': 'django.db.backends.oracle','NAME': 'www.cittsb.cl:1521/xe','USER': 'bot1','PASSWORD': 'bot',},}
 
 # Fabian's personal laptop.
-#DATABASES = {'default': {'ENGINE': 'django.db.backends.oracle','NAME': '127.0.0.1:1521/xepdb1','USER': 'HR','PASSWORD': 'hr','TEST': {'USER': 'default_test','TBLSPACE': 'default_test_tbls','TBLSPACE_TMP': 'default_test_tbls_tmp',},},}
+DATABASES = {'default': {'ENGINE': 'django.db.backends.oracle','NAME': '127.0.0.1:1521/xepdb1','USER': 'HR','PASSWORD': 'hr','TEST': {'USER': 'default_test','TBLSPACE': 'default_test_tbls','TBLSPACE_TMP': 'default_test_tbls_tmp',},},}
+
+# Fabian's personal laptop.
+# DATABASES = {'default': {'ENGINE': 'django.db.backends.oracle','NAME': '127.0.0.1:1521/xepdb1','USER': 'Test','PASSWORD': 'test','TEST': {'USER': 'default_test','TBLSPACE': 'default_test_tbls','TBLSPACE_TMP': 'default_test_tbls_tmp',},},}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
