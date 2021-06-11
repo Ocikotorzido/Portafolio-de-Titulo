@@ -1,3 +1,6 @@
+import csv
+import datetime
+
 from .models import *
 from django.http import HttpResponse
 from django.contrib.auth.models import User
@@ -239,3 +242,28 @@ def agregar_empleado(request):
 def generar_informe(request, informe_de, parametros, tipo):
     return HttpResponse('http://localhost:8000/static/img/logo-1.png')
     return HttpResponse(f'/static/{informe_de}_{parametros}.{tipo}')
+
+def generar_csv(request):
+    now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M.%S')
+    response = HttpResponse(
+        content_type='text/csv',
+        headers={'Content-Disposition': f'attachment; filename="informe_{now}.csv"'},
+    )
+    
+    # Obtener los títulos de cada tabla.
+    fields = Perfil._meta.get_fields()
+    titulos = list()
+    for titulo in fields:
+        titulos.append(titulo.name)
+    
+    writer = csv.writer(response)
+    writer.writerow(titulos)
+    
+    nombre_campos = Perfil._meta.get_fields()
+    for fila in Perfil.objects.all():
+        temp = list()
+        for columna in nombre_campos:
+            temp.append(fila.serializable_value(columna.name))
+        writer.writerow(temp)
+
+    return response
