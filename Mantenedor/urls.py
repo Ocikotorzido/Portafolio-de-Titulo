@@ -3,6 +3,9 @@ from . import views
 from .views import login, registro, perfil, salir
 
 urlpatterns = [
+    # API /api/v1/...
+    path('api/v1/<slug:informe_de>/<int:parametros>/<slug:tipo>/', views.generar_informe),
+    
     # [MCS.cl]/Mantenedor/...
     path('', views.to_index),
     path('index', views.index, name='index'),
