@@ -27,48 +27,76 @@
   <article class="flex flex-col items-center border-2 border-red-900 rounded w-60 pt-5 m-4">
     <h4 class="pb-4"><strong>Reporte de clientes</strong></h4>
     <i class="fas fa-users fa-7x"></i>
+    <select class="mt-2" id="cliente" name="cliente">
+      <option value="0">Todos los clientes</option>
+      <option value="1">Último año</option>
+      <option value="2">Último mes</option>
+      <option value="3">Última semana</option>
+      <option value="4">Eliminados</option>
+    </select>
     <a class="pb-4 pt-4" href="">Generar reporte con datos de cada cliente.</a></li>
-    <ul class="w-full flex justify-evenly pb-4">
-      <li><i style="color: tomato" class="far fa-file-pdf fa-3x"></i></li>
-      <li><i style="color: dodgerblue" class="far fa-file-word fa-3x"></i></li>
-      <li><i style="color: gold;" class="far fa-file-code fa-3x"></i></li>
-      <li><i class="far fa-file fa-3x"></i></li>
+    <ul class="w-full flex justify-evenly p-2">
+      <li><i onclick="exportar('cliente', 'pdf')" style="color: tomato" class="far fa-file-pdf fa-3x"></i></li>
+      <li><i onclick="exportar('cliente', 'word')" style="color: dodgerblue" class="far fa-file-word fa-3x"></i></li>
+      <li><i onclick="exportar('cliente', 'json')" style="color: gold;" class="far fa-file-code fa-3x"></i></li>
+      <li><i onclick="exportar('cliente', 'csv')" class="far fa-file fa-3x"></i></li>
     </ul>
   </article>
   <hr>
   <article class="flex flex-col items-center border-2 border-red-900 rounded w-60 pt-5 m-4">
     <h4 class="pb-4"><strong>Reporte de proveedor</strong></h4>
     <i class="fas fa-people-carry fa-7x"></i>
+    <select class="mt-2" id="proveedor" name="proveedor">
+      <option value="0">Todos los proveedores</option>
+      <option value="1">Último año</option>
+      <option value="2">Último mes</option>
+      <option value="3">Última semana</option>
+      <option value="4">Desvinculados</option>
+    </select>
     <a class="pb-4 pt-4" href="">Generar reporte con datos de cada proveedor.</a></li>
-    <ul class="w-full flex justify-evenly pb-4">
-      <li><i style="color: tomato" class="far fa-file-pdf fa-3x"></i></li>
-      <li><i style="color: dodgerblue" class="far fa-file-word fa-3x"></i></li>
-      <li><i style="color: gold;" class="far fa-file-code fa-3x"></i></li>
-      <li><i class="far fa-file fa-3x"></i></li>
+    <ul class="w-full flex justify-evenly p-2">
+      <li><i onclick="exportar('proveedor', 'pdf')" style="color: tomato" class="far fa-file-pdf fa-3x"></i></li>
+      <li><i onclick="exportar('proveedor', 'word')" style="color: dodgerblue" class="far fa-file-word fa-3x"></i></li>
+      <li><i onclick="exportar('proveedor', 'json')" style="color: gold;" class="far fa-file-code fa-3x"></i></li>
+      <li><i onclick="exportar('proveedor', 'csv')" class="far fa-file fa-3x"></i></li>
     </ul>
   </article>
   <hr>
   <article class="flex flex-col items-center border-2 border-red-900 rounded w-60 pt-5 m-4">
     <h4 class="pb-4"><strong>Reporte de administradores</strong></h4>
     <i class="fas fa-user-tie fa-7x"></i>
+    <select class="mt-2" id="administrador" name="administrador">
+      <option value="0">Todos los administradores</option>
+      <option value="1">Último año</option>
+      <option value="2">Último mes</option>
+      <option value="3">Última semana</option>
+      <option value="4">Despedidos</option>
+    </select>
     <a class="pb-4 pt-4" href="">Generar reporte con datos de cada administrador.</a></li>
-    <ul class="w-full flex justify-evenly pb-4">
-      <li><i style="color: tomato" class="far fa-file-pdf fa-3x"></i></li>
-      <li><i style="color: dodgerblue" class="far fa-file-word fa-3x"></i></li>
-      <li><i style="color: gold;" class="far fa-file-code fa-3x"></i></li>
-      <li><i class="far fa-file fa-3x"></i></li>
+    <ul class="w-full flex justify-evenly p-2">
+      <li><i onclick="exportar('administrador', 'pdf')" style="color: tomato" class="far fa-file-pdf fa-3x"></i></li>
+      <li><i onclick="exportar('administrador', 'word')" style="color: dodgerblue" class="far fa-file-word fa-3x"></i></li>
+      <li><i onclick="exportar('administrador', 'json')" style="color: gold;" class="far fa-file-code fa-3x"></i></li>
+      <li><i onclick="exportar('administrador', 'csv')" class="far fa-file fa-3x"></i></li>
     </ul>
   </article>
   <hr>
   <article class="flex flex-col items-center border-2 border-red-900 rounded w-60 pt-5 m-4">
     <h4 class="pb-4"><strong>Reporte de vehículos</strong></h4>
     <i class="fas fa-car fa-7x"></i>
+    <select class="mt-2" id="vehiculo" name="vehiculo">
+      <option value="0">Todos los vehiculos</option>
+      <option value="1">Último año</option>
+      <option value="2">Último mes</option>
+      <option value="3">Última semana</option>
+      <option value="4">Despachados</option>
+    </select>
     <a class="pb-4 pt-4" href="">Generar reporte con datos de cada vehículo.</a></li>
-    <ul class="w-full flex justify-evenly pb-4">
-      <li><i style="color: tomato" class="far fa-file-pdf fa-3x"></i></li>
-      <li><i style="color: dodgerblue" class="far fa-file-word fa-3x"></i></li>
-      <li><i style="color: gold;" class="far fa-file-code fa-3x"></i></li>
-      <li><i class="far fa-file fa-3x"></i></li>
+    <ul class="w-full flex justify-evenly p-2">
+      <li><i onclick="exportar('vehiculo', 'pdf')" style="color: tomato" class="far fa-file-pdf fa-3x"></i></li>
+      <li><i onclick="exportar('vehiculo', 'word')" style="color: dodgerblue" class="far fa-file-word fa-3x"></i></li>
+      <li><i onclick="exportar('vehiculo', 'json')" style="color: gold;" class="far fa-file-code fa-3x"></i></li>
+      <li><i onclick="exportar('vehiculo', 'csv')" class="far fa-file fa-3x"></i></li>
     </ul>
   </article>
   <hr>

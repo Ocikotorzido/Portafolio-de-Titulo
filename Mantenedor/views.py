@@ -1,4 +1,5 @@
 from .models import *
+from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
@@ -234,3 +235,7 @@ def agregar_empleado(request):
         mi_apellido,mi_contacto,mi_cargo,mi_rut)
         empleado.save()
         return render(request, 'mantenedor/registro_empleado.html', {'mensaje':'Empleado_registrado'})
+
+def generar_informe(request, informe_de, parametros, tipo):
+    return HttpResponse('http://localhost:8000/static/img/logo-1.png')
+    return HttpResponse(f'/static/{informe_de}_{parametros}.{tipo}')
