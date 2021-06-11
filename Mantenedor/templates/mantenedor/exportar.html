@@ -5,45 +5,73 @@
   <div class="bg-red-900 p-4 shadow text-2xl text-white w-full h-16">
     <h3 class="font-bold pl-2 text-center md:text-left">Reportes</h3>
   </div>
-  <article class="border-2 border-red-900 rounded w-60">
-    <h4>Reporte de empleados</h4>
-    <ul>
-      <i class="far fa-address-card fa-7x"></i>
-      <li><a href="#">Generar reporte con datos de cada empleado.</a></li>
+  <article class="flex flex-col items-center border-2 border-red-900 rounded w-60 pt-5 m-4">
+    <h4 class="pb-4"><strong>Reporte de empleados</strong></h4>
+    <i class="far fa-address-card fa-7x"></i>
+    <select class="mt-2" id="empleado" name="empleado">
+      <option value="0">Todos los empleados</option>
+      <option value="1">Último año</option>
+      <option value="2">Último mes</option>
+      <option value="3">Última semana</option>
+      <option value="4">Despedidos</option>
+    </select>
+    <a class="p-2" href="#">Generar reporte con datos de cada empleado.</a>
+    <ul class="w-full flex justify-evenly p-2">
+      <li><i onclick="exportar('empleado', 'pdf')" style="color: tomato" class="far fa-file-pdf fa-3x"></i></li>
+      <li><i onclick="exportar('empleado', 'word')" style="color: dodgerblue" class="far fa-file-word fa-3x"></i></li>
+      <li><i onclick="exportar('empleado', 'json')" style="color: gold;" class="far fa-file-code fa-3x"></i></li>
+      <li><i onclick="exportar('empleado', 'csv')" class="far fa-file fa-3x"></i></li>
     </ul>
   </article>
   <hr>
-  <article class="border-2 border-red-900 rounded w-60">
-    <h4>Reporte de clientes</h4>
-    <ul>
-      <i class="fas fa-users fa-7x"></i>
-      <li><a href="">Generar reporte con datos de cada cliente.</a></li>
+  <article class="flex flex-col items-center border-2 border-red-900 rounded w-60 pt-5 m-4">
+    <h4 class="pb-4"><strong>Reporte de clientes</strong></h4>
+    <i class="fas fa-users fa-7x"></i>
+    <a class="pb-4 pt-4" href="">Generar reporte con datos de cada cliente.</a></li>
+    <ul class="w-full flex justify-evenly pb-4">
+      <li><i style="color: tomato" class="far fa-file-pdf fa-3x"></i></li>
+      <li><i style="color: dodgerblue" class="far fa-file-word fa-3x"></i></li>
+      <li><i style="color: gold;" class="far fa-file-code fa-3x"></i></li>
+      <li><i class="far fa-file fa-3x"></i></li>
     </ul>
   </article>
   <hr>
-  <article class="border-2 border-red-900 rounded w-60">
-    <h4>Reporte de proveedor</h4>
-    <ul>
-      <i class="fas fa-people-carry fa-7x"></i>
-      <li><a href="">Generar reporte con datos de cada proveedor.</a></li>
+  <article class="flex flex-col items-center border-2 border-red-900 rounded w-60 pt-5 m-4">
+    <h4 class="pb-4"><strong>Reporte de proveedor</strong></h4>
+    <i class="fas fa-people-carry fa-7x"></i>
+    <a class="pb-4 pt-4" href="">Generar reporte con datos de cada proveedor.</a></li>
+    <ul class="w-full flex justify-evenly pb-4">
+      <li><i style="color: tomato" class="far fa-file-pdf fa-3x"></i></li>
+      <li><i style="color: dodgerblue" class="far fa-file-word fa-3x"></i></li>
+      <li><i style="color: gold;" class="far fa-file-code fa-3x"></i></li>
+      <li><i class="far fa-file fa-3x"></i></li>
     </ul>
   </article>
   <hr>
-  <article class="border-2 border-red-900 rounded w-60">
-    <h4>Reporte de administradores</h4>
-    <ul>
-      <i class="fas fa-user-tie fa-7x"></i>
-      <li><a href="">Generar reporte con datos de cada administrador.</a></li>
+  <article class="flex flex-col items-center border-2 border-red-900 rounded w-60 pt-5 m-4">
+    <h4 class="pb-4"><strong>Reporte de administradores</strong></h4>
+    <i class="fas fa-user-tie fa-7x"></i>
+    <a class="pb-4 pt-4" href="">Generar reporte con datos de cada administrador.</a></li>
+    <ul class="w-full flex justify-evenly pb-4">
+      <li><i style="color: tomato" class="far fa-file-pdf fa-3x"></i></li>
+      <li><i style="color: dodgerblue" class="far fa-file-word fa-3x"></i></li>
+      <li><i style="color: gold;" class="far fa-file-code fa-3x"></i></li>
+      <li><i class="far fa-file fa-3x"></i></li>
     </ul>
   </article>
   <hr>
-  <article class="border-2 border-red-900 rounded w-60">
-    <h4>Reporte de vehículos</h4>
-    <ul>
-      <i class="fas fa-car fa-7x"></i>
-      <li><a href="">Generar reporte con datos de cada vehículo.</a></li>
+  <article class="flex flex-col items-center border-2 border-red-900 rounded w-60 pt-5 m-4">
+    <h4 class="pb-4"><strong>Reporte de vehículos</strong></h4>
+    <i class="fas fa-car fa-7x"></i>
+    <a class="pb-4 pt-4" href="">Generar reporte con datos de cada vehículo.</a></li>
+    <ul class="w-full flex justify-evenly pb-4">
+      <li><i style="color: tomato" class="far fa-file-pdf fa-3x"></i></li>
+      <li><i style="color: dodgerblue" class="far fa-file-word fa-3x"></i></li>
+      <li><i style="color: gold;" class="far fa-file-code fa-3x"></i></li>
+      <li><i class="far fa-file fa-3x"></i></li>
     </ul>
   </article>
   <hr>
 </section>
+<script src="{% static 'js/exportar.js' %}"></script>
 {% endblock content %}
