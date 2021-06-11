@@ -20,6 +20,7 @@ class FormularioRegistro(UserCreationForm):
         if commit:
             user.save()
         return user
+    
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150, blank=True, null=True)
 
@@ -97,7 +98,7 @@ class Cargo(models.Model):
         return self.nombre
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'cargo'
 
 
@@ -115,7 +116,7 @@ class Cliente(models.Model):
         return self.nombre + ' ' + self.apellido + ', ' + str(self.rut)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'cliente'
 
 
@@ -128,7 +129,7 @@ class DetalleCliente(models.Model):
     vehiculo_id_vehiculo = models.ForeignKey('Vehiculo', models.DO_NOTHING, db_column='vehiculo_id_vehiculo')
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'detalle_cliente'
 
 
@@ -139,7 +140,7 @@ class DetalleInforme(models.Model):
     info_auto_id_informe = models.ForeignKey('InfoAuto', models.DO_NOTHING, db_column='info_auto_id_informe')
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'detalle_informe'
 
 
@@ -150,7 +151,7 @@ class DetalleOp(models.Model):
     op_id_pedido = models.ForeignKey('Op', models.DO_NOTHING, db_column='op_id_pedido')
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'detalle_op'
 
 
@@ -161,7 +162,7 @@ class DetalleOrden(models.Model):
     pago_id_pago = models.ForeignKey('Pago', models.DO_NOTHING, db_column='pago_id_pago')
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'detalle_orden'
 
 
@@ -174,7 +175,7 @@ class DetallePedido(models.Model):
     op_id_pedido = models.ForeignKey('Op', models.DO_NOTHING, db_column='op_id_pedido')
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'detalle_pedido'
 
 
@@ -185,7 +186,7 @@ class DetalleReserva(models.Model):
     ot_id_orden = models.ForeignKey('Ot', models.DO_NOTHING, db_column='ot_id_orden')
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'detalle_reserva'
 
 
@@ -246,7 +247,7 @@ class Empleado(models.Model):
         return f'{self.nombre} + ' ' + self.apellido + self.contacto'
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'empleado'
 
 
@@ -260,7 +261,7 @@ class EstadoVehiculo(models.Model):
     empleado_id_empleado = models.ForeignKey(Empleado, models.DO_NOTHING, db_column='empleado_id_empleado')
     
     class Meta:
-        managed = False
+        managed = True
         db_table = 'estado_vehiculo'
 
 
@@ -269,7 +270,7 @@ class InfoAuto(models.Model):
     descripcion = models.CharField(max_length=200)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'info_auto'
 
 
@@ -282,7 +283,7 @@ class Op(models.Model):
     fecha_entrega = models.DateField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'op'
 
 
@@ -294,7 +295,7 @@ class Ot(models.Model):
     empleado_id_empleado = models.ForeignKey(Empleado, models.DO_NOTHING, db_column='empleado_id_empleado')
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ot'
 
 
@@ -306,7 +307,7 @@ class Pago(models.Model):
     iva = models.FloatField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'pago'
 
 class Perfil(models.Model):
@@ -319,7 +320,7 @@ class Perfil(models.Model):
         return f'{self.id_perfil}) FK_AUTH_username: {AuthUser.objects.get(id=self.id_auth_user).username}, nivel: {self.nivel}, id_auth_user: {self.id_auth_user}, id_usuario: {self.id_usuario}'
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'perfil'
         verbose_name_plural = "Perfiles"
 
@@ -333,7 +334,7 @@ class Presupuesto(models.Model):
     total = models.FloatField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'presupuesto'
 
 
@@ -345,7 +346,7 @@ class Producto(models.Model):
     
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'producto'
 
 
@@ -359,7 +360,7 @@ class Proveedor(models.Model):
         return self.nombre + ', ' + self.rubro + ', ' + self.contacto
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'proveedor'
         verbose_name_plural = "Proveedores"
 
@@ -369,7 +370,7 @@ class Regions(models.Model):
     region_name = models.CharField(max_length=25, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'regions'
 
 
@@ -383,7 +384,7 @@ class Reservas(models.Model):
     tipo_servicio_id_servicio = models.FloatField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'reservas'
 
 
@@ -394,7 +395,7 @@ class TipoServicio(models.Model):
     tiempo_serv = models.CharField(max_length=10)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'tipo_servicio'
 
 
@@ -408,5 +409,5 @@ class Vehiculo(models.Model):
     ultimo_servicio = models.DateField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'vehiculo'
