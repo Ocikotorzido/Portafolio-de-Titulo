@@ -173,23 +173,22 @@ def crear_reserva(request):
         mi_descripcion = request.POST['descripcion']
      
         if mi_fecha != "":
-            try:   
+              
                 reserva = Reservas()
 
                 id_reserva = Reservas.objects.count()+1
                 reserva.fecha = mi_fecha
                 reserva.hora = mi_hora
-                print("\n"+mi_servicio)
+               
                 reserva.servicio = mi_servicio
                 reserva.descripcion = mi_descripcion
     
-                reserva = Reservas(id_reserva,mi_servicio,mi_fecha,mi_hora,1,mi_descripcion,5)
+                reserva = Reservas(id_reserva,mi_servicio,mi_fecha,mi_hora,1,mi_descripcion,1)
 
                 reserva.save()    
-                return render(request, 'mantenedor/mensaje_datos.html', {})
+                return render(request, 'mantenedor/reservas.html',)
 
-            except reserva.DoesNotExist:
-                return render(request, 'mantenedor/mensaje_datos.html', {})
+           
 
 def empleado (request):
     cargos = Cargo.objects.all()
