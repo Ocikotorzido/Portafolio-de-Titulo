@@ -41,7 +41,9 @@ Por línea de comandos:
 - **Control de versiones**: Git & GitHub.
 
 ## Librerías extras de terceros.
-- Validador de rut [github.com/gevalenz/rut-chile](https://github.com/gevalenz/rut-chile)
+- Validador de rut. [github.com/gevalenz/rut-chile](https://github.com/gevalenz/rut-chile)
+- docx2pdf. [github.com/AlJohri/docx2pdf](https://github.com/AlJohri/docx2pdf)
+
 ## Agradecimientos
 Se agradece infinitamente a los desarrolladores que hicieron esto posible:
 
