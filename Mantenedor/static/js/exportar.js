@@ -1,6 +1,6 @@
 async function exportar(reporte, tipo){
   /** 
-   * Exportar hará una 'promesa' que generará el archivo solicitado.
+   * Exportar generará el archivo solicitado.
   */
 
   // Se rescatan los parámetros del reporte elegido.
@@ -9,11 +9,18 @@ async function exportar(reporte, tipo){
   let param = document.getElementById(reporte).value;
 
   // Se indica la url de la API que genera los informes.
-  let url = `${window.location.origin}/Mantenedor/api/v1/`;
+  let url = `${window.location.origin}/Mantenedor/generar_informe/`;
   let query = `${reporte}/${param}/${tipo}/`
-  alert(`Exportando ${tipo} de ${reporte}.\nParametro: ${param}\nAPI: ${url+query}`);
 
-  fetch(url+query)
+  // Para debuggear, descomentar esto:
+  // alert(`Exportando ${tipo} de ${reporte}.\nParametro: ${param}\nAPI: ${url+query}`);
+
+  // Finalmente se le envía al usuario el archivo generado.
+  //window.open(`http://127.0.0.1:8000/Mantenedor/generar_informe/${reporte}/${param}/${tipo}/`);
+  window.open(`${url}${query}`)
+
+  // Se podía haber usado una promesa, pero era más engorroso.
+  /* fetch(url+query)
     .then(response => {
       return response.text();
     })
@@ -22,5 +29,5 @@ async function exportar(reporte, tipo){
     })
     .catch(function (error) {
       console.log('Error con la petición', error);
-    });
+    }); */
 }
