@@ -1,14 +1,19 @@
 import csv
 import datetime
+import os, os.path
 
+import docx
+import pandas
+import docx2pdf
+import rut_chile
 from .models import *
 from django.http import HttpResponse
+from django.http import FileResponse
+from django.utils.encoding import smart_str
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as iniciarSesion, logout, authenticate
-
-import rut_chile
 
 def to_index(request):
     """Redirección hacia index"""
@@ -239,17 +244,52 @@ def agregar_empleado(request):
         return render(request, 'mantenedor/registro_empleado.html', {'mensaje':'Empleado_registrado'})
 
 def generar_informe(request, informe_de, parametros, tipo):
-    return HttpResponse('http://localhost:8000/static/img/logo-1.png')
-    return HttpResponse(f'/static/{informe_de}_{parametros}.{tipo}')
-
-def generar_csv(request):
+    """Generar informes sobre algun/a persona/objeto.
+    informe_de -> Tipo de informe, 
+        puede ser: empleado, cliente, 
+        administrador, vehículo, etc.
+    parametros -> Valores/restricciones del informe,
+        puede ser: Todo, último mes,
+        última semana, último año,
+        o incluso descartados.
+    tipo -> formato de salida del informe,
+        puede ser: excel, pdf, csv, word.
+        
+        El flujo de datos va de CSV a XLSX, 
+        luego pasa a Docx y finalmente se 
+        convierte en PDF, previo es obligado.
+    """
+    # Abreviación, extensión y 'content-type' de archivos y sus formatos.
+    tipos_admitidos = {
+        'csv': 
+            ['csv', 'text/csv'],
+        'excel': 
+            ['xlsx','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'],
+        'word': 
+            ['docx',' application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
+        'pdf': 
+            ['pdf', 'application/pdf'],
+        }
     now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M.%S')
+    
+    # Se normaliza el dato.
+    tipo = tipo.lower()
+    
+    # Validación de formato.
+    if tipo not in ['csv', 'excel', 'word', 'pdf']:
+        return HttpResponse('ERROR, el tipo de formato no es válido!')
+    
+    # Se define el nombre del archivo.
+    nombre_archivo = f'informe_{informe_de}_{now}.{tipos_admitidos[tipo][0]}'
+    
+    # Se define el tipo de respuesta y la cabecera.
     response = HttpResponse(
-        content_type='text/csv',
-        headers={'Content-Disposition': f'attachment; filename="informe_{now}.csv"'},
+        content_type=f'{tipos_admitidos[tipo][1]}',
+        headers={'Content-Disposition': 
+            f'attachment; filename="{nombre_archivo}"'},
     )
     
-    # Obtener los títulos de cada tabla.
+    # Obtener los títulos de una tabla.
     fields = Perfil._meta.get_fields()
     titulos = list()
     for titulo in fields:
@@ -264,5 +304,74 @@ def generar_csv(request):
         for columna in nombre_campos:
             temp.append(fila.serializable_value(columna.name))
         writer.writerow(temp)
+    
+    # Devuelve un archivo CSV.
+    if tipo == 'csv': 
+        return response
+    
+    # Se define la ubicación de los archivos temporales.
+    temp_folder = f'{os.path.realpath(".")}\\__temp\\'
+    temp_csv = f'{temp_folder}__temp.csv'
+    
+    # Se corrobora que exista la carpeta temporal.
+    if not os.path.exists(temp_folder):
+        os.mkdir(temp_folder)
+    
+    # Se escribe el CSV en físico.
+    temp = open(temp_csv, 'wb')
+    temp.write(response.content)
+    temp.close()
+    
+    # Devuelve un archivo XLSX.
+    if tipo == 'excel': 
+        # Pandas lee el CSV desde un archivo.
+        archivo_leido = pandas.read_csv(temp_csv)
+        
+        # Se convierte a excel y se almacena como archivo XLSX.
+        archivo_leido.to_excel(f'{temp_folder}{nombre_archivo}', 
+                                index = None, header=True, sheet_name=f'{informe_de}')
+        
+        # Devuelve un archivo XLSX.
+        return FileResponse(open(f'{temp_folder}{nombre_archivo}', 'rb'))
+    
+    # Se crea y se rellena un archivo DOCX.
+    document = docx.Document()
+    document.add_heading(f'Informe de {informe_de}', 0)
+    document.add_paragraph(f'Con fecha {now}.')
+    
+    with open(temp_csv, newline='') as f:
+        csv_reader = csv.reader(f)
+        csv_headers = next(csv_reader)
+        csv_cols = len(csv_headers)
+        table = document.add_table(rows=2, cols=csv_cols)
+        hdr_cells = table.rows[0].cells
+        for i in range(csv_cols):
+            hdr_cells[i].text = csv_headers[i]
 
-    return response
+        for row in csv_reader:
+            row_cells = table.add_row().cells
+            for i in range(csv_cols):
+                row_cells[i].text = row[i]
+    document.add_page_break()    
+    document.save(f'{temp_folder}{nombre_archivo}')
+
+    # Devuelve un archivo DOCX.
+    if tipo == 'word': 
+        return FileResponse(open(f'{temp_folder}{nombre_archivo}', 'rb'))
+    
+    if tipo == 'pdf': 
+        # Solución 1.
+        # Usando MS-Office 365
+        document.save(f'informe_{informe_de}.docx')
+        docx2pdf.convert(f'{temp_folder}informe_{informe_de}.docx', f'{temp_folder}_{nombre_archivo}')
+        
+        # Solución 2.
+        # Usando LibreOffice.
+        #archivo_leido = pandas.read_csv('_temp.csv', header=None)
+        #archivo_leido.to_latex('_temp.tex', index=False, header=False)
+        #      # libreoffice --headless --convert-to html 'FILE.docx' && pandoc 'FILE.html' -o 'FILE.pdf'
+        #subprocess.run(['pandoc', '-s', '-f' ,'latex', '_temp.tex', '-o', 'tt.docx'])
+        
+        return FileResponse(open(f'{temp_folder}{nombre_archivo}', 'rb'))
+    else:
+        return HttpResponse('Error con el servidor...')
