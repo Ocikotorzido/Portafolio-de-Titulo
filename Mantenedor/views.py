@@ -12,7 +12,9 @@ from django.http import FileResponse
 from django.utils.encoding import smart_str
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from django.template.defaultfilters import date
 from django.contrib.auth.forms import AuthenticationForm
+from django.utils.translation import get_language, activate
 from django.contrib.auth import login as iniciarSesion, logout, authenticate
 
 def to_index(request):
@@ -270,7 +272,16 @@ def generar_informe(request, informe_de, parametros, tipo):
         'pdf': 
             ['pdf', 'application/pdf'],
         }
-    now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M.%S')
+    
+    # Se activa la traducción de fechas a español.
+    activate('es')
+    
+    # Obtenemos el nombre del mes en español.
+    today = datetime.date.today()
+    mes = date(today, 'F')
+    
+    now = datetime.datetime.now().strftime('%Y-%m-%d__%H_%M_%S')
+    now_ = datetime.datetime.now().strftime(f'%d de {mes} de %Y, %H:%M %p')
     
     # Se normaliza el dato.
     tipo = tipo.lower()
@@ -280,13 +291,14 @@ def generar_informe(request, informe_de, parametros, tipo):
         return HttpResponse('ERROR, el tipo de formato no es válido!')
     
     # Se define el nombre del archivo.
-    nombre_archivo = f'informe_{informe_de}_{now}.{tipos_admitidos[tipo][0]}'
+    nombre_archivo = f'informe_{informe_de}_{now}'
+    nombre_archivo_con_extension = f'informe_{informe_de}_{now}.{tipos_admitidos[tipo][0]}'
     
     # Se define el tipo de respuesta y la cabecera.
     response = HttpResponse(
         content_type=f'{tipos_admitidos[tipo][1]}',
         headers={'Content-Disposition': 
-            f'attachment; filename="{nombre_archivo}"'},
+            f'attachment; filename="{nombre_archivo_con_extension}"'},
     )
     
     # Obtener los títulos de una tabla.
@@ -328,16 +340,16 @@ def generar_informe(request, informe_de, parametros, tipo):
         archivo_leido = pandas.read_csv(temp_csv)
         
         # Se convierte a excel y se almacena como archivo XLSX.
-        archivo_leido.to_excel(f'{temp_folder}{nombre_archivo}', 
+        archivo_leido.to_excel(f'{temp_folder}{nombre_archivo_con_extension}', 
                                 index = None, header=True, sheet_name=f'{informe_de}')
         
         # Devuelve un archivo XLSX.
-        return FileResponse(open(f'{temp_folder}{nombre_archivo}', 'rb'))
+        return FileResponse(open(f'{temp_folder}{nombre_archivo_con_extension}', 'rb'))
     
     # Se crea y se rellena un archivo DOCX.
     document = docx.Document()
     document.add_heading(f'Informe de {informe_de}', 0)
-    document.add_paragraph(f'Con fecha {now}.')
+    document.add_paragraph(f'Con fecha {now_}.')
     
     with open(temp_csv, newline='') as f:
         csv_reader = csv.reader(f)
@@ -353,25 +365,28 @@ def generar_informe(request, informe_de, parametros, tipo):
             for i in range(csv_cols):
                 row_cells[i].text = row[i]
     document.add_page_break()    
-    document.save(f'{temp_folder}{nombre_archivo}')
+    document.save(f'{temp_folder}{nombre_archivo}.docx')
 
     # Devuelve un archivo DOCX.
     if tipo == 'word': 
-        return FileResponse(open(f'{temp_folder}{nombre_archivo}', 'rb'))
+        return FileResponse(open(f'{temp_folder}{nombre_archivo}.docx', 'rb'))
     
-    if tipo == 'pdf': 
-        # Solución 1.
-        # Usando MS-Office 365
-        document.save(f'informe_{informe_de}.docx')
-        docx2pdf.convert(f'{temp_folder}informe_{informe_de}.docx', f'{temp_folder}_{nombre_archivo}')
-        
-        # Solución 2.
-        # Usando LibreOffice.
-        #archivo_leido = pandas.read_csv('_temp.csv', header=None)
-        #archivo_leido.to_latex('_temp.tex', index=False, header=False)
-        #      # libreoffice --headless --convert-to html 'FILE.docx' && pandoc 'FILE.html' -o 'FILE.pdf'
-        #subprocess.run(['pandoc', '-s', '-f' ,'latex', '_temp.tex', '-o', 'tt.docx'])
-        
-        return FileResponse(open(f'{temp_folder}{nombre_archivo}', 'rb'))
+    if tipo == 'pdf':
+        try:
+            # Solución 1.
+            # Usando MS-Office 365
+            print('\nUsando Office 365\n')
+            docx2pdf.convert(f'__temp\{nombre_archivo}.docx')
+        except:
+            import subprocess
+            # Solución 2.
+            # Usando LibreOffice.
+            print('\nUsando LibreOffice\n')
+            path_to_soffice_exe = '"C:\Program Files\LibreOffice\program\soffice.exe"'
+            to_pdf = '-headless -convert-to pdf'
+            outdir = '-outdir .\__temp'
+            res = subprocess.run(f'{path_to_soffice_exe} {to_pdf} {outdir} "__temp\{nombre_archivo}.docx"')
+            print(f'\n\n{res}\n\n')
+        return FileResponse(open(f'{temp_folder}{nombre_archivo}.pdf', 'rb'))
     else:
         return HttpResponse('Error con el servidor...')
