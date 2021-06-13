@@ -14,11 +14,26 @@ Sistema de gestión y administración web del taller mecánico "ServiExpress".
 
 ## ¿Qué necesito instalar?
 - Python 3
-- Django (´pip install django´)
-- cx_oracle (´pip install cx_oracle´)
+- Dependencias de terceros ´pip install -r requirements.txt´
+  - **También es posible instalar las dependencias por separado.**
+  - Django (´pip install django´)
+  - cx_oracle (´pip install cx_oracle´)
+  - Pandas (´pip install pandas´)
+  - Xlwt (´pip install xlwt´)
+  - OpenPyXL (´pip install openpyxl´)
+  - Docx2PDF (´pip install docx2pdf´)
+  - Python-Docx (´pip install python-docx´)
 - Oracle 18c (cliente/servidor dependiendo de la ubicación de la base de datos).
+- LibreOffice/MS-Office 365
+
+## ¿Qué debo configurar?
+Se debiera crear un usuario administrador.
+
+- `python manage.py createsuperuser`
 
 ## ¿Cómo lo echo a andar?
+Si todo se instaló correctamente, es tan simple como hacer click en **up**.
+
 **Usuarios de Windows**
 - **Doble click en** `up`.
 - Saltará el navegador.
