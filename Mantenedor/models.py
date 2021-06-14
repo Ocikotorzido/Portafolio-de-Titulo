@@ -1,6 +1,5 @@
-from django.db import models
-from django.db.models.fields import BLANK_CHOICE_DASH
 from django import forms
+from django.db import models
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
