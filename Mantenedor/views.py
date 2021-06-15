@@ -176,6 +176,9 @@ def presupuesto(request):
     return render (request, 'mantenedor/presupuesto.html')
 
 
+def faq(request):
+    return render (request, 'mantenedor/faq.html')
+
 def crear_reserva(request):
     if request.method == 'POST':
 
