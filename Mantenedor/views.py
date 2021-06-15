@@ -193,8 +193,9 @@ def crear_reserva(request):
                
                 reserva.servicio = mi_servicio
                 reserva.descripcion = mi_descripcion
-    
-                reserva = Reservas(id_reserva,mi_servicio,mi_fecha,mi_hora,1,mi_descripcion,1)
+                id_cliente = Perfil.objects.filter(id_auth_user = request.user.id)[0].id_usuario
+
+                reserva = Reservas(id_reserva,mi_servicio,mi_fecha,mi_hora,id_cliente,mi_descripcion,1)
 
                 reserva.save()    
                 return render(request, 'mantenedor/reservas.html',)
@@ -207,7 +208,10 @@ def empleado (request):
     return render(request,'mantenedor/registro_empleado.html',context)
 
 def exportar(request):
-    context = {'a':'a'}
+    nivel = None
+    if request.user.is_authenticated:
+        nivel = Perfil.objects.filter(id_auth_user = request.user.id)[0].nivel
+    context={'perfil':{'nivel':nivel}}
     return render(request,'mantenedor/exportar.html',context)
 
 def agregar_empleado(request):
@@ -282,7 +286,7 @@ def generar_informe(request, informe_de, parametros, tipo):
     
     now = datetime.datetime.now().strftime('%Y-%m-%d__%H_%M_%S')
     now_ = datetime.datetime.now().strftime(f'%d de {mes} de %Y, %H:%M %p')
-    
+                                            
     # Se normaliza el dato.
     tipo = tipo.lower()
     
