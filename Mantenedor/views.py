@@ -7,6 +7,7 @@ import pandas
 import docx2pdf
 import rut_chile
 from .models import *
+from django.apps import apps
 from django.http import HttpResponse
 from django.http import FileResponse
 from django.utils.encoding import smart_str
@@ -261,6 +262,9 @@ def generar_informe(request, informe_de, parametros, tipo):
         luego pasa a Docx y finalmente se 
         convierte en PDF, previo es obligado.
     """
+    
+    tablas_db = apps.all_models['Mantenedor']
+    
     # Abreviación, extensión y 'content-type' de archivos y sus formatos.
     tipos_admitidos = {
         'csv': 
@@ -280,6 +284,9 @@ def generar_informe(request, informe_de, parametros, tipo):
     today = datetime.date.today()
     mes = date(today, 'F')
     
+    # Se asigna la fecha actual de dos maneras,
+    # Una para ser escrita en los nombres de archivos,
+    # La otra para ser escrita dentro de los informes.
     now = datetime.datetime.now().strftime('%Y-%m-%d__%H_%M_%S')
     now_ = datetime.datetime.now().strftime(f'%d de {mes} de %Y, %H:%M %p')
     
