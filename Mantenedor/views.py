@@ -159,6 +159,7 @@ def reservas (request):
 
 def orden_reparacion (request):
     reservas = Reservas.objects.all()
+    
     context = {'reservas': reservas}
 
     return render (request, 'mantenedor/orden_reparacion.html', context)
