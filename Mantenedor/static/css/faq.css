@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    
+    width: 50%;
+    box-shadow: 7px 13px 37px rgba(0,0,0,.5);
+}
+
+section p {
+    overflow: hidden;
+    max-height: 0;
+    text-align: justify;
+    font-family: 'Courier New', Courier, monospace;
+    transition: all .3s ease;
+}
+
+section a{
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    padding: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    border-bottom: 2px solid gray;
+}
+
+section:target p {
+    max-height: 120px;
+    padding: 10px;
+}

@@ -159,6 +159,7 @@ def reservas (request):
 
 def orden_reparacion (request):
     reservas = Reservas.objects.all()
+    
     context = {'reservas': reservas}
 
     return render (request, 'mantenedor/orden_reparacion.html', context)
@@ -175,6 +176,9 @@ def registro_vehiculo(request):
 def presupuesto(request):
     return render (request, 'mantenedor/presupuesto.html')
 
+
+def faq(request):
+    return render (request, 'mantenedor/faq.html')
 
 def crear_reserva(request):
     if request.method == 'POST':

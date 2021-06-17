@@ -25,6 +25,8 @@ urlpatterns = [
     path('registro_vehiculo',views.registro_vehiculo, name='registro_vehiculo'),
     path('presupuesto',views.presupuesto, name='presupuesto'),
 
+    path('faq',views.faq, name='faq'),
+
     #path('login/', login, name='login'),
     path('registro/', registro, name='registro'),
     path('perfil/',perfil, name='perfil'),

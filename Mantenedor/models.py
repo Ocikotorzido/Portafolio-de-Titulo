@@ -233,6 +233,7 @@ class Producto(models.Model):
 
 class Proveedor(models.Model):
     id_proveedor = models.IntegerField(primary_key=True)
+    
     contacto = models.CharField(max_length=50)
     nombre = models.CharField(max_length=50)
     rubro = models.CharField(max_length=50)

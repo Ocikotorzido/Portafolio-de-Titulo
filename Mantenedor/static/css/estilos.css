@@ -164,3 +164,7 @@ table,th,td{
 th,td{
 	padding: 2rem;
 }
+
+.separador{
+	padding: 5px;
+}
