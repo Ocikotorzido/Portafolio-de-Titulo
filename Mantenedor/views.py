@@ -268,6 +268,15 @@ def generar_informe(request, informe_de, parametros, tipo):
     """
     
     tablas_db = apps.all_models['Mantenedor']
+    informes = {
+        # 'NOMBRE_EN_FORM_DE_HTML' : tablas_db['NOMBRE_TABLA_ORACLE'],
+        'empleado': tablas_db['empleado'],
+        'cliente': tablas_db['cliente'],
+        'proveedor': tablas_db['proveedor'],
+        'administrador': tablas_db['perfil'],
+        #'vehiculo': tablas_db['reserva'],
+    }
+    
     
     # Abreviación, extensión y 'content-type' de archivos y sus formatos.
     tipos_admitidos = {
@@ -313,7 +322,7 @@ def generar_informe(request, informe_de, parametros, tipo):
     )
     
     # Obtener los títulos de una tabla.
-    fields = Perfil._meta.get_fields()
+    fields = informes[informe_de]._meta.get_fields()
     titulos = list()
     for titulo in fields:
         titulos.append(titulo.name)
@@ -321,11 +330,17 @@ def generar_informe(request, informe_de, parametros, tipo):
     writer = csv.writer(response)
     writer.writerow(titulos)
     
-    nombre_campos = Perfil._meta.get_fields()
-    for fila in Perfil.objects.all():
+    # Se obtiene la info de la base de datos.
+    nombre_campos = informes[informe_de]._meta.get_fields()
+    for fila in informes[informe_de].objects.all():
         temp = list()
         for columna in nombre_campos:
             temp.append(fila.serializable_value(columna.name))
+            #if informe_de == 'administrador':
+                #if fila.nivel.lower() in ['admin', 'administrador']:
+                #    temp.append(fila.serializable_value(columna.name))
+            #else:
+                #temp.append(fila.serializable_value(columna.name))
         writer.writerow(temp)
     
     # Devuelve un archivo CSV.
