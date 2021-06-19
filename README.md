@@ -59,11 +59,17 @@ Por línea de comandos:
 - Validador de rut. [github.com/gevalenz/rut-chile](https://github.com/gevalenz/rut-chile)
 - docx2pdf. [github.com/AlJohri/docx2pdf](https://github.com/AlJohri/docx2pdf)
 
-## Agradecimientos
-Se agradece infinitamente a los desarrolladores que hicieron esto posible:
+## Sobre los desarrolladores
+Estos son los desarrolladores que hicieron esto posible:
 
 [![Grupo_en_Discord](./pantallazos/grupo_portafolio_discord.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
 
 - Fabian Astorga [@Ocikotorzido](https://github.com/Ocikotorzido)
 - Francisco Marfull [@Marfullsen](https://github.com/Marfullsen)
 - José Lorca [@JoseLorca](https://github.com/JoseLorca)
+
+## Agradecimientos
+Agradecemos de corazón a todos los que hicieron esto posible, sin su ayuda, nos hubiera costado mucho más terminar este proyecto.
+- Centro de Innovación y Transferencia Tecnológica (CITT).
+
+[![logo_Citt](./Mantenedor/static/img/logo_citt.png)](https://www.duoc.cl/citt/)
