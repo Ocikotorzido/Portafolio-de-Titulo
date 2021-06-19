@@ -1,7 +1,8 @@
 from django.contrib import admin
+from django.apps import apps
 from .models import *
-# Register your models here.
-admin.site.register(Perfil)
-admin.site.register(Empleado)
-admin.site.register(Proveedor)
-admin.site.register(Cliente)
+
+tablas_db = apps.all_models['Mantenedor']
+
+for _, tabla in tablas_db.items():
+  admin.site.register(tabla)
