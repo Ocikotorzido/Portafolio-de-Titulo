@@ -7,10 +7,10 @@ doskey dbs=python manage.py dbshell
 doskey idb=python manage.py inspectdb
 
 echo Atajos agregados!
-echo. 
-echo rs == runserver
-echo ps == shell
-echo mm == makemigrations
-echo m == migrate
-echo dbs == dbshell
-echo idb == inspectdb
+echo.
+echo rs --^> runserver
+echo ps --^> shell
+echo mm --^> makemigrations
+echo m --^> migrate
+echo dbs --^> dbshell
+echo idb --^> inspectdb
