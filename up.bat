@@ -1,4 +1,4 @@
-echo @off
+@echo off
 rem run a python server typing 'up'.
 set CURRDIR=%~dp0
 explorer "http://localhost:8000/"
