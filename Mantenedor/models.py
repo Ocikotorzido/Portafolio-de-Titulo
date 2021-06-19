@@ -247,15 +247,6 @@ class Proveedor(models.Model):
         verbose_name_plural = "Proveedores"
 
 
-class Regions(models.Model):
-    region_id = models.IntegerField(primary_key=True)
-    region_name = models.CharField(max_length=25, blank=True, null=True)
-
-    class Meta:
-        managed = True
-        db_table = 'regions'
-
-
 class Reservas(models.Model):
     id_reserva = models.IntegerField(primary_key=True)
     servicio = models.CharField(max_length=50, blank=True, null=True)
