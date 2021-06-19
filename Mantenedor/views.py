@@ -102,7 +102,11 @@ def salir(request):
 def index (request):
     nivel = None
     if request.user.is_authenticated:
-        nivel = Perfil.objects.filter(id_auth_user = request.user.id)[0].nivel
+        try:
+            nivel = Perfil.objects.filter(id_auth_user = request.user.id)[0].nivel
+        except IndexError:
+            logout(request)
+            nivel = 'ERROR'
     context={'perfil':{'nivel':nivel}}
     return render (request, 'mantenedor/index.html',context)
 
