@@ -1,106 +1,86 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    {% load static %}
+  {% load static %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>MCS</title>
-  <meta name="author" content="name">
-  <meta name="description" content="description here">
-  <meta name="keywords" content="keywords,here">
-
+  <meta name="author" content="Team_digital">
+  <meta name="description" content="Reservas">
+  <meta name="keywords" content="mcs">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
   <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
-  <!--Replace with your tailwind.css once created-->
-  <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-  <!--Totally optional :) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"
-    integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
   <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
-
 </head>
-
-
 <body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
-  <!--Nav-->
-  <!-- pt-2 md:pt-1 pb-1 px-1 mt-0 h-auto fixed w-full z-0 top-4 -->
   <nav class="bg-gray-800 z-0">
     <ul class="flex flex-col justify-left md:flex-row md:justify-evenly text-white">
-      <!-- <li class="text-left text-3xl">☰</li> -->
       <li><a href="index"><img src="{% static 'img/logo2.png' %}" alt="" width="100"></a></li>
       <li class="flex items-center"><a href="index">Volver</a></li>
     </ul>
   </nav>
-  
-
-
   <div class="flex flex-col md:flex-row">
-
     <div class="bg-gray-800 shadow-xl h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48">
-
       <div
         class=" md:w-48  md:left-0 md:top-0 content-center md:content-start text-left justify-between ">
-        
       </div>
-
-
     </div>
-
+  
     <div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
-
       <div class="bg-gray-800 pt-3">
         <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
           <h3 class="font-bold pl-2">Reservas</h3>
         </div>
       </div>
-    <section class="formulario">
-      <form action="crear_reserva" method="POST" enctype="multipart/form-data" class="flex flex-col">
+    
+    <section class="flex flex-col">
+      <h1 class="flex justify-center">Datos cliente</h1>
+      <article class="flex justify-around flex-wrap">
+        <div>
+          <label>Nombre: </label>
+          <input type="text" value="{{ user.first_name }} {{ user.last_name }}" disabled>
+        </div>
+        <div>
+          <label>Email: </label>
+          <input type="text" value="{{ user.email }}" disabled>
+        </div>
+      </article>
+    </section>
+    <hr style="border-top: solid lightgray 2px;">
+    <section class="flex flex-wrap w-full">
+      <form action="crear_reserva" method="POST" enctype="multipart/form-data" class="flex flex-col w-full justify-center">
         {% csrf_token %}
-      	
-      	
-      
-      	
-	  
-      	<label >Fecha: </label>
-      	<input type="date" id="fecha"  name="fecha">
-      
-      	<label >Hora: </label>
-      	<input type="time" id="hora" name="hora">
+        <h1>Datos vehículo</h1>
+        <article class="flex">
+          <div>
+            <label for="patente">Marca</label>
+            <input type="text" name="patente" id="patente" required>
+          </div>
+          <div>
+            <label for="patente">Modelo</label>
+            <input type="text" name="patente" id="patente" required>
+          </div>
+          <div>
+            <label for="patente">Patente</label>
+            <input type="text" name="patente" id="patente" required>
+          </div>
+        </article>
 
+        <hr style="border-top: solid lightgray 2px;">
 
-        <label >Servicio: </label>
-        <select id="servicio" name="servicio"> 
-            {% for servicio in servicios %}
-                <option value="{{servicio.id_servicio}}">{{servicio.nombre}}</option>
-            {% endfor %}
-            
-      
-        </select>
-        <label >Descripcion: </label>
-        <input type="text" id="descripcion" name="descripcion">
-         
+        <h1>Solicitar servicios:</h1>
+        <h2 >Servicios: </h2>
+        
+        {% for servicio in servicios %}
+          <div>
+            <input type="checkbox" id="servicio{{ forloop.counter }}" name="servicio{{ forloop.counter }}" value="{{ servicio.nombre }}">
+            <label class="font-thin	text-base" for="servicio{{ forloop.counter }}">{{ servicio.nombre }}</label><br>
+          </div>
+        {% endfor %}
       	<br>
-      	<input type="submit" value="Enviar" >
+      	<input type="submit" value="Enviar">
       </form>
-    </section> 
-     
-      
-
-
-
-      
-
-      
-
-      
-
-
-
-
- 
-
+    </section>
 </body>
-
 </html>
