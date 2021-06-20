@@ -18,7 +18,7 @@
   <!--Totally optional :) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"
     integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
-  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos_vehiculo.css' %}">
 
 </head>
 
@@ -58,43 +58,126 @@
       <h2 style='color:red; text-align:center;'>
         {{ formulario.errors }}<br>
       </h2>{% endif %}
+    <main>
     <section class="formulario">
-      <form action="" method="POST" enctype="multipart/form-data" class="flex flex-col">
+      <form action="" method="POST" enctype="multipart/form-data" >
         {% csrf_token %}
+        <div class="cuadro">
+          <h1>Datos del cliente</h1>
+          
+            <div class='field'>   
+              <label >Nombre del cliente: </label>
+              <input type="text" id="modelo" name="modelo">
+            </div>
+            <div class='field' >  
+              <label >Rut: </label>
+              <input type="text" id="patente" name="patente">
+            </div>
+            <div class='field' >  
+              <label >Direccion: </label>
+              <input type="text" id="chasis" name="chasis">
+            </div>
+            <div class='field' >  
+              <label >Contacto: </label>
+              <input type="text" id="chasis" name="chasis">
+            </div>
+            <div class='field' >  
+              <label >Fecha Atencion: </label>
+              <input type="date" id="chasis" name="chasis">
+            </div>
+            
+      </div>
+
+
+
+      <div class="cuadro">
+        <h1>Datos del vehiculo</h1>
+          <div class='field' >
+            <label >Modelo: </label>
+            <input type="text" id="ralladuras" name="ralladuras">
+          </div>
+          <div class='field' >
+            <label >Marca: </label>
+            <input type="text" id="neumaticos" name="neumaticos">
+          </div>
+          <div class='field' >
+            <label >Patente: </label>
+            <input type="text" id="espejos" name="espejos">
+          </div>
+          <div class='field' >
+            <label >Color: </label>
+            <input type="text" id="l_delanteras" name="l_delanteras">
+          </div>
+          <div class='field' >
+            <label >Año: </label>
+            <input type="text" id="l_delanteras" name="l_delanteras">
+          </div>
+          <div class='field' >
+            <label >Kilometraje: </label>
+            <input type="text" id="l_delanteras" name="l_delanteras">
+          </div>
+          
+        </div>
+        <div class="cuadro">
+          <h1>Niveles (%)</h1>
+          <div class='field2' >
+            <label >N.Combustible: </label>
+            <input type="text" id="l_traseras" name="l_traseras">
+          </div>
+          <div class='field2' >
+            <label >Aceite de motor: </label>
+            <input type="text" id="frenos" name="frenos">
+          </div>
+          <div class='field2' >
+            <label >Refrigerante: </label>
+            <input type="text" id="motor" name="motor">
+          </div>
+          <div class='field2' >
+            <label >Liq.Frenos: </label>
+            <input type="text" id="motor" name="motor">
+          </div>
+          </div>
+          <div class="cuadro">
+            <h1>Luces</h1>
+            <div class='field2' >
+              <label >Alta Der: </label>
+              <input type="text" id="l_traseras" name="l_traseras">
+            </div>
+            <div class='field2' >
+              <label >Alta Izq: </label>
+              <input type="text" id="frenos" name="frenos">
+            </div>
+            <div class='field2' >
+              <label >Baja Der: </label>
+              <input type="text" id="motor" name="motor">
+            </div>
+            <div class='field2' >
+              <label >Baja Izq: </label>
+              <input type="text" id="motor" name="motor">
+            </div>
+            <div class='field2' >
+              <label >Intermitentes: </label>
+              <input type="text" id="motor" name="motor">
+            </div>
+          
+
+          <div class="textbox">
+            <label>Observaciones</label>
+            <textarea></textarea>
+          </div>
+
+          <div class="enviar">
+            <input type="submit" value="Enviar" >
+          </div>
+        </div>
+      	
+
         
-      	<label >Modelo: </label>
-        <input type="text" id="modelo" name="modelo">
-      
-      	<label >Patente: </label>
-          <input type="text" id="patente" name="patente">
-      	<label >Chasis: </label>
-      	<input type="text" id="chasis" name="chasis">
-	  
-      	<label >Ralladuras: </label>
-      	<input type="text" id="ralladuras" name="ralladuras">
-      
-      	<label >Neumaticos: </label>
-      	<input type="text" id="neumaticos" name="neumaticos">
-      
-      	<label >Espejos: </label>
-      	<input type="text" id="espejos" name="espejos">
-      
-      	<label >Luces Delanteras: </label>
-          <input type="text" id="l_delanteras" name="l_delanteras">
-      
-        <label >Luces Traseras: </label>
-        <input type="text" id="l_traseras" name="l_traseras">
 
-        <label >Estado de Frenos: </label>
-        <input type="text" id="frenos" name="frenos">
-        <label >Estado de Motor: </label>
-        <input type="text" id="motor" name="motor">
-
-      	<br>
-      	<input type="submit" value="Enviar" >
+        
       </form>
     </section> 
 
-      
+    </main>
 </body>
 </html>
