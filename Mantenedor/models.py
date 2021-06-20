@@ -269,6 +269,9 @@ class TipoServicio(models.Model):
     class Meta:
         managed = True
         db_table = 'tipo_servicio'
+    
+    def __str__(self):
+        return f'{self.nombre}'
 
 class Vehiculo(models.Model):
     id_vehiculo = models.IntegerField(primary_key=True)
