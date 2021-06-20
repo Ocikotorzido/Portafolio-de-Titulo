@@ -18,7 +18,7 @@
   <!--Totally optional :) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"
     integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
-  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos_cliente.css' %}">
 
 </head>
 
@@ -57,43 +57,61 @@
         {{ formulario.errors }}<br>
       </h2>{% endif %}
     <section class="formulario">
-      <form action="" method="POST" enctype="multipart/form-data" class="flex flex-col">
+      <form action="" method="POST" enctype="multipart/form-data" class="">
         {% csrf_token %}
-        
-      	<label >Rut: </label>
-      	<!-- <input type="text" id="rut" name="rut" required> -->
-        {{ formulario.username }}
-      
-      	<label >Nombre: </label>
-      	<!-- <input type="text" id="nombre"  name="nombre"> -->
-        {{ formulario.first_name }}
+        <div class="cuadro">
+          <h1>Datos del cliente</h1>
+            <div class='field' >  
+              <label >Rut: </label>
+              {{ formulario.username }}
+            </div>
+
+            <div class='field'>   
+              <label >Nombre del cliente: </label>
+              {{ formulario.first_name }}
+            </div>
+            
+            <div class='field' >  
+              <label >Apellido: </label>
+              {{ formulario.last_name }}
+            </div>
+            <div class='field' >  
+              <label >Direccion: </label>
+              <input type="text" id="direccion" name="direccion">
+            </div>
+            <div class='field' >  
+              <label >Telefono: </label>
+              <input type="number" id="telefono" name="telefono">
+            </div>
+            <div class='field' >  
+              <label >Celular: </label>
+              <input type="number" id="celular" name="celular">
+            </div>
+            <div class="contra">
+            <div class="field">
+              <label >Email: </label>
+              <!-- <input type="text" id="email" name="email"> -->
+              {{ formulario.email }}
+            </div>
+            
+              <div class="field">
+                <label >Contraseña: </label>
+                <!-- <input type="text" id="password" name="password"> -->
+                {{ formulario.password1 }}
+              </div>
+              
+              <div class="field">
+                <label >Repetir contraseña: </label>
+                {{ formulario.password2 }}
+              </div>
+              <div class="enviar">
+                <input type="submit" value="Registrar" >
+              </div>
+            </div>
+            
+      </div>
       	
-      	<label >Apellido: </label>
-      	<!-- <input type="text" id="apellido" name="apellido"> -->
-        {{ formulario.last_name }}
-	  
-      	<label >Direccion: </label>
-      	<input type="text" id="direccion" name="direccion">
-      
-      	<label >Telefono: </label>
-      	<input type="text" id="telefono" name="telefono">
-      
-      	<label >Celular: </label>
-      	<input type="text" id="celular" name="celular">
-      
-      	<label >Email: </label>
-      	<!-- <input type="text" id="email" name="email"> -->
-        {{ formulario.email }}
-      
-        <label >Contraseña: </label>
-      	<!-- <input type="text" id="password" name="password"> -->
-        {{ formulario.password1 }}
-
-        <label >Repetir contraseña: </label>
-        {{ formulario.password2 }}
-
-      	<br>
-      	<input type="submit" value="Enviar" >
+      	
       </form>
     </section> 
 

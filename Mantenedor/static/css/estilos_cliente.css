@@ -1,0 +1,59 @@
+
+.formulario{
+    padding: 1rem;
+}
+.cuadro{
+    border: 1.5px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 1rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1{
+    
+    font-size: 1.5rem;
+    width: 100%;
+    
+}
+
+input{
+
+    border: 1px solid black;
+    box-shadow: 7px 13px 37px rgba(0,0,0,.1);
+}
+
+
+.field{
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+    margin: 1rem;
+    
+}
+.contra{
+    display: flex;
+    flex-direction: column;
+}
+
+.enviar{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3rem;
+    
+}
+
+.enviar input{
+    padding: 0.5rem 1rem;
+    border: 2px solid black;
+    border-radius: 5px;
+    height: 3rem;
+    box-shadow: 7px 13px 37px rgba(0,0,0,.1);
+}
