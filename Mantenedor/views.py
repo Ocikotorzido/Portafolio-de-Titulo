@@ -157,19 +157,30 @@ def servicios (request):
     return render (request, 'mantenedor/servicios.html')
 
 def reservas (request):
+    servicios_disponibles = {
+        'servicio_1': 'Cambio de neumáticos',
+        'servicio_2': 'Cambio de aceite',
+        'servicio_3': 'Cambio de pastillas',
+        'servicio_4': 'Cambio de correas',
+        'servicio_5': 'cambio de bujías',
+        'servicio_6': 'Cambio de amortiguadores',
+        'servicio_7': 'Cambio de baterías',
+        'servicio_8': 'Cambio de filtros',
+    }
     servicios = TipoServicio.objects.all()
+    context = {'servicios': servicios }
     if request.method == 'POST':
-        services = 0
+        context['method'] = 'POST'
+        services = list()
         for service in request.POST:
             if 'servicio' in service:
-                services += 1
-        return HttpResponse(services)
-    context = {'servicios': servicios }
+                services.append(service)
+        return render (request, 'mantenedor/reservas.html', context)
+        return HttpResponse(', '.join(services))
     return render (request, 'mantenedor/reservas.html', context)
 
 def orden_reparacion (request):
     reservas = Reservas.objects.all()
-    
     context = {'reservas': reservas}
 
     return render (request, 'mantenedor/orden_reparacion.html', context)
