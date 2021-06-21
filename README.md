@@ -33,17 +33,20 @@ Se debiera crear un usuario administrador.
 - `python manage.py createsuperuser`
 
 ### Archivo de configuración para envío de emails.
-Crear un archivo de configuración (`settings.ini`) con la siguiente información:
+Crear un archivo de configuración (**settings.ini**) con la siguiente información:
 ```
 [Settings]
-EMAIL_HOST_USER = CORREO_ELECTRONICO@EMAIL.COM
-EMAIL_HOST_PASSWORD = CONTRASEÑA_PARA_APLICACIÓN_CON_SEGURIDAD_DESABILITADA
+EMAIL_HOST_USER = MI_CORREO_ELECTRONICO@gmail.com
+EMAIL_HOST_PASSWORD = CONTRASEÑA_PARA_APLICACIÓN_CON_SEGURIDAD_DESHABILITADA
 ```
-> Este archivo debe llamarse `settings.ini` y debe estar al mismo nivel de `manage.py`.
 
-> `EMAIL_HOST_USER = ` debe tener un correo GMAIL.
+Se debe tener en cuenta:
 
-> `EMAIL_HOST_PASSWORD = ` debe tener una clave de aplicación con verificación en dos pasos y acceso a aplicaciones 'poco seguras'.
+- Este archivo debe llamarse **settings.ini** y debe estar al mismo nivel de **manage.py**.
+
+- La constante **EMAIL_HOST_USER** debe tener un correo GMAIL.
+
+- La constante **EMAIL_HOST_PASSWORD** debe tener una clave de aplicación con verificación en dos pasos y acceso a aplicaciones 'poco seguras'.
 
 ## ¿Cómo lo echo a andar?
 Si todo se instaló correctamente, es tan simple como hacer click en **up**.
