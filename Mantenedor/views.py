@@ -1,6 +1,8 @@
 import csv
+import smtplib
 import datetime
 import os, os.path
+from threading import Thread
 
 import docx
 import pandas
@@ -17,6 +19,8 @@ from django.template.defaultfilters import date
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import get_language, activate
 from django.contrib.auth import login as iniciarSesion, logout, authenticate
+
+from Taller.settings import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
 
 def to_index(request):
     """Redirección hacia index"""
@@ -157,6 +161,12 @@ def servicios (request):
     return render (request, 'mantenedor/servicios.html')
 
 def reservas (request):
+    cliente = dict()
+    cliente['nombre'] = f'{request.user.first_name} {request.user.last_name}'
+    vehiculo = dict()
+    solicitud = dict()
+    tupla_datos = (cliente,vehiculo, solicitud)
+    al_recepcionista = Thread(target=enviar_correo, args=(tupla_datos,))
     servicios_disponibles = {
         'servicio_1': 'Cambio de neumáticos',
         'servicio_2': 'Cambio de aceite',
@@ -175,6 +185,7 @@ def reservas (request):
         for service in request.POST:
             if 'servicio' in service:
                 services.append(service)
+        al_recepcionista.start()
         return render (request, 'mantenedor/reservas.html', context)
         return HttpResponse(', '.join(services))
     return render (request, 'mantenedor/reservas.html', context)
@@ -512,3 +523,21 @@ def generar_informe(request, informe_de, parametros, tipo):
         return FileResponse(open(f'{temp_folder}{nombre_archivo}.pdf', 'rb'))
     else:
         return HttpResponse('Error con el servidor...')
+
+def enviar_correo(tupla_datos):
+    cliente,vehiculo,solicitud = tupla_datos[0],tupla_datos[1],tupla_datos[2]
+    hoy = datetime.datetime.now().strftime(f'%d de %m de %Y, a las %H:%M %p')
+    to = [EMAIL_HOST_USER]
+    subject = f'Nueva solicitud de reserva & presupuesto, {hoy}'
+    body = f"El cliente {cliente.get('nombre')} solicita presupuesto el dia {hoy}"
+    email_text = """\
+From: %s
+To: %s
+Subject: %s
+
+%s
+""" % (EMAIL_HOST_USER, ", ".join(to), subject, body)
+    server = smtplib.SMTP_SSL('smtp.gmail.com')
+    server.login(EMAIL_HOST_USER, EMAIL_HOST_PASSWORD)
+    server.sendmail(EMAIL_HOST_USER, to, email_text)
+    server.close()
