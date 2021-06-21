@@ -158,6 +158,12 @@ def servicios (request):
 
 def reservas (request):
     servicios = TipoServicio.objects.all()
+    if request.method == 'POST':
+        services = 0
+        for service in request.POST:
+            if 'servicio' in service:
+                services += 1
+        return HttpResponse(services)
     context = {'servicios': servicios }
     return render (request, 'mantenedor/reservas.html', context)
 
@@ -186,7 +192,8 @@ def faq(request):
 
 def crear_reserva(request):
     if request.method == 'POST':
-
+        
+        return HttpResponse(request.POST)
         mi_fecha = request.POST['fecha']
         mi_hora = request.POST['hora']
         mi_servicio = request.POST['servicio']
