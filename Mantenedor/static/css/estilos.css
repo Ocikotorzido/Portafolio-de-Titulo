@@ -169,3 +169,8 @@ th,td{
 .separador{
 	padding: 5px;
 }
+
+
+.opciones{
+	flex-direction: column;
+}
