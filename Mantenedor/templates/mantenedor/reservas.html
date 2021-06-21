@@ -76,8 +76,8 @@
         <article class="flex flex-wrap">
           {% for servicio in servicios %}
             <div class="p-3">
-              <input type="checkbox" id="servicio{{ forloop.counter }}" name="servicio{{ forloop.counter }}" value="{{ servicio.nombre }}">
-              <label class="font-thin text-xl" for="servicio{{ forloop.counter }}">{{ servicio.nombre }}</label><br>
+              <input type="checkbox" id="servicio_{{ forloop.counter }}" name="servicio{{ forloop.counter }}" value="{{ servicio.nombre }}">
+              <label class="font-thin text-xl" for="servicio_{{ forloop.counter }}">{{ servicio.nombre }}</label><br>
             </div>
           {% endfor %}
         </article>
@@ -85,5 +85,10 @@
       	<input type="submit" value="Enviar">
       </form>
     </section>
+    {% if method == 'POST' %}
+      <script>
+        alert('¡Le responderemos a su correo a la brevedad!')
+      </script>
+    {% endif %}
 </body>
 </html>
