@@ -135,20 +135,58 @@ class Empleado(models.Model):
         db_table = 'empleado'
 
 class EstadoVehiculo(models.Model):
-    id_estado = models.IntegerField(primary_key=True)
+    id_estado = models.FloatField(primary_key=True)
+    cliente = models.CharField(max_length=50)
+    rut = models.FloatField()
+    direccion = models.CharField(max_length=50, blank=True, null=True)
+    contacto = models.FloatField()
     fecha = models.DateField()
-    hora = models.CharField(max_length=10)
-    descripcion = models.CharField(max_length=200)
-    empleado_id_empleado = models.ForeignKey(Empleado, models.DO_NOTHING, db_column='empleado_id_empleado')
-    
+    modelo = models.CharField(max_length=50)
+    marca = models.CharField(max_length=50)
+    patente = models.CharField(max_length=50)
+    color = models.CharField(max_length=50)
+    year = models.CharField(max_length=50)
+    kilometraje = models.CharField(max_length=50)
+    combustible = models.CharField(max_length=10)
+    a_motor = models.CharField(max_length=10)
+    refrigerante = models.CharField(max_length=10)
+    liq_frenos = models.CharField(max_length=50)
+    a_der = models.CharField(max_length=30)
+    a_izq = models.CharField(max_length=50)
+    b_der = models.CharField(max_length=30)
+    b_izq = models.CharField(max_length=30)
+    intermitente = models.CharField(max_length=30)
+    observaciones = models.CharField(max_length=200, blank=True, null=True)
+
     class Meta:
-        managed = True
+        managed = False
         db_table = 'estado_vehiculo'
 
 
 class InfoAuto(models.Model):
-    id_informe = models.IntegerField(primary_key=True)
-    descripcion = models.CharField(max_length=200)
+    id_informe = models.FloatField(primary_key=True)
+    cliente = models.CharField(max_length=50)
+    rut = models.FloatField()
+    direccion = models.CharField(max_length=50, blank=True, null=True)
+    contacto = models.FloatField()
+    fecha = models.DateField()
+    modelo = models.CharField(max_length=50)
+    marca = models.CharField(max_length=50)
+    patente = models.CharField(max_length=50)
+    color = models.CharField(max_length=50)
+    year = models.CharField(max_length=50)
+    kilometraje = models.CharField(max_length=50)
+    combustible = models.CharField(max_length=10)
+    a_motor = models.CharField(max_length=10)
+    refrigerante = models.CharField(max_length=10)
+    liq_frenos = models.CharField(max_length=50)
+    a_der = models.CharField(max_length=30)
+    a_izq = models.CharField(max_length=50)
+    b_der = models.CharField(max_length=30)
+    b_izq = models.CharField(max_length=30)
+    intermitente = models.CharField(max_length=30)
+    observaciones = models.CharField(max_length=200, blank=True, null=True)
+    empleado_id_empleado = models.ForeignKey(Empleado, models.DO_NOTHING, db_column='empleado_id_empleado')
 
     class Meta:
         managed = True

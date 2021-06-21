@@ -192,7 +192,77 @@ def registrar_proveedor(request):
     return render (request, 'mantenedor/registro_proveedor.html')
 
 def registro_vehiculo(request):
+    
+
     return render (request, 'mantenedor/registro_vehiculo.html')
+
+def agregar_vehiculo(request):
+    if request.POST == 'POST':
+        
+
+        mi_cliente = request.POST['nombre']
+        mi_rut = request.POST['rut']
+        mi_direccion = request.POST['direccion']
+        mi_contacto = request.POST['contacto']
+        mi_fecha = request.POST["fecha"]
+        mi_modelo    = request.POST['modelo']
+        mi_marca = request.POST['marca']
+        mi_patente = request.POST['patente']
+        mi_color = request.POST['color']
+        mi_year = request.POST['year']
+        mi_kilometraje = request.POST['kilometraje']
+        mi_combustible = request.POST['combustible']
+        mi_aceite = request.POST['aceite']
+        mi_refrigeracion = request.POST['refrigeracion']
+        mi_frenos = request.POST['frenos']
+        mi_alta_der = request.POST['alta_der']
+        mi_alta_izq = request.POST['alta_izq']
+        mi_baja_der = request.POST['baja_der']
+        mi_baja_izq = request.POST['baja_izq']
+        mi_intermitente = request.POST['intermitente']
+        mi_observaciones = request.POST['observaciones']
+
+        vehiculo = InfoAuto()
+        id_informe = InfoAuto.objects.count()+1
+
+        #asignacion de datos
+
+        vehiculo.cliente = mi_cliente
+        vehiculo.rut = mi_rut
+        vehiculo.direccion = mi_direccion
+        vehiculo.contacto = mi_contacto
+        vehiculo.fecha = mi_fecha
+        vehiculo.modelo = mi_modelo
+        vehiculo.marca = mi_marca
+        vehiculo.patente = mi_patente
+        vehiculo.color = mi_color
+        vehiculo.year = mi_year
+        vehiculo.kilometraje = mi_kilometraje
+        vehiculo.combustible = mi_combustible
+        vehiculo.a_motor = mi_aceite
+        vehiculo.refrigerante = mi_refrigeracion
+        vehiculo.liq_frenos = mi_frenos
+        vehiculo.a_der = mi_alta_der
+        vehiculo.a_izq = mi_alta_izq
+        vehiculo.b_der = mi_baja_der
+        vehiculo.b_izq = mi_baja_izq
+        vehiculo.intermitente = mi_intermitente
+        vehiculo.observaciones = mi_observaciones
+
+        # Búsqueda del número de identidad.
+        id_user_auth = User.objects.get(username=mi_rut).id
+
+        #envio de datos
+        vehiculo = InfoAuto(id_informe,mi_cliente,mi_rut,mi_direccion,mi_contacto,mi_fecha,mi_modelo,
+                                    mi_marca,mi_patente,mi_color,mi_year,mi_kilometraje,
+                                    mi_combustible,mi_aceite,mi_refrigeracion,mi_frenos,
+                                    mi_alta_der,mi_alta_izq,mi_baja_der,mi_baja_izq,mi_intermitente,mi_observaciones,
+                                    id_user_auth)
+        vehiculo.save()
+        return render(request,'mantenedor/registro_vehiculo.html')
+
+     
+
 
 def presupuesto(request):
     return render (request, 'mantenedor/presupuesto.html')
