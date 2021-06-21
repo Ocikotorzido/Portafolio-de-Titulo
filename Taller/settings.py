@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
-
+import configparser
 
 from pathlib import Path
 from os.path import join
@@ -131,6 +131,18 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = join(BASE_DIR, 'static', 'static_root')
 STATICFILES_DIRS = [join(BASE_DIR,'static')]
+
+# Email
+config = configparser.ConfigParser()
+config.read('settings.ini')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = False
+EMAIL_PORT = 465
+EMAIL_HOST_USER = config.get("Settings","EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = config.get("Settings","EMAIL_HOST_PASSWORD") 
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
