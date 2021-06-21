@@ -145,10 +145,11 @@ input{
 }
 
 footer{
-	height: 5rem;
+	
+	height: 15rem;
 	color: white;
-background-color: #1a0001;
-background-image: url("https://www.transparenttextures.com/patterns/starring.png");
+	background-color: #1a0001;
+	background-image: url("https://www.transparenttextures.com/patterns/starring.png");
 }
 
 .fondo{
