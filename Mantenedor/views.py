@@ -256,7 +256,7 @@ def registro_vehiculo(request):
                                     mi_alta_der,mi_alta_izq,mi_baja_der,mi_baja_izq,mi_intermitente,mi_observaciones,
                                     id_emple)
         nuevo_vehiculo.save()
-        return render(request,'mantenedor/registro_vehiculo.html',{'mensaje':'Vehiculo registrado'})
+        return render(request,'mantenedor/registro_vehiculo.html')
     
     return render(request, 'mantenedor/registro_vehiculo.html')
 
