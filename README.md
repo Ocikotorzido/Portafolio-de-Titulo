@@ -14,22 +14,36 @@ Sistema de gestión y administración web del taller mecánico "ServiExpress".
 
 ## ¿Qué necesito instalar?
 - Python 3
-- Dependencias de terceros ´pip install -r requirements.txt´
+- Dependencias de terceros `pip install -r requirements.txt`
   - **También es posible instalar las dependencias por separado.**
-  - Django (´pip install django´)
-  - cx_oracle (´pip install cx_oracle´)
-  - Pandas (´pip install pandas´)
-  - Xlwt (´pip install xlwt´)
-  - OpenPyXL (´pip install openpyxl´)
-  - Docx2PDF (´pip install docx2pdf´)
-  - Python-Docx (´pip install python-docx´)
+  - Django (`pip install django`)
+  - cx_oracle (`pip install cx_oracle`)
+  - Pandas (`pip install pandas`)
+  - Xlwt (`pip install xlwt`)
+  - OpenPyXL (`pip install openpyxl`)
+  - Docx2PDF (`pip install docx2pdf`)
+  - Python-Docx (`pip install python-docx`)
 - Oracle 18c (cliente/servidor dependiendo de la ubicación de la base de datos).
 - LibreOffice/MS-Office 365
 
 ## ¿Qué debo configurar?
+### Usuario Súper-administrador
 Se debiera crear un usuario administrador.
 
 - `python manage.py createsuperuser`
+
+### Archivo de configuración para envío de emails.
+Crear un archivo de configuración (`settings.ini`) con la siguiente información:
+```
+[Settings]
+EMAIL_HOST_USER = CORREO_ELECTRONICO@EMAIL.COM
+EMAIL_HOST_PASSWORD = CONTRASEÑA_PARA_APLICACIÓN_CON_SEGURIDAD_DESABILITADA
+```
+> Este archivo debe llamarse `settings.ini` y debe estar al mismo nivel de `manage.py`.
+
+> `EMAIL_HOST_USER = ` debe tener un correo GMAIL.
+
+> `EMAIL_HOST_PASSWORD = ` debe tener una clave de aplicación con verificación en dos pasos y acceso a aplicaciones 'poco seguras'.
 
 ## ¿Cómo lo echo a andar?
 Si todo se instaló correctamente, es tan simple como hacer click en **up**.
