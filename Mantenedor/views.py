@@ -192,12 +192,7 @@ def registrar_proveedor(request):
     return render (request, 'mantenedor/registro_proveedor.html')
 
 def registro_vehiculo(request):
-    
-
-    return render (request, 'mantenedor/registro_vehiculo.html')
-
-def agregar_vehiculo(request):
-    if request.POST == 'POST':
+    if request.method == 'POST':
         
 
         mi_cliente = request.POST['nombre']
@@ -250,16 +245,21 @@ def agregar_vehiculo(request):
         vehiculo.observaciones = mi_observaciones
 
         # Búsqueda del número de identidad.
-        id_user_auth = User.objects.get(username=mi_rut).id
-
+        
+        
+        id_emple =    Perfil.objects.filter(id_auth_user = request.user.id)[0].id_usuario
+        
         #envio de datos
-        vehiculo = InfoAuto(id_informe,mi_cliente,mi_rut,mi_direccion,mi_contacto,mi_fecha,mi_modelo,
+        nuevo_vehiculo = InfoAuto(id_informe,mi_cliente,mi_rut,mi_direccion,mi_contacto,mi_fecha,mi_modelo,
                                     mi_marca,mi_patente,mi_color,mi_year,mi_kilometraje,
                                     mi_combustible,mi_aceite,mi_refrigeracion,mi_frenos,
                                     mi_alta_der,mi_alta_izq,mi_baja_der,mi_baja_izq,mi_intermitente,mi_observaciones,
-                                    id_user_auth)
-        vehiculo.save()
-        return render(request,'mantenedor/registro_vehiculo.html')
+                                    id_emple)
+        nuevo_vehiculo.save()
+        return render(request,'mantenedor/registro_vehiculo.html',{'mensaje':'Vehiculo registrado'})
+    
+    return render(request, 'mantenedor/registro_vehiculo.html')
+
 
      
 

@@ -23,8 +23,8 @@ urlpatterns = [
 
     path('registrar_proveedor',views.registrar_proveedor, name='registrar_proveedor'),
     path('registro_vehiculo',views.registro_vehiculo, name='registro_vehiculo'),
-    path('agregar_vehiculo',views.agregar_vehiculo, name='agregar_vehiculo'),
-    
+    # path('agregar_vehiculo',views.agregar_vehiculo, name='agregar_vehiculo'),
+
     path('presupuesto',views.presupuesto, name='presupuesto'),
 
     path('faq',views.faq, name='faq'),
