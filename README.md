@@ -87,6 +87,7 @@ Estos son los desarrolladores que hicieron esto posible:
 
 ## Agradecimientos
 Agradecemos de corazón a todos los que hicieron esto posible, sin su ayuda, nos hubiera costado mucho más terminar este proyecto.
-- Centro de Innovación y Transferencia Tecnológica (CITT).
 
-[![logo_Citt](./Mantenedor/static/img/logo_citt.png)](https://www.duoc.cl/citt/)
+[![logo_Citt](./Mantenedor/static/img/Thumbnail_hooded_man.png)](https://www.duoc.cl/citt/)
+
+- Centro de Innovación y Transferencia Tecnológica (CITT). 
