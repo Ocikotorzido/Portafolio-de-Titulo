@@ -163,10 +163,9 @@ def servicios (request):
 def reservas (request):
     cliente = dict()
     cliente['nombre'] = f'{request.user.first_name} {request.user.last_name}'
+    cliente['correo'] = f'{request.user.email}'
     vehiculo = dict()
     solicitud = dict()
-    tupla_datos = (cliente,vehiculo, solicitud)
-    al_recepcionista = Thread(target=enviar_correo, args=(tupla_datos,))
     servicios_disponibles = {
         'servicio_1': 'Cambio de neumáticos',
         'servicio_2': 'Cambio de aceite',
@@ -184,10 +183,15 @@ def reservas (request):
         services = list()
         for service in request.POST:
             if 'servicio' in service:
-                services.append(service)
+                services.append(servicios_disponibles[service])
+        vehiculo['marca'] = request.POST['marca']
+        vehiculo['modelo'] = request.POST['modelo']
+        vehiculo['patente'] = request.POST['patente']
+        solicitud = '\n'.join(services)
+        tupla_datos = (cliente,vehiculo, solicitud)
+        al_recepcionista = Thread(target=enviar_correo, args=(tupla_datos,))
         al_recepcionista.start()
         return render (request, 'mantenedor/reservas.html', context)
-        return HttpResponse(', '.join(services))
     return render (request, 'mantenedor/reservas.html', context)
 
 def orden_reparacion (request):
@@ -528,8 +532,10 @@ def enviar_correo(tupla_datos):
     cliente,vehiculo,solicitud = tupla_datos[0],tupla_datos[1],tupla_datos[2]
     hoy = datetime.datetime.now().strftime(f'%d de %m de %Y, a las %H:%M %p')
     to = [EMAIL_HOST_USER]
-    subject = f'Nueva solicitud de reserva & presupuesto, {hoy}'
-    body = f"El cliente {cliente.get('nombre')} solicita presupuesto el dia {hoy}"
+    subject = f'Nueva solicitud de {cliente.get("nombre")} para reserva & presupuesto, {hoy}'
+    body = f"""Datos del cliente\nEl cliente {cliente.get('nombre')} solicita presupuesto el dia {hoy}\nResponder al correo: {cliente.get('correo')}\n"""
+    body += f"""Datos del vehículo:\nMarca: {vehiculo.get('marca')}\nModelo: {vehiculo.get('modelo')}\npatente: {vehiculo.get('patente')}\n\n"""
+    body += f"""Servicios solicitados:\n{solicitud}"""
     email_text = """\
 From: %s
 To: %s
@@ -537,6 +543,7 @@ Subject: %s
 
 %s
 """ % (EMAIL_HOST_USER, ", ".join(to), subject, body)
+    email_text = email_text.encode('utf-8')
     server = smtplib.SMTP_SSL('smtp.gmail.com')
     server.login(EMAIL_HOST_USER, EMAIL_HOST_PASSWORD)
     server.sendmail(EMAIL_HOST_USER, to, email_text)
