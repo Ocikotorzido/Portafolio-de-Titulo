@@ -8,7 +8,7 @@
     </div>
   </div>
   <section class="formulario">
-    <form action="agregar_proveedor" method="POST" enctype="multipart/form-data" class="flex flex-col">
+    <form action="registrar_proveedor" method="POST" enctype="multipart/form-data" class="flex flex-col">
       {% csrf_token %}
 
       <label>Rut: </label>
@@ -23,9 +23,6 @@
       <label>Rubro: </label>
       <input type="text" id="rubro" name="rubro" required>
 
-      <label>Contraseña: </label>
-      <input type="text" id="password" name="password">
-      <br>
       <input type="submit" value="Enviar">
     </form>
   </section>

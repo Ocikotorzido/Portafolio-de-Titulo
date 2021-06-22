@@ -204,6 +204,26 @@ def orden_pedido (request):
     return render (request, 'mantenedor/orden_pedido.html')
 
 def registrar_proveedor(request):
+    if request.method == 'POST':
+
+        mi_rut = request.POST['rut']
+        mi_contacto = request.POST['contacto']
+        mi_nombre = request.POST['nombre']
+        mi_rubro = request.POST['rubro']
+
+        proveedor = Proveedor()
+        id_proveedor = Proveedor.objects.count()+1
+
+        proveedor.rut = mi_rut
+        proveedor.contacto = mi_contacto
+        proveedor.nombre = mi_nombre
+        proveedor.rubro = mi_rubro
+
+        proveedor = Proveedor(id_proveedor,mi_rut,mi_nombre,mi_contacto,mi_rubro)
+
+        proveedor.save()
+        return render (request, 'mantenedor/registro_proveedor.html')
+
     return render (request, 'mantenedor/registro_proveedor.html')
 
 def registro_vehiculo(request):
