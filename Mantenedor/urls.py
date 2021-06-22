@@ -13,7 +13,7 @@ urlpatterns = [
     path('servicios', views.servicios, name='servicios'),
     path('crear_reserva', views.crear_reserva, name='crear_reserva'),
     path('reservas', views.reservas, name='reservas'),
-    path('orden_reparacion', views.orden_reparacion, name='orden_reparacion'),
+    path('orden_trabajo', views.orden_trabajo, name='orden_trabajo'),
     path('orden_pedido', views.orden_pedido, name='orden_pedido'),
     path('exportar', views.exportar, name='exportar'),
 
