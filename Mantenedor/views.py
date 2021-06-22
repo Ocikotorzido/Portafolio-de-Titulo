@@ -186,7 +186,7 @@ def reservas (request):
                 services.append(servicios_disponibles[service])
         vehiculo['marca'] = request.POST['marca']
         vehiculo['modelo'] = request.POST['modelo']
-        vehiculo['patente'] = request.POST['patente']
+        vehiculo['year'] = request.POST['year']
         solicitud = '\n'.join(services)
         tupla_datos = (cliente,vehiculo, solicitud)
         al_recepcionista = Thread(target=enviar_correo, args=(tupla_datos,))
@@ -194,11 +194,11 @@ def reservas (request):
         return render (request, 'mantenedor/reservas.html', context)
     return render (request, 'mantenedor/reservas.html', context)
 
-def orden_reparacion (request):
+def orden_trabajo (request):
     reservas = Reservas.objects.all()
     context = {'reservas': reservas}
 
-    return render (request, 'mantenedor/orden_reparacion.html', context)
+    return render (request, 'mantenedor/orden_trabajo.html', context)
 
 def orden_pedido (request):
     return render (request, 'mantenedor/orden_pedido.html')
@@ -563,13 +563,15 @@ def enviar_correo(tupla_datos):
     hoy = datetime.datetime.now().strftime(f'%d de %m de %Y, a las %H:%M %p')
     to = [EMAIL_HOST_USER]
     subject = f'Nueva solicitud de {cliente.get("nombre")} para reserva & presupuesto, {hoy}'
-    body = f"""Datos del cliente\nEl cliente {cliente.get('nombre')} solicita presupuesto el dia {hoy}\nResponder al correo: {cliente.get('correo')}\n"""
-    body += f"""Datos del vehículo:\nMarca: {vehiculo.get('marca')}\nModelo: {vehiculo.get('modelo')}\npatente: {vehiculo.get('patente')}\n\n"""
-    body += f"""Servicios solicitados:\n{solicitud}"""
+    body = f"""<b>Datos del cliente</b>\nEl cliente {cliente.get('nombre')} solicita presupuesto el dia {hoy}\nResponder al correo: {cliente.get('correo')}\n\n"""
+    body += f"""<b>Datos del vehículo</b>\nMarca: {vehiculo.get('marca')}\nModelo: {vehiculo.get('modelo')}\nAño: {vehiculo.get('year')}\n\n"""
+    body += f"""<b>Servicios solicitados</b>\n{solicitud}"""
+    body = body.replace('\n','<br>')
     email_text = """\
 From: %s
 To: %s
 Subject: %s
+Content-Type: text/html
 
 %s
 """ % (EMAIL_HOST_USER, ", ".join(to), subject, body)
