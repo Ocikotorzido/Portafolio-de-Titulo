@@ -226,6 +226,16 @@ def registrar_proveedor(request):
 
     return render (request, 'mantenedor/registro_proveedor.html')
 
+def ver_proveedores (request):
+    
+    proveedores = Proveedor.objects.all()
+    context = {'proveedores': proveedores}
+
+    return render (request, 'mantenedor/ver_proveedores.html', context)
+
+
+
+
 def registro_vehiculo(request):
     if request.method == 'POST':
         
