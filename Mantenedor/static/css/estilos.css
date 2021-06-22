@@ -118,7 +118,8 @@ input{
 #extras{
 	width: 100%;
 	background: grey;
-	margin: auto;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #extras ul{
@@ -127,8 +128,8 @@ input{
 
 #extras img{
 
-	width: 200px;
-	height: 150px;
+	padding: 2rem;
+
 	border-radius: 100%;
 }
 
