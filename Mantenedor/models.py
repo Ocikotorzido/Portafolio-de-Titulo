@@ -224,6 +224,10 @@ class Reservas(models.Model):
     modelo = models.CharField(max_length=50)
     year = models.CharField(max_length=50)
     confirmacion = models.CharField(max_length=50)
+    
+    def __str__(self):
+        estado = 'confirmado' if self.confirmacion == 1 else 'Sin confirmar'
+        return f'{self.id_reserva}, {self.marca}, {self.modelo}, {self.year}, {estado}.'
 
     class Meta:
         managed = True

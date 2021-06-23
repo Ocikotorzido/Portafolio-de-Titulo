@@ -165,7 +165,7 @@ def reservas (request):
     cliente['nombre'] = f'{request.user.first_name} {request.user.last_name}'
     cliente['correo'] = f'{request.user.email}'
     vehiculo = dict()
-    solicitud = dict()
+    solicitud = ''
     servicios_disponibles = {
         'servicio_1': 'Cambio de neumáticos',
         'servicio_2': 'Cambio de aceite',
@@ -191,7 +191,7 @@ def reservas (request):
         
         id_cliente = Perfil.objects.filter(id_auth_user = request.user.id)[0].id_usuario
         id_reserva = Reservas.objects.all().count()+1
-        reservas = Reservas(id_reserva, vehiculo['marca'], vehiculo['modelo'], vehiculo['year'], 0, id_cliente)
+        reservas = Reservas(id_reserva, id_cliente, vehiculo['marca'], vehiculo['modelo'], vehiculo['year'], 0)
         reservas.save()
         
         tupla_datos = (cliente,vehiculo, solicitud)
