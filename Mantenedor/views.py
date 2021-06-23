@@ -200,9 +200,24 @@ def reservas (request):
         return render (request, 'mantenedor/reservas.html', context)
     return render (request, 'mantenedor/reservas.html', context)
 
+<<<<<<< HEAD
 
 
 
+=======
+def modificar_reserva(request, id_reserva, confirmacion):
+    if confirmacion not in [0,1]:
+        return HttpResponse(status=403)
+    reserva = Reservas.objects.get(id_reserva=id_reserva)
+    reserva.confirmacion = confirmacion
+    reserva.save()
+    return HttpResponse(status=200)
+
+def ver_reservas (request):
+    reservas = Reservas.objects.all()
+    context = {'reservas': reservas}
+    return render (request, 'mantenedor/ver_reservas.html', context)
+>>>>>>> d496f3a14d08aa739980f3f918b99d9c543aa538
 
 def orden_trabajo (request):
     reservas = Reservas.objects.all()
