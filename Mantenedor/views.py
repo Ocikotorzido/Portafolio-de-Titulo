@@ -200,6 +200,10 @@ def reservas (request):
         return render (request, 'mantenedor/reservas.html', context)
     return render (request, 'mantenedor/reservas.html', context)
 
+
+
+
+
 def orden_trabajo (request):
     reservas = Reservas.objects.all()
     context = {'reservas': reservas}
