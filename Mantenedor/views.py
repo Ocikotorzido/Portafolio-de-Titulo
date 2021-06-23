@@ -188,6 +188,12 @@ def reservas (request):
         vehiculo['modelo'] = request.POST['modelo']
         vehiculo['year'] = request.POST['year']
         solicitud = '\n'.join(services)
+        
+        id_cliente = Perfil.objects.filter(id_auth_user = request.user.id)[0].id_usuario
+        id_reserva = Reservas.objects.all().count()+1
+        reservas = Reservas(id_reserva, vehiculo['marca'], vehiculo['modelo'], vehiculo['year'], 0, id_cliente)
+        reservas.save()
+        
         tupla_datos = (cliente,vehiculo, solicitud)
         al_recepcionista = Thread(target=enviar_correo, args=(tupla_datos,))
         al_recepcionista.start()

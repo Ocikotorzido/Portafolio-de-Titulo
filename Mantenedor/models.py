@@ -50,83 +50,41 @@ class Cliente(models.Model):
         db_table = 'cliente'
 
 
-
-
-class DetalleCliente(models.Model):
-    id_cliente = models.IntegerField()
-    id_vehiculo = models.IntegerField()
-    cliente_id_cliente = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='cliente_id_cliente')
-    vehiculo_id_vehiculo = models.ForeignKey('Vehiculo', models.DO_NOTHING, db_column='vehiculo_id_vehiculo')
-
-    class Meta:
-        managed = True
-        db_table = 'detalle_cliente'
-
-
-class DetalleInforme(models.Model):
-    id_info_vehiculo = models.IntegerField()
-    id_presupuesto = models.IntegerField()
-    presupuesto_id_presupuesto = models.ForeignKey('Presupuesto', models.DO_NOTHING, db_column='presupuesto_id_presupuesto')
-    info_auto_id_informe = models.ForeignKey('InfoAuto', models.DO_NOTHING, db_column='info_auto_id_informe')
-
-    class Meta:
-        managed = True
-        db_table = 'detalle_informe'
-
-
 class DetalleOp(models.Model):
-    id_info_vehiculo = models.IntegerField()
-    id_orden_pedido = models.IntegerField()
-    info_auto_id_informe = models.ForeignKey('InfoAuto', models.DO_NOTHING, db_column='info_auto_id_informe')
+    id_info_op = models.FloatField(primary_key=True)
     op_id_pedido = models.ForeignKey('Op', models.DO_NOTHING, db_column='op_id_pedido')
+    info_auto_id_informe = models.ForeignKey('InfoAuto', models.DO_NOTHING, db_column='info_auto_id_informe')
 
     class Meta:
         managed = True
         db_table = 'detalle_op'
 
 
-class DetalleOrden(models.Model):
-    id_orden_pedido = models.IntegerField()
-    id_pago = models.IntegerField()
-    op_id_pedido = models.ForeignKey('Op', models.DO_NOTHING, db_column='op_id_pedido')
-    pago_id_pago = models.ForeignKey('Pago', models.DO_NOTHING, db_column='pago_id_pago')
-
-    class Meta:
-        managed = True
-        db_table = 'detalle_orden'
-
-
 class DetallePedido(models.Model):
-    id_detalle_pedido = models.IntegerField(primary_key=True)
-    cod_producto = models.IntegerField()
-    cantidad = models.IntegerField()
-    producto_id_producto = models.ForeignKey('Producto', models.DO_NOTHING, db_column='producto_id_producto')
-    precio = models.CharField(max_length=50)
-    op_id_pedido = models.ForeignKey('Op', models.DO_NOTHING, db_column='op_id_pedido')
-
+    id_proucto_op = models.FloatField(primary_key=True)
+    op_id_pedido = models.FloatField()
+    proveedor_id_proveedor = models.FloatField()
     class Meta:
         managed = True
         db_table = 'detalle_pedido'
 
-
-class DetalleReserva(models.Model):
-    id_reserva = models.IntegerField()
-    id_orden_trabajo = models.IntegerField()
+class DetalleSer(models.Model):
+    id_detalle_ser = models.FloatField(primary_key=True)
     reservas_id_reserva = models.ForeignKey('Reservas', models.DO_NOTHING, db_column='reservas_id_reserva')
-    ot_id_orden = models.ForeignKey('Ot', models.DO_NOTHING, db_column='ot_id_orden')
+    tipo_servicio_id_servicio = models.ForeignKey('TipoServicio', models.DO_NOTHING, db_column='tipo_servicio_id_servicio')
 
     class Meta:
         managed = True
-        db_table = 'detalle_reserva'
+        db_table = 'detalle_ser'
 
 class Empleado(models.Model):
-    id_empleado = models.IntegerField(primary_key=True)
+    id_empleado = models.FloatField(primary_key=True)
+    rut = models.FloatField()
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
     contacto = models.CharField(max_length=50)
     cargo_id_tipo_cargo = models.ForeignKey(Cargo, models.DO_NOTHING, db_column='cargo_id_tipo_cargo')
-    rut = models.IntegerField()
-
+    
     def __str__(self):
         return f'{self.nombre} + ' ' + self.apellido + self.contacto'
 
@@ -159,7 +117,7 @@ class EstadoVehiculo(models.Model):
     observaciones = models.CharField(max_length=200, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'estado_vehiculo'
 
 
@@ -192,14 +150,14 @@ class InfoAuto(models.Model):
         managed = True
         db_table = 'info_auto'
 
-
-
-
 class Op(models.Model):
-    id_pedido = models.IntegerField(primary_key=True)
+    id_pedido = models.FloatField(primary_key=True)
+    producto = models.CharField(max_length=100)
+    cantidad = models.FloatField()
     fecha_pedido = models.DateField()
     hora_pedido = models.CharField(max_length=10)
-    fecha_entrega = models.DateField()
+    fecha_entrega = models.DateField(blank=True, null=True)
+    proveedor_id_proveedor = models.ForeignKey('Proveedor', models.DO_NOTHING, db_column='proveedor_id_proveedor')
 
     class Meta:
         managed = True
@@ -207,11 +165,11 @@ class Op(models.Model):
 
 
 class Ot(models.Model):
-    id_orden = models.IntegerField(primary_key=True)
-    fecha = models.DateField()
-    servicio = models.CharField(max_length=50, blank=True, null=True)
-    descripcion = models.CharField(max_length=200, blank=True, null=True)
+    id_orden = models.FloatField(primary_key=True)
     empleado_id_empleado = models.ForeignKey(Empleado, models.DO_NOTHING, db_column='empleado_id_empleado')
+    reservas_id_reserva = models.ForeignKey('Reservas', models.DO_NOTHING, db_column='reservas_id_reserva')
+    fecha_termino = models.DateField()
+    descripcion = models.CharField(max_length=200, blank=True, null=True)
 
     class Meta:
         managed = True
@@ -219,20 +177,20 @@ class Ot(models.Model):
 
 
 class Pago(models.Model):
-    id_pago = models.IntegerField(primary_key=True)
+    id_pago = models.FloatField(primary_key=True)
+    id_orden = models.FloatField()
     fecha_emision = models.DateField()
     tipo_recibo = models.CharField(max_length=10)
     monto = models.FloatField()
-    iva = models.FloatField()
 
     class Meta:
         managed = True
         db_table = 'pago'
 
 class Perfil(models.Model):
-    id_perfil = models.IntegerField(primary_key=True)
-    id_auth_user = models.IntegerField()
-    id_usuario = models.IntegerField()
+    id_perfil = models.FloatField(primary_key=True)
+    id_auth_user = models.FloatField()
+    id_usuario = models.FloatField()
     nivel = models.CharField(max_length=50)
 
     def __str__(self):
@@ -243,37 +201,11 @@ class Perfil(models.Model):
         db_table = 'perfil'
         verbose_name_plural = "Perfiles"
 
-       
-
-
-class Presupuesto(models.Model):
-    id_presupuesto = models.IntegerField(primary_key=True)
-    precio = models.FloatField(blank=True, null=True)
-    iva = models.FloatField(blank=True, null=True)
-    total = models.FloatField(blank=True, null=True)
-
-    class Meta:
-        managed = True
-        db_table = 'presupuesto'
-
-
-class Producto(models.Model):
-    id_producto = models.IntegerField(primary_key=True)
-    nombre = models.CharField(max_length=50)
-    pro_cod_producto = models.IntegerField()
-    proveedor_id_proveedor = models.ForeignKey('Proveedor', models.DO_NOTHING, db_column='proveedor_id_proveedor')
-    
-
-    class Meta:
-        managed = True
-        db_table = 'producto'
-
-
 class Proveedor(models.Model):
-    id_proveedor = models.IntegerField(primary_key=True)
+    id_proveedor = models.FloatField(primary_key=True)
     rut = models.FloatField()
-    contacto = models.CharField(max_length=50)
     nombre = models.CharField(max_length=50)
+    contacto = models.CharField(max_length=50)
     rubro = models.CharField(max_length=50)
 
     def __str__(self):
@@ -286,20 +218,19 @@ class Proveedor(models.Model):
 
 
 class Reservas(models.Model):
-    id_reserva = models.IntegerField(primary_key=True)
-    servicio = models.CharField(max_length=50, blank=True, null=True)
-    fecha = models.DateField()
-    hora = models.CharField(max_length=10)
+    id_reserva = models.FloatField(primary_key=True)
     cliente_id_cliente = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='cliente_id_cliente')
-    descripcion = models.CharField(max_length=200, blank=True, null=True)
-    tipo_servicio_id_servicio = models.IntegerField(blank=True, null=True)
+    marca = models.CharField(max_length=50)
+    modelo = models.CharField(max_length=50)
+    year = models.CharField(max_length=50)
+    confirmacion = models.CharField(max_length=50)
 
     class Meta:
         managed = True
         db_table = 'reservas'
 
 class TipoServicio(models.Model):
-    id_servicio = models.IntegerField(primary_key=True)
+    id_servicio = models.FloatField(primary_key=True)
     nombre = models.CharField(max_length=50)
     monto = models.FloatField()
     tiempo_serv = models.CharField(max_length=10)
@@ -310,16 +241,3 @@ class TipoServicio(models.Model):
     
     def __str__(self):
         return f'{self.nombre}'
-
-class Vehiculo(models.Model):
-    id_vehiculo = models.IntegerField(primary_key=True)
-    matricula = models.CharField(max_length=10)
-    marca = models.CharField(max_length=50)
-    modelo = models.CharField(max_length=50)
-    num_chasis = models.CharField(max_length=50, blank=True, null=True)
-    year = models.IntegerField(blank=True, null=True)
-    ultimo_servicio = models.DateField(blank=True, null=True)
-
-    class Meta:
-        managed = True
-        db_table = 'vehiculo'
