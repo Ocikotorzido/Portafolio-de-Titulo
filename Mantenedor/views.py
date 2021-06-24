@@ -205,10 +205,9 @@ def reservas (request):
         return render (request, 'mantenedor/reservas.html', context)
     return render (request, 'mantenedor/reservas.html', context)
 
-<<<<<<< HEAD
 
-=======
->>>>>>> cd3587851c9a355178b23b433baa63bd551a497c
+
+
 def modificar_reserva(request, id_reserva, confirmacion):
     if confirmacion not in [0,1]:
         return HttpResponse(status=403)
@@ -229,10 +228,7 @@ def ver_reservas (request):
     reservas = Reservas.objects.all()
     context = {'reservas': reservas}
     return render (request, 'mantenedor/ver_reservas.html', context)
-<<<<<<< HEAD
 
-=======
->>>>>>> cd3587851c9a355178b23b433baa63bd551a497c
 
 def orden_trabajo (request):
     reservas = Reservas.objects.all()
