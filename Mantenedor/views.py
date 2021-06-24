@@ -180,19 +180,24 @@ def reservas (request):
     context = {'servicios': servicios }
     if request.method == 'POST':
         context['method'] = 'POST'
+        vehiculo['marca'] = request.POST['marca']
+        vehiculo['modelo'] = request.POST['modelo']
+        vehiculo['year'] = request.POST['year']
+        
+        id_cliente = Perfil.objects.filter(id_auth_user = request.user.id)[0].id_usuario
+        id_reserva = Reservas.objects.count()+1
+        reservas = Reservas(id_reserva, id_cliente, vehiculo['marca'], vehiculo['modelo'], vehiculo['year'], 0)
+        reservas.save()
+        
         services = list()
         for service in request.POST:
             if 'servicio' in service:
                 services.append(servicios_disponibles[service])
-        vehiculo['marca'] = request.POST['marca']
-        vehiculo['modelo'] = request.POST['modelo']
-        vehiculo['year'] = request.POST['year']
+                id_servicio = service.replace('servicio_','')
+                id_detalle = DetalleSer.objects.count()+1
+                detalle = DetalleSer(id_detalle, id_reserva, id_servicio)
+                detalle.save()
         solicitud = '\n'.join(services)
-        
-        id_cliente = Perfil.objects.filter(id_auth_user = request.user.id)[0].id_usuario
-        id_reserva = Reservas.objects.all().count()+1
-        reservas = Reservas(id_reserva, id_cliente, vehiculo['marca'], vehiculo['modelo'], vehiculo['year'], 0)
-        reservas.save()
         
         tupla_datos = (cliente,vehiculo, solicitud)
         al_recepcionista = Thread(target=enviar_correo, args=(tupla_datos,))
@@ -206,6 +211,14 @@ def modificar_reserva(request, id_reserva, confirmacion):
     reserva = Reservas.objects.get(id_reserva=id_reserva)
     reserva.confirmacion = confirmacion
     reserva.save()
+    ot = Ot.objects.filter(id_reserva=id_reserva)
+    if ot.count() == 0:
+        id_ot = Ot.objects.count() + 1
+        ot = Ot(id_ot, 1, id_reserva, datetime.datetime.now())
+        ot.save()
+    else:
+        ot = Ot.objects.get(id_reserva=id_reserva)
+        ot.delete()
     return HttpResponse(status=200)
 
 def ver_reservas (request):
