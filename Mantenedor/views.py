@@ -214,10 +214,10 @@ def modificar_reserva(request, id_reserva, confirmacion):
     reserva = Reservas.objects.get(id_reserva=id_reserva)
     reserva.confirmacion = confirmacion
     reserva.save()
-    ot = Ot.objects.filter(id_reserva=id_reserva)
+    ot = Ot.objects.filter(reservas_id_reserva_id=id_reserva)
     if ot.count() == 0:
         id_ot = Ot.objects.count() + 1
-        ot = Ot(id_ot, 1, id_reserva, datetime.datetime.now())
+        ot = Ot( id_ot, 1, id_reserva, datetime.datetime.now() )
         ot.save()
     else:
         ot = Ot.objects.get(id_reserva=id_reserva)
