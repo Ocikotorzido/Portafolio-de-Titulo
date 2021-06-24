@@ -205,11 +205,6 @@ def reservas (request):
         return render (request, 'mantenedor/reservas.html', context)
     return render (request, 'mantenedor/reservas.html', context)
 
-<<<<<<< HEAD
-
-
-
-=======
 def modificar_reserva(request, id_reserva, confirmacion):
     if confirmacion not in [0,1]:
         return HttpResponse(status=403)
@@ -230,7 +225,6 @@ def ver_reservas (request):
     reservas = Reservas.objects.all()
     context = {'reservas': reservas}
     return render (request, 'mantenedor/ver_reservas.html', context)
->>>>>>> d496f3a14d08aa739980f3f918b99d9c543aa538
 
 def orden_trabajo (request):
     reservas = Reservas.objects.all()
@@ -424,8 +418,11 @@ def agregar_empleado(request):
         
         # Creación de un nuevo empleado.
         empleado = Empleado(id_empleado,
-        mi_nombre,
-        mi_apellido,mi_contacto,mi_cargo,mi_rut)
+                                mi_rut,
+                                mi_nombre,
+                                mi_apellido,
+                                mi_contacto,
+                                mi_cargo)
         empleado.save()
         return render(request, 'mantenedor/registro_empleado.html', {'mensaje':'Empleado_registrado'})
 
