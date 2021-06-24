@@ -158,7 +158,10 @@ def registro_cliente (request):
     return render (request, 'mantenedor/registro_cliente.html',context)
 
 def servicios (request):
-    return render (request, 'mantenedor/servicios.html')
+    servicios = TipoServicio.objects.all()
+    context = {'servicios': servicios}
+    
+    return render (request, 'mantenedor/servicios.html',context)
 
 def reservas (request):
     cliente = dict()
