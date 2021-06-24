@@ -25,10 +25,15 @@ urlpatterns = [
 
     path('registrar_proveedor',views.registrar_proveedor, name='registrar_proveedor'),
     path('ver_proveedores',views.ver_proveedores, name='ver_proveedores'),
+<<<<<<< HEAD
 
     
     path('registro_vehiculo',views.registro_vehiculo, name='registro_vehiculo'),
 
+=======
+    
+    path('registro_vehiculo',views.registro_vehiculo, name='registro_vehiculo'),
+>>>>>>> cd3587851c9a355178b23b433baa63bd551a497c
     path('presupuesto',views.presupuesto, name='presupuesto'),
 
     path('faq',views.faq, name='faq'),

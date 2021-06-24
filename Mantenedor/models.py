@@ -86,7 +86,7 @@ class Empleado(models.Model):
     cargo_id_tipo_cargo = models.ForeignKey(Cargo, models.DO_NOTHING, db_column='cargo_id_tipo_cargo')
     
     def __str__(self):
-        return f'{self.nombre} + ' ' + self.apellido + self.contacto'
+        return f'{self.id_empleado}) {self.rut}, {self.nombre} {self.apellido}, {self.contacto}, {self.cargo_id_tipo_cargo.nombre}'
 
     class Meta:
         managed = True
