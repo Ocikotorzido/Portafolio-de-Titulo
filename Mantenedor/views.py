@@ -208,9 +208,6 @@ def reservas (request):
         return render (request, 'mantenedor/reservas.html', context)
     return render (request, 'mantenedor/reservas.html', context)
 
-
-
-
 def modificar_reserva(request, id_reserva, confirmacion):
     if confirmacion not in [0,1]:
         return HttpResponse(status=403)

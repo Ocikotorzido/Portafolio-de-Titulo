@@ -33,23 +33,22 @@
         <tr>
           <th>N°</th>
           <th>Nombre cliente</th>
-          <th>Marca</th>
-          <th>Modelo</th>
-          <th>año</th>
+          <th>Vehículo</th>
+          <th>Mecánicos</th>
           <th>Estado</th>
         </tr>
         {% for reserva in reservas %}
         <tr>
           <td>{{ reserva.id_reserva }}</td>
           <td>{{ reserva.cliente_id_cliente.nombre }} {{ reserva.cliente_id_cliente.apellido }}</td>
-          <td>{{ reserva.marca }}</td>
-          <td>{{ reserva.modelo }}</td>
-          <td>{{ reserva.year }}</td>
+          <td>{{ reserva.marca }}<br>{{ reserva.modelo }}<br>{{ reserva.year }}</td>
+          <td> Dummy data </td>
           {% if reserva.confirmacion == '1' %}
           <td id='confirmacion_{{reserva.id_reserva}}' onclick="modificar( {{ reserva.id_reserva }}, 0 )">Confirmado</th>
           {% else %}
           <td id='confirmacion_{{reserva.id_reserva}}' onclick="modificar( {{ reserva.id_reserva }}, 1 )">Sin corfirmar</th>
           {% endif %}
+
         </tr>
         {% endfor %}
       </table>
