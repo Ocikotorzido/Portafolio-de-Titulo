@@ -157,6 +157,18 @@ def registro_cliente (request):
     context['formulario'] = formulario
     return render (request, 'mantenedor/registro_cliente.html',context)
 
+
+def ver_perfil(request):
+
+    cliente = Cliente.objects.get(rut)
+    context = {'cliente':cliente}
+
+    return render(request,'mantenedor/ver_perfil.html',context)
+
+
+
+
+
 def servicios (request):
     servicios = TipoServicio.objects.all()
     context = {'servicios': servicios}

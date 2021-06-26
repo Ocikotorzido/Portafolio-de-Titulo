@@ -10,6 +10,7 @@ urlpatterns = [
     path('', views.to_index),
     path('index', views.index, name='index'),
     path('registro_cliente', views.registro_cliente, name='registro_cliente'),
+    path('ver_perfil', views.ver_perfil, name='ver_perfil'),
     
     path('servicios', views.servicios, name='servicios'),
     path('crear_reserva', views.crear_reserva, name='crear_reserva'),

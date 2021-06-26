@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MCS</title>
+  <meta name="author" content="name">
+  <meta name="description" content="description here">
+  <meta name="keywords" content="keywords,here">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+  <!--Replace with your tailwind.css once created-->
+  <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+  <!--Totally optional :) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"
+    integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos_cliente.css' %}">
+
+</head>
+
+
+<body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
+  <!--Nav-->
+  <nav class="bg-gray-800 z-0">
+    <ul class="flex flex-col justify-left md:flex-row md:justify-evenly text-white">
+      <li><a href="index"><img src="{% static 'img/logo2.png' %}" alt="" width="100"></a></li>
+      <li class="flex items-center"><a href="index">Volver</a></li>
+    </ul>
+  </nav>
+  
+
+
+  <div class="flex flex-col md:flex-row">
+
+    <div class="bg-gray-800 shadow-xl h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48">
+
+      <div
+        class=" md:w-48  md:left-0 md:top-0 content-center md:content-start text-left justify-between ">
+        
+      </div>
+
+    </div>
+
+    <div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
+
+      <div class="bg-gray-800 pt-3">
+        <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+          <h3 class="font-bold pl-2">Perfil</h3>
+        </div>
+      </div>
+      {% if formulario.errors %}
+      <h2 style='color:red; text-align:center;'>
+        {{ formulario.errors }}<br>
+      </h2>{% endif %}
+    <section class="formulario">
+      <form action="" method="POST" enctype="multipart/form-data" class="">
+        {% csrf_token %}
+        <div class="cuadro">
+          <h1>Datos del cliente</h1>
+            <input type="hidden" id="id_cliente" name="id_cliente" value="{{cliente.id_cliente}}" disabled>
+
+
+            <div class='field' >  
+              <label >Rut: </label>
+              <input type="text" id="rut" name="rut" value="{{cliente.rut}}" disabled>
+            </div>
+
+            <div class='field'>   
+              <label >Nombre del cliente: </label>
+              <input type="text" id="nombre" name="nombre" value="{{cliente.nombre}}">
+            </div>
+            
+            <div class='field' >  
+              <label >Apellido: </label>
+              <input type="text" id="apellido" name="apellido" value="{{cliente.apellido}}">
+            </div>
+            <div class='field' >  
+              <label >Direccion: </label>
+              <input type="text" id="direccion" name="direccion" value="{{cliente.direccion}}">
+            </div>
+            <div class='field' >  
+              <label >Telefono: </label>
+              <input type="number" id="telefono" name="telefono" value="{{cliente.telefono}}">
+            </div>
+            <div class='field' >  
+              <label >Celular: </label>
+              <input type="number" id="celular" name="celular" value="{{cliente.celular}}">
+            </div>
+            <div class="contra">
+            <div class="field">
+              <label >Email: </label>
+              <input type="text" id="email" name="email" value="{{user.email}}">
+              
+            </div>
+            
+              <!-- <div class="field">
+                <label >Contraseña: </label>
+                <input type="text" id="password" name="password">
+                {{ formulario.password1 }}
+              </div>
+              
+              <div class="field">
+                <label >Repetir contraseña: </label>
+                {{ formulario.password2 }}
+              </div> -->
+              <div class="enviar">
+                <input type="submit" value="Actualizar" >
+              </div>
+            </div>
+            
+      </div>
+      	
+      	
+      </form>
+    </section> 
+
+      
+</body>
+</html>
