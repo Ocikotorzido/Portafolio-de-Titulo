@@ -160,7 +160,7 @@ def registro_cliente (request):
 
 def ver_perfil(request):
 
-    cliente = Cliente.objects.get(rut)
+    cliente = Cliente.objects.all()
     context = {'cliente':cliente}
 
     return render(request,'mantenedor/ver_perfil.html',context)
@@ -193,7 +193,6 @@ def reservas (request):
     }
     servicios = TipoServicio.objects.all()
     context = {'servicios': servicios }
-    
     if request.method == 'POST':
         context['method'] = 'POST'
         vehiculo['marca'] = request.POST['marca']
@@ -412,10 +411,9 @@ def exportar(request):
     return render(request,'mantenedor/exportar.html',context)
 
 def agregar_empleado(request):
-    only_numbers = lambda texto: ''.join([numero if numero in ['0','1','2','3','4','5','6','7','8','9'] else '' for numero in texto])
     if request.method == 'POST':
         mi_cargo = request.POST['cargo']
-        mi_rut = only_numbers(request.POST['rut'])
+        mi_rut = request.POST['rut']
         mi_nombre = request.POST['nombre']
         mi_apellido = request.POST['apellido']
         mi_contacto = request.POST['contacto']
