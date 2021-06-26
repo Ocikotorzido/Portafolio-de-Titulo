@@ -223,6 +223,7 @@ class Reservas(models.Model):
     marca = models.CharField(max_length=50)
     modelo = models.CharField(max_length=50)
     year = models.CharField(max_length=50)
+    fecha_reserva = models.DateField()
     confirmacion = models.CharField(max_length=50)
     
     def __str__(self):

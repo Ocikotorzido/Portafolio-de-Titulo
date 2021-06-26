@@ -189,7 +189,13 @@ def reservas (request):
         
         id_cliente = Perfil.objects.filter(id_auth_user = request.user.id)[0].id_usuario
         id_reserva = Reservas.objects.count()+1
-        reservas = Reservas(id_reserva, id_cliente, vehiculo['marca'], vehiculo['modelo'], vehiculo['year'], 0)
+        reservas = Reservas(id_reserva, 
+                            id_cliente, 
+                            vehiculo['marca'], 
+                            vehiculo['modelo'], 
+                            vehiculo['year'], 
+                            datetime.datetime.now(), 
+                            0)
         reservas.save()
         
         services = list()
