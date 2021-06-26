@@ -32,14 +32,16 @@
       <table>
         <tr>
           <th>N°</th>
+          <th>Fecha solicitado</th>
           <th>Nombre cliente</th>
           <th>Vehículo</th>
-          <th>Mecánicos</th>
+          <th>Mecánico</th>
           <th>Estado</th>
         </tr>
         {% for reserva in reservas %}
         <tr>
           <td>{{ reserva.id_reserva }}</td>
+          <td>{{ reserva.fecha_reserva }}</td>
           <td>{{ reserva.cliente_id_cliente.nombre }} {{ reserva.cliente_id_cliente.apellido }}</td>
           <td>{{ reserva.marca }}<br>{{ reserva.modelo }}<br>{{ reserva.year }}</td>
           <td> Dummy data </td>
