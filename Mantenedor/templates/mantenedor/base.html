@@ -27,6 +27,7 @@
       {% if perfil.nivel|upper == 'CLIENTE' %}
       <li class="flex items-center"><a href="reservas">Reserva</a></li>
       <li class="flex items-center"><a href="servicios">Servicios</a></li>
+      <li class="flex items-center"><a href="faq">Ayuda</a></li>
 
       {% elif perfil.nivel|upper == 'ADMIN' or perfil.nivel == 'admin' %}
       <li class="flex items-center"><a href="empleado">Agregar empleado</a></li>
@@ -34,6 +35,7 @@
       <li class="flex items-center"><a href="exportar">Exportar</a></li>
 
       {% elif perfil.nivel|upper == 'EMPLEADO' %}
+      <li class="flex items-center"><a href="registro_cliente">Cliente</a></li>
       <li class="flex items-center"><a href="ver_proveedores">Proveedores</a></li>
       <li class="flex items-center"><a href="servicios">Servicios</a></li>
       <li class="flex items-center"><a href="ver_reservas">Reservas</a></li>
@@ -54,6 +56,8 @@
       {% if not user.is_authenticated %}
       <li class="flex items-center"><a href="registro_cliente">Cliente</a></li>
       <li class="flex items-center"><a href="servicios">Servicios</a></li>
+      <li class="flex items-center"><a href="faq">Ayuda</a></li>
+
       {% endif %}
 
       {% if not user.is_authenticated %}
