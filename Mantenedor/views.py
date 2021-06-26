@@ -233,7 +233,9 @@ def modificar_reserva(request, id_reserva, confirmacion):
 
 def ver_reservas (request):
     reservas = Reservas.objects.all()
-    context = {'reservas': reservas}
+    mecanicos = Empleado.objects.filter(cargo_id_tipo_cargo=3)
+    context = {'reservas': reservas,
+               'mecanicos': mecanicos }
     return render (request, 'mantenedor/ver_reservas.html', context)
 
 
