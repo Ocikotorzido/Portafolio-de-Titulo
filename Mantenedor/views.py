@@ -192,7 +192,11 @@ def ver_perfil(request):
                             mi_celular,mi_email,rut)
         cliente.save()
 
-       
+        a=User.objects.get(username=rut)
+        a.first_name = mi_nombre
+        a.last_name = mi_apellido
+        a.email = mi_email
+        a.save()
 
         return render(request,'mantenedor/ver_perfil.html',context)
 
@@ -284,8 +288,8 @@ def ver_reservas (request):
 
 
 def orden_trabajo (request):
-    reservas = Reservas.objects.all()
-    context = {'reservas': reservas}
+
+    
 
     return render (request, 'mantenedor/orden_trabajo.html', context)
 
