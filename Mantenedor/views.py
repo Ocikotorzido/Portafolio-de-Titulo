@@ -160,8 +160,41 @@ def registro_cliente (request):
 
 def ver_perfil(request):
 
-    cliente = Cliente.objects.all()
+    id_cliente = Perfil.objects.filter(id_auth_user = request.user.id)[0].id_usuario
+    rut = User.objects.filter(id = request.user.id)[0].username
+
+    cliente = Cliente.objects.get(id_cliente=id_cliente)
     context = {'cliente':cliente}
+
+    if request.method == 'POST':
+        
+        
+        mi_nombre = request.POST['nombre']
+        mi_apellido = request.POST['apellido']
+        mi_direccion = request.POST['direccion']
+        mi_telefono = request.POST['telefono']
+        mi_celular = request.POST['celular']
+        mi_email = request.POST['email']
+
+        cliente = Cliente()
+
+        cliente.id_cliente
+        
+        cliente.nombre = mi_nombre
+        cliente.apellido = mi_apellido
+        cliente.direccion = mi_direccion
+        cliente.telefono = mi_telefono
+        cliente.celular = mi_celular
+        cliente.email = mi_celular
+        cliente.email = mi_email
+
+        cliente = Cliente(id_cliente,mi_nombre,mi_apellido,mi_direccion,mi_telefono,
+                            mi_celular,mi_email,rut)
+        cliente.save()
+
+       
+
+        return render(request,'mantenedor/ver_perfil.html',context)
 
     return render(request,'mantenedor/ver_perfil.html',context)
 

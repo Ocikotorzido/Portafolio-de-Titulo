@@ -57,12 +57,11 @@
         {{ formulario.errors }}<br>
       </h2>{% endif %}
     <section class="formulario">
-      <form action="" method="POST" enctype="multipart/form-data" class="">
+      <form action="ver_perfil" method="POST" enctype="multipart/form-data" class="">
         {% csrf_token %}
         <div class="cuadro">
           <h1>Datos del cliente</h1>
-            <input type="hidden" id="id_cliente" name="id_cliente" value="{{cliente.id_cliente}}" disabled>
-
+          <input type="hidden" id="id_cliente" name="id_cliente" value="{{cliente.id_cliente}}" disabled>
 
             <div class='field' >  
               <label >Rut: </label>
@@ -93,7 +92,7 @@
             <div class="contra">
             <div class="field">
               <label >Email: </label>
-              <input type="text" id="email" name="email" value="{{user.email}}">
+              <input type="text" id="email" name="email" value="{{cliente.email}}">
               
             </div>
             
