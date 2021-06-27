@@ -197,6 +197,8 @@ def ver_perfil(request):
         a.last_name = mi_apellido
         a.email = mi_email
         a.save()
+        
+        context = {'cliente':cliente}
 
         return render(request,'mantenedor/ver_perfil.html',context)
 
