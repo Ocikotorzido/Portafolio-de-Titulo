@@ -45,19 +45,23 @@
           <td>{{ reserva.cliente_id_cliente.nombre }} {{ reserva.cliente_id_cliente.apellido }}</td>
           <td>{{ reserva.marca }}<br>{{ reserva.modelo }}<br>{{ reserva.year }}</td>
           <td>
-              <select class="p-2" id="mecanico" name="mecanico">
+              <select id="m_{{ reserva.id_reserva }}"class="p-2" id="mecanico" name="mecanico">
                 {% for mecanico in mecanicos %}
-                  <option value="{{ mecanico.id }}">{{ mecanico.nombre }}</option>
+                  <option value="{{ mecanico.id_empleado }}">{{ mecanico.nombre }}</option>
                 {% endfor %}
               </select>
           </td>
           {% if reserva.confirmacion == '1' %}
-          <td id='confirmacion_{{reserva.id_reserva}}' onclick="modificar( {{ reserva.id_reserva }}, 0 )">
-            Confirmado
+          <td id='confirmacion_{{reserva.id_reserva}}' onclick="modificar( {{ reserva.id_reserva }}, get_mecanico({{reserva.id_reserva}}), 0 )">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+              Confirmado
+            </button>
           </th>
           {% else %}
-          <td id='confirmacion_{{reserva.id_reserva}}' onclick="modificar( {{ reserva.id_reserva }}, 1 )">
-            Sin corfirmar
+          <td id='confirmacion_{{reserva.id_reserva}}' onclick="modificar( {{ reserva.id_reserva }}, get_mecanico({{reserva.id_reserva}}), 1 )">
+            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
+              Sin Confirmar
+            </button>
           </th>
           {% endif %}
 
@@ -67,17 +71,26 @@
       </div>
     </div>
       <script>
-        
-        function modificar(id_reserva, confirmacion){
+        function get_mecanico(id_reserva){
+          let id_mecanico, optSelected
+          optSelected = document.getElementById(`m_${id_reserva}`)
+          id_mecanico = optSelected.value
+          return id_mecanico
+        }
+
+        function modificar(id_reserva, id_mecanico, confirmacion){
           let text_confirmacion = document.getElementById(`confirmacion_${id_reserva}`)
           let url = `${window.location.origin}/Mantenedor/modificar_reserva/`;
-          let query = `${id_reserva}/${confirmacion}`
+          let query = `${id_reserva}/${id_mecanico}/${confirmacion}`
 
-          if (text_confirmacion.innerText == 'Confirmado') {
-            text_confirmacion.innerText = 'Sin confirmar'
+          confirmado = '<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Confirmado</button>'
+          sin_confirmar = '<button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Sin Confirmar</button>'
+
+          if (text_confirmacion.innerHTML == confirmado) {
+            text_confirmacion.innerHTML = sin_confirmar
           }
           else {
-            text_confirmacion.innerText = 'Confirmado'
+            text_confirmacion.innerHTML = confirmado
           }
 
           fetch(url+query)

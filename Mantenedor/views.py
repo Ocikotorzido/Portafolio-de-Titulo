@@ -226,7 +226,7 @@ def reservas (request):
         return render (request, 'mantenedor/reservas.html', context)
     return render (request, 'mantenedor/reservas.html', context)
 
-def modificar_reserva(request, id_reserva, confirmacion):
+def modificar_reserva(request, id_reserva, id_mecanico, confirmacion):
     if confirmacion not in [0,1]:
         return HttpResponse(status=403)
     reserva = Reservas.objects.get(id_reserva=id_reserva)
@@ -235,10 +235,10 @@ def modificar_reserva(request, id_reserva, confirmacion):
     ot = Ot.objects.filter(reservas_id_reserva_id=id_reserva)
     if ot.count() == 0:
         id_ot = Ot.objects.count() + 1
-        ot = Ot( id_ot, 1, id_reserva, datetime.datetime.now() )
+        ot = Ot( id_ot, id_mecanico, id_reserva, datetime.datetime.now() )
         ot.save()
     else:
-        ot = Ot.objects.get(id_reserva=id_reserva)
+        ot = Ot.objects.get(reservas_id_reserva=id_reserva)
         ot.delete()
     return HttpResponse(status=200)
 
