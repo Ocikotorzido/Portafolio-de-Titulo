@@ -78,9 +78,7 @@ Por línea de comandos:
 
 ## Capturas de pantalla.
 
-[[./pantallazos/login.svg|width=400px]]
-
-[![img|320x271,50%](./pantallazos/login.svg)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
+<img src="./pantallazos/login.svg" width="300px" alt="login">
 
 ** Inicio de sesión**
 
