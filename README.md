@@ -76,6 +76,14 @@ Por línea de comandos:
 - Validador de rut. [github.com/gevalenz/rut-chile](https://github.com/gevalenz/rut-chile)
 - docx2pdf. [github.com/AlJohri/docx2pdf](https://github.com/AlJohri/docx2pdf)
 
+## Capturas de pantalla.
+
+[[./pantallazos/login.svg|width=400px]]
+
+[![img|320x271,50%](./pantallazos/login.svg)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
+
+** Inicio de sesión**
+
 ## Sobre los desarrolladores
 Estos son los desarrolladores que hicieron esto posible:
 
