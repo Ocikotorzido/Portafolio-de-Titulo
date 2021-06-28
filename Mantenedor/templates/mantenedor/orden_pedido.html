@@ -32,14 +32,22 @@
       <section class="formulario">
         <form action="" method="POST" enctype="multipart/form-data" class="flex flex-col">
           {% csrf_token %}
+          <label for="auto">Vehículo</label>
+      	  <select id="auto" name="auto">
+            {% for auto in autos %}
+              <option value="{{ auto.id_informe }}">
+                {{ auto.patente }}, {{ auto.marca }}-{{ auto.modelo }}-{{ auto.year }}
+              </option>
+            {% endfor %}
+          </select>
           <label >Producto: </label>
           <input type="text" id="producto" name="producto">
           <label >Proveedor: </label>
           <select id="proveedor" name="proveedor"> 
             {% for proveedor in proveedores %}
-                <option value=""></option>
+                <option value="{{ proveedor.id_proveedor }}">{{ proveedor.nombre }}, {{ proveedor.rubro }}</option>
             {% endfor %}
-        </select>
+          </select>
           <label >Cantidad: </label>
           <input type="text" id="cantidad" name="cantidad">
           <br>
