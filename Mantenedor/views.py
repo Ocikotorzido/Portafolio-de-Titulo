@@ -167,13 +167,13 @@ def ver_perfil(request):
     context = {'cliente':cliente}
 
     if request.method == 'POST':
-        
+        only_numbers = lambda texto: ''.join([numero if numero in ['0','1','2','3','4','5','6','7','8','9'] else '' for numero in texto])
         
         mi_nombre = request.POST['nombre']
         mi_apellido = request.POST['apellido']
         mi_direccion = request.POST['direccion']
-        mi_telefono = request.POST['telefono']
-        mi_celular = request.POST['celular']
+        mi_telefono = only_numbers(request.POST['telefono'])
+        mi_celular = only_numbers(request.POST['celular'])
         mi_email = request.POST['email']
 
         cliente = Cliente()
@@ -323,24 +323,33 @@ def orden_pedido (request):
 
 def registrar_proveedor(request):
     if request.method == 'POST':
-
-        mi_rut = request.POST['rut']
-        mi_contacto = request.POST['contacto']
+        only_numbers = lambda texto: ''.join([numero if numero in ['0','1','2','3','4','5','6','7','8','9'] else '' for numero in texto])
+        
+        mi_rut = only_numbers(request.POST['rut'])
         mi_nombre = request.POST['nombre']
+        mi_telefono = only_numbers(request.POST['telefono'])
+        mi_email = request.POST['email']
         mi_rubro = request.POST['rubro']
 
         proveedor = Proveedor()
         id_proveedor = Proveedor.objects.count()+1
 
         proveedor.rut = mi_rut
-        proveedor.contacto = mi_contacto
+        proveedor.telefono = mi_telefono
+        proveedor.email = mi_email
         proveedor.nombre = mi_nombre
         proveedor.rubro = mi_rubro
 
-        proveedor = Proveedor(id_proveedor,mi_rut,mi_nombre,mi_contacto,mi_rubro)
+        proveedor = Proveedor(id_proveedor,
+                              mi_rut,
+                              mi_nombre,
+                              mi_telefono,
+                              mi_email,
+                              mi_rubro)
 
         proveedor.save()
-        return render (request, 'mantenedor/registro_proveedor.html')
+        context = {'msj':'¡Registrado exitosamente!'}
+        return render (request, 'mantenedor/registro_proveedor.html', context)
 
     return render (request, 'mantenedor/registro_proveedor.html')
 

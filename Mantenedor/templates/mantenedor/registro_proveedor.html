@@ -14,13 +14,16 @@
       <label>Rut: </label>
       <input type="text" id="rut" name="rut" required>
 
-      <label>contacto: </label>
-      <input type="text" id="contacto" name="contacto" required>
-
       <label>Nombre: </label>
       <input type="text" id="nombre" name="nombre" required>
 
-      <label>Respuesto: </label>
+      <label>Telefono: </label>
+      <input type="number" id="telefono" name="telefono" required>
+
+      <label>Email: </label>
+      <input type="text" id="email" name="email" required>
+
+      <label>Rubro: </label>
       <input type="text" id="rubro" name="rubro" required>
 
       <input type="submit" value="Enviar">
@@ -28,4 +31,9 @@
   </section>
   
 </div>
+{% if msj %}
+  <script>
+    alert('{{ msj }}')
+  </script>
+{% endif %}
 {% endblock content %}
