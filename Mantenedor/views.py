@@ -296,7 +296,30 @@ def orden_trabajo (request):
     return render (request, 'mantenedor/orden_trabajo.html', context)
 
 def orden_pedido (request):
-    return render (request, 'mantenedor/orden_pedido.html')
+    proveedores = Proveedor.objects.all()
+    autos = InfoAuto.objects.all().order_by('-id_informe')
+    context = {'proveedores':proveedores,
+               'autos': autos }
+    if request.method == 'POST':
+         #= request.POST['']
+        auto = request.POST['auto']
+         
+        producto = request.POST['producto']
+        cantidad = request.POST['cantidad']
+        fecha_pedido = datetime.datetime.now()
+        hora_pedido = datetime.datetime.now().strftime('%H_%M')
+        fecha_entrega = datetime.datetime.now() + datetime.timedelta(days=2)
+        proveedor = request.POST['proveedor']
+        
+        id_pedido = Op.objects.count()+1
+        op = Op(id_pedido, producto, cantidad, fecha_pedido, hora_pedido, fecha_entrega, proveedor)
+        op.save()
+        
+        id_detalle = DetallePedido.objects.count()+1
+        dp = DetallePedido(id_detalle, id_pedido, proveedor)
+        dp.save()
+        
+    return render (request, 'mantenedor/orden_pedido.html', context)
 
 def registrar_proveedor(request):
     if request.method == 'POST':
