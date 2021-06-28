@@ -51,9 +51,11 @@ class Cliente(models.Model):
 
 
 class DetalleOp(models.Model):
-    id_info_op = models.FloatField(primary_key=True)
+    id_detalle_op = models.FloatField(primary_key=True)
+    cod_producto = models.FloatField()
+    cantidad = models.FloatField()
     op_id_pedido = models.ForeignKey('Op', models.DO_NOTHING, db_column='op_id_pedido')
-    info_auto_id_informe = models.ForeignKey('InfoAuto', models.DO_NOTHING, db_column='info_auto_id_informe')
+    producto_id_producto = models.ForeignKey('Producto', models.DO_NOTHING, db_column='producto_id_producto')
 
     class Meta:
         managed = True
@@ -152,12 +154,9 @@ class InfoAuto(models.Model):
 
 class Op(models.Model):
     id_pedido = models.FloatField(primary_key=True)
-    producto = models.CharField(max_length=100)
-    cantidad = models.FloatField()
     fecha_pedido = models.DateField()
-    hora_pedido = models.CharField(max_length=10)
     fecha_entrega = models.DateField(blank=True, null=True)
-    proveedor_id_proveedor = models.ForeignKey('Proveedor', models.DO_NOTHING, db_column='proveedor_id_proveedor')
+    info_auto_id_informe = models.ForeignKey(InfoAuto, models.DO_NOTHING, db_column='info_auto_id_informe')
 
     class Meta:
         managed = True
@@ -200,12 +199,25 @@ class Perfil(models.Model):
         managed = True
         db_table = 'perfil'
         verbose_name_plural = "Perfiles"
+        
+class Producto(models.Model):
+    id_producto = models.FloatField(primary_key=True)
+    nombre = models.CharField(max_length=50)
+    codigo = models.CharField(max_length=18)
+    valor = models.FloatField()
+    descripcion = models.CharField(max_length=100)
+    proveedor_id_proveedor = models.ForeignKey('Proveedor', models.DO_NOTHING, db_column='proveedor_id_proveedor')
+
+    class Meta:
+        managed = True
+        db_table = 'producto'
 
 class Proveedor(models.Model):
     id_proveedor = models.FloatField(primary_key=True)
     rut = models.FloatField()
     nombre = models.CharField(max_length=50)
-    contacto = models.CharField(max_length=50)
+    telefono = models.FloatField()
+    email = models.CharField(max_length=50)
     rubro = models.CharField(max_length=50)
 
     def __str__(self):
