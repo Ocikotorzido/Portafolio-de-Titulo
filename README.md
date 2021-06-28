@@ -78,6 +78,7 @@ Por línea de comandos:
 
 ## Recursos
 - screenshot.rocks, [https://screenshot.rocks/](https://screenshot.rocks/)
+- Generador de ruts, [https://generarut.cl/](https://generarut.cl/)
 
 ## Capturas de pantalla.
 
