@@ -322,6 +322,16 @@ def orden_pedido (request):
     return render (request, 'mantenedor/orden_pedido.html', context)
 
 def registrar_proveedor(request):
+    nivel = None
+    if request.user.is_authenticated:
+        try:
+            nivel = Perfil.objects.filter(id_auth_user = request.user.id)[0].nivel
+        except IndexError:
+            logout(request)
+            nivel = 'ERROR'
+            
+    context={'perfil':{'nivel':nivel}}
+    
     if request.method == 'POST':
         only_numbers = lambda texto: ''.join([numero if numero in ['0','1','2','3','4','5','6','7','8','9'] else '' for numero in texto])
         
@@ -348,10 +358,10 @@ def registrar_proveedor(request):
                               mi_rubro)
 
         proveedor.save()
-        context = {'msj':'¡Registrado exitosamente!'}
+        context['msj'] = '¡Registrado exitosamente!'
         return render (request, 'mantenedor/registro_proveedor.html', context)
 
-    return render (request, 'mantenedor/registro_proveedor.html')
+    return render (request, 'mantenedor/registro_proveedor.html', context)
 
 def ver_proveedores (request):
     
