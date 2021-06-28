@@ -45,7 +45,7 @@ servicios_disponibles = {
           'tiempo':'45 min'
           },
         'servicio_8': {
-          'nom_ser':'Cambio de filtros',
+          'nom_ser':'Cambio de filtros de aire',
           'monto':85000,
           'tiempo':'120 min'
           },
