@@ -76,11 +76,14 @@ Por línea de comandos:
 - Validador de rut. [github.com/gevalenz/rut-chile](https://github.com/gevalenz/rut-chile)
 - docx2pdf. [github.com/AlJohri/docx2pdf](https://github.com/AlJohri/docx2pdf)
 
+## Recursos
+- screenshot.rocks, [https://screenshot.rocks/](https://screenshot.rocks/)
+
 ## Capturas de pantalla.
 
-<img src="./pantallazos/login.svg" width="300px" alt="login">
+<img src="./pantallazos/login.svg" width="350px" alt="login">
 
-** Inicio de sesión**
+**Inicio de sesión**
 
 ## Sobre los desarrolladores
 Estos son los desarrolladores que hicieron esto posible:
