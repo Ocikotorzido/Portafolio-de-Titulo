@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
   <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/servicios.css' %}">
 </head>
 
 <body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
@@ -30,21 +31,71 @@
 
     <div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5 ">
       <div class="bg-gray-800 pt-3">
-        <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+        <div class=" bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
           <h3 class="font-bold pl-2">Servicios</h3>
         </div>
       </div>
-    
-      <div>
-        <img class="setenta-vw" src="{% static 'img/neumatico2.jpg' %}" alt="Foto Neumático" />
+      
+      <div style="height: 1000px;">
+      <section class="grid">
+        <div class="container">
+          <div class="item">
+            <img class="item-img" src="{% static 'img/servicio-neumaticos.jpeg' %}" alt="">
+            <div class="item-text">
+              <h3>Imagen 1</h3>
+              <p>lorem ipsum dolor sit amet</p>
+            </div>
+          </div>
+        
+        
+          <div class="item">
+            <img class="item-img" src="{% static 'img/servicio-bateria.jpg' %}" alt="">
+            <div class="item-text">
+              <h3>Imagen 1</h3>
+              <p>lorem ipsum dolor sit amet</p>
+            </div>
+          </div>
+       
+        
+          <div class="item">
+            <img class="item-img" src="{% static 'img/servicio-frenos.jpg' %}" alt="">
+            <div class="item-text">
+              <h3>Imagen 1</h3>
+              <p>lorem ipsum dolor sit amet</p>
+            </div>
+          </div>
+        
+        
+          <div class="item">
+            <img class="item-img" src="{% static 'img/servicio-amortiguadores.jpg' %}" alt="">
+            <div class="item-text">
+              <h3>Imagen 1</h3>
+              <p>lorem ipsum dolor sit amet</p>
+            </div>
+          </div>
+        
+        
+          <div class="item">
+            <img class="item-img" src="{% static 'img/servicio-aceite.jpg' %}" alt="">
+            <div class="item-text">
+              <h3>Imagen 1</h3>
+              <p>lorem ipsum dolor sit amet</p>
+            </div>
+          </div>
+        
+        
+          <div class="item">
+            <img class="item-img" src="{% static 'img/servicio-bujias.jpg' %}" alt="">
+            <div class="item-text">
+              <h3>Imagen 1</h3>
+              <p>lorem ipsum dolor sit amet</p>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
       </div>
-
-      <div>
-        <img class="setenta-vw " src="{%static 'img/bateri.jpg' %}" alt="Foto Beteri" />
-      </div>
-
-
-    </div>
 
   </div>
     
