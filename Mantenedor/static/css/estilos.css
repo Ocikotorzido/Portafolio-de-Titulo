@@ -3,6 +3,43 @@ body{
 	background-image: url("https://www.transparenttextures.com/patterns/starring.png");
 }
 
+.red-rounded-button {
+	/* bg-red-900  */
+	--tw-border-opacity: 1;
+	background-color: rgba(127,29,29,var(--tw-border-opacity));
+
+	/*text-white*/
+	--tw-text-opacity: 1;
+	color: rgba(255,255,255,var(--tw-text-opacity));
+	
+	/* font-bold  */
+	font-weight: 700;
+
+	/* py-2  */
+	padding-top: .5rem;
+	padding-bottom: .5rem;
+
+	/* px-4  */
+	padding-left: 1rem;
+	padding-right: 1rem;
+
+	/* border-b-4  */
+	border-bottom-width: 4px;
+
+	/* border-red-900  */
+	--tw-border-opacity: 1;
+	border-color: rgba(127,29,29,var(--tw-border-opacity));
+
+	/* rounded-full */
+	border-radius: 9999px;
+}
+
+.red-rounded-button:hover {
+	/* hover:border-red-800  */
+	--tw-bg-opacity: 1;
+	background-color: rgba(153,27,27,var(--tw-bg-opacity));
+}
+
 h1{
 	font-size: 30px;
 	font-weight: bold;
