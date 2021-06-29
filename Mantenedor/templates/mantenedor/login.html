@@ -2,11 +2,11 @@
 <html lang="es">
 
 <head>
-  {% load static %}
+  <title>Login</title>
   <meta charset="UTF-8">
+  {% load static %}
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Login</title>
   <meta name="author" content="Team Digital">
   <meta name="description" content="Gestión del taller mecánico serviexpress">
   <meta name="keywords" content="taller, reparación, autos, vehiculos">
@@ -19,12 +19,12 @@
 <body style="background-color: #101f38; background-image: url('{% static 'img/starring.png' %}');" class="font-sans leading-normal tracking-normal">
   <!--Nav-->
   <nav>
-    <ul class="flex flex-col justify-center md:flex-row md:justify-evenly text-white">
-      <li><a href="/"><img src="{% static 'img/logo-1.png' %}" alt="Logo"></a></li>
+    <ul class="flex flex-row justify-center text-white">
+      <li><a href="/"><img src="{% static 'img/logo-1.png' %}" alt="Logo MCS"></a></li>
     </ul>
   </nav>
 
-    <div class="bg-transparent p-10">
+    <div class="bg-transparent px-10">
       <div>
         <div class="rounded-t-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
           <h3 class="font-bold pl-2">
