@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>MCS</title>
+  <title>Login</title>
   <meta name="author" content="Team Digital">
   <meta name="description" content="Gestión del taller mecánico serviexpress">
   <meta name="keywords" content="taller, reparación, autos, vehiculos">
@@ -24,40 +24,31 @@
     </ul>
   </nav>
 
-  <div class="flex flex-col md:flex-row">
-    <div class="shadow-xl h-16 fixed bottom-0 md:relative md:h-screen z-10 w-full md:w-48">
-      <div class="bg-gray-900 md:w-48  md:left-0 md:top-0 content-center md:content-start text-left justify-between ">
-        <p class="block py-1 md:py-3 pl-1 align-middle text-gray-500">
-          • Inicio de sesión.
-        </p>
-        <p class="block py-1 md:py-3 pl-1 align-middle text-gray-500">
-          Recuerde que su nombre de usuario es su RUT.
-        </p>
-        <p class="block py-1 md:py-3 pl-1 align-middle text-gray-500">
-          En caso de pérdida de la contraseña, por favor dirigirse a atención al cliente.
-        </p>
-      </div>
-    </div>
-
-    <div class="main-content flex-1 bg-gray-100">
-      <div class="bg-gray-900">
-        <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
-          <h3 class="font-bold pl-2">Login</h3>
+    <div class="bg-transparent p-10">
+      <div>
+        <div class="rounded-t-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+          <h3 class="font-bold pl-2">
+            <abbr title="• Inicio de sesión.
+            Recuerde que su usuario es su RUT.
+            En caso de pérdida de la contraseña, 
+            por favor dirigirse a atención al cliente.">Login</abbr>
+          </h3>
         </div>
       </div>
-    <section class="formulario">
-      <form method="POST" action="" class="flex flex-col">
-        {% csrf_token %}
-        {% if errores %}<h2 style="color: red;">{{ errores }}</h2>{% endif %}
-      	<label >Usuario: </label>
-      	<input type="text" id="usuario" name="username" required>
-      	<label >Contraseña: </label>
-      	<input type="password" id="password" name="password">
-      	<br>
-      	<input type="submit" value="Ingresar" >
-        <hr>
-        <a class="flex justify-center text-blue-800" href="/Mantenedor/registro_cliente">¡Necesito registrarme!</a>
-      </form>
-    </section> 
+      <section class="bg-white formulario">
+        <form method="POST" action="" class="flex flex-col">
+          {% csrf_token %}
+          {% if errores %}<h2 style="color: red;">{{ errores }}</h2>{% endif %}
+          <label >Usuario: </label>
+          <input type="text" id="usuario" name="username" required>
+          <label >Contraseña: </label>
+          <input type="password" id="password" name="password">
+          <br>
+          <input type="submit" value="Ingresar" >
+          <hr>
+          <a class="flex justify-center text-blue-800" href="/Mantenedor/registro_cliente">¡Necesito registrarme!</a>
+        </form>
+      </section> 
+    </div>
 </body>
 </html>
