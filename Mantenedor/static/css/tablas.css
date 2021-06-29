@@ -1,5 +1,5 @@
 .container{
-    margin: 100px auto;
+    margin: 50px auto;
     width: 800px;
 }
 
@@ -23,6 +23,6 @@ thead{
 tr:nth-child(even){background-color: #d0d0d0;}
 
 tr:hover td{
-    background-color: rgb(37, 88, 160);
+    background-color: #9b9b9b;
     color: white;
 }

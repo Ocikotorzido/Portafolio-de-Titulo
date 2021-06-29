@@ -8,7 +8,8 @@
   <title>Ver reservas</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
   <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+  <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}"> -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/tablas.css' %}">
 </head>
 <body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
   <nav class="bg-gray-800 z-0">
@@ -17,57 +18,59 @@
       <li class="flex items-center"><a href="index">Volver</a></li>
     </ul>
   </nav>
-  <div class="flex flex-col md:flex-row">
-    <div class="bg-gray-800 shadow-xl h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48">
-      <div
-        class=" md:w-48  md:left-0 md:top-0 content-center md:content-start text-left justify-between ">
-      </div>
+  <div class="flex flex-col md:flex-row px-14">
+    <div class="md:h-screen ">
+      
     </div>
     <div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
       <div class="bg-gray-800 pt-3">
-        <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+        <div class=" bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
           <h3 class="font-bold pl-2">Reservas registradas.</h3>
         </div>
       </div>
-      <table>
-        <tr>
-          <th>N°</th>
-          <th>Fecha solicitado</th>
-          <th>Nombre cliente</th>
-          <th>Vehículo</th>
-          <th>Mecánico</th>
-          <th>Estado</th>
-        </tr>
-        {% for reserva in reservas %}
-        <tr>
-          <td>{{ reserva.id_reserva }}</td>
-          <td>{{ reserva.fecha_reserva }}</td>
-          <td>{{ reserva.cliente_id_cliente.nombre }} {{ reserva.cliente_id_cliente.apellido }}</td>
-          <td>{{ reserva.marca }}<br>{{ reserva.modelo }}<br>{{ reserva.year }}</td>
-          <td>
-              <select id="m_{{ reserva.id_reserva }}"class="p-2" id="mecanico" name="mecanico">
-                {% for mecanico in mecanicos %}
-                  <option value="{{ mecanico.id_empleado }}">{{ mecanico.nombre }}</option>
-                {% endfor %}
-              </select>
-          </td>
-          {% if reserva.confirmacion == '1' %}
-          <td id='confirmacion_{{reserva.id_reserva}}' onclick="modificar( {{ reserva.id_reserva }}, get_mecanico({{reserva.id_reserva}}), 0 )">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-              Confirmado
-            </button>
-          </th>
-          {% else %}
-          <td id='confirmacion_{{reserva.id_reserva}}' onclick="modificar( {{ reserva.id_reserva }}, get_mecanico({{reserva.id_reserva}}), 1 )">
-            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
-              Sin Confirmar
-            </button>
-          </th>
-          {% endif %}
+      <div class="container">
+        <table>
+          <thead>
+            <tr>
+              <th>N°</th>
+              <th>Fecha solicitado</th>
+              <th>Nombre cliente</th>
+              <th>Vehículo</th>
+              <th>Mecánico</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          {% for reserva in reservas %}
+          <tr>
+            <td>{{ reserva.id_reserva }}</td>
+            <td>{{ reserva.fecha_reserva }}</td>
+            <td>{{ reserva.cliente_id_cliente.nombre }} {{ reserva.cliente_id_cliente.apellido }}</td>
+            <td>{{ reserva.marca }}<br>{{ reserva.modelo }}<br>{{ reserva.year }}</td>
+            <td>
+                <select id="m_{{ reserva.id_reserva }}"class="p-2" id="mecanico" name="mecanico">
+                  {% for mecanico in mecanicos %}
+                    <option value="{{ mecanico.id_empleado }}">{{ mecanico.nombre }}</option>
+                  {% endfor %}
+                </select>
+            </td>
+            {% if reserva.confirmacion == '1' %}
+            <td id='confirmacion_{{reserva.id_reserva}}' onclick="modificar( {{ reserva.id_reserva }}, get_mecanico({{reserva.id_reserva}}), 0 )">
+              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                Confirmado
+              </button>
+            </th>
+            {% else %}
+            <td id='confirmacion_{{reserva.id_reserva}}' onclick="modificar( {{ reserva.id_reserva }}, get_mecanico({{reserva.id_reserva}}), 1 )">
+              <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
+                Sin Confirmar
+              </button>
+            </th>
+            {% endif %}
 
-        </tr>
-        {% endfor %}
-      </table>
+          </tr>
+          {% endfor %}
+         </table>
+      </div>
       </div>
     </div>
       <script>
