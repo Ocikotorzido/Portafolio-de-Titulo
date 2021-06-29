@@ -4,6 +4,12 @@ body{
 }
 
 .red-rounded-button {
+	/* min-w-6-rem  */
+	min-width: 6rem;
+
+	/* text-center	 */
+	text-align: center;
+
 	/* bg-red-900  */
 	--tw-border-opacity: 1;
 	background-color: rgba(127,29,29,var(--tw-border-opacity));
@@ -28,7 +34,7 @@ body{
 
 	/* border-red-900  */
 	--tw-border-opacity: 1;
-	border-color: rgba(127,29,29,var(--tw-border-opacity));
+	border-color: rgba(110,20,20,var(--tw-border-opacity));
 
 	/* rounded-full */
 	border-radius: 9999px;
@@ -38,6 +44,10 @@ body{
 	/* hover:border-red-800  */
 	--tw-bg-opacity: 1;
 	background-color: rgba(153,27,27,var(--tw-bg-opacity));
+
+	/* border-red-900  */
+	--tw-border-opacity: 1;
+	border-color: rgba(127,29,29,var(--tw-border-opacity));
 }
 
 h1{
