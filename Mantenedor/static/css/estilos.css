@@ -59,16 +59,9 @@ h1{
 	max-width: 400px;
 }
 
-#posts-1{
-	max-width: 580px;
-	text-align: center;
-	
-	font-family: Helvetica;
-	padding: 10px;
-}
-
 .content{
-	text-align: justify;
+	text-align: center;
+	font-family: Helvetica;
 	padding: 20px;
 }
 
