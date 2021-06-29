@@ -21,3 +21,8 @@ thead{
 }
 
 tr:nth-child(even){background-color: #d0d0d0;}
+
+tr:hover td{
+    background-color: rgb(37, 88, 160);
+    color: white;
+}
