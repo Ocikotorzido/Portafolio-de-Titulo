@@ -19,8 +19,8 @@
 <body class="font-sans leading-normal tracking-normal mt-3">
   <!--Nav desde tablets hasta computadores -->
   <nav class="hidden md:flex md:flex-row md:justify-center ">
-    <a  class="pl-3" href="index"><img src="{% static 'img/logo-1.png' %}" alt="Logo"></a>
     <ul class="flex flex-col justify-left md:flex-row md:justify-evenly md:w-full text-white">
+      <li><a class="pl-3" href="index"><img src="{% static 'img/logo-1.png' %}" alt="Logo"></a></li>
       <li class="text-left text-3xl md:hidden">☰</li>
 
       {% if user.is_authenticated %}
