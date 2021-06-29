@@ -15,17 +15,17 @@
     <ul class="">
       <li>
         <div id="slide1">
-          <img src="{% static 'img/kia-picanto.jpg' %}">
+          <img src="{% static 'img/kia-picanto.jpg' %}" alt="Kia picanto">
         </div>
-      </li>'
+      </li>
       <li>
         <div id="slide2">
-          <img src="{% static 'img/hyundai_accent.jpg' %}">
+          <img src="{% static 'img/hyundai_accent.jpg' %}" alt="Huyndai Accent">
         </div>
       </li>
       <li>
         <div id="slide3">
-          <img src="{% static 'img/hyundai-elantra.jpg' %}">
+          <img src="{% static 'img/hyundai-elantra.jpg' %}" alt="Huyndai Elantra">
         </div>
       </li>
       <li>
@@ -40,7 +40,7 @@
   <br class="hidden md:block">
 
   <section class="flex flex-col xl:flex-row text-center justify-around ">
-    <article id="content">
+    <article class="content">
       <div id="posts-1">
         <div class="post">
           <h1 class="h1">Registrate</h1>
@@ -54,7 +54,7 @@
       </div>
       
     </article>
-    <article id="content">
+    <article class="content">
       <div id="posts-1">
         <div class="post">
           <h1 class="h1">Reserva tu hora</h1>
@@ -74,14 +74,10 @@
   <section id="extras">
     <ul class="flex justify-around md:block">
       
-      <li class="p-9  md:p-5 lg:p-9 "><img src="{% static 'img/logo-kia.png' %}"></li>
-      <li class="p-9  md:p-5 lg:p-9 "><img src="{% static 'img/logo-Hyundai.png' %}"></li>
+      <li class="md:p-5 lg:p-9"><img src="{% static 'img/logo-kia.png' %}" alt="auto kia"></li>
+      <li class="md:p-5 lg:p-9"><img src="{% static 'img/logo-Hyundai.png' %}" alt="auto hyundai"></li>
 
     </ul>
   </section>
-  
-  
-
-
-  
+    
 {% endblock content %}
