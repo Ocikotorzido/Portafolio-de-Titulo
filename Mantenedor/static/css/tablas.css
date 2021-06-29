@@ -19,3 +19,5 @@ thead{
     background-color: rgb(37, 88, 160);
     border-bottom: solid 5px #132a6f;
 }
+
+tr:nth-child(even){background-color: #d0d0d0;}
