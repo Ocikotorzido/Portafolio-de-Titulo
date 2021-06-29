@@ -55,10 +55,6 @@ h1{
 	font-weight: bold;
 }
 
-.max-400 > article {
-	max-width: 400px;
-}
-
 .content{
 	text-align: center;
 	font-family: Helvetica;
@@ -114,10 +110,6 @@ input{
 	border-radius: 100%;
 }
 
-
-.h1 {
-	padding: 20px;
-}
 .slider{
 	width: 100%;
 	margin: auto;
@@ -155,20 +147,20 @@ input{
 }
 
 
-#extras{
+.extras{
 	width: 100%;
 	background: grey;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-#extras ul{
+.extras ul{
 	display: flex;
 }
 
-#extras img{
+.extras img{
 
-	padding: 2rem;
+	padding: 1rem;
 
 	border-radius: 100%;
 }
@@ -186,14 +178,6 @@ input{
 	
 }
 
-footer{
-	
-	height: 15rem;
-	color: white;
-	background-color: #1a0001;
-	background-image: url("https://www.transparenttextures.com/patterns/starring.png");
-}
-
 .fondo{
 	background-color: #1a0300;
 background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
@@ -207,9 +191,3 @@ table,th,td{
 th,td{
 	padding: 2rem;
 }
-
-.separador{
-	padding: 5px;
-}
-
-
