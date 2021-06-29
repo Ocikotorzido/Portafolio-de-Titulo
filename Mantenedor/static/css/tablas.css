@@ -1,0 +1,21 @@
+.container{
+    margin: 100px auto;
+    width: 800px;
+}
+
+table{
+    text-align: left;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,td{
+    border: solid 1px black;
+    padding: 20px;
+}
+
+thead{
+    color: white;
+    background-color: rgb(37, 88, 160);
+    border-bottom: solid 5px #132a6f;
+}

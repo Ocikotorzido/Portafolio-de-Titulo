@@ -8,7 +8,7 @@
 
     display: grid;
     grid-template-columns: repeat(1,1fr);
-    grid-gap: 30px;
+    grid-gap: 60px;
 }
 
 .item{
@@ -18,6 +18,8 @@
 
     transition: all 300ms;
 }
+
+
 
 .item:hover{
     transform: scale(1.05);

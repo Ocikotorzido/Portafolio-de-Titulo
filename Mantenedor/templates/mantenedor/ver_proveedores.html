@@ -18,7 +18,8 @@
   <!--Totally optional :) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"
     integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
-  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+  <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}"> -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/tablas.css' %}">
 
 </head>
 
@@ -34,14 +35,11 @@
   
 
 
-  <div class="flex flex-col md:flex-row">
+  <div class="flex flex-col md:flex-row px-14">
 
-    <div class="bg-gray-800 shadow-xl h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48">
+    <div class=" md:h-screen ">
 
-      <div
-        class=" md:w-48  md:left-0 md:top-0 content-center md:content-start text-left justify-between ">
-        
-      </div>
+      
 
 
     </div>
@@ -49,34 +47,36 @@
     <div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
 
       <div class="bg-gray-800 pt-3">
-        <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+        <div class="bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
           <h3 class="font-bold pl-2">Proveedores del taller</h3>
         </div>
       </div>
 
-      <table>
-        <tr>
-          <th>Rut</th>
-          <th>Contacto</th>
-          <th>Nombre</th>
-          <th>Rubro</th>
-         
-        </tr>
-        {% for proveedor in proveedores %}
-        <tr>
-          <td>{{proveedor.rut}}</td>
-          <td>{{proveedor.nombre}}</td>
-          <td>{{proveedor.contacto}}</td>
-          <td>{{proveedor.rubro}}</td>
-       
-        </tr>
-  
-  
-  
-        {% endfor %}
-      </table>  
+      <div class="container">
+        <table>
+          <thead>
+            <tr>
+              <th>Rut</th>
+              <th>Contacto</th>
+              <th>Nombre</th>
+              <th>Rubro</th>
+            </tr>
+          </thead>
+          {% for proveedor in proveedores %}
+          <tr>
+            <td>{{proveedor.rut}}</td>
+            <td>{{proveedor.nombre}}</td>
+            <td>{{proveedor.contacto}}</td>
+            <td>{{proveedor.rubro}}</td>
+        
+          </tr>
+    
+    
+    
+          {% endfor %}
+        </table>  
 
-
+      </div>
       
 
 </body>
