@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>MCS</title>
+  <title>Nueva reserva</title>
   <meta name="author" content="Team_digital">
   <meta name="description" content="Reservas">
   <meta name="keywords" content="mcs">
@@ -77,7 +77,7 @@
           {% for servicio in servicios %}
             <div class="p-1">
               <input type="checkbox" id="servicio_{{ forloop.counter }}" name="servicio_{{ forloop.counter }}" value="{{ servicio.nombre }}">
-              <label class="font-thin text-xl" for="servicio_{{ forloop.counter }}">{{ servicio.nombre }}</label><br>
+              <label class="font-thin text-xl" for="servicio_{{ forloop.counter }}">{{ servicio.nombre }}  (${{ servicio.monto }})</label><br>
             </div>
           {% endfor %}
         </article>
