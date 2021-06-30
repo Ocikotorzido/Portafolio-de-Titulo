@@ -1,49 +1,16 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  {% load static %}
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>MCS</title>
-  <meta name="author" content="name">
-  <meta name="description" content="description here">
-  <meta name="keywords" content="keywords,here">
+{% extends 'mantenedor/base.html' %}
+{% load static %}
+{% block content %}
 
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-  <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
-</head>
+<div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
 
-<body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
-  <!--Nav-->
-  <nav class="bg-gray-800 z-0">
-    <ul class="flex flex-col justify-left md:flex-row md:justify-evenly text-white">
-      <li><a href="index"><img src="{% static 'img/logo2.png' %}" alt="" width="100"></a></li>
-      <li class="flex items-center"><a href="/Mantenedor/exportar">Exportar</a></li>
-      <li class="flex items-center"><a href="index">Volver</a></li>
-    </ul>
-  </nav>
-
-  <div class="flex flex-col md:flex-row">
-    <div class="bg-gray-800 shadow-xl h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48">
-      <div
-        class=" md:w-48  md:left-0 md:top-0 content-center md:content-start text-left justify-between ">
-        
-      </div>
-
-
+  <div class="bg-red-900">
+    <div class="bg-gradient-to-r from-red-900 to-red-800 p-4 shadow text-2xl text-white">
+      <h3 class="font-bold pl-2">Registro Empleado</h3>
     </div>
-
-    <div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
-
-      <div class="bg-gray-800 pt-3">
-        <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
-          <h3 class="font-bold pl-2">Registro Empleado</h3>
-        </div>
-      </div>
-    <section class="formulario">
-      <form action="agregar_empleado" method="POST" enctype="multipart/form-data" class="flex flex-col">
+  </div>
+  <section class="formulario">
+    <form action="agregar_empleado" method="POST" enctype="multipart/form-data" class="flex flex-col">
         {% csrf_token %}
         {% if mensaje %}<h2>{{ mensaje }}</h2>{% endif %}
       	<label >Cargo: </label>
@@ -54,23 +21,23 @@
         </select>
       	
         <label >Rut: </label>
-      	<input type="text" id="rut" name="rut">
+      	<input type="text" id="rut" name="rut" required>
       
       	<label >Nombre: </label>
-      	<input type="text" id="nombre"  name="nombre">
+      	<input type="text" id="nombre"  name="nombre" required>
       	
       	<label >Apellido: </label>
-      	<input type="text" id="apellido" name="apellido">
+      	<input type="text" id="apellido" name="apellido" required>
 	  
       	<label >Contacto: </label>
-      	<input type="text" id="contacto" name="contacto">
+      	<input type="text" id="contacto" name="contacto"required>
       
         <label >Contraseña: </label>
-      	<input type="password" id="password" name="password">
+      	<input type="password" id="password" name="password" required>
       	
       	<br>
       	<input type="submit" value="Enviar" >
       </form>
     </section> 
-</body>
-</html>
+</div>
+{% endblock content %}

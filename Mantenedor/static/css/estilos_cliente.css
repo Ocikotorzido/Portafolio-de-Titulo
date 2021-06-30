@@ -3,7 +3,7 @@
     padding: 1rem;
 }
 .cuadro{
-    border: 1.5px solid black;
+    
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -12,19 +12,22 @@
     padding: 0 1rem;
     margin-left: auto;
     margin-right: auto;
+    border:1px solid black;
 }
 
-h1{
-    
-    font-size: 1.5rem;
-    width: 100%;
-    
+
+
+label{
+	font-size:25px;
+	font-weight: bold;
 }
 
 input{
 
-    border: 1px solid black;
+    
     box-shadow: 7px 13px 37px rgba(0,0,0,.1);
+    
+    padding: 2px;
 }
 
 

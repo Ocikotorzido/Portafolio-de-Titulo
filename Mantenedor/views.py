@@ -293,7 +293,7 @@ def orden_trabajo (request):
 
     
 
-    return render (request, 'mantenedor/orden_trabajo.html', context)
+    return render (request, 'mantenedor/orden_trabajo.html')
 
 def orden_pedido (request):
     proveedores = Proveedor.objects.all()

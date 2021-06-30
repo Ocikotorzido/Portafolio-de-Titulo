@@ -19,7 +19,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"
     integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
   <link rel="stylesheet" type="text/css" href="{% static 'css/estilos_cliente.css' %}">
-
+  <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}"> -->
 </head>
 
 
@@ -28,7 +28,7 @@
   <nav class="bg-gray-800 z-0">
     <ul class="flex flex-col justify-left md:flex-row md:justify-evenly text-white">
       <li><a href="index"><img src="{% static 'img/logo2.png' %}" alt="" width="100"></a></li>
-      <li class="flex items-center"><a href="index">Volver</a></li>
+      <li class="flex items-center"><a class="red-rounded-button" href="index">Volver</a></li>
     </ul>
   </nav>
   
@@ -56,7 +56,7 @@
       <form action="" method="POST" enctype="multipart/form-data" class="">
         {% csrf_token %}
         <div class="cuadro">
-          <h1>Datos del cliente</h1>
+          
             <div class='field' >  
               <label >Rut: </label>
               {{ formulario.username }}

@@ -26,9 +26,9 @@
       {% if user.is_authenticated %}
       {% if perfil.nivel|upper == 'CLIENTE' %}
       <li class="flex items-center"><a class="red-rounded-button" href="reservas">Reserva</a></li>
-      <li class="flex items-center"><a class="red-rounded-button" href="ver_perfil">Perfil</a></li>
       <li class="flex items-center"><a class="red-rounded-button" href="servicios">Servicios</a></li>
       <li class="flex items-center"><a class="red-rounded-button" href="faq">Ayuda</a></li>
+      <li class="flex items-center"><a class="red-rounded-button" href="ver_perfil">Perfil</a></li>
 
       {% elif perfil.nivel|upper == 'ADMIN' or perfil.nivel == 'admin' %}
       <li class="flex items-center"><a class="red-rounded-button" href="empleado">Agregar empleado</a></li>
