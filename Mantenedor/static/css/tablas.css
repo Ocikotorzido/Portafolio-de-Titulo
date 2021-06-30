@@ -22,7 +22,12 @@ thead{
 
 tr:nth-child(even){background-color: #d0d0d0;}
 
-tr:hover td{
+tr:hover td select{
     background-color: #9b9b9b;
+    color: white;
+}
+
+tr:hover td {
+    background-color: #6f6f6f;
     color: white;
 }
