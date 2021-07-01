@@ -1,10 +1,25 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
+# Extensiones #
+###############
 *.db
-db.sqlite3
-Taller/settings.py
+*.ini
+# Byte-compiled / optimizado #
+*.pyc
+*.py[cod]
+
+# Directorios #
+###############
+__pycache__/
 /migrations/**
 **/migrations
 *temp
-*.ini
+
+# Archivos específicos #
+########################
+db.sqlite3
+Taller/settings.py
+
+# generado por el sistema #
+###########################
+.DS_Store
+Thumbs.db
+*~
