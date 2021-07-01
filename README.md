@@ -1,10 +1,10 @@
 # Mechanic Car Services (M.C.S.)
-[![Python](https://img.shields.io/badge/Python-3.7.7-blue.svg)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3.9.4-blue.svg)](https://www.python.org/)
 [![Django](https://img.shields.io/badge/Django-3.2.3-green.svg)](https://www.djangoproject.com/)
-[![Oracle](https://img.shields.io/badge/Oracle-18c-red.svg)](https://www.djangoproject.com/)
 [![Tailwind CSS](https://img.shields.io/badge/TailWind-2.1.4-yellow.svg)](https://www.tailwindcss.com/)
+[![Oracle](https://img.shields.io/badge/Oracle-18c-red.svg)](https://www.djangoproject.com/)
 
-[![screenshot](./pantallazos/pantallazo_00.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
+[![screenshot](./pantallazos/screenshot_index.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
 
 ## ¿Qué es esto?
 Sistema de gestión y administración web del taller mecánico "ServiExpress".
@@ -13,18 +13,15 @@ Sistema de gestión y administración web del taller mecánico "ServiExpress".
 - **Juan Pedro**, mecánico automotriz.
 
 ## ¿Qué necesito instalar?
-- Python 3
-- Dependencias de terceros `pip install -r requirements.txt`
-  - **También es posible instalar las dependencias por separado:**
-  - Django (`pip install django`)
-  - cx_oracle (`pip install cx_oracle`)
-  - Pandas (`pip install pandas`)
-  - Xlwt (`pip install xlwt`)
-  - OpenPyXL (`pip install openpyxl`)
-  - Docx2PDF (`pip install docx2pdf`)
-  - Python-Docx (`pip install python-docx`)
 - Oracle 18c (cliente/servidor dependiendo de la ubicación de la base de datos).
 - LibreOffice/MS-Office 365
+- Python 3
+- Dependencias de externas (`pip install -r requirements.txt`)
+  - **En caso de error, instalar las dependencias por separado:**
+    - Django (`pip install django`)
+    - cx_oracle (`pip install cx_oracle`)
+    - Pandas (`pip install pandas`)
+    - Docx2PDF (`pip install docx2pdf`)
 
 ## ¿Qué debo configurar?
 ### Usuario Súper-administrador
