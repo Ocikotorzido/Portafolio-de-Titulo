@@ -294,7 +294,8 @@ def ver_reservas (request):
 
 def orden_trabajo (request):
     context = obtener_usuario(request)
-    reservas = Reservas.objects.filter(confirmacion='True')
+    reservas = Reservas.objects.filter(confirmacion='1')
+    context['reservas'] = reservas
     return render (request, 'mantenedor/orden_trabajo.html', context)
 
 def orden_pedido (request):
