@@ -15,7 +15,7 @@ Sistema de gestión y administración web del taller mecánico "ServiExpress".
 ## ¿Qué necesito instalar?
 - Python 3
 - Dependencias de terceros `pip install -r requirements.txt`
-  - **También es posible instalar las dependencias por separado.**
+  - **También es posible instalar las dependencias por separado:**
   - Django (`pip install django`)
   - cx_oracle (`pip install cx_oracle`)
   - Pandas (`pip install pandas`)
@@ -32,6 +32,13 @@ Se debiera crear un usuario administrador.
 
 - `python manage.py createsuperuser`
 
+### Rellenar las tablas con los datos iniciales.
+El sistema trae datos predeterminados para evitar estar ingresando datos ficticios.
+- `python manage.py poblate`
+
+### Atajos para desarrolladores. (Recomendado)
+El sistema trae las más diversas combinaciones de atajos de teclado, sólo se debe ejecutar el archivo `atajos.bat` y los comandos se instalarán **de manera local** (temporal) en la sesión actual de la terminal y aparecerá una lista con los comandos dispobibles.
+- `atajos.bat` (en PowerShell `.\atajos.bat`)
 ### Archivo de configuración para envío de emails.
 Crear un archivo de configuración (**settings.ini**) con la siguiente información:
 ```
