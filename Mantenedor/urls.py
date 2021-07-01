@@ -13,7 +13,6 @@ urlpatterns = [
     path('ver_perfil', views.ver_perfil, name='ver_perfil'),
     
     path('servicios', views.servicios, name='servicios'),
-    path('crear_reserva', views.crear_reserva, name='crear_reserva'),
     path('reservas', views.reservas, name='reservas'),
     path('ver_reservas', views.ver_reservas, name='ver_reservas'),
     path('orden_trabajo', views.orden_trabajo, name='orden_trabajo'),
