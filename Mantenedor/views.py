@@ -294,9 +294,12 @@ def ver_reservas (request):
 
 def orden_trabajo (request):
     context = dict()
+
+
     
     ot = Ot.objects.all()
     context['ot'] = ot
+
     
     detalles = DetalleSer.objects.all()
     context['detalles'] = detalles
