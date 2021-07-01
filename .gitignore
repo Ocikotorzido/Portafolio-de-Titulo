@@ -7,4 +7,5 @@ db.sqlite3
 **/migrations
 *temp
 Taller/settings.py
+settings.py
 *.ini
