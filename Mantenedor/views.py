@@ -294,6 +294,12 @@ def ver_reservas (request):
 
 def orden_trabajo (request):
     context = dict()
+
+
+    
+    ot = Ot.objects.all()
+    context['ot'] = ot
+
     
     detalles = DetalleSer.objects.all()
     context['detalles'] = detalles
@@ -463,33 +469,6 @@ def presupuesto(request):
 
 def faq(request):
     return render (request, 'mantenedor/faq.html')
-
-def crear_reserva(request):
-    if request.method == 'POST':
-        
-        return HttpResponse(request.POST)
-        mi_fecha = request.POST['fecha']
-        mi_hora = request.POST['hora']
-        mi_servicio = request.POST['servicio']
-        mi_descripcion = request.POST['descripcion']
-     
-        if mi_fecha != "":
-              
-                reserva = Reservas()
-
-                id_reserva = Reservas.objects.count()+1
-                reserva.fecha = mi_fecha
-                reserva.hora = mi_hora
-               
-                reserva.servicio = mi_servicio
-                reserva.descripcion = mi_descripcion
-                id_cliente = Perfil.objects.filter(id_auth_user = request.user.id)[0].id_usuario
-
-                reserva = Reservas(id_reserva,mi_servicio,mi_fecha,mi_hora,id_cliente,mi_descripcion,1)
-
-                reserva.save()    
-                return render(request, 'mantenedor/reservas.html',)
-
            
 
 def empleado (request):
