@@ -34,6 +34,7 @@
           {% for trabajo in ot %}
             {% if trabajo.reservas_id_reserva.id_reserva == reserva.id_reserva %}
               <h3><strong>Asignada a:</strong> {{ trabajo.empleado_id_empleado.nombre }} {{ trabajo.empleado_id_empleado.apellido }}</h3>
+              <p class="text-red-600"><strong>Plazo final:</strong> {{ trabajo.fecha_termino }}</p>
             {% endif %}
           {% endfor %}
           <h3><strong>Datos del vehículo:</strong></h3>
@@ -52,7 +53,6 @@
             {% endif %}
           {% endfor %}
           </ul>
-          <p></p>
         </article>
         {% endfor %}
       </section>
