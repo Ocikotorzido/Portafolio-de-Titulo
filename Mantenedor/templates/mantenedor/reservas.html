@@ -56,17 +56,27 @@
             <select class="p-2" id="marca" name="marca"> 
               <option value="hyundai">Hyundai</option>
               <option value="kia">Kia</option>
-              <option value="ford">Ford</option>
-              <option value="chevrolet">Chevrolet</option>
             </select>
           </div>
           <div>
             <label for="modelo">Modelo</label>
-            <input type="text" name="modelo" id="modelo" required>
+            <input type="text" list="modelos" name="modelo" id="modelo" autocomplete="off" required>
+            <datalist id="modelos">
+
+              <option value="Morning">
+              <option value="i10">
+
+              <option value="Accent">
+              <option value="Rio">
+
+              <option value="Tucson">
+              <option value="Sportage">
+
+            </datalist>
           </div>
           <div>
             <label for="year">Año</label>
-            <input type="text" name="year" id="year" required>
+            <input type="number" name="year" id="year" min="2000" max="2030" required>
           </div>
         </article>
 
@@ -84,7 +94,7 @@
       	<br>
         <label>Presupuesto inicial: $<span id='presupuesto'>0</span></label>
       	<input type="submit" value="¡Solicitar una hora!">
-        <p>*De no haber servicios seleccionados, se asume una revisión general.</p>
+        <p class="text-center">*De no haber servicios seleccionados, se asume una revisión general.</p>
       </form>
     </section>
     <script>
