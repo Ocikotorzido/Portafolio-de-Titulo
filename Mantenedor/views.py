@@ -7,7 +7,7 @@ from threading import Thread
 import docx
 import pandas
 import docx2pdf
-import rut_chile
+#import rut_chile
 from .models import *
 from django.apps import apps
 from django.http import HttpResponse
@@ -103,7 +103,7 @@ def salir(request):
     logout(request)
     return redirect('index')
 
-def index (request):
+def obtener_usuario(request):
     nivel = None
     if request.user.is_authenticated:
         try:
@@ -111,7 +111,10 @@ def index (request):
         except IndexError:
             logout(request)
             nivel = 'ERROR'
-    context={'perfil':{'nivel':nivel}}
+    return {'perfil':{'nivel':nivel}}
+
+def index (request):
+    context = obtener_usuario(request)
     return render (request, 'mantenedor/index.html',context)
 
 
@@ -290,10 +293,9 @@ def ver_reservas (request):
 
 
 def orden_trabajo (request):
-
-    
-
-    return render (request, 'mantenedor/orden_trabajo.html')
+    context = obtener_usuario(request)
+    reservas = Reservas.objects.filter(confirmacion='True')
+    return render (request, 'mantenedor/orden_trabajo.html', context)
 
 def orden_pedido (request):
     proveedores = Proveedor.objects.all()
