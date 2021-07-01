@@ -294,8 +294,16 @@ def ver_reservas (request):
 
 def orden_trabajo (request):
     context = obtener_usuario(request)
+    
+    detalles = DetalleSer.objects.all()
+    context['detalles'] = detalles
+    
     reservas = Reservas.objects.filter(confirmacion='1')
     context['reservas'] = reservas
+    
+    servicios = TipoServicio.objects.all()
+    context['servicios'] = servicios
+    
     return render (request, 'mantenedor/orden_trabajo.html', context)
 
 def orden_pedido (request):

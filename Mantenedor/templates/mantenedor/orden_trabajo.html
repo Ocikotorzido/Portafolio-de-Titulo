@@ -27,9 +27,24 @@
         </div>
       </div>
       <section>
-        <h2>Reservas confirmadas:</h2>
+        <h2 class="text-3xl font-bold">Reservas confirmadas:</h2>
         {% for reserva in reservas %}
-          <label for="">Reserva</label>
+        <article class="border-solid border-4 border-black w-max">
+          <label for="">Reserva {{ reserva.id_reserva }}</label>
+          <h3>Por hacer:</h3>
+          <ul>
+          {% for detalle in detalles %}
+            {% if detalle.reservas_id_reserva.id_reserva == reserva.id_reserva %}
+              {% for servicio in servicios %}
+                {% if detalle.tipo_servicio_id_servicio.id_servicio == servicio.id_servicio %}
+                <li>• {{ servicio.nombre }}</li>
+                {% endif %}
+                {% endfor %}
+            {% endif %}
+          {% endfor %}
+          </ul>
+          <p></p>
+        </article>
         {% endfor %}
       </section>
     </div>
