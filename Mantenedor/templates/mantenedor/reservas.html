@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>MCS</title>
+  <title>Nueva reserva</title>
   <meta name="author" content="Team_digital">
   <meta name="description" content="Reservas">
   <meta name="keywords" content="mcs">
@@ -73,18 +73,46 @@
         <hr style="border-top: solid lightgray 2px;">
 
         <h1 class="flex justify-center">Solicitar servicios:</h1>
-        <article class="flex flex-wrap flex-col">
+        <article class="flex flex-col">
           {% for servicio in servicios %}
             <div class="p-1">
-              <input type="checkbox" id="servicio_{{ forloop.counter }}" name="servicio_{{ forloop.counter }}" value="{{ servicio.nombre }}">
-              <label class="font-thin text-xl" for="servicio_{{ forloop.counter }}">{{ servicio.nombre }}</label><br>
+              <input type="checkbox" id="servicio_{{ forloop.counter }}" name="servicio_{{ forloop.counter }}" value="{{ servicio.nombre }}" precio="{{ servicio.monto }}">
+              <label class="font-thin text-xl" for="servicio_{{ forloop.counter }}">{{ servicio.nombre }}  (${{ servicio.monto }})</label><br>
             </div>
           {% endfor %}
         </article>
       	<br>
-      	<input type="submit" value="Enviar">
+        <label>Presupuesto inicial: $<span id='presupuesto'>0</span></label>
+      	<input type="submit" value="¡Solicitar una hora!">
+        <p>*De no haber servicios seleccionados, se asume una revisión general.</p>
       </form>
     </section>
+    <script>
+      agregar_listeners()
+      function agregar_listeners(){
+        let inputs = document.getElementsByTagName('input')
+        for (let input of inputs){
+          if (input.type == 'checkbox'){
+            input.addEventListener("click", function() {
+              presupuesto()
+            });
+          }
+        }
+      }
+      function presupuesto(){
+        let total = 0
+        let inputs = document.getElementsByTagName('input')
+        for (let input of inputs){
+          if (input.type == 'checkbox'){
+            if (input.checked){
+              total += input.getAttribute('precio') - 0
+            }
+          }
+        }
+        document.getElementById('presupuesto').innerText = total
+        return total
+      }
+    </script>
     {% if method == 'POST' %}
       <script>
         alert('¡Le responderemos a su correo a la brevedad!')
