@@ -18,6 +18,7 @@ urlpatterns = [
     path('orden_trabajo', views.orden_trabajo, name='orden_trabajo'),
     path('orden_pedido', views.orden_pedido, name='orden_pedido'),
     path('exportar', views.exportar, name='exportar'),
+    path('pago', views.pago, name='pago'),
 
     path('empleado',views.empleado, name='empleado'),
     path('agregar_empleado', views.agregar_empleado, name='agregar_empleado'),

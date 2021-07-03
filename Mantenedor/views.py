@@ -292,10 +292,11 @@ def ver_reservas (request):
     return render (request, 'mantenedor/ver_reservas.html', context)
 
 
+def pago(request):
+    return render (request, 'mantenedor/pago.html')
+
 def orden_trabajo (request):
     context = dict()
-
-
     
     ot = Ot.objects.all()
     context['ot'] = ot
@@ -474,6 +475,18 @@ def faq(request):
 def empleado (request):
     cargos = Cargo.objects.all()
     context = {'cargos': cargos }
+    
+    nivel = None
+    if request.user.is_authenticated:
+        try:
+            nivel = Perfil.objects.filter(id_auth_user = request.user.id)[0].nivel
+        except IndexError:
+            logout(request)
+            nivel = 'ERROR'
+            
+    context={'perfil':{'nivel':nivel},
+             'cargos': cargos }
+    
     return render(request,'mantenedor/registro_empleado.html',context)
 
 def exportar(request):
@@ -484,6 +497,13 @@ def exportar(request):
     return render(request,'mantenedor/exportar.html',context)
 
 def agregar_empleado(request):
+    nivel = None
+    if request.user.is_authenticated:
+        try:
+            nivel = Perfil.objects.filter(id_auth_user = request.user.id)[0].nivel
+        except IndexError:
+            logout(request)
+            nivel = 'ERROR'
     if request.method == 'POST':
         mi_cargo = request.POST['cargo']
         mi_rut = request.POST['rut']
@@ -519,7 +539,8 @@ def agregar_empleado(request):
                                 mi_contacto,
                                 mi_cargo)
         empleado.save()
-        return render(request, 'mantenedor/registro_empleado.html', {'mensaje':'Empleado_registrado'})
+        return render(request, 'mantenedor/registro_empleado.html', {'mensaje':'Empleado_registrado',
+                                                                     'perfil':{'nivel':nivel}})
 
 def generar_informe(request, informe_de, parametros, tipo):
     """Generar informes sobre algun/a persona/objeto.
