@@ -11,6 +11,7 @@
   <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/tablas.css' %}">
+  <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 </head>
 
 <body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
@@ -40,7 +41,7 @@
                 <th>N° Pedido</th>
                 <th>Fecha pedido</th>
                 <th>Fecha llegada</th>
-                <th>Produtos</th>
+                <th>Productos</th>
                 <th>Proveedores</th>
                 <th>Acción</th>
               </tr>
@@ -55,7 +56,7 @@
                 {# <td>• Neumaticos aro 16<br>• Aceite de motor</td> #}
                 {# <td>• Franco Lopez</td> #}
                 {# <td class="text-red-600">Enviado</td> #}
-              {# </tr> #}
+                {# </tr> #}
 
               {% for pedido in pedidos %}
               <tr id='fp_{{ pedido.id_pedido }}'>
@@ -82,34 +83,16 @@
                   {% endif %}
                   {% endfor %}
                 </td>
-                <td class="text-red-600 font-bold"><i onclick="eliminar({{ pedido.id_pedido }})" title="Eliminar" class="far fa-trash-alt"></i></td>
+                <td class="text-red-600 font-bold">
+                  <i onclick="modalEliminar({{ pedido.id_pedido }})" 
+                    title="Eliminar"
+                    class="far fa-trash-alt"
+                    ></i>
+                  </td>
               </tr>
               {% endfor %}
             </tbody>
           </table>
-          <!-- <form action="" method="POST" enctype="multipart/form-data" class="flex flex-col">
-            {% csrf_token %}
-            <label for="auto">Vehículo</label>
-            <select id="auto" name="auto">
-              {% for auto in autos %}
-                <option value="{{ auto.id_informe }}">
-                  {{ auto.patente }}, {{ auto.marca }}-{{ auto.modelo }}-{{ auto.year }}
-                </option>
-              {% endfor %}
-            </select>
-            <label >Producto: </label>
-            <input type="text" id="producto" name="producto">
-            <label >Proveedor: </label>
-            <select id="proveedor" name="proveedor"> 
-              {% for proveedor in proveedores %}
-                  <option value="{{ proveedor.id_proveedor }}">{{ proveedor.nombre }}, {{ proveedor.rubro }}</option>
-              {% endfor %}
-            </select>
-            <label >Cantidad: </label>
-            <input type="text" id="cantidad" name="cantidad">
-            <br>
-            <input type="submit" value="Enviar" >
-          </form> -->
         </section>
       </div>
     </div>
@@ -117,16 +100,42 @@
 
   {# Modal para ingresar nueva órden #}
   <div
-    class="min-w-screen h-screen animated fadeIn faster fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover"
+    class="min-w-screen h-screen animated fadeIn faster fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover overflow-scroll"
     style="display: none;" id="modal-ingreso-pedido">
-    <div class="absolute bg-black opacity-80 inset-0 z-0"></div>
+    <div class="absolute bg-black opacity-80 inset-0 z-0" style="height: 160vh;"></div>
     <div class="relative m-5 md:m-36 rounded-xl bg-white">
       <!--content-->
       <div class="">
-        <!--body-->
+        <!-- título -->
         <div class="text-center p-5 flex-auto justify-center">
           <i class="fas fa-clipboard-list fa-2x"></i>
           <h2 class="text-xl font-bold py-4 ">Agregar nueva órden de pedido</h2>
+        </div>
+        <!-- Formulario -->
+        <div>
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="auto">Vehículo</label>
+            <select id="auto" name="auto">
+              {% for auto in autos %}
+              <option value="{{ auto.id_informe }}">
+                {{ auto.patente }}, {{ auto.marca }}-{{ auto.modelo }}-{{ auto.year }}
+              </option>
+              {% endfor %}
+            </select>
+            <label>Producto: </label>
+            <input type="text" id="producto" name="producto">
+            <label>Proveedor: </label>
+            <select id="proveedor" name="proveedor">
+              {% for proveedor in proveedores %}
+              <option value="{{ proveedor.id_proveedor }}">{{ proveedor.nombre }}, {{ proveedor.rubro }}</option>
+              {% endfor %}
+            </select>
+            <label>Cantidad: </label>
+            <input type="text" id="cantidad" name="cantidad">
+            <br>
+            <input type="submit" value="Enviar">
+          </form>
         </div>
         <!--botones finales-->
         <div class="p-3  mt-2 text-center space-x-4 md:block">
@@ -143,12 +152,54 @@
   </div>
   {# Fin Modal de ingreso de órden #}
 
+  {# Modal Eliminar #}
+  <div
+    class="min-w-screen h-screen animated fadeIn faster fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover"
+    style="display: none;" id="modal-eliminar">
+    <div class="absolute bg-black opacity-80 inset-0 z-0"></div>
+    <div class="w-full  max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
+      <!--content-->
+      <div class="">
+        <!--body-->
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 flex items-center text-red-500 mx-auto"
+          viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd"
+            d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+            clip-rule="evenodd" />
+        </svg>
+        <h2 class="text-center text-xl font-bold py-4 ">¿Borrar pedido <span id="span_pedido"></span> ?</h3>
+          <p class="text-sm text-gray-500 px-8">Se borrará de manera definitiva el pedido.</p>
+      </div>
+      <!--footer-->
+      <div class="p-3  mt-2 text-center space-x-4 md:block">
+        <button
+          class="mb-2 md:mb-0 bg-white px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-full hover:shadow-lg hover:bg-gray-100"
+          onclick="document.getElementById('modal-eliminar').style.display = 'none'">
+          Cancelar
+        </button>
+        <button
+          id="btnBorrar" class="mb-2 md:mb-0 bg-red-500 border border-red-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-red-600"
+          >
+          Borrar
+        </button>
+      </div>
+    </div>
+  </div>
+  </div>
+  {# Fin Modal eliminiar #}
+
   <script>
-    function eliminar(id_pedido){
-      document.getElementById(`fp_${id_pedido}`).style.display = 'none'
-      alert(`Eliminando pedido ${id_pedido}`)
+    function modalEliminar(id_pedido){
+      document.getElementById('modal-eliminar').style.display = 'block'
+      document.getElementById('span_pedido').innerText = id_pedido
+      document.getElementById('btnBorrar').setAttribute('onclick', `eliminar(${id_pedido})`)
     }
-    function btnAgregar(){
+    function eliminar(id_pedido) {
+      document.getElementById('modal-eliminar').style.display = 'none'
+      document.getElementById(`fp_${id_pedido}`).style.display = 'none'
+      //alert(`Eliminando pedido ${id_pedido}`)
+    }
+    function btnAgregar() {
       toggleModal()
       alert('Órden de pedido agregada!')
     }
