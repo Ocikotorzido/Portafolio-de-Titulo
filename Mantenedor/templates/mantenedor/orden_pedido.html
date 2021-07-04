@@ -17,42 +17,94 @@
       <li class="flex items-center"><a href="index">Volver</a></li>
     </ul>
   </nav>
-  <div class="flex flex-col md:flex-row">
-    <div class="bg-gray-800 shadow-xl h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48">
-      <div
-        class=" md:w-48  md:left-0 md:top-0 content-center md:content-start text-left justify-between ">
+  <div class="flex justify-center">
+    <div class="flex justify-center w-11/12">
+      <div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
+        <div class="bg-gray-800 pt-3">
+          <div class="bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+            <h1 class="font-bold pl-2">Orden de Pedido</h1>
+          </div>
+        </div>
+        <section class="p-3">
+          <h2 class="font-bold text-center text-xl">Registros de los pedidos</h2>
+          <button type="button" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-3">
+            Nuevo pedido
+          </button>
+          <table>
+            <thead>
+              <tr>
+                <th>N° Pedido</th>
+                <th>Fecha pedido</th>
+                <th>Fecha llegada</th>
+                <th>Produtos</th>
+                <th>Proveedores</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>hoy</td>
+                <td>mañana</td>
+                <td>• asdad<br>•asdasd</td>
+                <td>Franco Lopez</td>
+                <td class="text-red-600">Enviado</td>
+              </tr>
+              {% for pedido in pedidos %}
+              <tr>
+                <td>{{ pedido.id_pedido }}</td>
+                <td>{{ pedido.fecha_pedido }}</td>
+                <td>{{ pedido.fecha_entrega }}</td>
+                <td>
+                  {% for detalle in detalles %}
+                    {% if detalle.op_id_pedido.id_pedido == pedido.id_pedido %}
+                      {% for producto in productos %}
+                        {% if producto.id_producto == detalle.producto_id_producto.id_producto %}
+                        <ul>
+                          <li>{{ producto.nombre }}</li>
+                        </ul>
+                        {% endif %}
+                      {% endfor %}
+                    {% endif %}
+                  {% endfor %}
+                </td>
+                <td>
+                  {% for detalle in detalles %}
+                    {% if detalle.op_id_pedido.id_pedido == pedido.id_pedido %}
+                      {{ detalle.producto_id_producto.proveedor_id_proveedor.nombre }}
+                    {% endif %}
+                  {% endfor %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <!-- <form action="" method="POST" enctype="multipart/form-data" class="flex flex-col">
+            {% csrf_token %}
+            <label for="auto">Vehículo</label>
+            <select id="auto" name="auto">
+              {% for auto in autos %}
+                <option value="{{ auto.id_informe }}">
+                  {{ auto.patente }}, {{ auto.marca }}-{{ auto.modelo }}-{{ auto.year }}
+                </option>
+              {% endfor %}
+            </select>
+            <label >Producto: </label>
+            <input type="text" id="producto" name="producto">
+            <label >Proveedor: </label>
+            <select id="proveedor" name="proveedor"> 
+              {% for proveedor in proveedores %}
+                  <option value="{{ proveedor.id_proveedor }}">{{ proveedor.nombre }}, {{ proveedor.rubro }}</option>
+              {% endfor %}
+            </select>
+            <label >Cantidad: </label>
+            <input type="text" id="cantidad" name="cantidad">
+            <br>
+            <input type="submit" value="Enviar" >
+          </form> -->
+        </section>
       </div>
     </div>
-    <div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
-      <div class="bg-gray-800 pt-3">
-        <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
-          <h3 class="font-bold pl-2">Orden de Pedido</h3>
-        </div>
-      </div>
-      <section class="formulario">
-        <form action="" method="POST" enctype="multipart/form-data" class="flex flex-col">
-          {% csrf_token %}
-          <label for="auto">Vehículo</label>
-      	  <select id="auto" name="auto">
-            {% for auto in autos %}
-              <option value="{{ auto.id_informe }}">
-                {{ auto.patente }}, {{ auto.marca }}-{{ auto.modelo }}-{{ auto.year }}
-              </option>
-            {% endfor %}
-          </select>
-          <label >Producto: </label>
-          <input type="text" id="producto" name="producto">
-          <label >Proveedor: </label>
-          <select id="proveedor" name="proveedor"> 
-            {% for proveedor in proveedores %}
-                <option value="{{ proveedor.id_proveedor }}">{{ proveedor.nombre }}, {{ proveedor.rubro }}</option>
-            {% endfor %}
-          </select>
-          <label >Cantidad: </label>
-          <input type="text" id="cantidad" name="cantidad">
-          <br>
-          <input type="submit" value="Enviar" >
-        </form>
-      </section>
+  </div>
 </body>
 </html>
