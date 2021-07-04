@@ -315,9 +315,17 @@ def orden_trabajo (request):
 
 def orden_pedido (request):
     proveedores = Proveedor.objects.all()
+    pedidos = Op.objects.all()
+    detalles = DetalleOp.objects.all()
+    productos = Producto.objects.all()
     autos = InfoAuto.objects.all().order_by('-id_informe')
-    context = {'proveedores':proveedores,
-               'autos': autos }
+    
+    context = {'proveedores': proveedores,
+               'pedidos': pedidos,
+               'detalles': detalles,
+               'productos': productos,
+               'autos': autos,
+               }
     if request.method == 'POST':
          #= request.POST['']
         auto = request.POST['auto']
