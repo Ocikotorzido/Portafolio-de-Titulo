@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Pago</title>
+  <meta name="author" content="name">
+  <meta name="description" content="description here">
+  <meta name="keywords" content="keywords,here">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+
+</head>
+
+<body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
+  <nav class="bg-gray-800 z-0">
+    <ul class="flex flex-col justify-left md:flex-row md:justify-evenly text-white">
+      <li><a href="index"><img src="{% static 'img/logo2.png' %}" alt="" width="100"></a></li>
+      <li class="flex items-center"><a href="index">Volver</a></li>
+    </ul>
+  </nav>
+  
+  <div class="flex flex-col md:flex-row">
+    <div class="bg-gray-800 shadow-xl h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48">
+      <div
+        class=" md:w-48  md:left-0 md:top-0 content-center md:content-start text-left justify-between ">
+      </div>
+    </div>
+    <div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
+      <div class="bg-gray-800 pt-3">
+        <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+          <h3 class="font-bold pl-2">Pagos (Boleta/Factura)</h3>
+        </div>
+      </div>
+      <section class="flex flex-col">
+        <h2>Registro de pagos:</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>N° Pago</th>
+              <th>N° Órden</th>
+              <th>Fecha Emisión</th>
+              <th>Tipo de recibo</th>
+              <th>Monto</th>
+            </tr>
+          </thead>
+          {% for reserva in reservas %}
+          <tr>
+            <td>{{ reserva.id_reserva }}</td>
+            <td>{{ reserva.fecha_reserva }}</td>
+            <td>{{ reserva.cliente_id_cliente.nombre }} {{ reserva.cliente_id_cliente.apellido }}</td>
+            <td>{{ reserva.marca }}<br>{{ reserva.modelo }}<br>{{ reserva.year }}</td>
+            <td>
+                <select id="m_{{ reserva.id_reserva }}"class="p-2" id="mecanico" name="mecanico">
+                  {% for mecanico in mecanicos %}
+                    <option value="{{ mecanico.id_empleado }}">{{ mecanico.nombre }}</option>
+                  {% endfor %}
+                </select>
+            </td>
+            {% if reserva.confirmacion == '1' %}
+            <td id='confirmacion_{{reserva.id_reserva}}' onclick="modificar( {{ reserva.id_reserva }}, get_mecanico({{reserva.id_reserva}}), 0 )">
+              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                Confirmado
+              </button>
+            </th>
+            {% else %}
+            <td id='confirmacion_{{reserva.id_reserva}}' onclick="modificar( {{ reserva.id_reserva }}, get_mecanico({{reserva.id_reserva}}), 1 )">
+              <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
+                Sin Confirmar
+              </button>
+            </th>
+            {% endif %}
+          </tr>
+          {% endfor %}
+         </table>
+      </section>
+    </div>
+  </div>
+
+  <div class="min-w-screen h-screen animated fadeIn faster fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover" style="display: none;" id="modal-id">
+    <div class="absolute bg-black opacity-80 inset-0 z-0"></div>
+   <div class="w-full  max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
+     <!--content-->
+     <div class="">
+       <!--body-->
+       <div class="text-center p-5 flex-auto justify-center">
+               <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 -m-1 flex items-center text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+               </svg>
+               <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 flex items-center text-red-500 mx-auto" viewBox="0 0 20 20" fill="currentColor">
+ <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+</svg>
+                       <h2 class="text-xl font-bold py-4 ">Are you sure?</h3>
+                       <p class="text-sm text-gray-500 px-8">Do you really want to delete your account?
+               This process cannot be undone</p>    
+       </div>
+       <!--footer-->
+       <div class="p-3  mt-2 text-center space-x-4 md:block">
+           <button class="mb-2 md:mb-0 bg-white px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-full hover:shadow-lg hover:bg-gray-100">
+               Cancel
+           </button>
+           <button class="mb-2 md:mb-0 bg-red-500 border border-red-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-red-600">Delete</button>
+       </div>
+     </div>
+   </div>
+  </div>
+
+</body>
+</html>

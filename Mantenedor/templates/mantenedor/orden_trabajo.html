@@ -28,33 +28,35 @@
       </div>
       <section>
         <h2 class="text-center text-3xl font-bold">Reservas confirmadas:</h2>
-        {% for reserva in reservas %}
-        <article class="border-solid border-4 border-black w-max text-center p-2 m-3">
-          <label for="">Reserva {{ reserva.id_reserva }}</label>
-          {% for trabajo in ot %}
-            {% if trabajo.reservas_id_reserva.id_reserva == reserva.id_reserva %}
-              <h3><strong>Asignada a:</strong> {{ trabajo.empleado_id_empleado.nombre }} {{ trabajo.empleado_id_empleado.apellido }}</h3>
-              <p class="text-red-600"><strong>Plazo final:</strong> {{ trabajo.fecha_termino }}</p>
-            {% endif %}
+        <div class="flex flex-wrap">
+          {% for reserva in reservas %}
+          <article class="border-solid border-4 border-black w-max text-center p-2 m-3">
+            <label for="">Reserva {{ reserva.id_reserva }}</label>
+            {% for trabajo in ot %}
+              {% if trabajo.reservas_id_reserva.id_reserva == reserva.id_reserva %}
+                <h3><strong>Asignada a:</strong> {{ trabajo.empleado_id_empleado.nombre }} {{ trabajo.empleado_id_empleado.apellido }}</h3>
+                <p class="text-red-600"><strong>Plazo final:</strong> {{ trabajo.fecha_termino }}</p>
+              {% endif %}
+            {% endfor %}
+            <h3><strong>Datos del vehículo:</strong></h3>
+            <p>
+              • {{ reserva.marca }}-{{ reserva.modelo }}-{{ reserva.year }}
+            </p>
+            <h3><strong>Por hacer:</strong></h3>
+            <ul>
+            {% for detalle in detalles %}
+              {% if detalle.reservas_id_reserva.id_reserva == reserva.id_reserva %}
+                {% for servicio in servicios %}
+                  {% if detalle.tipo_servicio_id_servicio.id_servicio == servicio.id_servicio %}
+                  <li>• {{ servicio.nombre }}</li>
+                  {% endif %}
+                  {% endfor %}
+              {% endif %}
+            {% endfor %}
+            </ul>
+          </article>
           {% endfor %}
-          <h3><strong>Datos del vehículo:</strong></h3>
-          <p>
-            • {{ reserva.marca }}-{{ reserva.modelo }}-{{ reserva.year }}
-          </p>
-          <h3><strong>Por hacer:</strong></h3>
-          <ul>
-          {% for detalle in detalles %}
-            {% if detalle.reservas_id_reserva.id_reserva == reserva.id_reserva %}
-              {% for servicio in servicios %}
-                {% if detalle.tipo_servicio_id_servicio.id_servicio == servicio.id_servicio %}
-                <li>• {{ servicio.nombre }}</li>
-                {% endif %}
-                {% endfor %}
-            {% endif %}
-          {% endfor %}
-          </ul>
-        </article>
-        {% endfor %}
+        </div>
       </section>
     </div>
   </div>
