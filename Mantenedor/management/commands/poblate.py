@@ -44,6 +44,69 @@ servicios_disponibles = {
           },
     }
 
+
+
+proveedores = {
+        'proveedor_1': {
+          'rut':111111111,
+          'nombre':'Goodyear',
+          'telefono':111111111,
+          'email':'Goodyear@goodyear.cl' ,
+          'rubro': 'Neumaticos' 
+          },
+        'proveedor_2': {
+          'rut':222222222,
+          'nombre':'LiquiMoly',
+          'telefono':222222222,
+          'email': 'liqMoly@liqmoli.cl' ,
+          'rubro': 'Aceite de motor'
+          },
+        'proveedor_3': {
+          'rut':333333333,
+          'nombre':'Itai',
+          'telefono':333333333,
+          'email': 'Itai@itai.cl' ,
+          'rubro': 'Pastillas de frenos'
+          },
+        'proveedor_4': {
+          'rut':444444444,
+          'nombre':'Emasa',
+          'telefono':444444444,
+          'email': 'Emasa@emasa.cl',
+          'rubro': 'Correas'
+          },
+        'proveedor_5': {
+          'rut':555555555,
+          'nombre':'Quiminet',
+          'telefono':555555555,
+          'email': 'Quiminet@quiminet.cl' ,
+          'rubro': 'Bujias'
+          },
+        'proveedor_6': {
+          'rut':666666666,
+          'nombre':'Gzshock',
+          'telefono':666666666,
+          'email': 'Gzshock@gzshock.cl' ,
+          'rubro': 'Amortiguadores'
+          },
+        'proveedor_7': {
+          'rut':777777777,
+          'nombre':'Emegchile',
+          'telefono':777777777,
+          'email': 'Emegchile@emegchile.cl',
+          'rubro': 'Baterias'
+          },
+        'proveedor_8': {
+          'rut':888888888,
+          'nombre':'Autotec',
+          'telefono':888888888,
+          'email': 'Autotec@autotec.cl',
+          'rubro': 'Filtros'
+          },
+}
+
+
+
 class Command(BaseCommand):
     """Comandos personalizados:
     
@@ -67,6 +130,28 @@ class Command(BaseCommand):
               servicios_disponibles[ser].get('tiempo')
               )
         servicio.save()
+
+      self.stdout.write(self.style.SUCCESS('Iniciando proceso de llenado de tablas... '))
+      self.stdout.write(self.style.WARNING('Tabla proveedor'))
+      for id, pro in enumerate(proveedores):
+        self.stdout.write(self.style.WARNING((id+1, 
+            proveedores[pro].get('rut'),
+            proveedores[pro].get('nombre'),
+            proveedores[pro].get('telefono'),
+            proveedores[pro].get('email'),
+            proveedores[pro].get('rubro')  
+            )))
+        proveedor = Proveedor(id+1, 
+            proveedores[pro].get('rut'),
+            proveedores[pro].get('nombre'),
+            proveedores[pro].get('telefono'),
+            proveedores[pro].get('email'),
+            proveedores[pro].get('rubro') 
+              )
+        proveedor.save() 
+
       self.stdout.write(self.style.SUCCESS('Servicios escritos en la base de datos correctamente!.'))
     
+
+     
       
