@@ -42,7 +42,7 @@
                 <th>Fecha llegada</th>
                 <th>Produtos</th>
                 <th>Proveedores</th>
-                <th>Estado</th>
+                <th>Acción</th>
               </tr>
             </thead>
             <tbody>
@@ -58,7 +58,7 @@
               {# </tr> #}
 
               {% for pedido in pedidos %}
-              <tr>
+              <tr id='fp_{{ pedido.id_pedido }}'>
                 <td>{{ pedido.id_pedido }}</td>
                 <td>{{ pedido.fecha_pedido }}</td>
                 <td>{{ pedido.fecha_entrega }}</td>
@@ -82,7 +82,7 @@
                   {% endif %}
                   {% endfor %}
                 </td>
-                <td class="text-red-600 font-bold">TODO: state</td>
+                <td class="text-red-600 font-bold"><i onclick="eliminar({{ pedido.id_pedido }})" title="Eliminar" class="far fa-trash-alt"></i></td>
               </tr>
               {% endfor %}
             </tbody>
@@ -120,7 +120,7 @@
     class="min-w-screen h-screen animated fadeIn faster fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover"
     style="display: none;" id="modal-ingreso-pedido">
     <div class="absolute bg-black opacity-80 inset-0 z-0"></div>
-    <div class="relative m-5 rounded-xl bg-white">
+    <div class="relative m-5 md:m-36 rounded-xl bg-white">
       <!--content-->
       <div class="">
         <!--body-->
@@ -128,14 +128,15 @@
           <i class="fas fa-clipboard-list fa-2x"></i>
           <h2 class="text-xl font-bold py-4 ">Agregar nueva órden de pedido</h2>
         </div>
-        <!--footer-->
+        <!--botones finales-->
         <div class="p-3  mt-2 text-center space-x-4 md:block">
           <button onclick="toggleModal()"
             class="mb-2 md:mb-0 bg-white px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-full hover:shadow-lg hover:bg-gray-100">
-            Cancel
+            Cancelar
           </button>
-          <button onclick="toggleModal()"
-            class="mb-2 md:mb-0 bg-blue-900 border border-blue-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-blue-600">Delete</button>
+          <button onclick="btnAgregar()"
+            class="mb-2 md:mb-0 bg-blue-900 border border-blue-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-blue-600">
+            Agregar</button>
         </div>
       </div>
     </div>
@@ -143,6 +144,14 @@
   {# Fin Modal de ingreso de órden #}
 
   <script>
+    function eliminar(id_pedido){
+      document.getElementById(`fp_${id_pedido}`).style.display = 'none'
+      alert(`Eliminando pedido ${id_pedido}`)
+    }
+    function btnAgregar(){
+      toggleModal()
+      alert('Órden de pedido agregada!')
+    }
     function toggleModal() {
       if (document.getElementById('modal-ingreso-pedido').style.display == 'none') {
         document.getElementById('modal-ingreso-pedido').style.display = 'block'
