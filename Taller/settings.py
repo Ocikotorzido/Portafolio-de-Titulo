@@ -18,12 +18,15 @@ from os.path import join
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Archivo de configuración con datos sensibles.
+config = configparser.ConfigParser()
+config.read('settings.ini')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ze4rmqv9u+4znv*5=z)rdp^8ea5et#e+l2i-q2lqsnja15=m+l'
+SECRET_KEY = config.get("Settings","SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -79,10 +82,10 @@ WSGI_APPLICATION = 'Taller.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# # CITT SB
-DATABASES = {'default': {'ENGINE': 'django.db.backends.oracle','NAME': 'www.cittsb.cl:1521/xe','USER': 'bot1','PASSWORD': 'bot',},}
+# CITT SB
+DATABASES = {'default': {'ENGINE': 'django.db.backends.oracle','NAME': config.get("Settings","NAME_DB"),'USER': config.get("Settings","USER_DB"),'PASSWORD': config.get("Settings","PASSWORD_DB"),},}
 
-# Emergency database (No-Oracle but SQLite).
+# Emergency database (Not Oracle but SQLite).
 # DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3','NAME': BASE_DIR / 'db.sqlite3',}}
 
 # Fabian's personal laptop connected to HR.
@@ -133,8 +136,6 @@ STATIC_ROOT = join(BASE_DIR, 'static', 'static_root')
 STATICFILES_DIRS = [join(BASE_DIR,'static')]
 
 # Email
-config = configparser.ConfigParser()
-config.read('settings.ini')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = False
