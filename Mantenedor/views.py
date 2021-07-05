@@ -394,7 +394,23 @@ def ver_proveedores (request):
     proveedores = Proveedor.objects.all()
     context = {'proveedores': proveedores}
 
+    
+
     return render (request, 'mantenedor/ver_proveedores.html', context)
+
+
+
+
+def productos(request):
+
+    productos = Producto.objects.all()
+    proveedores = Proveedor.objects.all()
+    
+    context = {'productos': productos,
+               'proveedores':proveedores
+              }
+
+    return render(request, 'mantenedor/productos.html',context)
 
 
 

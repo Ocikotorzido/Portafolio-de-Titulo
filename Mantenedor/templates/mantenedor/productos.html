@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Ver Productos</title>
+  <meta name="author" content="name">
+  <meta name="description" content="description here">
+  <meta name="keywords" content="keywords,here">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+  <!--Replace with your tailwind.css once created-->
+  <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+  <!--Totally optional :) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"
+    integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
+  <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}"> -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/tablas.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos_cliente.css' %}">
+
+</head>
+
+
+<body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
+  <!--Nav-->
+  <nav class="bg-gray-800 z-0">
+    <ul class="flex flex-col justify-left md:flex-row md:justify-evenly text-white">
+      <li><a href="index"><img src="{% static 'img/logo2.png' %}" alt="" width="100"></a></li>
+      <li class="flex items-center"><a href="index">Volver</a></li>
+    </ul>
+  </nav>
+  
+
+
+    <div class="flex flex-col md:flex-row px-14">
+
+    <div class=" md:h-screen ">
+
+      
+
+
+    </div>
+
+    <div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
+
+      <div class="bg-gray-800 pt-3">
+        <div class="bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+          <h3 class="font-bold pl-2">Productos</h3>
+        </div>
+      </div>
+      <section class="p-3">
+        <h2 class="font-bold text-center text-xl">Registro de Productos</h2>
+        <button type="button" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-3"
+          onclick="toggleModal()">
+          Nuevo pedido
+        </button>
+        <div class="container">
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Codigo</th>
+              <th>Valor</th>
+              <th>Descripcion</th>
+              <th>Proveedor</th>
+            </tr>
+          </thead>
+          {% for producto in productos %}
+          <tr>
+            <td>{{producto.nombre}}</td>
+            <td>{{producto.codigo}}</td>
+            <td>{{producto.valor}}</td>
+            <td>{{producto.descripcion}}</td>
+            <td></td>
+        
+          </tr>
+    
+    
+    
+          {% endfor %}
+        </table>  
+        </div>
+        </section>
+    </div>
+    {# Modal para ingresar nueva órden #}
+    <div
+        class="min-w-screen h-screen animated fadeIn faster fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover overflow-scroll"
+        style="display: none;" id="modal-ingreso-pedido">
+        <div class="absolute bg-black opacity-80 inset-0 z-0" style="height: 160vh;"></div>
+        <div class="relative m-5 md:m-36 rounded-xl bg-white">
+        <!--content-->
+        <div class="">
+            <!-- título -->
+            <div class="text-center p-5 flex-auto justify-center">
+            <i class="fas fa-clipboard-list fa-2x"></i>
+            <h2 class="text-xl font-bold py-4 ">Agregar Producto</h2>
+            </div>
+            <!-- Formulario -->
+            <div>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="cuadro">
+                    <div class="field">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" name="nombre">
+                    </div>
+                    <div class="field">    
+                        
+                        <label>Codigo: </label>
+                        <input type="number" id="codigo" name="codigo">
+                    </div>
+                    <div class="field">
+                        <label>Valor: </label>
+                        <input type="number" name="valor">
+                    </div>
+
+                    <div class="field">
+
+                        <label>Descripcion: </label>
+                        <input type="text" id="descripcion" name="descripcion">
+                    </div>
+
+                    <div class="field">
+                        <label>Proveedor: </label>
+                        <select id="proveedor" name="proveedor">
+                            {% for proveedor in proveedores %}
+                            <option value="{{ proveedor.id_proveedor }}">{{ proveedor.nombre }}, {{ proveedor.rubro }}</option>
+                            {% endfor %}
+                        </select><br>
+                    </div>    
+                        <br>
+                    <div class="contra">
+                        <div class="enviar">    
+                            <input type="submit" value="Enviar">
+                        </div>
+                    </div>
+                </div>
+            </form>
+            </div>
+            <!--botones finales-->
+            <div class="p-3  mt-2 text-center space-x-4 md:block">
+            <button onclick="toggleModal()"
+                class="mb-2 md:mb-0 bg-white px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-full hover:shadow-lg hover:bg-gray-100">
+                Cancelar
+            </button>
+            <button onclick="btnAgregar()"
+                class="mb-2 md:mb-0 bg-blue-900 border border-blue-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-blue-600">
+                Agregar</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    {# Fin Modal de ingreso de órden #}  
+
+    <script>
+        function toggleModal() {
+      if (document.getElementById('modal-ingreso-pedido').style.display == 'none') {
+        document.getElementById('modal-ingreso-pedido').style.display = 'block'
+      } else {
+        document.getElementById('modal-ingreso-pedido').style.display = 'none'
+      }
+    }
+    </script>
+</body>
+
+</html>

@@ -29,6 +29,8 @@ urlpatterns = [
     path('registro_vehiculo',views.registro_vehiculo, name='registro_vehiculo'),
     path('presupuesto',views.presupuesto, name='presupuesto'),
 
+    path('productos',views.productos, name='productos'),
+
     path('faq',views.faq, name='faq'),
 
     path('registro/', registro, name='registro'),

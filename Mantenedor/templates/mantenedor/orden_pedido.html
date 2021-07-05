@@ -83,10 +83,14 @@
                   {% endif %}
                   {% endfor %}
                 </td>
-                <td class="text-red-600 font-bold">
+                <td>
                   <i onclick="modalEliminar({{ pedido.id_pedido }})" 
                     title="Eliminar"
-                    class="far fa-trash-alt"
+                    class="far fa-trash-alt text-red-600"
+                    ></i> &nbsp;&nbsp;
+                    <i onclick="alert('Registrando pago...')"
+                      title="Pagar"
+                      class="fas fa-hand-holding-usd text-green-600"
                     ></i>
                   </td>
               </tr>
@@ -109,31 +113,37 @@
         <!-- título -->
         <div class="text-center p-5 flex-auto justify-center">
           <i class="fas fa-clipboard-list fa-2x"></i>
-          <h2 class="text-xl font-bold py-4 ">Agregar nueva órden de pedido</h2>
+          <h1 class="text-xl font-bold py-4 ">Agregar nueva órden de pedido</h1>
         </div>
         <!-- Formulario -->
         <div>
           <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <label for="auto">Vehículo</label>
+
+            <h3>Pedido N° {{ n_pedido }}, se inicia hoy, plazo llegada: 2 días.</h3><br>
+
+            <label for="auto">Vehículo</label><br>
             <select id="auto" name="auto">
               {% for auto in autos %}
               <option value="{{ auto.id_informe }}">
                 {{ auto.patente }}, {{ auto.marca }}-{{ auto.modelo }}-{{ auto.year }}
               </option>
               {% endfor %}
-            </select>
+            </select><br>
+
             <label>Producto: </label>
-            <input type="text" id="producto" name="producto">
+            <input type="text" id="producto" name="producto"><br>
+
             <label>Proveedor: </label>
             <select id="proveedor" name="proveedor">
               {% for proveedor in proveedores %}
               <option value="{{ proveedor.id_proveedor }}">{{ proveedor.nombre }}, {{ proveedor.rubro }}</option>
               {% endfor %}
-            </select>
+            </select><br>
+
             <label>Cantidad: </label>
-            <input type="text" id="cantidad" name="cantidad">
-            <br>
+            <input type="text" id="cantidad" name="cantidad"><br>
+
             <input type="submit" value="Enviar">
           </form>
         </div>
