@@ -319,12 +319,14 @@ def orden_pedido (request):
     detalles = DetalleOp.objects.all()
     productos = Producto.objects.all()
     autos = InfoAuto.objects.all().order_by('-id_informe')
+    n_pedido = Op.objects.last().id_pedido + 1
     
     context = {'proveedores': proveedores,
                'pedidos': pedidos,
                'detalles': detalles,
                'productos': productos,
                'autos': autos,
+               'n_pedido': n_pedido,
                }
     if request.method == 'POST':
          #= request.POST['']
