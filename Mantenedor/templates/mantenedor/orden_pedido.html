@@ -107,17 +107,17 @@
     class="min-w-screen h-screen animated fadeIn faster fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover overflow-scroll"
     style="display: none;" id="modal-ingreso-pedido">
     <div class="absolute bg-black opacity-80 inset-0 z-0" style="height: 160vh;"></div>
-    <div class="relative m-5 md:m-36 rounded-xl bg-white">
+    <div class="relative m-5 md:mx-36 md:my-12 rounded-xl bg-white">
       <!--content-->
       <div class="">
         <!-- título -->
-        <div class="text-center p-5 flex-auto justify-center">
-          <i class="fas fa-clipboard-list fa-2x"></i>
-          <h1 class="text-xl font-bold py-4 ">Agregar nueva órden de pedido</h1>
+        <div class="text-center pt-5 flex-auto justify-center">
+          <i class="fas fa-clipboard-list fa-3x"></i>
+          <h1 class="text-xl font-bold px-4 pt-2">Agregar nueva órden de pedido</h1>
         </div>
         <!-- Formulario -->
         <div>
-          <form method="POST" enctype="multipart/form-data">
+          <form method="POST" enctype="multipart/form-data" class="text-center">
             {% csrf_token %}
 
             <h3>Pedido N° {{ n_pedido }}, se inicia hoy, plazo llegada: 2 días.</h3><br>
@@ -131,20 +131,36 @@
               {% endfor %}
             </select><br>
 
-            <label>Producto: </label>
-            <input type="text" id="producto" name="producto"><br>
+            <div class="flex justify-around items-center border-solid border-2 border-gray-500 rounded-full">
+              <div>
+                <h3>Proveedor</h3>
+                <select id="selectProveedor" name="proveedor">
+                  {% for proveedor in proveedores %}
+                  <option value="{{ proveedor.id_proveedor }}">{{ proveedor.nombre }}, {{ proveedor.rubro }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div>
+                <h3>Producto</h3>
+                <select id="selectProducto" name="producto">
+                  {% for producto in productos %}
+                  <option value="{{ producto.id_producto }}">{{ producto.nombre }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="w-min">
+                <h3>Cantidad</h3>
+                <input id="inputCantidad" class="w-12 p-0 m-0" type="number" value="1">
+              </div>
+              <div>
+                <i onclick="document.getElementById('listadoProductos').innerHTML = ''" title="Descartar" class="text-red-600 fas fa-minus-circle"></i><br>
+                <i onclick="addToList()" title="Agregar" class="text-blue-900 fas fa-plus-circle"></i>
+              </div>
+            </div>
 
-            <label>Proveedor: </label>
-            <select id="proveedor" name="proveedor">
-              {% for proveedor in proveedores %}
-              <option value="{{ proveedor.id_proveedor }}">{{ proveedor.nombre }}, {{ proveedor.rubro }}</option>
-              {% endfor %}
-            </select><br>
+            <ul id="listadoProductos" class="list-disc"></ul>
 
-            <label>Cantidad: </label>
-            <input type="text" id="cantidad" name="cantidad"><br>
-
-            <input type="submit" value="Enviar">
+            <!-- <input type="submit" value="Enviar"> -->
           </form>
         </div>
         <!--botones finales-->
@@ -166,7 +182,7 @@
   <div
     class="min-w-screen h-screen animated fadeIn faster fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover"
     style="display: none;" id="modal-eliminar">
-    <div class="absolute bg-black opacity-80 inset-0 z-0"></div>
+    <div onclick="document.getElementById('modal-eliminar').style.display = 'none'" class="absolute bg-black opacity-80 inset-0 z-0"></div>
     <div class="w-full  max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
       <!--content-->
       <div class="">
@@ -199,6 +215,22 @@
   {# Fin Modal eliminiar #}
 
   <script>
+    function addToList(){
+      let proveedor, producto, cantidad, listadoProductos, li
+
+      proveedor = document.getElementById('selectProveedor')
+      proveedor = proveedor.options[proveedor.selectedIndex].text
+
+      producto = document.getElementById('selectProducto')
+      producto = producto.options[producto.selectedIndex].text
+
+      cantidad = document.getElementById('inputCantidad')
+      listadoProductos = document.getElementById('listadoProductos')
+      
+      li = `<li class="w-max">${proveedor} - ${producto} - Cantidad: ${cantidad.value}</li>`
+      listadoProductos.innerHTML += li
+    }
+
     function modalEliminar(id_pedido){
       document.getElementById('modal-eliminar').style.display = 'block'
       document.getElementById('span_pedido').innerText = id_pedido
