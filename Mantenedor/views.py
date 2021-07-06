@@ -328,12 +328,11 @@ def get_new_id_pedido(request):
     return HttpResponse(status=404)
 
 def agregar_pedido(request, id_auto):
-    id_pedido = Op.objects.last().id_pedido
+    id_pedido = Op.objects.last().id_pedido+1
     fecha_pedido = datetime.datetime.now()
     fecha_entrega = datetime.datetime.now() + datetime.timedelta(days=2)
-    print("HHHH")
-    op = Op(id_pedido, fecha_pedido, fecha_entrega, id_auto)
-    op.save()
+    nuevo_pedido = Op(id_pedido, fecha_pedido, fecha_entrega, id_auto)
+    nuevo_pedido.save()
     return HttpResponse(status=200)
 
 def orden_pedido (request):
