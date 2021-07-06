@@ -46,7 +46,7 @@
                 <th>Acción</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="cuerpoTabla">
 
               {# Datos Dummy #}
               {# <tr> #}
@@ -120,7 +120,7 @@
           <form method="POST" enctype="multipart/form-data" class="text-center">
             {% csrf_token %}
 
-            <h3>Pedido N° {{ n_pedido }}, se inicia hoy, plazo llegada: 2 días.</h3><br>
+            <h3>Pedido N° <span id="fetch_id_pedido">X</span>, se inicia hoy, plazo llegada: 2 días.</h3><br>
 
             <label for="auto">Vehículo</label><br>
             <select id="auto" name="auto">
@@ -153,7 +153,7 @@
                 <input id="inputCantidad" class="w-12 p-0 m-0" type="number" min="1" value="1">
               </div>
               <div>
-                <i onclick="document.getElementById('listadoProductos').innerHTML = ''" title="Descartar" class="text-red-600 fas fa-minus-circle"></i><br>
+                <i onclick="descartar()" title="Descartar" class="text-red-600 fas fa-minus-circle"></i><br>
                 <i onclick="addToList()" title="Agregar" class="text-blue-900 fas fa-plus-circle"></i>
               </div>
             </div>
@@ -215,6 +215,8 @@
   {# Fin Modal eliminiar #}
 
   <script>
+    let listaGlobal = []
+    let nueva_id_pedido
     function addToList(){
       let proveedor, producto, cantidad, listadoProductos, li
 
@@ -229,6 +231,12 @@
       
       li = `<li class="w-max">${proveedor} - ${producto} - Cantidad: ${cantidad.value}</li>`
       listadoProductos.innerHTML += li
+      listaGlobal.push([proveedor,producto,cantidad]) 
+    }
+
+    function descartar(){
+      document.getElementById('listadoProductos').innerHTML = ''
+      listaGlobal = []
     }
 
     function modalEliminar(id_pedido){
@@ -243,11 +251,37 @@
     }
     function btnAgregar() {
       toggleModal()
+      hijo = `<tr id="fp_${nueva_id_pedido}">
+        <td>${nueva_id_pedido}</td>
+        <td>Fecha_dummy_1</td>
+        <td>Fecha_dummy_1</td>
+        <td>
+          <ul>
+            <li>Dummy_producto_1</li>
+          </ul>
+        </td>
+        <td>
+          Dummy_proveedor_1
+        </td>
+        <td>
+          <i onclick="modalEliminar(1)" title="Eliminar" class="far fa-trash-alt text-red-600"></i> &nbsp;&nbsp;
+            <i onclick="alert('Registrando pago...')" title="Pagar" class="fas fa-hand-holding-usd text-green-600"></i>
+          </td>
+      </tr>`
+      document.getElementById('cuerpoTabla').innerHTML += hijo
       alert('Órden de pedido agregada!')
     }
     function toggleModal() {
       if (document.getElementById('modal-ingreso-pedido').style.display == 'none') {
-        document.getElementById('modal-ingreso-pedido').style.display = 'block'
+        listaGlobal = []
+        fetch('http://localhost:8000/Mantenedor/get_new_id_pedido/')
+          .then(response => response.text())
+          .then(data => {
+            nueva_id_pedido = data
+            document.getElementById('fetch_id_pedido').innerHTML = data
+            document.getElementById('modal-ingreso-pedido').style.display = 'block'
+          })
+          .catch((error) => alert('Algún error inesperado ha ocurrido'))
       } else {
         document.getElementById('modal-ingreso-pedido').style.display = 'none'
       }
