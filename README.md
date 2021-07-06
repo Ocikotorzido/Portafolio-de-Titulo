@@ -98,7 +98,7 @@ Por línea de comandos:
 **Inicio de sesión**
 
 ## Sobre el equipo de trabajo
-Nuestro equipo de trabajo se divide en dos áreas, desarrollo y diseño.
+Nuestro equipo de trabajo se divide en dos áreas, **desarrollo** y **diseño**.
 
 ### Sobre los desarrolladores
 Nuestro equipo de desarrollo está conformado por dos estudiantes de programación:
@@ -110,6 +110,9 @@ Nuestro equipo de desarrollo está conformado por dos estudiantes de programaci�
 Ambos logos del taller, junto al logo personalizado del citt fueron hechos por nuestro diseñador.
 
 - José Lorca [@JoseLorca](https://github.com/JoseLorca)
+
+### Sobre la comunicación
+Discord fue nuestro mejor aliado al momento de establecer la comunicación con el equipo.
 
 [![Grupo_en_Discord](./pantallazos/grupo_portafolio_discord.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
 
