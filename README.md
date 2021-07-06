@@ -100,8 +100,6 @@ Por línea de comandos:
 ## Sobre el equipo de trabajo
 Nuestro equipo de trabajo se divide en dos áreas, desarrollo y diseño.
 
-[![Grupo_en_Discord](./pantallazos/grupo_portafolio_discord.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
-
 ### Sobre los desarrolladores
 Nuestro equipo de desarrollo está conformado por dos estudiantes de programación:
 
@@ -112,6 +110,8 @@ Nuestro equipo de desarrollo está conformado por dos estudiantes de programaci�
 Ambos logos del taller, junto al logo personalizado del citt fueron hechos por nuestro diseñador.
 
 - José Lorca [@JoseLorca](https://github.com/JoseLorca)
+
+[![Grupo_en_Discord](./pantallazos/grupo_portafolio_discord.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
 
 ## Agradecimientos
 Agradecemos de corazón a todos los que hicieron esto posible, sin su ayuda, nos hubiera costado mucho más terminar este proyecto.
