@@ -248,6 +248,12 @@
     function eliminar(id_pedido) {
       document.getElementById('modal-eliminar').style.display = 'none'
       document.getElementById(`fp_${id_pedido}`).style.display = 'none'
+      fetch(`${window.location.origin}/Mantenedor/eliminar_pedido/${id_pedido}/`)
+        .then(response => response.text())
+        .then(data => {
+          console.log('Borrado del servidor!')
+        })
+        .catch((error) => alert('Algún error inesperado ha ocurrido al eliminar en el servidor...'))
       //alert(`Eliminando pedido ${id_pedido}`)
     }
     function btnAgregar() {
@@ -272,7 +278,7 @@
           ${proveedor}
         </td>
         <td>
-          <i onclick="modalEliminar(1)" title="Eliminar" class="far fa-trash-alt text-red-600"></i> &nbsp;&nbsp;
+          <i onclick="modalEliminar(${nueva_id_pedido})" title="Eliminar" class="far fa-trash-alt text-red-600"></i> &nbsp;&nbsp;
             <i onclick="alert('Registrando pago...')" title="Pagar" class="fas fa-hand-holding-usd text-green-600"></i>
           </td>
       </tr>`
