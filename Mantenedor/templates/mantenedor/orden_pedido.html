@@ -231,7 +231,7 @@
       
       li = `<li class="w-max">${proveedor} - ${producto} - Cantidad: ${cantidad.value}</li>`
       listadoProductos.innerHTML += li
-      listaGlobal.push([proveedor,producto,cantidad]) 
+      listaGlobal.push([proveedor,producto,cantidad.value]) 
     }
 
     function descartar(){
@@ -251,13 +251,17 @@
     }
     function btnAgregar() {
       toggleModal()
-      hijo = `<tr id="fp_${nueva_id_pedido}">
+      let productos = ''
+      for (filas of listaGlobal){
+        productos += `<li>${filas[1]}</li>`
+      }
+      let hijo = `<tr id="fp_${nueva_id_pedido}">
         <td>${nueva_id_pedido}</td>
         <td>Fecha_dummy_1</td>
         <td>Fecha_dummy_1</td>
         <td>
           <ul>
-            <li>Dummy_producto_1</li>
+            ${productos}
           </ul>
         </td>
         <td>
