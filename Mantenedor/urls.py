@@ -7,7 +7,7 @@ urlpatterns = [
     path('modificar_reserva/<int:id_reserva>/<int:id_mecanico>/<int:confirmacion>/', views.modificar_reserva),
     path('eliminar_pedido/<int:id_pedido>/', views.eliminar_pedido),
     path('get_new_id_pedido/',views.get_new_id_pedido),
-    path('agregar_pedido/',views.agregar_pedido),
+    path('agregar_pedido/<int:id_auto>/',views.agregar_pedido),
     
     # [host]/Mantenedor/...
     path('', views.to_index),

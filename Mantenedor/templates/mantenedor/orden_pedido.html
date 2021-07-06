@@ -122,16 +122,19 @@
 
             <h3>Pedido N° <span id="fetch_id_pedido">X</span>, se inicia hoy, plazo llegada: 2 días.</h3><br>
 
-            <label for="auto">Vehículo</label><br>
-            <select id="auto" name="auto">
-              {% for auto in autos %}
-              <option value="{{ auto.id_informe }}">
-                {{ auto.patente }}, {{ auto.marca }}-{{ auto.modelo }}-{{ auto.year }}
-              </option>
-              {% endfor %}
-            </select><br>
+            <div class="border-solid border-2 border-gray-400 py-3">
+              <label for="auto">Vehículo</label><br>
+              <select class="border-solid border border-gray-300" id="id_auto" name="auto">
+                {% for auto in autos %}
+                <option value="{{ auto.id_informe }}">
+                  {{ auto.patente }}, {{ auto.marca }}-{{ auto.modelo }}-{{ auto.year }}
+                </option>
+                {% endfor %}
+              </select>
+            </div>
+            <br>
 
-            <div class="flex justify-around items-center border-solid border-2 border-gray-500 rounded-full">
+            <div class="flex justify-around items-center border-solid border-2 border-gray-400 rounded-full py-3">
               <div>
                 <h3>Proveedor</h3>
                 <select id="selectProveedor" name="proveedor">
@@ -233,12 +236,10 @@
       listadoProductos.innerHTML += li
       listaGlobal.push([proveedor,producto,cantidad.value]) 
     }
-
     function descartar(){
       document.getElementById('listadoProductos').innerHTML = ''
       listaGlobal = []
     }
-
     function modalEliminar(id_pedido){
       document.getElementById('modal-eliminar').style.display = 'block'
       document.getElementById('span_pedido').innerText = id_pedido
@@ -253,6 +254,7 @@
       toggleModal()
       let productos = ''
       let proveedor = ''
+      let id_auto = document.getElementById('id_auto').value
       for (filas of listaGlobal){
         productos += `<li>${filas[1]} <strong>x${filas[2]}</strong></li>`
         proveedor += `<li>${filas[0]}</li>`
@@ -275,12 +277,19 @@
           </td>
       </tr>`
       document.getElementById('cuerpoTabla').innerHTML += hijo
+      
+      fetch(`${window.location.origin}/Mantenedor/agregar_pedido/${id_auto}/`)
+          .then(response => response.text())
+          .then(data => {
+            alert('ASD!')
+          })
+          .catch((error) => alert('Algún error inesperado ha ocurrido al guardar en el servidor...'))
       //alert('Órden de pedido agregada!')
     }
     function toggleModal() {
       if (document.getElementById('modal-ingreso-pedido').style.display == 'none') {
         descartar()
-        fetch('http://localhost:8000/Mantenedor/get_new_id_pedido/')
+        fetch(`${window.location.origin}/Mantenedor/get_new_id_pedido/`)
           .then(response => response.text())
           .then(data => {
             nueva_id_pedido = data
@@ -294,5 +303,4 @@
     }
   </script>
 </body>
-
 </html>

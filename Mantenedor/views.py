@@ -327,8 +327,14 @@ def get_new_id_pedido(request):
         return HttpResponse(Op.objects.last().id_pedido+1)
     return HttpResponse(status=404)
 
-def agregar_pedido(request):
-    return HttpResponse(status=404)
+def agregar_pedido(request, id_auto):
+    id_pedido = Op.objects.last().id_pedido
+    fecha_pedido = datetime.datetime.now()
+    fecha_entrega = datetime.datetime.now() + datetime.timedelta(days=2)
+    print("HHHH")
+    op = Op(id_pedido, fecha_pedido, fecha_entrega, id_auto)
+    op.save()
+    return HttpResponse(status=200)
 
 def orden_pedido (request):
     proveedores = Proveedor.objects.all()
@@ -336,18 +342,16 @@ def orden_pedido (request):
     detalles = DetalleOp.objects.all()
     productos = Producto.objects.all()
     autos = InfoAuto.objects.all().order_by('-id_informe')
-    n_pedido = Op.objects.last().id_pedido + 1
     
     context = {'proveedores': proveedores,
                'pedidos': pedidos,
                'detalles': detalles,
                'productos': productos,
                'autos': autos,
-               'n_pedido': n_pedido,
                }
     if request.method == 'POST':
          #= request.POST['']
-        auto = request.POST['auto']
+        ''' auto = request.POST['auto']
          
         producto = request.POST['producto']
         cantidad = request.POST['cantidad']
@@ -362,7 +366,7 @@ def orden_pedido (request):
         
         id_detalle = DetallePedido.objects.count()+1
         dp = DetallePedido(id_detalle, id_pedido, proveedor)
-        dp.save()
+        dp.save() '''
         
     return render (request, 'mantenedor/orden_pedido.html', context)
 
