@@ -7,7 +7,7 @@
 [![screenshot](./pantallazos/screenshot_index.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
 
 ## ¿Qué es esto?
-Sistema de gestión y administración web del taller mecánico "ServiExpress".
+Sistema de gestión y administración **web** del taller mecánico "ServiExpress".
 
 ## ¿Quién es el patrocinador?
 - **Juan Pedro**, mecánico automotriz.
@@ -74,6 +74,10 @@ Por línea de comandos:
 - Escribir en la terminal `python3 manage.py runserver`
 - Abrir el navegador en [localhost:8000](http://localhost:8000/) o [127.0.0.1:8000](http://127.0.0.1:8000/).
 
+## ¿Cuál es la estructura del sitio?
+### Estructura del sitio
+[![Estructura](./pantallazos/estructura_taller.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
+
 ## ¿Qué lenguajes/bases de datos/control de versiones se utilizaron?
 - **FrontEnd**: Html5, JavaScript, CSS, Tailwind
 - **BackEnd**: Python 3.9.4 (Django 3.2.3) 
@@ -95,12 +99,16 @@ Por línea de comandos:
 **Inicio de sesión**
 
 ## Sobre los desarrolladores
-Estos son los desarrolladores que hicieron esto posible:
+Nuestro equipo de desarrollo está conformado por dos estudiantes de programación:
 
 [![Grupo_en_Discord](./pantallazos/grupo_portafolio_discord.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
 
 - Fabian Astorga [@Ocikotorzido](https://github.com/Ocikotorzido)
 - Francisco Marfull [@Marfullsen](https://github.com/Marfullsen)
+
+## Sobre los logos
+Ambos logos del taller, junto al logo personalizado del citt fueron hechos por nuestro diseñador.
+
 - José Lorca [@JoseLorca](https://github.com/JoseLorca)
 
 ## Agradecimientos
