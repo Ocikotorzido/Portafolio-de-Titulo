@@ -65,9 +65,8 @@ Si todo se instaló correctamente, es tan simple como hacer click en **up**.
 
 **Usuarios de Windows**
 - **Doble click en** `up`.
-- Saltará el navegador.
-- Ya puedes ver el proyecto.
-- Yera.
+- Se abrirá el navegador.
+Voilà, si todo salió bien, estarás en la página princial.
 
 ---
 
@@ -98,15 +97,18 @@ Por línea de comandos:
 
 **Inicio de sesión**
 
-## Sobre los desarrolladores
-Nuestro equipo de desarrollo está conformado por dos estudiantes de programación:
+## Sobre el equipo de trabajo
+Nuestro equipo de trabajo se divide en dos áreas, desarrollo y diseño.
 
 [![Grupo_en_Discord](./pantallazos/grupo_portafolio_discord.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
+
+### Sobre los desarrolladores
+Nuestro equipo de desarrollo está conformado por dos estudiantes de programación:
 
 - Fabian Astorga [@Ocikotorzido](https://github.com/Ocikotorzido)
 - Francisco Marfull [@Marfullsen](https://github.com/Marfullsen)
 
-## Sobre los logos
+### Sobre los logos
 Ambos logos del taller, junto al logo personalizado del citt fueron hechos por nuestro diseñador.
 
 - José Lorca [@JoseLorca](https://github.com/JoseLorca)
