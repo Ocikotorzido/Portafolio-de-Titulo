@@ -5,6 +5,7 @@ from .views import login, registro, perfil, salir
 urlpatterns = [
     path('generar_informe/<slug:informe_de>/<int:parametros>/<slug:tipo>/', views.generar_informe),
     path('modificar_reserva/<int:id_reserva>/<int:id_mecanico>/<int:confirmacion>/', views.modificar_reserva),
+    path('eliminar_pedido/<int:id_pedido>/', views.eliminar_pedido),
     
     # [host]/Mantenedor/...
     path('', views.to_index),
