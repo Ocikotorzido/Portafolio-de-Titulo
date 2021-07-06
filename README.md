@@ -27,6 +27,13 @@ Sistema de gestión y administración **web** del taller mecánico "ServiExpress
     - Pandas (`pip install pandas`)
     - Docx2PDF (`pip install docx2pdf`)
 
+<div style="padding:5px;">
+[![Django](./pantallazos/django_80x80.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
+[![Oracle](./pantallazos/Oracle_80x80png.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
+[![Pandas](./pantallazos/pandas_80x80.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
+[![Office](./pantallazos/office365_80x80.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
+[![Libre](./pantallazos/LibreOffice_80x80LibreOffice_80x80.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
+</div>
 ## ¿Qué debo configurar?
 ### Usuario Súper-administrador
 Se debiera crear un usuario administrador.
