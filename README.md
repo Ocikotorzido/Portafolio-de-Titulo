@@ -30,10 +30,10 @@ Sistema de gestión y administración **web** del taller mecánico "ServiExpress
 
 ---
 
-[![Django](./pantallazos/django_80x80.png)](https://www.djangoproject.com/)   
-[![Oracle](./pantallazos/Oracle_80x80png.png)](https://www.djangoproject.com/)   
-[![Pandas](./pantallazos/pandas_80x80.png)](https://pandas.pydata.org/)   
-[![Office](./pantallazos/office365_80x80.png)](https://www.office.com/)   
+[![Django](./pantallazos/django_80x80.png)](https://www.djangoproject.com/) 
+[![Oracle](./pantallazos/Oracle_80x80png.png)](https://www.djangoproject.com/) 
+[![Pandas](./pantallazos/pandas_80x80.png)](https://pandas.pydata.org/) 
+[![Office](./pantallazos/office365_80x80.png)](https://www.office.com/) 
 [![Libre](./pantallazos/LibreOffice_80x80.png)](https://www.libreoffice.org/)
 
 ## ¿Qué debo configurar?
