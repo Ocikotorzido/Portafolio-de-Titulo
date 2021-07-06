@@ -12,6 +12,10 @@ Sistema de gestión y administración **web** del taller mecánico "ServiExpress
 ## ¿Quién es el patrocinador?
 - **Juan Pedro**, mecánico automotriz.
 
+## ¿Qué funciones tiene este sitio?
+### Estructura del sitio
+[![Estructura](./pantallazos/estructura_taller.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
+
 ## ¿Qué necesito instalar?
 - Oracle 18c (cliente/servidor dependiendo de la ubicación de la base de datos).
 - LibreOffice/MS-Office 365
@@ -73,10 +77,6 @@ Por línea de comandos:
 
 - Escribir en la terminal `python3 manage.py runserver`
 - Abrir el navegador en [localhost:8000](http://localhost:8000/) o [127.0.0.1:8000](http://127.0.0.1:8000/).
-
-## ¿Cuál es la estructura del sitio?
-### Estructura del sitio
-[![Estructura](./pantallazos/estructura_taller.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
 
 ## ¿Qué lenguajes/bases de datos/control de versiones se utilizaron?
 - **FrontEnd**: Html5, JavaScript, CSS, Tailwind
