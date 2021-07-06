@@ -17,6 +17,7 @@ Sistema de gestión y administración **web** del taller mecánico "ServiExpress
 [![Estructura](./pantallazos/estructura_taller.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
 
 ## ¿Qué necesito instalar?
+### Obligatorio
 - Oracle 18c (cliente/servidor dependiendo de la ubicación de la base de datos).
 - LibreOffice/MS-Office 365
 - Python 3
@@ -27,11 +28,13 @@ Sistema de gestión y administración **web** del taller mecánico "ServiExpress
     - Pandas (`pip install pandas`)
     - Docx2PDF (`pip install docx2pdf`)
 
-[![Django](./pantallazos/django_80x80.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/) 
-[![Oracle](./pantallazos/Oracle_80x80png.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/) 
-[![Pandas](./pantallazos/pandas_80x80.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/) 
-[![Office](./pantallazos/office365_80x80.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/) 
-[![Libre](./pantallazos/LibreOffice_80x80LibreOffice_80x80.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
+---
+
+[![Django](./pantallazos/django_80x80.png)](https://www.djangoproject.com/)   
+[![Oracle](./pantallazos/Oracle_80x80png.png)](https://www.djangoproject.com/)   
+[![Pandas](./pantallazos/pandas_80x80.png)](https://pandas.pydata.org/)   
+[![Office](./pantallazos/office365_80x80.png)](https://www.office.com/)   
+[![Libre](./pantallazos/LibreOffice_80x80.png)](https://www.libreoffice.org/)
 
 ## ¿Qué debo configurar?
 ### Usuario Súper-administrador
