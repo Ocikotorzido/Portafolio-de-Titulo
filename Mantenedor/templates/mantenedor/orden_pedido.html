@@ -252,8 +252,10 @@
     function btnAgregar() {
       toggleModal()
       let productos = ''
+      let proveedor = ''
       for (filas of listaGlobal){
-        productos += `<li>${filas[1]}</li>`
+        productos += `<li>${filas[1]} <strong>x${filas[2]}</strong></li>`
+        proveedor += `<li>${filas[0]}</li>`
       }
       let hijo = `<tr id="fp_${nueva_id_pedido}">
         <td>${nueva_id_pedido}</td>
@@ -265,7 +267,7 @@
           </ul>
         </td>
         <td>
-          Dummy_proveedor_1
+          ${proveedor}
         </td>
         <td>
           <i onclick="modalEliminar(1)" title="Eliminar" class="far fa-trash-alt text-red-600"></i> &nbsp;&nbsp;
@@ -273,11 +275,11 @@
           </td>
       </tr>`
       document.getElementById('cuerpoTabla').innerHTML += hijo
-      alert('Órden de pedido agregada!')
+      //alert('Órden de pedido agregada!')
     }
     function toggleModal() {
       if (document.getElementById('modal-ingreso-pedido').style.display == 'none') {
-        listaGlobal = []
+        descartar()
         fetch('http://localhost:8000/Mantenedor/get_new_id_pedido/')
           .then(response => response.text())
           .then(data => {
