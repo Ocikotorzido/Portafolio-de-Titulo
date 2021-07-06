@@ -28,7 +28,7 @@ Sistema de gestión y administración **web** del taller mecánico "ServiExpress
     - Pandas (`pip install pandas`)
     - Docx2PDF (`pip install docx2pdf`)
 
----
+
 
 [![Django](./pantallazos/django_80x80.png)](https://www.djangoproject.com/) 
 [![Oracle](./pantallazos/Oracle_80x80png.png)](https://www.djangoproject.com/) 
