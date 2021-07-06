@@ -322,6 +322,14 @@ def eliminar_pedido(request, id_pedido):
         return HttpResponse(status=200)
     return HttpResponse(status=404)
 
+def get_new_id_pedido(request):
+    if Op.objects.last().id_pedido:
+        return HttpResponse(Op.objects.last().id_pedido+1)
+    return HttpResponse(status=404)
+
+def agregar_pedido(request):
+    return HttpResponse(status=404)
+
 def orden_pedido (request):
     proveedores = Proveedor.objects.all()
     pedidos = Op.objects.all()
