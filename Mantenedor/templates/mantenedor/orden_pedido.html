@@ -106,7 +106,7 @@
   <div
     class="min-w-screen h-screen animated fadeIn faster fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover overflow-scroll"
     style="display: none;" id="modal-ingreso-pedido">
-    <div class="absolute bg-black opacity-80 inset-0 z-0" style="height: 160vh;"></div>
+    <div onclick="toggleModal()" class="absolute bg-black opacity-80 inset-0 z-0" style="height: 160vh;"></div>
     <div class="relative m-5 md:mx-36 md:my-12 rounded-xl bg-white">
       <!--content-->
       <div class="">
@@ -281,7 +281,7 @@
       fetch(`${window.location.origin}/Mantenedor/agregar_pedido/${id_auto}/`)
           .then(response => response.text())
           .then(data => {
-            alert('ASD!')
+            console.log('¡Enviado al servidor!')
           })
           .catch((error) => alert('Algún error inesperado ha ocurrido al guardar en el servidor...'))
       //alert('Órden de pedido agregada!')
