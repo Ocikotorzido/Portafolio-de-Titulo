@@ -313,6 +313,15 @@ def orden_trabajo (request):
     
     return render (request, 'mantenedor/orden_trabajo.html', context)
 
+def eliminar_pedido(request, id_pedido):
+    coincidencia = Op.objects.filter(id_pedido=id_pedido)
+    if coincidencia:
+        eliminado = coincidencia[0]
+        eliminado.delete()
+        eliminado.save()
+        return HttpResponse(status=200)
+    return HttpResponse(status=404)
+
 def orden_pedido (request):
     proveedores = Proveedor.objects.all()
     pedidos = Op.objects.all()
