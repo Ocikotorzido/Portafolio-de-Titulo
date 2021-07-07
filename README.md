@@ -13,7 +13,7 @@ Sistema de gestión y administración **web** del taller mecánico "ServiExpress
 - **Juan Pedro**, mecánico automotriz.
 
 ## ¿Qué funciones tiene este sitio?
-### Estructura General de funcionamiento
+### Estructura general de sitio
 [![Estructura](./pantallazos/estructura_taller.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
 
 ## ¿Qué necesito instalar?
