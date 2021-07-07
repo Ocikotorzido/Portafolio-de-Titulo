@@ -157,7 +157,7 @@
               </div>
               <div>
                 <i onclick="descartar()" title="Descartar" class="text-red-600 fas fa-minus-circle"></i><br>
-                <i onclick="addToList()" title="Agregar" class="text-blue-900 fas fa-plus-circle"></i>
+                <i id="btnAgregarProducto" style="transition: font-size .5s ease-in-out" onclick="addToList()" title="Agregar" class="text-blue-900 fas fa-plus-circle"></i>
               </div>
             </div>
 
@@ -257,6 +257,11 @@
       //alert(`Eliminando pedido ${id_pedido}`)
     }
     function btnAgregar() {
+      if (document.getElementById('listadoProductos').innerHTML == ''){
+        document.getElementById('btnAgregarProducto').style.fontSize = '50px'
+        return false
+      }
+      document.getElementById('btnAgregarProducto').style.fontSize = ''
       toggleModal()
       let productos = ''
       let proveedor = ''
