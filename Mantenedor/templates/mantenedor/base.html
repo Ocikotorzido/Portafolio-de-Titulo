@@ -36,15 +36,24 @@
       <li class="flex items-center"><a class="red-rounded-button" href="exportar">Exportar</a></li>
 
       {% elif perfil.nivel|upper == 'EMPLEADO' %}
-      <li class="flex items-center"><a class="red-rounded-button" href="registro_cliente">Cliente</a></li>
-      <li class="flex items-center"><a class="red-rounded-button" href="ver_proveedores">Proveedores</a></li>
-      <li class="flex items-center"><a class="red-rounded-button" href="servicios">Servicios</a></li>
-      <li class="flex items-center"><a class="red-rounded-button" href="ver_reservas">Reservas</a></li>
-      <li class="flex items-center"><a class="red-rounded-button" href="orden_trabajo">Orden de trabajo</a></li>
-      <li class="flex items-center"><a class="red-rounded-button" href="registro_vehiculo">Registro Vehiculo</a></li>
+      <li class="flex flex-col">
+        <ul>
+          <li class="flex items-center"><a class="red-rounded-button" href="registro_cliente">Cliente</a></li>
+          <li class="flex items-center"><a class="red-rounded-button" href="ver_proveedores">Proveedores</a></li>
+          <li class="flex items-center"><a class="red-rounded-button" href="servicios">Servicios</a></li>
+        </ul>
+        <ul>
+          <li class="flex items-center"><a class="red-rounded-button" href="ver_reservas">Reservas</a></li>
+          <li class="flex items-center"><a class="red-rounded-button" href="orden_trabajo">Orden de trabajo</a></li>
+          <li class="flex items-center"><a class="red-rounded-button" href="registro_vehiculo">Registro Vehiculo</a></li>
+        </ul>
+      </li>
       
-      
+      {% if user.is_authenticated %}
+      {% if perfil.nivel|upper == 'ADMIN' or perfil.nivel == 'admin' %}
       <li class="flex items-center"><a class="red-rounded-button" href="exportar">Exportar</a></li>
+      {% endif %}
+      {% endif %}
 
       {% elif perfil.nivel|upper == 'PROVEEDOR' %}
       <li class="flex items-center"><a class="red-rounded-button" href="reservas">Reserva</a></li>
