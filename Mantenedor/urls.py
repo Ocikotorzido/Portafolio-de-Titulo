@@ -3,6 +3,7 @@ from . import views
 from .views import login, registro, perfil, salir
 
 urlpatterns = [
+    # APIs
     path('generar_informe/<slug:informe_de>/<int:parametros>/<slug:tipo>/', views.generar_informe),
     path('modificar_reserva/<int:id_reserva>/<int:id_mecanico>/<int:confirmacion>/', views.modificar_reserva),
     path('eliminar_pedido/<int:id_pedido>/', views.eliminar_pedido),
@@ -11,6 +12,7 @@ urlpatterns = [
     path('agregar_det_prod/<int:id_pedido>/<int:cant>/<int:id_producto>/',views.agregar_det_prod),
     path('consultar_fecha_pedido/<int:id_pedido>/', views.consultar_fecha_pedido),
     path('consultar_fecha_entrega/<int:id_pedido>/', views.consultar_fecha_entrega),
+    path('eliminar_reserva/<int:id_reserva>/', views.eliminar_reserva),
     
     # [host]/Mantenedor/...
     path('', views.to_index),

@@ -284,6 +284,13 @@ def modificar_reserva(request, id_reserva, id_mecanico, confirmacion):
         ot.delete()
     return HttpResponse(status=200)
 
+def eliminar_reserva(request, id_reserva):
+    if not len(Reservas.objects.filter(id_reserva=id_reserva)):
+        return HttpResponse('BackEnd: No existe reserva.', status=404)
+    reserva = Reservas.objects.filter(id_reserva=id_reserva)[0]
+    reserva.delete()
+    return HttpResponse('BackEnd: ¡Reserva y sus detalles de servicios borradas!', status=200)
+
 def ver_reservas (request):
     reservas = Reservas.objects.all().order_by('-id_reserva')
     mecanicos = Empleado.objects.filter(cargo_id_tipo_cargo=3)

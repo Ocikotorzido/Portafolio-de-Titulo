@@ -70,7 +70,7 @@
             </tr>
           </thead>
           {% for reserva in reservas %}
-          <tr>
+          <tr id="fr_{{ reserva.id_reserva }}">
             <td>{{ reserva.id_reserva }}</td>
             <td>{{ reserva.fecha_reserva }}</td>
             <td>{{ reserva.cliente_id_cliente.nombre }} {{ reserva.cliente_id_cliente.apellido }}</td>
@@ -150,6 +150,18 @@
       document.getElementById('modal-eliminar').style.display = 'block'
       document.getElementById('span_reserva').innerText = id_reserva
       document.getElementById('btnBorrar').setAttribute('onclick', `eliminar(${id_reserva})`)
+    }
+    function eliminar(id_reserva) {
+      document.getElementById('modal-eliminar').style.display = 'none'
+      document.getElementById(`fr_${id_reserva}`).style.display = 'none'
+      fetch(`${window.location.origin}/Mantenedor/eliminar_reserva/${id_reserva}/`)
+        .then(response => response.text())
+        .then(data => {
+          console.log('FrontEnd: Reserva borrada del servidor!')
+          console.log(`BackEnd: ${data}`)
+        })
+        .catch((error) => alert('Algún error inesperado ha ocurrido al eliminar en el servidor...'))
+      //alert(`Eliminando reserva ${id_reserva}`)
     }
     function get_mecanico(id_reserva) {
       let id_mecanico, optSelected
