@@ -18,7 +18,7 @@
       <li class="flex items-center"><a href="index">Volver</a></li>
     </ul>
   </nav>
-  <div class="flex flex-col md:flex-row px-14">
+  <div class="flex flex-col md:flex-row px-0 md:px-8 lg:px-14">
     <div class="md:h-screen ">
       
     </div>
@@ -28,7 +28,7 @@
           <h3 class="font-bold pl-2">Reservas registradas.</h3>
         </div>
       </div>
-      <div class="container">
+      <div class="flex justify-center p-1 md:p-10">
         <table>
           <thead>
             <tr>
@@ -38,6 +38,7 @@
               <th>Vehículo</th>
               <th>Mecánico</th>
               <th>Estado</th>
+              <th>Acción</th>
             </tr>
           </thead>
           {% for reserva in reservas %}
@@ -58,15 +59,26 @@
               <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                 Confirmado
               </button>
-            </th>
+            </td>
             {% else %}
             <td id='confirmacion_{{reserva.id_reserva}}' onclick="modificar( {{ reserva.id_reserva }}, get_mecanico({{reserva.id_reserva}}), 1 )">
               <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
                 Sin Confirmar
               </button>
-            </th>
+            </td>
             {% endif %}
-
+            <td>
+              <i onclick="modalEliminar({{ reserva.id_pedido }})" 
+                title="Eliminar"
+                class="far fa-trash-alt text-red-600"
+                aria-hidden="true">
+              </i>&nbsp;&nbsp;<i 
+                onclick="alert('Registrando pago...')"
+                  title="Pagar"
+                  class="fas fa-hand-holding-usd text-green-600"
+                  aria-hidden="true">
+              </i>
+            </td>
           </tr>
           {% endfor %}
          </table>
