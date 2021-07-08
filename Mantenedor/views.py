@@ -317,19 +317,19 @@ def consultar_fecha_pedido(request, id_pedido):
     coincidencia = Op.objects.filter(id_pedido=id_pedido)
     if coincidencia:
         return HttpResponse(coincidencia[0].fecha_pedido, status=200)
-    return HttpResponse(status=404)
+    return HttpResponse(f'No hay coincidencias para {id_pedido}', status=404)
 
 def consultar_fecha_entrega(request, id_pedido):
     if Op.objects.filter(id_pedido=id_pedido):
         return HttpResponse(Op.objects.filter(id_pedido=id_pedido)[0].fecha_entrega, status=200)
-    return HttpResponse('ERROR, NO SE ENCUENTRA', status=404)
+    return HttpResponse(f'ERROR, NO SE ENCUENTRA FECHA ENTREGA DE {id_pedido}', status=404)
 
 def agregar_det_prod(request, id_pedido, cant, id_producto):
     if not len(Op.objects.filter(id_pedido=id_pedido)):
-        return HttpResponse(status=404)
+        return HttpResponse('No existe ID PEDIDO.', status=404)
 
     if not len(Producto.objects.filter(id_producto=id_producto)):
-        return HttpResponse(status=404)
+        return HttpResponse('nO eXiStE pRoDuCtO!', status=404)
     
     id_detalle = DetalleOp.objects.last().id_detalle_op + 1
     id_proveedor, familia, fecha_vencimiento, tipo = ['001','005','000000000','008']
@@ -338,7 +338,7 @@ def agregar_det_prod(request, id_pedido, cant, id_producto):
     nuevo_detalle = DetalleOp(id_detalle, cod_prod, cant, id_pedido, id_producto)
     nuevo_detalle.save()
     
-    return HttpResponse(status=200)
+    return HttpResponse(f'{id_detalle}', status=200)
 
 def eliminar_pedido(request, id_pedido):
     coincidencia = Op.objects.filter(id_pedido=id_pedido)
