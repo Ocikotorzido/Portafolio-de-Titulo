@@ -8,6 +8,9 @@ urlpatterns = [
     path('eliminar_pedido/<int:id_pedido>/', views.eliminar_pedido),
     path('get_new_id_pedido/',views.get_new_id_pedido),
     path('agregar_pedido/<int:id_auto>/',views.agregar_pedido),
+    path('agregar_det_prod/<int:id_pedido>/<int:cant>/<int:id_producto>/',views.agregar_det_prod),
+    path('consultar_fecha_pedido/<int:id_pedido>/', views.consultar_fecha_pedido),
+    path('consultar_fecha_entrega/<int:id_pedido>/', views.consultar_fecha_entrega),
     
     # [host]/Mantenedor/...
     path('', views.to_index),

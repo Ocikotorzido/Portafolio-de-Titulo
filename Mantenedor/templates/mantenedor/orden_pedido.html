@@ -161,9 +161,7 @@
               </div>
             </div>
 
-            <ul id="listadoProductos" class="list-disc"></ul>
-
-            <!-- <input type="submit" value="Enviar"> -->
+            <ul id="listadoProductos" class="list-disc p-8"></ul>
           </form>
         </div>
         <!--botones finales-->
@@ -227,16 +225,18 @@
 
       proveedor = document.getElementById('selectProveedor')
       proveedor = proveedor.options[proveedor.selectedIndex].text
+      id_proveedor = document.getElementById('selectProveedor').value
 
       producto = document.getElementById('selectProducto')
       producto = producto.options[producto.selectedIndex].text
+      id_producto = document.getElementById('selectProducto').value
 
       cantidad = document.getElementById('inputCantidad')
       listadoProductos = document.getElementById('listadoProductos')
       
       li = `<li class="w-max">${proveedor} - ${producto} - Cantidad: ${cantidad.value}</li>`
       listadoProductos.innerHTML += li
-      listaGlobal.push([proveedor,producto,cantidad.value]) 
+      listaGlobal.push([proveedor,producto,cantidad.value, id_proveedor, id_producto])
     }
     function descartar(){
       document.getElementById('listadoProductos').innerHTML = ''
@@ -265,17 +265,36 @@
       }
       document.getElementById('btnAgregarProducto').style.fontSize = ''
       toggleModal()
+      let fecha_entrega, fecha_pedido
       let productos = ''
       let proveedor = ''
       let id_auto = document.getElementById('id_auto').value
+
+      fetch(`${window.location.origin}/Mantenedor/agregar_pedido/${id_auto}/`)
+      .then(response => response.text())
+      .then(data => {console.log(`¡agregar -> ${data}!`)})
+      .catch((error) => alert('Algún error inesperado ha ocurrido al guardar en el servidor...'))
+      
+      fetch(`${window.location.origin}/Mantenedor/consultar_fecha_pedido/${nueva_id_pedido}/`)
+      .then(response => response.text()).then(data => { fecha_pedido = data; console.log(fecha_pedido)})
+
+      fetch(`${window.location.origin}/Mantenedor/consultar_fecha_entrega/${nueva_id_pedido}/`)
+      .then(response => response.text()).then(data => { fecha_entrega = data; console.log(fecha_entrega)})
+
       for (filas of listaGlobal){
         productos += `<li>${filas[1]} <strong>x${filas[2]}</strong></li>`
         proveedor += `<li>${filas[0]}</li>`
+        fetch(`${window.location.origin}/Mantenedor/agregar_det_prod/${nueva_id_pedido}/${filas[2]}/${filas[3]}/`)
+          .then(response => response.text())
+          .then(data => {
+            console.log('¡Pedido enviado al servidor!!!')
+          })
+          .catch((error) => alert('Algún error inesperado ha ocurrido al guardar en el servidor...'))
       }
       let hijo = `<tr id="fp_${nueva_id_pedido}">
         <td>${nueva_id_pedido}</td>
-        <td>Fecha_dummy_1</td>
-        <td>Fecha_dummy_1</td>
+        <td>${fecha_pedido}</td>
+        <td>${fecha_entrega}</td>
         <td>
           <ul>
             ${productos}
@@ -291,12 +310,6 @@
       </tr>`
       document.getElementById('cuerpoTabla').innerHTML += hijo
       
-      fetch(`${window.location.origin}/Mantenedor/agregar_pedido/${id_auto}/`)
-          .then(response => response.text())
-          .then(data => {
-            console.log('¡Enviado al servidor!')
-          })
-          .catch((error) => alert('Algún error inesperado ha ocurrido al guardar en el servidor...'))
       //alert('Órden de pedido agregada!')
     }
     function toggleModal() {

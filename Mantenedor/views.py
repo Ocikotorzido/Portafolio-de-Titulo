@@ -313,6 +313,33 @@ def orden_trabajo (request):
     
     return render (request, 'mantenedor/orden_trabajo.html', context)
 
+def consultar_fecha_pedido(request, id_pedido):
+    coincidencia = Op.objects.filter(id_pedido=id_pedido)
+    if coincidencia:
+        return HttpResponse(coincidencia[0].fecha_pedido, status=200)
+    return HttpResponse(status=404)
+
+def consultar_fecha_entrega(request, id_pedido):
+    if Op.objects.filter(id_pedido=id_pedido):
+        return HttpResponse(Op.objects.filter(id_pedido=id_pedido)[0].fecha_entrega, status=200)
+    return HttpResponse('ERROR, NO SE ENCUENTRA', status=404)
+
+def agregar_det_prod(request, id_pedido, cant, id_producto):
+    if not len(Op.objects.filter(id_pedido=id_pedido)):
+        return HttpResponse(status=404)
+
+    if not len(Producto.objects.filter(id_producto=id_producto)):
+        return HttpResponse(status=404)
+    
+    id_detalle = DetalleOp.objects.last().id_detalle_op + 1
+    id_proveedor, familia, fecha_vencimiento, tipo = ['001','005','000000000','008']
+    cod_prod = f'{id_proveedor}{familia}{fecha_vencimiento}{tipo}'
+    
+    nuevo_detalle = DetalleOp(id_detalle, cod_prod, cant, id_pedido, id_producto)
+    nuevo_detalle.save()
+    
+    return HttpResponse(status=200)
+
 def eliminar_pedido(request, id_pedido):
     coincidencia = Op.objects.filter(id_pedido=id_pedido)
     if coincidencia:
@@ -333,7 +360,7 @@ def agregar_pedido(request, id_auto):
     fecha_entrega = datetime.datetime.now() + datetime.timedelta(days=2)
     nuevo_pedido = Op(id_pedido, fecha_pedido, fecha_entrega, id_auto)
     nuevo_pedido.save()
-    return HttpResponse(status=200)
+    return HttpResponse('BackEnd: ¡Registro creado!', status=200)
 
 def orden_pedido (request):
     proveedores = Proveedor.objects.all()
