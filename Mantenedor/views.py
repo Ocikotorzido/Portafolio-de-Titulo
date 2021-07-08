@@ -285,7 +285,7 @@ def modificar_reserva(request, id_reserva, id_mecanico, confirmacion):
     return HttpResponse(status=200)
 
 def ver_reservas (request):
-    reservas = Reservas.objects.all()
+    reservas = Reservas.objects.all().order_by('-id_reserva')
     mecanicos = Empleado.objects.filter(cargo_id_tipo_cargo=3)
     context = {'reservas': reservas,
                'mecanicos': mecanicos }
