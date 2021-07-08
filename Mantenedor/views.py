@@ -364,7 +364,7 @@ def agregar_pedido(request, id_auto):
 
 def orden_pedido (request):
     proveedores = Proveedor.objects.all()
-    pedidos = Op.objects.all()
+    pedidos = Op.objects.all().order_by('-id_pedido')
     detalles = DetalleOp.objects.all()
     productos = Producto.objects.all()
     autos = InfoAuto.objects.all().order_by('-id_informe')
