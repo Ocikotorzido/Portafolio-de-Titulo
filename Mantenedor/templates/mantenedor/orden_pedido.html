@@ -87,10 +87,12 @@
                   <i onclick="modalEliminar({{ pedido.id_pedido }})" 
                     title="Eliminar"
                     class="far fa-trash-alt text-red-600"
+                    aria-hidden="true"
                     ></i> &nbsp;&nbsp;
                     <i onclick="alert('Registrando pago...')"
                       title="Pagar"
                       class="fas fa-hand-holding-usd text-green-600"
+                      aria-hidden="true"
                     ></i>
                   </td>
               </tr>
@@ -288,8 +290,6 @@
       fecha_pedido = new Date(Date.now()).toLocaleString('ES-CL', {day: 'numeric', month: 'long', year: 'numeric'})
       arriving_date = new Date(new Date().setDate(new Date().getDate() + 2));
       fecha_entrega = new Date(arriving_date).toLocaleString('es-CL', {day: 'numeric', month: 'numeric', year: 'numeric'})
-
-      
 
       for (filas of listaGlobal){
         productos += `<li>${filas[1]} <strong>x${filas[2]}</strong></li>`

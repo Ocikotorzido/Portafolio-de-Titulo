@@ -72,7 +72,7 @@ class DetallePedido(models.Model):
 
 class DetalleSer(models.Model):
     id_detalle_ser = models.FloatField(primary_key=True)
-    reservas_id_reserva = models.ForeignKey('Reservas', models.DO_NOTHING, db_column='reservas_id_reserva')
+    reservas_id_reserva = models.ForeignKey('Reservas', db_column='reservas_id_reserva', on_delete=models.CASCADE)
     tipo_servicio_id_servicio = models.ForeignKey('TipoServicio', models.DO_NOTHING, db_column='tipo_servicio_id_servicio')
 
     class Meta:

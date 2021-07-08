@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   {% load static %}
   <meta charset="UTF-8">
@@ -8,9 +9,9 @@
   <title>Ver reservas</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
   <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
-  <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}"> -->
   <link rel="stylesheet" type="text/css" href="{% static 'css/tablas.css' %}">
 </head>
+
 <body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
   <nav class="bg-gray-800 z-0">
     <ul class="flex flex-col justify-left md:flex-row md:justify-evenly text-white">
@@ -20,7 +21,7 @@
   </nav>
   <div class="flex flex-col md:flex-row px-0 md:px-8 lg:px-14">
     <div class="md:h-screen ">
-      
+
     </div>
     <div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
       <div class="bg-gray-800 pt-3">
@@ -28,17 +29,44 @@
           <h3 class="font-bold pl-2">Reservas registradas.</h3>
         </div>
       </div>
-      <div class="flex justify-center p-1 md:p-10">
-        <table>
+      <div class="flex justify-around">
+        <button type="button" class="bg-blue-700 
+                hover:bg-blue-500 
+                text-white 
+                font-bold 
+                py-2 
+                px-4 
+                rounded m-3" onclick="location.href='reservas'">
+          Nueva reserva
+        </button>
+        <button type="button" class="bg-blue-700 
+                  hover:bg-blue-500 
+                  text-white 
+                  font-bold py-2 
+                  px-4 rounded 
+                  m-3" onclick="location.href='orden_trabajo'">
+          Orden de trabajo
+        </button>
+        <button type="button" class="bg-blue-700 
+                  hover:bg-blue-500 
+                  text-white 
+                  font-bold py-2 
+                  px-4 rounded 
+                  m-3" onclick="location.href='orden_pedido'">
+          Orden de pedido
+        </button>
+      </div>
+      <div class="flex justify-center p-1 md:px-10">
+        <table aria-hidden="true">
           <thead>
             <tr>
-              <th>N°</th>
-              <th>Fecha solicitado</th>
-              <th>Nombre cliente</th>
-              <th>Vehículo</th>
-              <th>Mecánico</th>
-              <th>Estado</th>
-              <th>Acción</th>
+              <th scope="col">N°</th>
+              <th scope="col">Fecha solicitado</th>
+              <th scope="col">Nombre cliente</th>
+              <th scope="col">Vehículo</th>
+              <th scope="col">Mecánico</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Acción</th>
             </tr>
           </thead>
           {% for reserva in reservas %}
@@ -48,48 +76,46 @@
             <td>{{ reserva.cliente_id_cliente.nombre }} {{ reserva.cliente_id_cliente.apellido }}</td>
             <td>{{ reserva.marca }}<br>{{ reserva.modelo }}<br>{{ reserva.year }}</td>
             <td>
-                <select id="m_{{ reserva.id_reserva }}"class="p-2" id="mecanico" name="mecanico">
-                  {% for mecanico in mecanicos %}
-                    <option value="{{ mecanico.id_empleado }}">{{ mecanico.nombre }}</option>
-                  {% endfor %}
-                </select>
+              <select id="m_{{ reserva.id_reserva }}" class="p-2" id="mecanico" name="mecanico">
+                {% for mecanico in mecanicos %}
+                <option value="{{ mecanico.id_empleado }}">{{ mecanico.nombre }}</option>
+                {% endfor %}
+              </select>
             </td>
             {% if reserva.confirmacion == '1' %}
-            <td id='confirmacion_{{reserva.id_reserva}}' onclick="modificar( {{ reserva.id_reserva }}, get_mecanico({{reserva.id_reserva}}), 0 )">
+            <td id='confirmacion_{{reserva.id_reserva}}'
+              onclick="modificar( {{ reserva.id_reserva }}, get_mecanico({{reserva.id_reserva}}), 0 )">
               <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                 Confirmado
               </button>
             </td>
             {% else %}
-            <td id='confirmacion_{{reserva.id_reserva}}' onclick="modificar( {{ reserva.id_reserva }}, get_mecanico({{reserva.id_reserva}}), 1 )">
+            <td id='confirmacion_{{reserva.id_reserva}}'
+              onclick="modificar( {{ reserva.id_reserva }}, get_mecanico({{reserva.id_reserva}}), 1 )">
               <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
                 Sin Confirmar
               </button>
             </td>
             {% endif %}
             <td>
-              <i onclick="modalEliminar({{ reserva.id_reserva }})" 
-                title="Eliminar"
-                class="far fa-trash-alt text-red-600"
-                aria-hidden="true">
-              </i>&nbsp;&nbsp;<i 
-                onclick="alert('Registrando pago...')"
-                  title="Pagar"
-                  class="fas fa-hand-holding-usd text-green-600"
-                  aria-hidden="true">
+              <i onclick="modalEliminar({{ reserva.id_reserva }})" title="Eliminar"
+                class="far fa-trash-alt text-red-600" aria-hidden="true">
+              </i>&nbsp;&nbsp;<i onclick="alert('Registrando pago...')" title="Pagar"
+                class="fas fa-hand-holding-usd text-green-600" aria-hidden="true">
               </i>
             </td>
           </tr>
           {% endfor %}
-         </table>
-      </div>
+        </table>
       </div>
     </div>
-    {# Modal Eliminar #}
-    <div
+  </div>
+  {# Modal Eliminar #}
+  <div
     class="min-w-screen h-screen animated fadeIn faster fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover"
     style="display: none;" id="modal-eliminar">
-    <div onclick="document.getElementById('modal-eliminar').style.display = 'none'" class="absolute bg-black opacity-80 inset-0 z-0"></div>
+    <div onclick="document.getElementById('modal-eliminar').style.display = 'none'"
+      class="absolute bg-black opacity-80 inset-0 z-0"></div>
     <div class="w-full  max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
       <!--content-->
       <div class="">
@@ -110,57 +136,57 @@
           onclick="document.getElementById('modal-eliminar').style.display = 'none'">
           Cancelar
         </button>
-        <button
-          id="btnBorrar" class="mb-2 md:mb-0 bg-red-500 border border-red-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-red-600"
-          >
+        <button id="btnBorrar"
+          class="mb-2 md:mb-0 bg-red-500 border border-red-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-red-600">
           Borrar
         </button>
       </div>
     </div>
   </div>
   </div>
-{# Fin Modal eliminiar #}
-      <script>
-        function modalEliminar(id_reserva){
-          document.getElementById('modal-eliminar').style.display = 'block'
-          document.getElementById('span_reserva').innerText = id_reserva
-          document.getElementById('btnBorrar').setAttribute('onclick', `eliminar(${id_reserva})`)
-        }
-        function get_mecanico(id_reserva){
-          let id_mecanico, optSelected
-          optSelected = document.getElementById(`m_${id_reserva}`)
-          id_mecanico = optSelected.value
-          return id_mecanico
-        }
+  {# Fin Modal eliminiar #}
+  <script>
+    function modalEliminar(id_reserva) {
+      document.getElementById('modal-eliminar').style.display = 'block'
+      document.getElementById('span_reserva').innerText = id_reserva
+      document.getElementById('btnBorrar').setAttribute('onclick', `eliminar(${id_reserva})`)
+    }
+    function get_mecanico(id_reserva) {
+      let id_mecanico, optSelected
+      optSelected = document.getElementById(`m_${id_reserva}`)
+      id_mecanico = optSelected.value
+      return id_mecanico
+    }
 
-        function modificar(id_reserva, id_mecanico, confirmacion){
-          let text_confirmacion = document.getElementById(`confirmacion_${id_reserva}`)
-          let url = `${window.location.origin}/Mantenedor/modificar_reserva/`;
-          let query = `${id_reserva}/${id_mecanico}/${confirmacion}`
+    function modificar(id_reserva, id_mecanico, confirmacion) {
+      let text_confirmacion = document.getElementById(`confirmacion_${id_reserva}`)
+      let url = `${window.location.origin}/Mantenedor/modificar_reserva/`;
+      let query = `${id_reserva}/${id_mecanico}/${confirmacion}`
 
-          confirmado = '<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Confirmado</button>'
-          sin_confirmar = '<button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Sin Confirmar</button>'
+      confirmado = '<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Confirmado</button>'
+      sin_confirmar = '<button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Sin Confirmar</button>'
 
-          if (text_confirmacion.innerHTML == confirmado) {
-            text_confirmacion.innerHTML = sin_confirmar
-          }
-          else {
-            text_confirmacion.innerHTML = confirmado
-          }
+      if (text_confirmacion.innerHTML == confirmado) {
+        text_confirmacion.innerHTML = sin_confirmar
+      }
+      else {
+        text_confirmacion.innerHTML = confirmado
+      }
 
-          fetch(url+query)
-            .then(response => {
-              return response.text();
-            })
-            .then(data => {
-              //location.reload();
-              //window.open(window.location.href);
-            })
-            .catch(function (error) {
-              location.reload();
-              console.log('Error con la petición', error);
-            })
-          }
-        </script>
+      fetch(url + query)
+        .then(response => {
+          return response.text();
+        })
+        .then(data => {
+          //location.reload();
+          //window.open(window.location.href);
+        })
+        .catch(function (error) {
+          location.reload();
+          console.log('Error con la petición', error);
+        })
+    }
+  </script>
 </body>
+
 </html>
