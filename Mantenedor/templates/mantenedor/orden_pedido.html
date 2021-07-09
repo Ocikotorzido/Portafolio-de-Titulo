@@ -322,7 +322,7 @@
             <i onclick="alert('Registrando pago...')" title="Pagar" class="fas fa-hand-holding-usd text-green-600"></i>
           </td>
       </tr>`
-      document.getElementById('cuerpoTabla').innerHTML += hijo
+      document.getElementById('cuerpoTabla').innerHTML = hijo + document.getElementById('cuerpoTabla').innerHTML
       
       //alert('Órden de pedido agregada!')
     }

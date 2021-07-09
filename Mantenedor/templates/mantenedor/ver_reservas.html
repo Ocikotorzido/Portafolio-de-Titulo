@@ -20,129 +20,127 @@
     </ul>
   </nav>
   <div class="flex flex-col md:flex-row px-0 md:px-8 lg:px-14">
-    <div class="md:h-screen ">
-
-    </div>
-    <div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
-      <div class="bg-gray-800 pt-3">
-        <div class=" bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
-          <h3 class="font-bold pl-2">Reservas registradas.</h3>
+    <div class="md:h-screen">
+      <div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
+        <div class="bg-gray-800 pt-3">
+          <div class=" bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+            <h3 class="font-bold pl-2">Reservas registradas.</h3>
+          </div>
         </div>
-      </div>
-      <div class="flex justify-around">
-        <button type="button" class="bg-blue-700 
+        <div class="flex justify-around">
+          <button type="button" class="bg-blue-700 
                 hover:bg-blue-500 
                 text-white 
                 font-bold 
                 py-2 
                 px-4 
                 rounded m-3" onclick="location.href='reservas'">
-          Nueva reserva
-        </button>
-        <button type="button" class="bg-blue-700 
+            Nueva reserva
+          </button>
+          <button type="button" class="bg-blue-700 
                   hover:bg-blue-500 
                   text-white 
                   font-bold py-2 
                   px-4 rounded 
                   m-3" onclick="location.href='orden_trabajo'">
-          Orden de trabajo
-        </button>
-        <button type="button" class="bg-blue-700 
+            Orden de trabajo
+          </button>
+          <button type="button" class="bg-blue-700 
                   hover:bg-blue-500 
                   text-white 
                   font-bold py-2 
                   px-4 rounded 
                   m-3" onclick="location.href='orden_pedido'">
-          Orden de pedido
-        </button>
-      </div>
-      <div class="flex justify-center p-1 md:px-10">
-        <table aria-hidden="true">
-          <thead>
-            <tr>
-              <th scope="col">N°</th>
-              <th scope="col">Fecha solicitado</th>
-              <th scope="col">Nombre cliente</th>
-              <th scope="col">Vehículo</th>
-              <th scope="col">Mecánico</th>
-              <th scope="col">Estado</th>
-              <th scope="col">Acción</th>
+            Orden de pedido
+          </button>
+        </div>
+        <div class="flex justify-center p-1 md:px-10">
+          <table aria-hidden="true">
+            <thead>
+              <tr>
+                <th scope="col">N°</th>
+                <th scope="col">Fecha solicitado</th>
+                <th scope="col">Nombre cliente</th>
+                <th scope="col">Vehículo</th>
+                <th scope="col">Mecánico</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acción</th>
+              </tr>
+            </thead>
+            {% for reserva in reservas %}
+            <tr id="fr_{{ reserva.id_reserva }}">
+              <td>{{ reserva.id_reserva }}</td>
+              <td>{{ reserva.fecha_reserva }}</td>
+              <td>{{ reserva.cliente_id_cliente.nombre }} {{ reserva.cliente_id_cliente.apellido }}</td>
+              <td>{{ reserva.marca }}<br>{{ reserva.modelo }}<br>{{ reserva.year }}</td>
+              <td>
+                <select id="m_{{ reserva.id_reserva }}" class="p-2" id="mecanico" name="mecanico">
+                  {% for mecanico in mecanicos %}
+                  <option value="{{ mecanico.id_empleado }}">{{ mecanico.nombre }}</option>
+                  {% endfor %}
+                </select>
+              </td>
+              {% if reserva.confirmacion == '1' %}
+              <td id='confirmacion_{{reserva.id_reserva}}'
+                onclick="modificar( {{ reserva.id_reserva }}, get_mecanico({{reserva.id_reserva}}), 0 )">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                  Confirmado
+                </button>
+              </td>
+              {% else %}
+              <td id='confirmacion_{{reserva.id_reserva}}'
+                onclick="modificar( {{ reserva.id_reserva }}, get_mecanico({{reserva.id_reserva}}), 1 )">
+                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
+                  Sin Confirmar
+                </button>
+              </td>
+              {% endif %}
+              <td>
+                <i onclick="modalEliminar({{ reserva.id_reserva }})" title="Eliminar"
+                  class="far fa-trash-alt text-red-600" aria-hidden="true">
+                </i>&nbsp;&nbsp;<i onclick="alert('Registrando pago...')" title="Pagar"
+                  class="fas fa-hand-holding-usd text-green-600" aria-hidden="true">
+                </i>
+              </td>
             </tr>
-          </thead>
-          {% for reserva in reservas %}
-          <tr id="fr_{{ reserva.id_reserva }}">
-            <td>{{ reserva.id_reserva }}</td>
-            <td>{{ reserva.fecha_reserva }}</td>
-            <td>{{ reserva.cliente_id_cliente.nombre }} {{ reserva.cliente_id_cliente.apellido }}</td>
-            <td>{{ reserva.marca }}<br>{{ reserva.modelo }}<br>{{ reserva.year }}</td>
-            <td>
-              <select id="m_{{ reserva.id_reserva }}" class="p-2" id="mecanico" name="mecanico">
-                {% for mecanico in mecanicos %}
-                <option value="{{ mecanico.id_empleado }}">{{ mecanico.nombre }}</option>
-                {% endfor %}
-              </select>
-            </td>
-            {% if reserva.confirmacion == '1' %}
-            <td id='confirmacion_{{reserva.id_reserva}}'
-              onclick="modificar( {{ reserva.id_reserva }}, get_mecanico({{reserva.id_reserva}}), 0 )">
-              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                Confirmado
-              </button>
-            </td>
-            {% else %}
-            <td id='confirmacion_{{reserva.id_reserva}}'
-              onclick="modificar( {{ reserva.id_reserva }}, get_mecanico({{reserva.id_reserva}}), 1 )">
-              <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
-                Sin Confirmar
-              </button>
-            </td>
-            {% endif %}
-            <td>
-              <i onclick="modalEliminar({{ reserva.id_reserva }})" title="Eliminar"
-                class="far fa-trash-alt text-red-600" aria-hidden="true">
-              </i>&nbsp;&nbsp;<i onclick="alert('Registrando pago...')" title="Pagar"
-                class="fas fa-hand-holding-usd text-green-600" aria-hidden="true">
-              </i>
-            </td>
-          </tr>
-          {% endfor %}
-        </table>
+            {% endfor %}
+          </table>
+        </div>
       </div>
     </div>
-  </div>
-  {# Modal Eliminar #}
-  <div
-    class="min-w-screen h-screen animated fadeIn faster fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover"
-    style="display: none;" id="modal-eliminar">
-    <div onclick="document.getElementById('modal-eliminar').style.display = 'none'"
-      class="absolute bg-black opacity-80 inset-0 z-0"></div>
-    <div class="w-full  max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
-      <!--content-->
-      <div class="">
-        <!--body-->
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 flex items-center text-red-500 mx-auto"
-          viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd"
-            d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-            clip-rule="evenodd" />
-        </svg>
-        <h2 class="text-center text-xl font-bold py-4 ">¿Borrar reserva <span id="span_reserva"></span> ?</h3>
-          <p class="text-sm text-gray-500 px-8">Se borrará de manera definitiva la reserva.</p>
-      </div>
-      <!--footer-->
-      <div class="p-3  mt-2 text-center space-x-4 md:block">
-        <button
-          class="mb-2 md:mb-0 bg-white px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-full hover:shadow-lg hover:bg-gray-100"
-          onclick="document.getElementById('modal-eliminar').style.display = 'none'">
-          Cancelar
-        </button>
-        <button id="btnBorrar"
-          class="mb-2 md:mb-0 bg-red-500 border border-red-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-red-600">
-          Borrar
-        </button>
+    {# Modal Eliminar #}
+    <div
+      class="min-w-screen h-screen animated fadeIn faster fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover"
+      style="display: none;" id="modal-eliminar">
+      <div onclick="document.getElementById('modal-eliminar').style.display = 'none'"
+        class="absolute bg-black opacity-80 inset-0 z-0"></div>
+      <div class="w-full  max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
+        <!--content-->
+        <div class="">
+          <!--body-->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 flex items-center text-red-500 mx-auto"
+            viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+              clip-rule="evenodd" />
+          </svg>
+          <h2 class="text-center text-xl font-bold py-4 ">¿Borrar reserva <span id="span_reserva"></span> ?</h3>
+            <p class="text-sm text-gray-500 px-8">Se borrará de manera definitiva la reserva.</p>
+        </div>
+        <!--footer-->
+        <div class="p-3  mt-2 text-center space-x-4 md:block">
+          <button
+            class="mb-2 md:mb-0 bg-white px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-full hover:shadow-lg hover:bg-gray-100"
+            onclick="document.getElementById('modal-eliminar').style.display = 'none'">
+            Cancelar
+          </button>
+          <button id="btnBorrar"
+            class="mb-2 md:mb-0 bg-red-500 border border-red-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-red-600">
+            Borrar
+          </button>
+        </div>
       </div>
     </div>
-  </div>
   </div>
   {# Fin Modal eliminiar #}
   <script>
