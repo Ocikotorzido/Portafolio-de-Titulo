@@ -77,21 +77,23 @@
                   {% endfor %}
                 </td>
                 <td>
+                  <ul>
                   {% for detalle in detalles %}
                   {% if detalle.op_id_pedido.id_pedido == pedido.id_pedido %}
-                  {{ detalle.producto_id_producto.proveedor_id_proveedor.nombre }}
+                  <li>{{ detalle.producto_id_producto.proveedor_id_proveedor.nombre }}</li>
                   {% endif %}
                   {% endfor %}
+                  </ul>
                 </td>
                 <td>
                   <i onclick="modalEliminar({{ pedido.id_pedido }})" 
                     title="Eliminar"
-                    class="far fa-trash-alt text-red-600"
+                    class="far fa-trash-alt text-red-600 fa-2x"
                     aria-hidden="true"
                     ></i> &nbsp;&nbsp;
                     <i onclick="alert('Registrando pago...')"
                       title="Pagar"
-                      class="fas fa-hand-holding-usd text-green-600"
+                      class="fas fa-hand-holding-usd text-green-600 fa-2x"
                       aria-hidden="true"
                     ></i>
                   </td>
@@ -158,8 +160,8 @@
                 <input id="inputCantidad" class="w-12 p-0 m-0" type="number" min="1" value="1">
               </div>
               <div>
-                <i onclick="descartar()" title="Descartar" class="text-red-600 fas fa-minus-circle"></i><br>
-                <i id="btnAgregarProducto" style="transition: font-size .7s cubic-bezier(0.25, 1.5, 0.25, 1.5)" onclick="addToList()" title="Agregar" class="text-blue-900 fas fa-plus-circle"></i>
+                <i onclick="descartar()" title="Descartar" class="text-red-600 fas fa-minus-circle fa-2x"></i><br>
+                <i id="btnAgregarProducto" style="transition: font-size .7s cubic-bezier(0.25, 1.5, 0.25, 1.5)" onclick="addToList()" title="Agregar" class="text-blue-900 fas fa-plus-circle fa-2x"></i>
               </div>
             </div>
 
@@ -318,8 +320,8 @@
           ${proveedor}
         </td>
         <td>
-          <i onclick="modalEliminar(${nueva_id_pedido})" title="Eliminar" class="far fa-trash-alt text-red-600"></i> &nbsp;&nbsp;
-            <i onclick="alert('Registrando pago...')" title="Pagar" class="fas fa-hand-holding-usd text-green-600"></i>
+          <i onclick="modalEliminar(${nueva_id_pedido})" title="Eliminar" class="far fa-trash-alt text-red-600 fa-2x"></i> &nbsp;&nbsp;
+            <i onclick="alert('Registrando pago...')" title="Pagar" class="fas fa-hand-holding-usd text-green-600 fa-2x"></i>
           </td>
       </tr>`
       document.getElementById('cuerpoTabla').innerHTML = hijo + document.getElementById('cuerpoTabla').innerHTML
