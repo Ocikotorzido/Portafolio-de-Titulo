@@ -274,7 +274,17 @@
 
       fetch(`${window.location.origin}/Mantenedor/agregar_pedido/${id_auto}/`)
       .then(response => response.text())
-      .then(data => {console.log(`¡agregar -> ${data}!`)})
+      .then(data => {
+        console.log(`¡agregar -> ${data}!`)
+        for (filas of listaGlobal){
+          fetch(`${window.location.origin}/Mantenedor/agregar_det_prod/${nueva_id_pedido}/${filas[2]}/${filas[4]}/`)
+          .then(response => response.text())
+          .then(data => {
+            console.log('¡Pedido enviado al servidor!!!')
+          })
+          .catch((error) => alert('Algún error inesperado ha ocurrido al guardar en el servidor...'))
+        }
+      })
       .catch((error) => alert('Algún error inesperado ha ocurrido al guardar en el servidor...'))
       
       /*
@@ -294,12 +304,6 @@
       for (filas of listaGlobal){
         productos += `<li>${filas[1]} <strong>x${filas[2]}</strong></li>`
         proveedor += `<li>${filas[0]}</li>`
-        fetch(`${window.location.origin}/Mantenedor/agregar_det_prod/${nueva_id_pedido}/${filas[2]}/${filas[4]}/`)
-          .then(response => response.text())
-          .then(data => {
-            console.log('¡Pedido enviado al servidor!!!')
-          })
-          .catch((error) => alert('Algún error inesperado ha ocurrido al guardar en el servidor...'))
       }
       let hijo = `<tr id="fp_${nueva_id_pedido}">
         <td>${nueva_id_pedido}</td>

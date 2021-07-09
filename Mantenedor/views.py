@@ -349,12 +349,11 @@ def agregar_det_prod(request, id_pedido, cant, id_producto):
 
 def eliminar_pedido(request, id_pedido):
     coincidencia = Op.objects.filter(id_pedido=id_pedido)
-    if coincidencia:
+    if len(coincidencia):
         eliminado = coincidencia[0]
         eliminado.delete()
-        eliminado.save()
         return HttpResponse(status=200)
-    return HttpResponse(status=404)
+    return HttpResponse('ERROR, no coincide el id con ningún registro.',status=404)
 
 def get_new_id_pedido(request):
     if Op.objects.last().id_pedido:

@@ -54,8 +54,8 @@ class DetalleOp(models.Model):
     id_detalle_op = models.FloatField(primary_key=True)
     cod_producto = models.FloatField()
     cantidad = models.FloatField()
-    op_id_pedido = models.ForeignKey('Op', models.DO_NOTHING, db_column='op_id_pedido')
-    producto_id_producto = models.ForeignKey('Producto', models.DO_NOTHING, db_column='producto_id_producto')
+    op_id_pedido = models.ForeignKey('Op', on_delete=models.CASCADE, db_column='op_id_pedido')
+    producto_id_producto = models.ForeignKey('Producto', on_delete=models.CASCADE, db_column='producto_id_producto')
 
     class Meta:
         managed = True
@@ -206,7 +206,7 @@ class Producto(models.Model):
     codigo = models.CharField(max_length=18)
     valor = models.FloatField()
     descripcion = models.CharField(max_length=100)
-    proveedor_id_proveedor = models.ForeignKey('Proveedor', models.DO_NOTHING, db_column='proveedor_id_proveedor')
+    proveedor_id_proveedor = models.ForeignKey('Proveedor', on_delete=models.CASCADE, db_column='proveedor_id_proveedor')
 
     class Meta:
         managed = True
