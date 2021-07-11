@@ -7,13 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Pago</title>
-  <meta name="author" content="name">
-  <meta name="description" content="description here">
-  <meta name="keywords" content="keywords,here">
-
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
   <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+  <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
   <style>table{text-align: left; width: 100%; border-collapse: collapse;}th,td{border: solid 1px black; padding: 20px;}thead{color: white; background-color: rgb(37, 88, 160); border-bottom: solid 5px #132a6f;}tr:nth-child(even){background-color: #d0d0d0;}tr:hover td select{background-color: #9b9b9b; color: white;}tr:hover td{background-color: #6f6f6f; color: white;}</style>
 </head>
 
@@ -33,7 +30,7 @@
             <h3 class="font-bold pl-2">Pagos (Boleta/Factura)</h3>
           </div>
         </div>
-        <section class="flex flex-col">
+        <section class="flex flex-col p-1 md:p-12">
           <h1>Registro de pagos:</h1>
           <table>
             <thead>
@@ -56,7 +53,7 @@
                 <td>
                   <i onclick="modalEliminar({{ pago.id_pago }})" title="Eliminar"
                     class="far fa-trash-alt text-red-600 fa-2x" aria-hidden="true">
-                  </i>&nbsp;&nbsp;<i onclick="alert('Generando recibo...')" title="Recibo"
+                  </i>&nbsp;&nbsp;<i onclick="location.href='comprobante_pago/1/boleta'" title="Recibo"
                     class="fas fa-receipt text-gray-600 fa-2x" aria-hidden="true">
                   </i>
                 </td>
@@ -70,7 +67,7 @@
                 <td>
                   <i onclick="modalEliminar({{ pago.id_pago }})" title="Eliminar"
                     class="far fa-trash-alt text-red-600 fa-2x" aria-hidden="true">
-                  </i>&nbsp;&nbsp;<i onclick="alert('Generando recibo...')" title="Recibo"
+                  </i>&nbsp;&nbsp;<i onclick="location.href='comprobante_pago/1/factura'" title="Recibo"
                     class="fas fa-receipt text-gray-600 fa-2x" aria-hidden="true">
                   </i>
                 </td>
