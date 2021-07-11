@@ -402,6 +402,14 @@ def orden_pedido (request):
         
     return render (request, 'mantenedor/orden_pedido.html', context)
 
+def comprobante_pago(request, id_orden, tipo_comprobante):
+    id_orden = id_orden
+    context = {
+        'title': tipo_comprobante,
+        'id_orden': id_orden
+    }
+    return render(request, 'mantenedor/comprobante_pago.html',context)
+
 def registrar_proveedor(request):
     nivel = None
     if request.user.is_authenticated:
