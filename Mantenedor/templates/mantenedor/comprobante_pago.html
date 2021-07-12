@@ -8,17 +8,18 @@
   <title>Comprobante de pago - {{title}}</title>
   <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
   <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+  <style>#detalles article:nth-child(2n){background-color: #e5e7eb;}</style>
 </head>
 <body>
   <section class="text-center">
-    <h1>Comprobante de pago</h1>
-    <h2>Tipo de recibo: <strong>{{ title }}</strong></h2>
+    <h1 class="text-2xl font-bold p-2">Comprobante de pago</h1>
+    <h2 class="text-xl">Tipo de recibo: <strong>{{ title }}</strong></h2>
     <article>
       <fieldset class="border-solid border-2 border-gray-400 rounded-lg m-5">
         <legend style="text-align:center;" class="border-solid border-2 border-gray-400 rounded-full p-2">&nbsp;COMPROBANTE DE PAGO&nbsp;</legend>
         <header class="flex justify-around flex-wrap flex-row-reverse m-1">
           <aside>
-            <div class="rounded border-solid border-2 border-gray-400 p-3">
+            <div class="rounded border-solid border-2 border-gray-400 p-3 bg-gray-100">
               <h1><strong>{{ title }}</strong></h1>
               <h2><strong>N°</strong> 001</h2>
             </div>
@@ -40,33 +41,61 @@
             <label>Fecha emisión: <span>12-Junio-2021</span></label>
           </div>
         </div>
-        <div>
-          Productos:
-          <p>blablabla</p>
-          <p>blablabla</p>
-          <p>blablabla</p>
-          <p>blablabla</p>
-          <p>blablabla</p>
-          <p>blablabla</p>
-        </div>
-        <div class="p-5">
-          <div class="flex justify-between border-solid border-b-2 border-gray-400">
-            <div>Monto neto: </div>
-            <div class="w-32 border-solid border-l-2 border-gray-400">$1000</div>
+        <section>
+          <h1 class="text-lg p-2">Detalle de los servicios y/o productos solicitados.</h1>
+          <div id="detalles" class="p-5">
+            <article class="flex flex-nowrap">
+              <div class="w-1/4 px-0">Código</div>
+              <div class="w-1/4 md:w-1/2 lg:w-3/4 xl:w-11/12 px-0 border-solid border-l-2 border-gray-400">Descripción</div>
+              <div class="w-1/4 px-0 border-solid border-l-2 border-gray-400">Cantidad</div>
+              <div class="w-1/4	md:w-1/6 border-solid border-l-2 border-gray-400">valor</div>
+            </article>
+            <article class="flex flex-nowrap">
+              <div class="flex justify-center items-center w-1/4 px-0">001002003004212</div>
+              <div class="flex justify-center items-center w-1/4 md:w-1/2 lg:w-3/4 xl:w-11/12 px-0 border-solid border-l-2 border-gray-400">Cambio de neumáticos</div>
+              <div class="flex justify-center items-center w-1/4 px-0 border-solid border-l-2 border-gray-400">1</div>
+              <div class="flex justify-center items-center w-1/4	md:w-1/6 border-solid border-l-2 border-gray-400">$14.990</div>
+            </article>
+            <article class="flex flex-nowrap">
+              <div class="flex justify-center items-center w-1/4 px-0">002002003004333</div>
+              <div class="flex justify-center items-center w-1/4 md:w-1/2 lg:w-3/4 xl:w-11/12 px-0 border-solid border-l-2 border-gray-400">Ruedas</div>
+              <div class="flex justify-center items-center w-1/4 px-0 border-solid border-l-2 border-gray-400">1</div>
+              <div class="flex justify-center items-center w-1/4	md:w-1/6 border-solid border-l-2 border-gray-400">$99.990</div>
+            </article>
+            <article class="flex flex-nowrap">
+              <div class="flex justify-center items-center w-1/4 px-0">003002003004432</div>
+              <div class="flex justify-center items-center w-1/4 md:w-1/2 lg:w-3/4 xl:w-11/12 px-0 border-solid border-l-2 border-gray-400">propina</div>
+              <div class="flex justify-center items-center w-1/4 px-0 border-solid border-l-2 border-gray-400">1</div>
+              <div class="flex justify-center items-center w-1/4	md:w-1/6 border-solid border-l-2 border-gray-400">$9990</div>
+            </article>
+            <article class="flex flex-nowrap">
+              <div class="flex justify-center items-center w-1/4 px-0">004002003004333</div>
+              <div class="w-1/4 md:w-1/2 lg:w-3/4 xl:w-11/12 px-0 border-solid border-l-2 border-gray-400">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus reprehenderit minima quos obcaecati voluptates amet quisquam itaque, nulla aspernatur at, impedit iste nesciunt a distinctio vel. Amet repudiandae tempore rerum.
+              </div>
+              <div class="flex justify-center items-center w-1/4 px-0 border-solid border-l-2 border-gray-400">1</div>
+              <div class="flex justify-center items-center w-1/4	md:w-1/6 border-solid border-l-2 border-gray-400">$99.990</div>
+            </article>
           </div>
-          <div class="flex justify-between border-solid border-b-2 border-gray-400 bg-gray-200">
-            <div>Monto exento: </div>
-            <div class="w-32 border-solid border-l-2 border-gray-400">$1000</div>
+        </section>
+        <footer class="p-5">
+          <div class="flex justify-end">
+            <div class="w-36 px-4">Monto neto: </div>
+            <div class="w-1/4	md:w-1/6 border-solid border-l-2 border-gray-400">$1000</div>
           </div>
-          <div class="flex justify-between border-solid border-b-2 border-gray-400">
-            <div>IVA: </div>
-            <div class="w-32 border-solid border-l-2 border-gray-400">$190</div>
+          <div class="flex justify-end">
+            <div class="w-36 px-4 bg-gray-200">Monto exento: </div>
+            <div class="w-1/4	md:w-1/6 border-solid border-l-2 border-gray-400 bg-gray-200">$1000</div>
           </div>
-          <div class="flex justify-between bg-gray-200">
-            <div>Monto total: </div>
-            <div class="w-32 border-solid border-l-2 border-gray-400">$1190</div>
+          <div class="flex justify-end">
+            <div class="w-36 px-4">IVA: </div>
+            <div class="w-1/4	md:w-1/6 border-solid border-l-2 border-gray-400">$190</div>
           </div>
-        </div>
+          <div class="flex justify-end">
+            <div class="w-36 px-4 bg-gray-200">Monto total: </div>
+            <div class="w-1/4	md:w-1/6 border-solid border-l-2 border-gray-400 bg-gray-200">$1190</div>
+          </div>
+        </footer>
        </fieldset>
     </article>
   </section>
