@@ -6,22 +6,69 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Comprobante de pago - {{title}}</title>
+  <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
   <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 </head>
 <body>
-  <h1>Comprobante de pago</h1>
-  <h2>{{ title }}</h2>
-  <fieldset>
-    <legend style="text-align:center;">Personalia:</legend>
-    <label for="fname">First name:</label>
-    <input type="text" id="fname" name="fname"><br><br>
-    <label for="lname">Last name:</label>
-    <input type="text" id="lname" name="lname"><br><br>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email"><br><br>
-    <label for="birthday">Birthday:</label>
-    <input type="date" id="birthday" name="birthday"><br><br>
-    <input type="submit" value="Submit">
-   </fieldset>
+  <section class="text-center">
+    <h1>Comprobante de pago</h1>
+    <h2>Tipo de recibo: <strong>{{ title }}</strong></h2>
+    <article>
+      <fieldset class="border-solid border-2 border-gray-400 rounded-lg m-5">
+        <legend style="text-align:center;" class="border-solid border-2 border-gray-400 rounded-full p-2">&nbsp;COMPROBANTE DE PAGO&nbsp;</legend>
+        <header class="flex justify-around flex-wrap flex-row-reverse m-1">
+          <aside>
+            <div class="rounded border-solid border-2 border-gray-400 p-3">
+              <h1><strong>{{ title }}</strong></h1>
+              <h2><strong>N°</strong> 001</h2>
+            </div>
+          </aside>
+          <div class="flex justiify-center flex-col">
+            <h1>Taller Mecánico "SERVIEXPRESS"</h1>
+            <h2 class="text-gray-400">Mechanic car services</h2>
+            <h3 class="text-gray-400">123.456.789-5</h3>
+            <h4 class="text-gray-400">Jorge Canning #501, Población la Legua Emergencia, San Joaquín</h4>
+            <h5 class="text-gray-400">Servicio técnico automotriz.</h5>
+          </div>
+        </header>
+        <div class="flex justify-around flex-wrap">
+          <div>
+            <label>Giro: <span>Mecánica Automotriz</span></label><br>
+            <label>Razón social: <span>SERVIEXPRESS</span></label>
+          </div>
+          <div>
+            <label>Fecha emisión: <span>12-Junio-2021</span></label>
+          </div>
+        </div>
+        <div>
+          Productos:
+          <p>blablabla</p>
+          <p>blablabla</p>
+          <p>blablabla</p>
+          <p>blablabla</p>
+          <p>blablabla</p>
+          <p>blablabla</p>
+        </div>
+        <div class="p-5">
+          <div class="flex justify-between border-solid border-b-2 border-gray-400">
+            <div>Monto neto: </div>
+            <div class="w-32 border-solid border-l-2 border-gray-400">$1000</div>
+          </div>
+          <div class="flex justify-between border-solid border-b-2 border-gray-400 bg-gray-200">
+            <div>Monto exento: </div>
+            <div class="w-32 border-solid border-l-2 border-gray-400">$1000</div>
+          </div>
+          <div class="flex justify-between border-solid border-b-2 border-gray-400">
+            <div>IVA: </div>
+            <div class="w-32 border-solid border-l-2 border-gray-400">$190</div>
+          </div>
+          <div class="flex justify-between bg-gray-200">
+            <div>Monto total: </div>
+            <div class="w-32 border-solid border-l-2 border-gray-400">$1190</div>
+          </div>
+        </div>
+       </fieldset>
+    </article>
+  </section>
 </body>
 </html>
