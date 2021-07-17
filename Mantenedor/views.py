@@ -406,7 +406,7 @@ def comprobante_pago(request, id_orden, tipo_comprobante):
     id_orden = id_orden
     context = {
         'title': tipo_comprobante,
-        'id_orden': id_orden
+        'id_orden': id_orden,
     }
     return render(request, 'mantenedor/comprobante_pago.html',context)
 

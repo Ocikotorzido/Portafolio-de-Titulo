@@ -38,7 +38,7 @@
             <label>Razón social: <span>SERVIEXPRESS</span></label>
           </div>
           <div>
-            <label>Fecha emisión: <span>12-Junio-2021</span></label>
+            <label>Fecha emisión: <span>12-Junio-2021 {{ fecha_emision }}</span></label>
           </div>
         </div>
         <section>
@@ -76,6 +76,22 @@
               <div class="flex justify-center items-center w-1/4 px-0 border-solid border-l-2 border-gray-400">1</div>
               <div class="flex justify-center items-center w-1/4	md:w-1/6 border-solid border-l-2 border-gray-400">$99.990</div>
             </article>
+            {% for pago in pagos %}
+            <article class="flex flex-nowrap">
+              <div class="flex justify-center items-center break-all w-1/4 px-0">
+                {{ producto.codigo }}
+              </div>
+              <div class="w-1/4 md:w-1/2 lg:w-3/4 xl:w-11/12 px-0 border-solid border-l-2 border-gray-400">
+                {{ producto.descripcion }}
+              </div>
+              <div class="flex justify-center items-center w-1/4 px-0 border-solid border-l-2 border-gray-400">
+                {{ cantidad }}
+              </div>
+              <div class="flex justify-center items-center w-1/4	md:w-1/6 border-solid border-l-2 border-gray-400">
+               ${{ cantidad * valor }}
+              </div>
+            </article>
+            {% endfor %}
           </div>
         </section>
         <footer class="p-5">
