@@ -63,16 +63,12 @@
             <label for="modelo">Modelo</label>
             <input type="text" list="modelos" name="modelo" id="modelo" autocomplete="off" required>
             <datalist id="modelos">
-
-              <option value="Morning">
               <option value="i10">
-
+              {#<option value="Morning">#}
               <option value="Accent">
-              <option value="Rio">
-
+              {#<option value="Rio">#}
               <option value="Tucson">
-              <option value="Sportage">
-
+              {#<option value="Sportage">#}
             </datalist>
           </div>
           <div>
@@ -107,6 +103,7 @@
       agregar_listeners()
       function agregar_listeners(){
         let inputs = document.getElementsByTagName('input')
+        let selectMarca = document.getElementById('marca')
         for (let input of inputs){
           if (input.type == 'checkbox'){
             input.addEventListener("click", function() {
@@ -114,6 +111,16 @@
             });
           }
         }
+        selectMarca.addEventListener("change", function() {
+          let selectMarca = document.getElementById('marca')
+          let listMarcas = document.getElementById('modelos')
+          document.getElementById('modelo').value = ''
+          if (selectMarca.value == 'hyundai'){
+            listMarcas.innerHTML = '<option value="i10"><option value="Accent"><option value="Tucson">'
+          } else {
+            listMarcas.innerHTML = '<option value="Morning"><option value="Rio"><option value="Sportage">'
+          }
+        });
       }
       function presupuesto(){
         let total = 0
