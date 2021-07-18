@@ -235,6 +235,7 @@ def reservas (request):
     }
     servicios = TipoServicio.objects.all()
     context = {'servicios': servicios }
+    context['years'] = range(2010, 2022)
     if request.method == 'POST':
         context['method'] = 'POST'
         vehiculo['marca'] = request.POST['marca']

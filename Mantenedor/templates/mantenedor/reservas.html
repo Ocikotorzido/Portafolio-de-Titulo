@@ -77,7 +77,12 @@
           </div>
           <div>
             <label for="year">Año</label>
-            <input type="number" name="year" id="year" min="2000" max="2030" required>
+            <input type="number" list="years" name="year" id="year" min="2000" max="2030" autocomplete="off" required>
+            <datalist id="years">
+              {% for i in years %}
+              <option value="{{i}}">
+              {% endfor %}
+            </datalist>
           </div>
         </article>
 
