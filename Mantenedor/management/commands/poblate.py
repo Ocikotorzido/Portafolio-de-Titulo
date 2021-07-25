@@ -116,7 +116,7 @@ cargos = {
     'nombre': 'RECEPCIONISTA'
   },
    'cargo_4': {
-    'nombre': 'EMPLEADOS'
+    'nombre': 'EMPLEADO'
   }
 }
 
