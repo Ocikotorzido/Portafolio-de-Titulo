@@ -105,6 +105,21 @@ proveedores = {
           },
 }
 
+cargos = {
+  'cargo_1': {
+    'nombre': 'ADMIN'
+  },
+   'cargo_2': {
+    'nombre': 'MECANICO'
+  },
+   'cargo_3': {
+    'nombre': 'RECEPCIONISTA'
+  },
+   'cargo_4': {
+    'nombre': 'EMPLEADOS'
+  }
+}
+
 
 
 class Command(BaseCommand):
@@ -149,6 +164,18 @@ class Command(BaseCommand):
             proveedores[pro].get('rubro') 
               )
         proveedor.save() 
+
+
+      self.stdout.write(self.style.SUCCESS('Iniciando proceso de llenado de tablas... '))
+      self.stdout.write(self.style.WARNING('Tabla cargo'))
+      for id_cargo, car in enumerate(cargos):
+        self.stdout.write(self.style.WARNING((id_cargo+1, 
+            cargos[car].get('nombre')
+            )))
+        cargo = Cargo(id_cargo+1, 
+            cargos[car].get('nombre')
+              )
+        cargo.save()   
 
       self.stdout.write(self.style.SUCCESS('Servicios escritos en la base de datos correctamente!.'))
     
