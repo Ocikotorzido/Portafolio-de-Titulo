@@ -411,6 +411,7 @@ def comprobante_pago(request, id_orden, tipo_comprobante):
     context = {
         'title': tipo_comprobante,
         'id_orden': id_orden,
+        'total': '99'
     }
     return render(request, 'mantenedor/comprobante_pago.html',context)
 
