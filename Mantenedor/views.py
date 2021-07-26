@@ -230,7 +230,7 @@ def reservas (request):
     solicitud = ''
     servicios_disponibles = dict()
     for index, item in enumerate(TipoServicio.objects.all()):
-        servicios_disponibles[item.nombre] = f'servicio_{index+1}'
+        servicios_disponibles[f'servicio_{index+1}'] = item.nombre
         
     servicios = TipoServicio.objects.all()
     context = {'servicios': servicios }
