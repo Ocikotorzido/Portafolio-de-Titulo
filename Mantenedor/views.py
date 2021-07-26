@@ -337,9 +337,12 @@ def agregar_det_prod(request, id_pedido, cant, id_producto):
     if not len(Producto.objects.filter(id_producto=id_producto)):
         return HttpResponse('nO eXiStE pRoDuCtO!', status=404)
     
-    try: DetalleOp.objects.last().id_detalle_op
-    except AttributeError: return HttpResponse(1)
-    id_detalle = DetalleOp.objects.last().id_detalle_op + 1
+    try: 
+        DetalleOp.objects.last().id_detalle_op
+        id_detalle = DetalleOp.objects.last().id_detalle_op + 1
+    except AttributeError: 
+        id_detalle = 1
+    
     id_proveedor, familia, fecha_vencimiento, tipo = ['001','005','000000000','008']
     cod_prod = f'{id_proveedor}{familia}{fecha_vencimiento}{tipo}'
     
