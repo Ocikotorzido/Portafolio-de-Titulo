@@ -88,7 +88,7 @@
                 {{ detalle.cantidad }}
               </div>
               <div class="flex justify-center items-center w-1/4	md:w-1/6 border-solid border-l-2 border-gray-400">
-               ${{ total }}
+               ${{ detalle.precio }}
               </div>
             </article>
             {% endfor %}
@@ -109,7 +109,7 @@
           </div>
           <div class="flex justify-end">
             <div class="w-36 px-4 bg-gray-200">Monto total: </div>
-            <div class="w-1/4	md:w-1/6 border-solid border-l-2 border-gray-400 bg-gray-200">$1190</div>
+            <div class="w-1/4	md:w-1/6 border-solid border-l-2 border-gray-400 bg-gray-200">${{ total }}</div>
           </div>
         </footer>
        </fieldset>

@@ -422,6 +422,7 @@ def comprobante_pago(request, id_orden, tipo_comprobante):
             detalle['codigo'] = servicio.tipo_servicio_id_servicio.id_servicio
             detalle['descripcion'] = servicio.tipo_servicio_id_servicio.nombre
             detalle['cantidad'] = 1
+            detalle['precio'] = producto.monto
             detalles.append(detalle)
     else:
         # Se valida que exista la órden de pedido.
@@ -434,6 +435,7 @@ def comprobante_pago(request, id_orden, tipo_comprobante):
             detalle['codigo'] = producto.producto_id_producto.codigo
             detalle['descripcion'] = producto.producto_id_producto.descripcion
             detalle['cantidad'] = producto.cantidad
+            detalle['precio'] = producto.producto_id_producto.valor
             detalles.append(detalle)
     
     hoy = datetime.datetime.now().strftime(f'%d de %m de %Y, a las %H:%M %p')
