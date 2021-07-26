@@ -22,6 +22,9 @@ from django.contrib.auth import login as iniciarSesion, logout, authenticate
 
 from Taller.settings import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
 
+# Función anónima para validar que sólo se ingresen números.
+only_numbers = lambda texto: ''.join([numero if numero in ['0','1','2','3','4','5','6','7','8','9'] else '' for numero in texto])
+
 def to_index(request):
     """Redirección hacia index"""
     return redirect('index')
@@ -568,7 +571,9 @@ def empleado (request):
             nivel = 'ERROR'
             
     context={'perfil':{'nivel':nivel},
-             'cargos': cargos }
+             'cargos': cargos,
+             'title': 'Registrar empleado' 
+            }
     
     return render(request,'mantenedor/registro_empleado.html',context)
 
@@ -589,7 +594,7 @@ def agregar_empleado(request):
             nivel = 'ERROR'
     if request.method == 'POST':
         mi_cargo = request.POST['cargo']
-        mi_rut = request.POST['rut']
+        mi_rut = only_numbers(request.POST['rut'])
         mi_nombre = request.POST['nombre']
         mi_apellido = request.POST['apellido']
         mi_contacto = request.POST['contacto']
@@ -624,6 +629,7 @@ def agregar_empleado(request):
         empleado.save()
         return render(request, 'mantenedor/registro_empleado.html', {'mensaje':'Empleado_registrado',
                                                                      'perfil':{'nivel':nivel}})
+    return HttpResponse('SÓLO POST, NO GET')
 
 def generar_informe(request, informe_de, parametros, tipo):
     """Generar informes sobre algun/a persona/objeto.
