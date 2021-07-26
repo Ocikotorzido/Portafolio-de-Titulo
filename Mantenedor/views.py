@@ -355,6 +355,11 @@ def eliminar_pedido(request, id_pedido):
     return HttpResponse('ERROR, no coincide el id con ningún registro.',status=404)
 
 def get_new_id_pedido(request):
+    try: 
+        Op.objects.last().id_pedido
+    except AttributeError: 
+        return HttpResponse(1)
+    
     if Op.objects.last().id_pedido:
         return HttpResponse(Op.objects.last().id_pedido+1)
     return HttpResponse(status=404)
