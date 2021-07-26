@@ -428,11 +428,11 @@ def comprobante_pago(request, id_orden, tipo_comprobante):
             detalles.append(detalle)
     else:
         # Se valida que exista la órden de pedido.
-        try: orden_pedido = Op.objects.get(id_orden=id_orden)
+        try: orden_pedido = Op.objects.get(id_pedido=id_orden)
         except: return HttpResponse('No existe órden de pedido asociada.')
         
         detalles = list()
-        for producto in DetalleOp.objects.filter(op_id_pedido=id_orden):
+        for producto in DetalleOp.objects.filter(op_id_pedido=orden_pedido.id_pedido):
             detalle = dict()
             detalle['codigo'] = producto.producto_id_producto.codigo
             detalle['descripcion'] = producto.producto_id_producto.descripcion
