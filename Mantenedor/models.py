@@ -13,9 +13,11 @@ class FormularioRegistro(UserCreationForm):
         fields = ('email', 'username', 'first_name', 'last_name')
 
     def save(self, commit=True):
+        # Función anónima para validar que sólo se ingresen números.
+        only_numbers = lambda texto: ''.join([numero if numero in ['0','1','2','3','4','5','6','7','8','9'] else '' for numero in texto])
         user = super(UserCreationForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
-        user.username = self.cleaned_data['username']
+        user.username = only_numbers(self.cleaned_data['username'])
         if commit:
             user.save()
         return user
