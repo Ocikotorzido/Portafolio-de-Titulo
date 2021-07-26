@@ -82,7 +82,7 @@ class DetalleSer(models.Model):
         db_table = 'detalle_ser'
 
 class Empleado(models.Model):
-    id_empleado = models.FloatField(primary_key=True)
+    id_empleado = models.IntegerField(primary_key=True)
     rut = models.FloatField()
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
