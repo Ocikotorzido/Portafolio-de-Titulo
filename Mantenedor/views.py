@@ -218,21 +218,17 @@ def servicios (request):
     return render (request, 'mantenedor/servicios.html',context)
 
 def reservas (request):
+    if not (request.user.is_authenticated):
+        return HttpResponse('¡Debes estar logeado!')
     cliente = dict()
     cliente['nombre'] = f'{request.user.first_name} {request.user.last_name}'
     cliente['correo'] = f'{request.user.email}'
     vehiculo = dict()
     solicitud = ''
-    servicios_disponibles = {
-        'servicio_1': 'Cambio de neumáticos',
-        'servicio_2': 'Cambio de aceite',
-        'servicio_3': 'Cambio de pastillas',
-        'servicio_4': 'Cambio de correas',
-        'servicio_5': 'cambio de bujías',
-        'servicio_6': 'Cambio de amortiguadores',
-        'servicio_7': 'Cambio de baterías',
-        'servicio_8': 'Cambio de filtros',
-    }
+    servicios_disponibles = dict()
+    for index, item in enumerate(TipoServicio.objects.all()):
+        servicios_disponibles[item.nombre] = f'servicio_{index+1}'
+        
     servicios = TipoServicio.objects.all()
     context = {'servicios': servicios }
     context['years'] = range(2010, 2022)
@@ -308,7 +304,6 @@ def orden_trabajo (request):
     
     ot = Ot.objects.all()
     context['ot'] = ot
-
     
     detalles = DetalleSer.objects.all()
     context['detalles'] = detalles
