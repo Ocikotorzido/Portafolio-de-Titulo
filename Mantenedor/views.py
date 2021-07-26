@@ -407,10 +407,41 @@ def orden_pedido (request):
     return render (request, 'mantenedor/orden_pedido.html', context)
 
 def comprobante_pago(request, id_orden, tipo_comprobante):
-    id_orden = id_orden
+    if tipo_comprobante not in ['boleta', 'factura']:
+        return HttpResponse('Error del tipo comprobante. (boleta / factura)')
+    
+    if tipo_comprobante == 'boleta':
+        # Se valida que exista la órden de trabajo.
+        try: orden_trabajo = Ot.objects.get(id_orden=id_orden)
+        except: return HttpResponse('No existe órden de trabajo asociada.')
+        
+        id_reserva = orden_trabajo.reservas_id_reserva.id_reserva
+        detalles = list()
+        for servicio in DetalleSer.objects.filter(reservas_id_reserva=id_reserva):
+            detalle = dict()
+            detalle['codigo'] = servicio.tipo_servicio_id_servicio.id_servicio
+            detalle['descripcion'] = servicio.tipo_servicio_id_servicio.nombre
+            detalle['cantidad'] = 1
+            detalles.append(detalle)
+    else:
+        # Se valida que exista la órden de pedido.
+        try: orden_pedido = Op.objects.get(id_orden=id_orden)
+        except: return HttpResponse('No existe órden de pedido asociada.')
+        
+        detalles = list()
+        for producto in DetalleOp.objects.filter(op_id_pedido=id_orden):
+            detalle = dict()
+            detalle['codigo'] = producto.producto_id_producto.codigo
+            detalle['descripcion'] = producto.producto_id_producto.descripcion
+            detalle['cantidad'] = producto.cantidad
+            detalles.append(detalle)
+    
+    hoy = datetime.datetime.now().strftime(f'%d de %m de %Y, a las %H:%M %p')
     context = {
         'title': tipo_comprobante,
-        'id_orden': id_orden,
+        'id_orden': str(id_orden).zfill(3),
+        'fecha_emision': hoy,
+        'detalles': detalles,
         'total': '99'
     }
     return render(request, 'mantenedor/comprobante_pago.html',context)

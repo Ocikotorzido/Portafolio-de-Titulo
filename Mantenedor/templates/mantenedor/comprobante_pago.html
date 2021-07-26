@@ -21,7 +21,7 @@
           <aside>
             <div class="rounded border-solid border-2 border-gray-400 p-3 bg-gray-100">
               <h1><strong>{{ title }}</strong></h1>
-              <h2><strong>N°</strong> 001</h2>
+              <h2><strong>N°</strong> {{ id_orden }}</h2>
             </div>
           </aside>
           <div class="flex justiify-center flex-col">
@@ -38,7 +38,7 @@
             <label>Razón social: <span>SERVIEXPRESS</span></label>
           </div>
           <div>
-            <label>Fecha emisión: <span>12-Junio-2021 {{ fecha_emision }}</span></label>
+            <label>Fecha emisión: <span>{{ fecha_emision }}</span></label>
           </div>
         </div>
         <section>
@@ -76,16 +76,16 @@
               <div class="flex justify-center items-center w-1/4 px-0 border-solid border-l-2 border-gray-400">1</div>
               <div class="flex justify-center items-center w-1/4	md:w-1/6 border-solid border-l-2 border-gray-400">$99.990</div>
             </article>
-            {% for pago in pagos %}
+            {% for detalle in detalles %}
             <article class="flex flex-nowrap">
               <div class="flex justify-center items-center break-all w-1/4 px-0">
-                {{ producto.codigo }}
+                {{ detalle.codigo }}
               </div>
               <div class="w-1/4 md:w-1/2 lg:w-3/4 xl:w-11/12 px-0 border-solid border-l-2 border-gray-400">
-                {{ producto.descripcion }}
+                {{ detalle.descripcion }}
               </div>
               <div class="flex justify-center items-center w-1/4 px-0 border-solid border-l-2 border-gray-400">
-                {{ cantidad }}
+                {{ detalle.cantidad }}
               </div>
               <div class="flex justify-center items-center w-1/4	md:w-1/6 border-solid border-l-2 border-gray-400">
                ${{ total }}
