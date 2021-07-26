@@ -337,6 +337,8 @@ def agregar_det_prod(request, id_pedido, cant, id_producto):
     if not len(Producto.objects.filter(id_producto=id_producto)):
         return HttpResponse('nO eXiStE pRoDuCtO!', status=404)
     
+    try: DetalleOp.objects.last().id_detalle_op
+    except AttributeError: return HttpResponse(1)
     id_detalle = DetalleOp.objects.last().id_detalle_op + 1
     id_proveedor, familia, fecha_vencimiento, tipo = ['001','005','000000000','008']
     cod_prod = f'{id_proveedor}{familia}{fecha_vencimiento}{tipo}'
@@ -365,6 +367,10 @@ def get_new_id_pedido(request):
     return HttpResponse(status=404)
 
 def agregar_pedido(request, id_auto):
+    try: 
+        Op.objects.last().id_pedido
+    except AttributeError: 
+        return HttpResponse(1)
     id_pedido = Op.objects.last().id_pedido+1
     fecha_pedido = datetime.datetime.now()
     fecha_entrega = datetime.datetime.now() + datetime.timedelta(days=2)
