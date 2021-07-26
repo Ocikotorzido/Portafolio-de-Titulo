@@ -418,13 +418,12 @@ def orden_pedido (request):
 def comprobante_pago(request, id_orden, tipo_comprobante):
     if tipo_comprobante not in ['boleta', 'factura']:
         return HttpResponse('Error del tipo comprobante. (boleta / factura)')
-    
+    total = 0
     if tipo_comprobante == 'boleta':
         # Se valida que exista la órden de trabajo.
         try: orden_trabajo = Ot.objects.get(id_orden=id_orden)
         except: return HttpResponse('No existe órden de trabajo asociada.')
         
-        total = 0
         id_reserva = orden_trabajo.reservas_id_reserva.id_reserva
         detalles = list()
         for servicio in DetalleSer.objects.filter(reservas_id_reserva=id_reserva):
