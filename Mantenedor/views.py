@@ -293,7 +293,7 @@ def eliminar_reserva(request, id_reserva):
 
 def ver_reservas (request):
     reservas = Reservas.objects.all().order_by('-id_reserva')
-    mecanicos = Empleado.objects.filter(cargo_id_tipo_cargo=3)
+    mecanicos = Empleado.objects.filter(cargo_id_tipo_cargo=2)
     context = {'reservas': reservas,
                'mecanicos': mecanicos }
     return render (request, 'mantenedor/ver_reservas.html', context)
@@ -622,6 +622,7 @@ def exportar(request):
     return render(request,'mantenedor/exportar.html',context)
 
 def agregar_empleado(request):
+    cargos = Cargo.objects.all()
     nivel = None
     if request.user.is_authenticated:
         try:
@@ -665,7 +666,7 @@ def agregar_empleado(request):
                                 mi_cargo)
         empleado.save()
         return render(request, 'mantenedor/registro_empleado.html', {'mensaje':'Empleado_registrado',
-                                                                     'perfil':{'nivel':nivel}})
+                                                                     'perfil':{'nivel':nivel}, 'cargos': cargos})
     return HttpResponse('SÓLO POST, NO GET')
 
 def generar_informe(request, informe_de, parametros, tipo):
