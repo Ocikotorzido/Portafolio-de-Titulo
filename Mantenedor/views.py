@@ -440,7 +440,7 @@ def comprobante_pago(request, id_orden, tipo_comprobante):
             detalle['precio'] = producto.producto_id_producto.valor
             total += int(detalle['precio'])
             detalles.append(detalle)
-    iva = total * 0.19
+    iva = int(total * 0.19)
     hoy = datetime.datetime.now().strftime(f'%d de %m de %Y, a las %H:%M %p')
     context = {
         'title': tipo_comprobante,
