@@ -146,7 +146,7 @@ def registro_cliente (request):
         mi_celular = dato_or_zero(request.POST['celular'])
         mi_email = request.POST['email']
 
-        id_user_auth = User.objects.get(username=formulario.cleaned_data['username']).id
+        id_user_auth = User.objects.get(username=only_numbers(formulario.cleaned_data['username'])).id
         id_cliente = Cliente.objects.count()+1
         cliente = Cliente(id_cliente,mi_nombre,mi_apellido,mi_direccion,
                             mi_telefono,mi_celular,mi_email,mi_rut)
@@ -655,7 +655,7 @@ def generar_informe(request, informe_de, parametros, tipo):
         'cliente': tablas_db['cliente'],
         'proveedor': tablas_db['proveedor'],
         'administrador': tablas_db['perfil'],
-        #'vehiculo': tablas_db['reserva'],
+        'vehiculo': tablas_db['infoauto'],
     }
     
     
@@ -706,7 +706,10 @@ def generar_informe(request, informe_de, parametros, tipo):
     fields = informes[informe_de]._meta.get_fields()
     titulos = list()
     for titulo in fields:
-        titulos.append(titulo.name)
+        try:
+            titulo.field
+        except AttributeError:
+            titulos.append(titulo.name)
     
     writer = csv.writer(response)
     writer.writerow(titulos)
@@ -716,12 +719,8 @@ def generar_informe(request, informe_de, parametros, tipo):
     for fila in informes[informe_de].objects.all():
         temp = list()
         for columna in nombre_campos:
-            temp.append(fila.serializable_value(columna.name))
-            #if informe_de == 'administrador':
-                #if fila.nivel.lower() in ['admin', 'administrador']:
-                #    temp.append(fila.serializable_value(columna.name))
-            #else:
-                #temp.append(fila.serializable_value(columna.name))
+            try: temp.append(fila.serializable_value(columna.name))
+            except AttributeError: pass
         writer.writerow(temp)
     
     # Devuelve un archivo CSV.
@@ -770,7 +769,8 @@ def generar_informe(request, informe_de, parametros, tipo):
         for row in csv_reader:
             row_cells = table.add_row().cells
             for i in range(csv_cols):
-                row_cells[i].text = row[i]
+                try: row_cells[i].text = row[i]
+                except IndexError: pass
     document.add_page_break()    
     document.save(f'{temp_folder}{nombre_archivo}.docx')
 
