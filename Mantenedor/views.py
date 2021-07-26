@@ -443,7 +443,7 @@ def comprobante_pago(request, id_orden, tipo_comprobante):
         for producto in DetalleOp.objects.filter(op_id_pedido=orden_pedido.id_pedido):
             detalle = dict()
             detalle['codigo'] = producto.producto_id_producto.codigo
-            detalle['descripcion'] = producto.producto_id_producto.descripcion
+            detalle['descripcion'] = producto.producto_id_producto.nombre + ': ' + producto.producto_id_producto.descripcion
             detalle['cantidad'] = producto.cantidad
             detalle['precio'] = producto.producto_id_producto.valor
             total += int(detalle['precio'])
