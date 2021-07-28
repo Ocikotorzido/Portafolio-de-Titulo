@@ -91,7 +91,7 @@
                     class="far fa-trash-alt text-red-600 fa-2x"
                     aria-hidden="true"
                     ></i> &nbsp;&nbsp;
-                    <i onclick="registrar_pago({{ pedido.id_pedido }}, factura)"
+                    <i onclick="registrar_pago({{ pedido.id_pedido }}, 'factura')"
                       title="Pagar"
                       class="fas fa-hand-holding-usd text-green-600 fa-2x"
                       aria-hidden="true"
@@ -321,7 +321,7 @@
         </td>
         <td>
           <i onclick="modalEliminar(${nueva_id_pedido})" title="Eliminar" class="far fa-trash-alt text-red-600 fa-2x"></i> &nbsp;&nbsp;
-            <i onclick="registrar_pago(${nueva_id_pedido}, factura)" title="Pagar" class="fas fa-hand-holding-usd text-green-600 fa-2x"></i>
+            <i onclick="registrar_pago(${nueva_id_pedido}, 'factura')" title="Pagar" class="fas fa-hand-holding-usd text-green-600 fa-2x"></i>
           </td>
       </tr>`
       document.getElementById('cuerpoTabla').innerHTML = hijo + document.getElementById('cuerpoTabla').innerHTML
