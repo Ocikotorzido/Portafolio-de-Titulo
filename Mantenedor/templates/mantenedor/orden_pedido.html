@@ -344,7 +344,7 @@
       }
     }
     function registrar_pago(id_orden, tipo_recibo){
-      fetch(`${window.location.origin}/Mantenedor/${id_orden}/${tipo_recibo}`)
+      fetch(`${window.location.origin}/Mantenedor/registrar_pago/${id_orden}/${tipo_recibo}`)
         .then(response => response.text())
         .then(data => {
           alert('asd')
