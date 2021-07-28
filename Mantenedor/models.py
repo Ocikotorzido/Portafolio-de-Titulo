@@ -184,6 +184,8 @@ class Pago(models.Model):
     tipo_recibo = models.CharField(max_length=10)
     monto = models.FloatField()
 
+    def __str__(self):
+        return f'{self.id_pago}) id orden: {self.id_orden} - {self.fecha_emision} - {self.tipo_recibo} - Monto: {self.monto}'
     class Meta:
         managed = True
         db_table = 'pago'

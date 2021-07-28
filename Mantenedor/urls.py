@@ -13,6 +13,8 @@ urlpatterns = [
     path('consultar_fecha_pedido/<int:id_pedido>/', views.consultar_fecha_pedido),
     path('consultar_fecha_entrega/<int:id_pedido>/', views.consultar_fecha_entrega),
     path('eliminar_reserva/<int:id_reserva>/', views.eliminar_reserva),
+    path('registrar_pago/<int:id_orden>/<str:tipo_recibo>/', views.registrar_pago),
+    path('agregar_producto/<int:id_orden>/<str:tipo_recibo>/', views.agregar_producto),
     
     # [host]/Mantenedor/...
     path('', views.to_index),

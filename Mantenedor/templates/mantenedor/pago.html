@@ -44,62 +44,55 @@
               </tr>
             </thead>
             {# Datos Dummy #}
-              <tr>
-                <td>1</td>
-                <td>1 de trabajo</td>
-                <td>5 de Julio de 2021</td>
-                <td><strong>Boleta</strong></td>
-                <td>$25000</td>
-                <td>
-                  <i onclick="modalEliminar({{ pago.id_pago }})" title="Eliminar"
-                    class="far fa-trash-alt text-red-600 fa-2x" aria-hidden="true">
-                  </i>&nbsp;&nbsp;<i onclick="location.href='comprobante_pago/1/boleta'" title="Recibo"
-                    class="fas fa-receipt text-gray-600 fa-2x" aria-hidden="true">
-                  </i>
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>1 de pedido</td>
-                <td>5 de Julio de 2021</td>
-                <td><strong>Factura</strong> </td>
-                <td>$25000</td>
-                <td>
-                  <i onclick="modalEliminar({{ pago.id_pago }})" title="Eliminar"
-                    class="far fa-trash-alt text-red-600 fa-2x" aria-hidden="true">
-                  </i>&nbsp;&nbsp;<i onclick="location.href='comprobante_pago/1/factura'" title="Recibo"
-                    class="fas fa-receipt text-gray-600 fa-2x" aria-hidden="true">
-                  </i>
-                </td>
-              </tr>
-            {% for reserva in reservas %}
+            {#  <tr>#}
+            {#    <td>1</td>#}
+            {#    <td>1 de trabajo</td>#}
+            {#    <td>5 de Julio de 2021</td>#}
+            {#    <td><strong>Boleta</strong></td>#}
+            {#    <td>$25000</td>#}
+            {#    <td>#}
+            {#      <i onclick="modalEliminar({{ pago.id_pago }})" title="Eliminar"#}
+            {#        class="far fa-trash-alt text-red-600 fa-2x" aria-hidden="true">#}
+            {#      </i>&nbsp;&nbsp;<i onclick="location.href='comprobante_pago/1/boleta'" title="Recibo"#}
+            {#        class="fas fa-receipt text-gray-600 fa-2x" aria-hidden="true">#}
+            {#      </i>#}
+            {#    </td>#}
+            {#  </tr>#}
+            {#  <tr>#}
+            {#    <td>2</td>#}
+            {#    <td>1 de pedido</td>#}
+            {#    <td>5 de Julio de 2021</td>#}
+            {#    <td><strong>Factura</strong> </td>#}
+            {#    <td>$25000</td>#}
+            {#    <td>#}
+            {#      <i onclick="modalEliminar({{ pago.id_pago }})" title="Eliminar"#}
+            {#        class="far fa-trash-alt text-red-600 fa-2x" aria-hidden="true">#}
+            {#      </i>&nbsp;&nbsp;<i onclick="location.href='comprobante_pago/1/factura'" title="Recibo"#}
+            {#        class="fas fa-receipt text-gray-600 fa-2x" aria-hidden="true">#}
+            {#      </i>#}
+            {#    </td>#}
+            {#  </tr>#}
+            {% for pago in pagos %}
             <tr>
-              <td>{{ reserva.id_reserva }}</td>
-              <td>{{ reserva.fecha_reserva }}</td>
-              <td>{{ reserva.cliente_id_cliente.nombre }} {{ reserva.cliente_id_cliente.apellido }}</td>
-              <td>{{ reserva.marca }}<br>{{ reserva.modelo }}<br>{{ reserva.year }}</td>
-              <td>
-                <select id="m_{{ reserva.id_reserva }}" class="p-2" id="mecanico" name="mecanico">
-                  {% for mecanico in mecanicos %}
-                  <option value="{{ mecanico.id_empleado }}">{{ mecanico.nombre }}</option>
-                  {% endfor %}
-                </select>
-              </td>
-              {% if reserva.confirmacion == '1' %}
-              <td id='confirmacion_{{reserva.id_reserva}}'
-                onclick="modificar( {{ reserva.id_reserva }}, get_mecanico({{reserva.id_reserva}}), 0 )">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                  Confirmado
-                </button>
-                </th>
-                {% else %}
-              <td id='confirmacion_{{reserva.id_reserva}}'
-                onclick="modificar( {{ reserva.id_reserva }}, get_mecanico({{reserva.id_reserva}}), 1 )">
-                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
-                  Sin Confirmar
-                </button>
-                </th>
+              <td>{{ pago.id_pago }}</td>
+              <td>N°{{ pago.id_orden }} de
+                {% if pago.tipo_recibo == 'boleta' %}
+                trabajo
+                {% elif pago.tipo_recibo == 'factura' %}
+                pedido
                 {% endif %}
+
+              </td>
+              <td>{{ pago.fecha_emision }}</td>
+              <td><strong>{{ pago.tipo_recibo }}</strong></td>
+              <td>${{ pago.monto }}</td>
+              <td>
+                <i onclick="modalEliminar({{ pago.id_pago }})" title="Eliminar"
+                  class="far fa-trash-alt text-red-600 fa-2x" aria-hidden="true">
+                </i>&nbsp;&nbsp;<i onclick="location.href=`comprobante_pago/{{pago.id_pago}}/{{pago.tipo_recibo}}/`" title="Recibo"
+                  class="fas fa-receipt text-gray-600 fa-2x" aria-hidden="true">
+                </i>
+              </td>
             </tr>
             {% endfor %}
           </table>

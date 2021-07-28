@@ -10,17 +10,14 @@
   <meta name="author" content="name">
   <meta name="description" content="description here">
   <meta name="keywords" content="keywords,here">
-
+  <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
   <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
-  <!--Replace with your tailwind.css once created-->
   <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"
     integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
-
   <link rel="stylesheet" type="text/css" href="{% static 'css/tablas.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/estilos_cliente.css' %}">
-
 </head>
 
 
@@ -32,8 +29,6 @@
       <li class="flex items-center"><a href="index">Volver</a></li>
     </ul>
   </nav>
-
-
 
   <div class="flex flex-col md:flex-row px-14">
 
@@ -106,7 +101,6 @@
                     <input type="text" id="nombre" name="nombre">
                   </div>
                   <div class="field">
-
                     <label for="codigo">Codigo: </label>
                     <input type="number" id="codigo" name="codigo">
                   </div>
@@ -116,7 +110,6 @@
                   </div>
 
                   <div class="field">
-
                     <label for="descripcion">Descripcion: </label>
                     <input type="text" id="descripcion" name="descripcion">
                   </div>

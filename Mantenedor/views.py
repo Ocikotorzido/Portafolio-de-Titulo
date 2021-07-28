@@ -300,7 +300,9 @@ def ver_reservas (request):
 
 
 def pago(request):
-    return render (request, 'mantenedor/pago.html')
+    context = dict()
+    context['pagos'] = Pago.objects.all().order_by('-id_pago')
+    return render (request, 'mantenedor/pago.html', context)
 
 def orden_trabajo (request):
     context = dict()
@@ -414,6 +416,45 @@ def orden_pedido (request):
         dp.save() '''
         
     return render (request, 'mantenedor/orden_pedido.html', context)
+
+def registrar_pago(request, id_orden, tipo_recibo):
+    """ Registro del pago de una boleta o una factura
+        Esto puede ser de una órden de trabajo o una órden de pedido.
+    """
+    if tipo_recibo not in ['boleta', 'factura']:
+        return HttpResponse('Error del tipo recibo. (boleta / factura)')
+    
+    # Se obtiene la última ID de pago.
+    try: id_pago = Pago.objects.last().id_pago + 1
+    except AttributeError: id_pago = 1
+    
+    fecha_emision = datetime.datetime.now()
+    
+    monto = 0
+    if tipo_recibo == 'boleta':
+        # Se valida que exista la órden de trabajo.
+        try: orden_trabajo = Ot.objects.get(id_orden=id_orden)
+        except: return HttpResponse('No existe órden de trabajo asociada.')
+        
+        id_reserva = orden_trabajo.reservas_id_reserva.id_reserva
+        for servicio in DetalleSer.objects.filter(reservas_id_reserva=id_reserva):
+            monto += int(servicio.tipo_servicio_id_servicio.monto)
+    else: # --> Factura
+        # Se valida que exista la órden de pedido.
+        try: orden_pedido = Op.objects.get(id_pedido=id_orden)
+        except: return HttpResponse('No existe órden de pedido asociada.')
+        
+        for producto in DetalleOp.objects.filter(op_id_pedido=orden_pedido.id_pedido):
+            monto += producto.cantidad * producto.producto_id_producto.valor
+            
+    if Pago.objects.filter(id_orden=id_orden).filter(tipo_recibo=tipo_recibo):    
+        return HttpResponse(f'Ya existe un pago registrado para esta orden.', status=404)
+    else:
+        nuevo_pago = Pago(id_pago, id_orden, fecha_emision, tipo_recibo, monto)
+        nuevo_pago.save()
+        return HttpResponse(status=200)
+    
+    return HttpResponse('Algo fue mal', status=404)
 
 def comprobante_pago(request, id_orden, tipo_comprobante):
     if tipo_comprobante not in ['boleta', 'factura']:
@@ -530,13 +571,12 @@ def productos(request):
 
     return render(request, 'mantenedor/productos.html',context)
 
-
+def agregar_producto(request):
+    return HttpResponse(status=200)
 
 
 def registro_vehiculo(request):
     if request.method == 'POST':
-        
-
         mi_cliente = request.POST['nombre']
         mi_rut = request.POST['rut']
         mi_direccion = request.POST['direccion']
@@ -560,7 +600,8 @@ def registro_vehiculo(request):
         mi_observaciones = request.POST['observaciones']
 
         vehiculo = InfoAuto()
-        id_informe = InfoAuto.objects.count()+1
+        try: id_informe = InfoAuto.objects.last()+1
+        except: id_informe = 1
 
         #asignacion de datos
 
