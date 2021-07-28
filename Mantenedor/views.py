@@ -418,6 +418,7 @@ def orden_pedido (request):
 def comprobante_pago(request, id_orden, tipo_comprobante):
     if tipo_comprobante not in ['boleta', 'factura']:
         return HttpResponse('Error del tipo comprobante. (boleta / factura)')
+    proveedor = dict()
     total = 0
     if tipo_comprobante == 'boleta':
         # Se valida que exista la órden de trabajo.
@@ -434,7 +435,7 @@ def comprobante_pago(request, id_orden, tipo_comprobante):
             detalle['precio'] = servicio.tipo_servicio_id_servicio.monto
             total += int(detalle['precio'])
             detalles.append(detalle)
-    else:
+    else: # --> Factura
         # Se valida que exista la órden de pedido.
         try: orden_pedido = Op.objects.get(id_pedido=id_orden)
         except: return HttpResponse('No existe órden de pedido asociada.')
@@ -448,6 +449,8 @@ def comprobante_pago(request, id_orden, tipo_comprobante):
             detalle['precio'] = producto.producto_id_producto.valor
             total += int(detalle['precio'])
             detalles.append(detalle)
+            proveedor['nombre'] = producto.proveedor_id_proveedor.nombre
+            proveedor['rut'] = producto.proveedor_id_proveedor.rut
     iva = int(total * 0.19)
     hoy = datetime.datetime.now().strftime(f'%d de %m de %Y, a las %H:%M %p')
     context = {
@@ -457,7 +460,8 @@ def comprobante_pago(request, id_orden, tipo_comprobante):
         'detalles': detalles,
         'neto': total-iva,
         'iva': iva,
-        'total': total
+        'total': total,
+        'proveedor': proveedor
     }
     return render(request, 'mantenedor/comprobante_pago.html',context)
 
@@ -583,9 +587,7 @@ def registro_vehiculo(request):
         vehiculo.observaciones = mi_observaciones
 
         # Búsqueda del número de identidad.
-        
-        
-        id_emple =    Perfil.objects.filter(id_auth_user = request.user.id)[0].id_usuario
+        id_emple = Perfil.objects.filter(id_auth_user = request.user.id)[0].id_usuario
         
         #envio de datos
         nuevo_vehiculo = InfoAuto(id_informe,mi_cliente,mi_rut,mi_direccion,mi_contacto,mi_fecha,mi_modelo,
@@ -597,10 +599,6 @@ def registro_vehiculo(request):
         return render(request,'mantenedor/registro_vehiculo.html')
     
     return render(request, 'mantenedor/registro_vehiculo.html')
-
-
-     
-
 
 def presupuesto(request):
     return render (request, 'mantenedor/presupuesto.html')
