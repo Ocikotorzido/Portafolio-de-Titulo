@@ -86,12 +86,12 @@
                   </ul>
                 </td>
                 <td>
-                  <i onclick="modalEliminar({{ pedido.id_pedido }})" 
+                  <i onclick="modalEliminar({{ pedido.id_pedido }})"
                     title="Eliminar"
                     class="far fa-trash-alt text-red-600 fa-2x"
                     aria-hidden="true"
                     ></i> &nbsp;&nbsp;
-                    <i onclick="alert('Registrando pago...')"
+                    <i onclick="registrar_pago({{ pedido.id_pedido }}, factura)"
                       title="Pagar"
                       class="fas fa-hand-holding-usd text-green-600 fa-2x"
                       aria-hidden="true"
@@ -321,7 +321,7 @@
         </td>
         <td>
           <i onclick="modalEliminar(${nueva_id_pedido})" title="Eliminar" class="far fa-trash-alt text-red-600 fa-2x"></i> &nbsp;&nbsp;
-            <i onclick="alert('Registrando pago...')" title="Pagar" class="fas fa-hand-holding-usd text-green-600 fa-2x"></i>
+            <i onclick="registrar_pago(${nueva_id_pedido}, factura)" title="Pagar" class="fas fa-hand-holding-usd text-green-600 fa-2x"></i>
           </td>
       </tr>`
       document.getElementById('cuerpoTabla').innerHTML = hijo + document.getElementById('cuerpoTabla').innerHTML
@@ -342,6 +342,14 @@
       } else {
         document.getElementById('modal-ingreso-pedido').style.display = 'none'
       }
+    }
+    function registrar_pago(id_orden, tipo_recibo){
+      fetch(`${window.location.origin}/Mantenedor/${id_orden}/${tipo_recibo}`)
+        .then(response => response.text())
+        .then(data => {
+          alert('asd')
+        })
+        .catch((error) => alert('Algún error inesperado ha ocurrido'))
     }
   </script>
 </body>
