@@ -36,6 +36,11 @@
           <div>
             <label>Giro: <span>Mecánica Automotriz</span></label><br>
             <label>Razón social: <span>SERVIEXPRESS</span></label>
+            <br>
+            {% if proveedor %}
+            <label>Proveedor: <span>{{ proveedor.nombre }}</span></label>
+            <label>RUT PROVEEDOR: <span>{{ proveedor.rut }}</span></label>
+            {% endif %}
           </div>
           <div>
             <label>Fecha emisión: <span>{{ fecha_emision }}</span></label>
