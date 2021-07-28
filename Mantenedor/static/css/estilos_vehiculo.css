@@ -17,8 +17,13 @@ h1{
     
 }
 
-input{
+label{
+    font-size: 18px;
+    font-weight: bold;
+}
 
+input{
+    height: 2rem;
     border: 1px solid black;
     box-shadow: 7px 13px 37px rgba(0,0,0,.1);
 }
