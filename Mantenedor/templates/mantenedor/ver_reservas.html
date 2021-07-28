@@ -99,7 +99,7 @@
               <td>
                 <i onclick="modalEliminar({{ reserva.id_reserva }})" title="Eliminar"
                   class="far fa-trash-alt text-red-600 fa-2x" aria-hidden="true">
-                </i>&nbsp;&nbsp;<i onclick="alert('Registrando pago...')" title="Pagar"
+                </i>&nbsp;&nbsp;<i onclick="registrar_pago({{ reserva.id_reserva }}, 'boleta')" title="Pagar"
                   class="fas fa-hand-holding-usd text-green-600 fa-2x" aria-hidden="true">
                 </i>
               </td>
@@ -196,6 +196,14 @@
           location.reload();
           console.log('Error con la petición', error);
         })
+    }
+    function registrar_pago(id_orden, tipo_recibo){
+      fetch(`${window.location.origin}/Mantenedor/registrar_pago/${id_orden}/${tipo_recibo}/`)
+        .then(response => response.text())
+        .then(data => {
+          alert(data)
+        })
+        .catch((error) => alert('Algún error inesperado ha ocurrido'))
     }
   </script>
 </body>

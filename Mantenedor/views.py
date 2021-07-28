@@ -271,7 +271,8 @@ def reservas (request):
 def modificar_reserva(request, id_reserva, id_mecanico, confirmacion):
     if confirmacion not in [0,1]:
         return HttpResponse(status=403)
-    reserva = Reservas.objects.get(id_reserva=id_reserva)
+    try: reserva = Reservas.objects.get(id_reserva=id_reserva)
+    except: return HttpResponse('No se encuentra la reserva', status=403)
     reserva.confirmacion = confirmacion
     reserva.save()
     ot = Ot.objects.filter(reservas_id_reserva_id=id_reserva)
@@ -452,7 +453,7 @@ def registrar_pago(request, id_orden, tipo_recibo):
     else:
         nuevo_pago = Pago(id_pago, id_orden, fecha_emision, tipo_recibo, monto)
         nuevo_pago.save()
-        return HttpResponse(status=200)
+        return HttpResponse('¡Pago registrado!', status=200)
     
     return HttpResponse('Algo fue mal', status=404)
 
