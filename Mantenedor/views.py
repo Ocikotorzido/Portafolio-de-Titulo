@@ -305,6 +305,14 @@ def pago(request):
     context['pagos'] = Pago.objects.all().order_by('-id_pago')
     return render (request, 'mantenedor/pago.html', context)
 
+def eliminar_pago(request, id_pago):
+    # Determiinar si existe un pago asociado a la ID en cuestión.
+    try: el_pago = Pago.objects.get(id_pago=id_pago)
+    except: return HttpResponse('No existe pago asociado.', status=404) 
+    
+    el_pago.delete()
+    return HttpResponse('Pago eliminado', status=200)
+
 def orden_trabajo (request):
     context = dict()
     
