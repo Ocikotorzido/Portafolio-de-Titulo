@@ -576,19 +576,34 @@ def productos(request):
     return render(request, 'mantenedor/productos.html',context)
 
 def agregar_producto(request, nombre, codigo, valor, descripcion, id_proveedor):
+    try: Producto.objects.get(codigo=codigo)
+    except: return HttpResponse('¡Código de producto ya existe!', status=404)
+    
     try: id_producto = Producto.objects.last().id_producto + 1
     except: id_producto = 1
     
     try: id_proveedor = Proveedor.objects.get(id_proveedor=id_proveedor).id_proveedor
     except: return HttpResponse('No se encuentra ID del proveedor',status=404)
     
-    
-    
     nuevo_producto = Producto(id_producto, nombre, codigo, valor, descripcion, id_proveedor)
     nuevo_producto.save()
     
     return HttpResponse('¡Producto agregado!', status=200)
 
+def obtener_nueva_id_producto(request):
+    try: 
+        return HttpResponse(Producto.objects.last().id_producto + 1, status=200)
+    except AttributeError: 
+        return HttpResponse(1, status=200)
+    
+
+def eliminar_producto(request, id_producto):
+    try: el_producto = Producto.objects.get(id_producto=id_producto)
+    except: return HttpResponse('¡No se encuentra el producto!', status=404)
+    
+    el_producto.delete()
+    
+    return HttpResponse('¡Producto eliminado!', status=200)
 
 def registro_vehiculo(request):
     if request.method == 'POST':

@@ -289,16 +289,6 @@
       })
       .catch((error) => alert('Algún error inesperado ha ocurrido al guardar en el servidor...'))
       
-      /*
-      // Fecha Pedido
-      fetch(`${window.location.origin}/Mantenedor/consultar_fecha_pedido/${nueva_id_pedido}/`)
-      .then(response => response.text()).then(data => { fecha_pedido = data; console.log(fecha_pedido)})
-      
-      // Fecha entrega
-      fetch(`${window.location.origin}/Mantenedor/consultar_fecha_entrega/${nueva_id_pedido}/`)
-      .then(response => response.text()).then(data => { fecha_entrega = data; console.log(fecha_entrega)})
-      */
-      
       fecha_pedido = new Date(Date.now()).toLocaleString('ES-CL', {day: 'numeric', month: 'long', year: 'numeric'})
       arriving_date = new Date(new Date().setDate(new Date().getDate() + 2));
       fecha_entrega = new Date(arriving_date).toLocaleString('es-CL', {day: 'numeric', month: 'numeric', year: 'numeric'})

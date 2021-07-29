@@ -16,6 +16,8 @@ urlpatterns = [
     path('registrar_pago/<int:id_orden>/<str:tipo_recibo>/', views.registrar_pago),
     path('eliminar_pago/<int:id_pago>/', views.eliminar_pago),
     path('agregar_producto/<str:nombre>/<str:codigo>/<int:valor>/<str:descripcion>/<int:id_proveedor>/', views.agregar_producto),
+    path('eliminar_producto/<int:id_producto>/', views.eliminar_producto),
+    path('obtener_nueva_id_producto/', views.obtener_nueva_id_producto),
     
     # [host]/Mantenedor/...
     path('', views.to_index),

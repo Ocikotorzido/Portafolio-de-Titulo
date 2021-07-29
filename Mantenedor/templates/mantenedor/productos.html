@@ -57,16 +57,22 @@
                 <td>Valor</th>
                 <td>Descripcion</th>
                 <td>Proveedor</th>
+                <td>Acción</td>
               </tr>
             </thead>
             {% for producto in productos %}
             <tbody id="cuerpoTabla">
-              <tr>
+              <tr id="fp_{{ producto.id_producto }}">
                 <td>{{producto.nombre}}</td>
                 <td>{{producto.codigo}}</td>
                 <td>{{producto.valor}}</td>
                 <td>{{producto.descripcion}}</td>
                 <td>{{producto.proveedor_id_proveedor.nombre}}</td>
+                <td><i onclick="modalEliminar({{ producto.id_producto }})"
+                  title="Eliminar"
+                  class="far fa-trash-alt text-red-600 fa-2x"
+                  aria-hidden="true"></i>
+                </td>
               </tr>
             </tbody>
             {% endfor %}
@@ -145,10 +151,54 @@
     </div>
     {# Fin Modal de ingreso de órden #}
 
+    {# Modal Eliminar #}
+  <div
+  class="min-w-screen h-screen animated fadeIn faster fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover"
+  style="display: none;" id="modal-eliminar">
+  <div onclick="document.getElementById('modal-eliminar').style.display = 'none'" class="absolute bg-black opacity-80 inset-0 z-0"></div>
+  <div class="w-full  max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
+    <!--content-->
+    <div class="">
+      <!--body-->
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 flex items-center text-red-500 mx-auto"
+        viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd"
+          d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+          clip-rule="evenodd" />
+      </svg>
+      <h2 class="text-center text-xl font-bold py-4 ">¿Borrar producto <span id="span_producto"></span> ?</h3>
+        <p class="text-sm text-gray-500 px-8">Se borrará de manera definitiva el producto.</p>
+    </div>
+    <!--footer-->
+    <div class="p-3  mt-2 text-center space-x-4 md:block">
+      <button
+        class="mb-2 md:mb-0 bg-white px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-full hover:shadow-lg hover:bg-gray-100"
+        onclick="document.getElementById('modal-eliminar').style.display = 'none'">
+        Cancelar
+      </button>
+      <button
+        id="btnBorrar" class="mb-2 md:mb-0 bg-red-500 border border-red-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-red-600"
+        >
+        Borrar
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+{# Fin Modal eliminiar #}
+
     <script>
       function toggleModal() {
         if (document.getElementById('modal-ingreso-producto').style.display == 'none') {
           document.getElementById('modal-ingreso-producto').style.display = 'block'
+          fetch(`${window.location.origin}/Mantenedor/obtener_nueva_id_producto/`)
+          .then(response => response.text())
+          .then(data => {
+            nueva_id_producto = data
+            document.getElementById('fetch_id_pedido').innerHTML = data
+            document.getElementById('modal-ingreso-pedido').style.display = 'block'
+          })
+          .catch((error) => alert('Algún error inesperado ha ocurrido'))
         } else {
           document.getElementById('modal-ingreso-producto').style.display = 'none'
         }
@@ -169,15 +219,32 @@
           .then( data => alert(data) )
           .catch( (error) => alert('Algún error inesperado ha ocurrido al guardar en el servidor...') )
         
-        
         let hijo = `<tr">
           <td>${nombre}</td>
           <td>${codigo}</td>
           <td>${valor}</td>
           <td>${descripcion}</td>
           <td>${nombre_proveedor}</td>
+          <td><i onclick="modalEliminar(fp_${id_nuevo_producto})"
+            title="Eliminar"
+            class="far fa-trash-alt text-red-600 fa-2x"
+            aria-hidden="true"></i>
+          </td>
         </tr>`
         document.getElementById('cuerpoTabla').innerHTML = hijo + document.getElementById('cuerpoTabla').innerHTML
+      }
+      function modalEliminar(id_producto){
+        document.getElementById('modal-eliminar').style.display = 'block'
+        document.getElementById('span_producto').innerText = id_producto
+        document.getElementById('btnBorrar').setAttribute('onclick', `eliminar(${id_producto})`)
+      }
+      function eliminar(id_producto) {
+        document.getElementById('modal-eliminar').style.display = 'none'
+        document.getElementById(`fp_${id_producto}`).style.display = 'none'
+        fetch(`${window.location.origin}/Mantenedor/eliminar_producto/${id_producto}/`)
+          .then(response => response.text())
+          .then(data => alert(data) )
+          .catch((error) => alert('Algún error inesperado ha ocurrido al eliminar en el servidor...'))
       }
     </script>
 </body>
