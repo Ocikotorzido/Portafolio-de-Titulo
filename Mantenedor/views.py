@@ -497,7 +497,7 @@ def comprobante_pago(request, id_orden, tipo_comprobante):
             detalle['descripcion'] = producto.producto_id_producto.nombre + ': ' + producto.producto_id_producto.descripcion
             detalle['cantidad'] = producto.cantidad
             detalle['precio'] = producto.producto_id_producto.valor
-            total += int(detalle['precio'])
+            total += int(detalle['precio']) * int(detalle['cantidad'])
             detalles.append(detalle)
             proveedor['nombre'] = ''
             proveedor['rut'] = ''
