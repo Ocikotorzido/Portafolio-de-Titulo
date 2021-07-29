@@ -188,6 +188,7 @@
 {# Fin Modal eliminiar #}
 
     <script>
+      let nueva_id_producto
       function toggleModal() {
         if (document.getElementById('modal-ingreso-producto').style.display == 'none') {
           document.getElementById('modal-ingreso-producto').style.display = 'block'
@@ -195,8 +196,6 @@
           .then(response => response.text())
           .then(data => {
             nueva_id_producto = data
-            document.getElementById('fetch_id_pedido').innerHTML = data
-            document.getElementById('modal-ingreso-pedido').style.display = 'block'
           })
           .catch((error) => alert('Algún error inesperado ha ocurrido'))
         } else {

@@ -576,8 +576,10 @@ def productos(request):
     return render(request, 'mantenedor/productos.html',context)
 
 def agregar_producto(request, nombre, codigo, valor, descripcion, id_proveedor):
-    try: Producto.objects.get(codigo=codigo)
-    except: return HttpResponse('¡Código de producto ya existe!', status=404)
+    try: 
+        Producto.objects.get(codigo=codigo)
+        return HttpResponse('¡Código de producto ya existe!', status=404)
+    except: pass
     
     try: id_producto = Producto.objects.last().id_producto + 1
     except: id_producto = 1
