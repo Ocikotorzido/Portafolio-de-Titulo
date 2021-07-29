@@ -52,26 +52,23 @@
           <table>
             <thead>
               <tr>
-                <th>Nombre</th>
-                <th>Codigo</th>
-                <th>Valor</th>
-                <th>Descripcion</th>
-                <th>Proveedor</th>
+                <td>Nombre</th>
+                <td>Codigo</th>
+                <td>Valor</th>
+                <td>Descripcion</th>
+                <td>Proveedor</th>
               </tr>
             </thead>
             {% for producto in productos %}
-            <tr>
-              <td>{{producto.nombre}}</td>
-              <td>{{producto.codigo}}</td>
-              <td>{{producto.valor}}</td>
-              <td>{{producto.descripcion}}</td>
-              <td>{{producto.proveedor_id_proveedor.nombre}}</td>
-
-
-            </tr>
-
-
-
+            <tbody id="cuerpoTabla">
+              <tr>
+                <td>{{producto.nombre}}</td>
+                <td>{{producto.codigo}}</td>
+                <td>{{producto.valor}}</td>
+                <td>{{producto.descripcion}}</td>
+                <td>{{producto.proveedor_id_proveedor.nombre}}</td>
+              </tr>
+            </tbody>
             {% endfor %}
           </table>
         </div>
@@ -80,7 +77,7 @@
     {# Modal para ingresar nueva órden #}
     <div
       class="min-w-screen h-screen animated fadeIn faster fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover overflow-scroll"
-      style="display: none;" id="modal-ingreso-pedido">
+      style="display: none;" id="modal-ingreso-producto">
       <div class="absolute bg-black opacity-80 inset-0 z-0" style="height: 160vh;"></div>
       <div class="relative m-5 md:m-28 md:mt-12 rounded-xl bg-white">
         <!--content-->
@@ -150,11 +147,37 @@
 
     <script>
       function toggleModal() {
-        if (document.getElementById('modal-ingreso-pedido').style.display == 'none') {
-          document.getElementById('modal-ingreso-pedido').style.display = 'block'
+        if (document.getElementById('modal-ingreso-producto').style.display == 'none') {
+          document.getElementById('modal-ingreso-producto').style.display = 'block'
         } else {
-          document.getElementById('modal-ingreso-pedido').style.display = 'none'
+          document.getElementById('modal-ingreso-producto').style.display = 'none'
         }
+      }
+      function btnAgregar() {
+        toggleModal()
+        let nombre = document.getElementById('nombre').value
+        let codigo = document.getElementById('codigo').value
+        let valor = document.getElementById('valor').value
+        let descripcion = document.getElementById('descripcion').value
+        let proveedor = document.getElementById('proveedor').value
+        let nombre_proveedor = document.getElementById('proveedor').
+          options[document.getElementById('proveedor').
+          selectedIndex].text
+  
+        fetch(`${window.location.origin}/Mantenedor/agregar_producto/${nombre}/${codigo}/${valor}/${descripcion}/${proveedor}/`)
+          .then( response => response.text())
+          .then( data => alert(data) )
+          .catch( (error) => alert('Algún error inesperado ha ocurrido al guardar en el servidor...') )
+        
+        
+        let hijo = `<tr">
+          <td>${nombre}</td>
+          <td>${codigo}</td>
+          <td>${valor}</td>
+          <td>${descripcion}</td>
+          <td>${nombre_proveedor}</td>
+        </tr>`
+        document.getElementById('cuerpoTabla').innerHTML = hijo + document.getElementById('cuerpoTabla').innerHTML
       }
     </script>
 </body>

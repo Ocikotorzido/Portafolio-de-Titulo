@@ -562,26 +562,32 @@ def ver_proveedores (request):
     proveedores = Proveedor.objects.all()
     context = {'proveedores': proveedores}
 
-    
-
     return render (request, 'mantenedor/ver_proveedores.html', context)
 
 
-
-
 def productos(request):
-
-    productos = Producto.objects.all()
+    """ Ver y añadir los productos que pueden ser solicitados al proveedor. """
+    
+    productos = Producto.objects.all().order_by('-id_producto')
     proveedores = Proveedor.objects.all()
     
-    context = {'productos': productos,
-               'proveedores':proveedores
-              }
+    context = {'productos': productos, 'proveedores':proveedores}
 
     return render(request, 'mantenedor/productos.html',context)
 
-def agregar_producto(request):
-    return HttpResponse(status=200)
+def agregar_producto(request, nombre, codigo, valor, descripcion, id_proveedor):
+    try: id_producto = Producto.objects.last().id_producto + 1
+    except: id_producto = 1
+    
+    try: id_proveedor = Proveedor.objects.get(id_proveedor=id_proveedor).id_proveedor
+    except: return HttpResponse('No se encuentra ID del proveedor',status=404)
+    
+    
+    
+    nuevo_producto = Producto(id_producto, nombre, codigo, valor, descripcion, id_proveedor)
+    nuevo_producto.save()
+    
+    return HttpResponse('¡Producto agregado!', status=200)
 
 
 def registro_vehiculo(request):
