@@ -1,4 +1,6 @@
 # Mechanic Car Services (M.C.S.)
+## Portafolio de título Duoc UC, Caso N°4.
+
 [![Python](https://img.shields.io/badge/Python-3.9.4-blue.svg)](https://www.python.org/)
 [![Django](https://img.shields.io/badge/Django-3.2.3-green.svg)](https://www.djangoproject.com/)
 [![Tailwind CSS](https://img.shields.io/badge/TailWind-2.1.4-yellow.svg)](https://www.tailwindcss.com/)
@@ -27,8 +29,6 @@ Sistema de gestión y administración **web** del taller mecánico "ServiExpress
     - cx_oracle (`pip install cx_oracle`)
     - Pandas (`pip install pandas`)
     - Docx2PDF (`pip install docx2pdf`)
-
-
 
 [![Django](./pantallazos/django_80x80.png)](https://www.djangoproject.com/) 
 [![Oracle](./pantallazos/Oracle_80x80png.png)](https://www.djangoproject.com/) 
@@ -72,6 +72,8 @@ Se debe tener en cuenta:
 ## ¿Cómo lo echo a andar?
 Si todo se instaló correctamente, es tan simple como hacer click en **up**.
 
+[![up_bat_file](./pantallazos/up_bat.png)](https://github.com/Ocikotorzido/congenial-funicular/blob/master/up.bat) 
+
 **Usuarios de Windows**
 - **Doble click en** `up`.
 - Se abrirá el navegador.
@@ -91,6 +93,9 @@ Por línea de comandos:
 - **BackEnd**: Python 3.9.4 (Django 3.2.3) 
 - **Motor de base de datos**: Oracle 18c
 - **Control de versiones**: Git & GitHub.
+
+## Modelo lógico de la base de datos
+[![Modelo_logico](./pantallazos/modelo-logico.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/modelo-logico.png)
 
 ## Librerías extras de terceros.
 - Validador de rut. [github.com/gevalenz/rut-chile](https://github.com/gevalenz/rut-chile)
