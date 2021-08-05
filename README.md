@@ -4,7 +4,7 @@
 [![Python](https://img.shields.io/badge/Python-3.9.4-blue.svg)](https://www.python.org/)
 [![Django](https://img.shields.io/badge/Django-3.2.3-green.svg)](https://www.djangoproject.com/)
 [![Tailwind CSS](https://img.shields.io/badge/TailWind-2.1.4-yellow.svg)](https://www.tailwindcss.com/)
-[![Oracle](https://img.shields.io/badge/Oracle-18c-red.svg)](https://www.djangoproject.com/)
+[![Oracle](https://img.shields.io/badge/Oracle-18c-red.svg)](https://www.oracle.com/index.html)
 
 [![screenshot](./pantallazos/screenshot_index.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
 
@@ -17,6 +17,9 @@ Sistema de gestión y administración **web** del taller mecánico "ServiExpress
 ## ¿Qué funciones tiene este sitio?
 ### Estructura general de sitio
 [![Estructura](./pantallazos/estructura_taller.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
+
+## Banner promocional
+<img src="./pantallazos/Stay_connected!.png" width="700px" alt="Banner_free_july">
 
 ## ¿Qué necesito instalar?
 ### Obligatorio
@@ -31,7 +34,7 @@ Sistema de gestión y administración **web** del taller mecánico "ServiExpress
     - Docx2PDF (`pip install docx2pdf`)
 
 [![Django](./pantallazos/django_80x80.png)](https://www.djangoproject.com/) 
-[![Oracle](./pantallazos/Oracle_80x80png.png)](https://www.djangoproject.com/) 
+[![Oracle](./pantallazos/Oracle_80x80png.png)](https://www.oracle.com/index.html) 
 [![Pandas](./pantallazos/pandas_80x80.png)](https://pandas.pydata.org/) 
 [![Office](./pantallazos/office365_80x80.png)](https://www.office.com/) 
 [![Libre](./pantallazos/LibreOffice_80x80.png)](https://www.libreoffice.org/)
@@ -46,11 +49,28 @@ Se debiera crear un usuario administrador.
 El sistema trae datos predeterminados para evitar estar ingresando datos ficticios.
 - `python manage.py poblate`
 
+*Antes de cargar los datos iniciales, se recomienda hacer las **migraciones** (creación de las tablas en la base de datos).
+- `python manage.py makemigrations Mantenedor`
+- `python manage.py migrate`
+
 ### Atajos para desarrolladores. (Recomendado)
 El sistema trae las más diversas combinaciones de atajos de teclado, sólo se debe ejecutar el archivo `atajos.bat` y los comandos se instalarán **de manera local** (temporal) en la sesión actual de la terminal y aparecerá una lista con los comandos dispobibles.
-- `atajos.bat` (en PowerShell `.\atajos.bat`)
+- `atajos.bat` (en caso de usar PowerShell, escribir -> `.\atajos.bat`)
+
+#### Listado de atajos para desarrolladores.
+* `rs` --> runserver
+* `ps` --> shell
+* `mm` --> makemigrations
+* `m` --> migrate
+* `dbs` --> dbshell
+* `idb` --> inspectdb
+* `pob` --> poblate
+
 ### Archivo de configuración para envío de emails.
-Crear un archivo de configuración (**settings.ini**) con la siguiente información:
+**Crear** un archivo de configuración (**settings.ini**) con la siguiente información:
+
+<img src="./pantallazos/settings.ini.png" alt="Settings.ini">
+
 ```
 [Settings]
 EMAIL_HOST_USER = MI_CORREO_ELECTRONICO@gmail.com
@@ -104,6 +124,7 @@ Por línea de comandos:
 ## Recursos
 - screenshot.rocks, [https://screenshot.rocks/](https://screenshot.rocks/)
 - Generador de ruts, [https://generarut.cl/](https://generarut.cl/)
+- Canva [https://www.canva.com/](https://www.canva.com/)
 
 ## Capturas de pantalla.
 
@@ -123,16 +144,26 @@ Nuestro equipo de desarrollo está conformado por dos estudiantes de programaci�
 ### Sobre los logos
 Ambos logos del taller, junto al logo personalizado del citt fueron hechos por nuestro diseñador.
 
-- José Lorca [@JoseLorca](https://github.com/JoseLorca)
+✖️ ~~José Lorca [@JoseLorca](https://github.com/JoseLorca)~~ (Expulsado por baja participación y exceso de ausencias)
 
 ### Sobre la comunicación
 Discord fue nuestro mejor aliado al momento de establecer la comunicación con el equipo.
 
 [![Grupo_en_Discord](./pantallazos/grupo_portafolio_discord.png)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/)
 
+## Presentación final
+La asignatura de portafolio de título fue **aprobada** con la mejor calificación. (Primer semestre 2021)
+
+[![Grupo_en_Discord](./pantallazos/ppt_portafolio_2021.gif)](https://github.com/Ocikotorzido/congenial-funicular/tree/master/pantallazos/ppt_portafolio_2021.gif)
+
 ## Agradecimientos
 Agradecemos de corazón a todos los que hicieron esto posible, sin su ayuda, nos hubiera costado mucho más terminar este proyecto.
 
-[![logo_Citt](./Mantenedor/static/img/Thumbnail_hooded_man.png)](https://www.duoc.cl/citt/)
+- Centro de Innovación y Transferencia Tecnológica San Bernardo (CITT SB). 
+- Iván Muñoz, Director de carrera.
+- Profesor Julio Herrera.
+- Profesor Pablo Saldaña.
+- Profesor Ignacio Villaroel.
+- Felipe Ponce, mecánico autromotriz UTFSM.
 
-- Centro de Innovación y Transferencia Tecnológica (CITT). 
+[![logo_Citt](./Mantenedor/static/img/Thumbnail_hooded_man.png)](https://www.duoc.cl/citt/)
