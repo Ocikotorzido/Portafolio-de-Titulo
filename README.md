@@ -163,7 +163,7 @@ Agradecemos de corazón a todos los que hicieron esto posible, sin su ayuda, nos
 - Iván Muñoz, Director de carrera.
 - Profesor Julio Herrera.
 - Profesor Pablo Saldaña.
-- Profesor Ignacio Villaroel.
+- Profesor Ignacio Villarroel.
 - Felipe Ponce, mecánico autromotriz UTFSM.
 
 [![logo_Citt](./Mantenedor/static/img/Thumbnail_hooded_man.png)](https://www.duoc.cl/citt/)
